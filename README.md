@@ -1,8 +1,8 @@
 # Squelette de cours
 
-Code source du document *Data Mining 2*, accessible en ligne à l'adresse suivante :
+Code source du document *Data Mining Project 2021*, accessible en ligne à l'adresse suivante :
 
-- https://ClaudeGrasland.github.io/DataMining2
+- https://ClaudeGrasland.github.io/DataMining2021
 
 Le document est généré grâce à l'excellente extension [bookdown](https://bookdown.org/) de [Yihui Xie](https://yihui.name/). Il est mis à disposition selon les termes de la [Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
