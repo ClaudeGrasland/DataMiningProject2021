@@ -208,7 +208,7 @@ Lorsqu'on récupère des fonds de carte au format shapefile (.shp) ou dans d'aut
  
  
 
-```{r}
+```{r }
 library(sf)
 map <- st_read("tmp/CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2016/CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2016/CONTOURS-IRIS.shp")
 

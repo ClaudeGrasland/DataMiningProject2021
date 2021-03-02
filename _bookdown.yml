@@ -1,0 +1,11 @@
+book_filename: "Projet Data Mining 2021"
+repo: https://github.com/ClaudeGrasland/DataMiningProject2021
+delete_merged_file: true
+output_dir: "docs"
+edit: https://github.com/ClaudeGrasland/DataMiningProject2021/blob/master/%s
+language:
+  ui:
+    chapter_name: "Chapitre "
+    edit: "Source"
+
+
