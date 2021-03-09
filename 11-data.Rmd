@@ -188,7 +188,8 @@ La principale difficulté est de s'orienter dans l'ensemble des produits disponi
 
 ```{r, eval=FALSE}
 download.file(url="https://wxs.ign.fr/1yhlj2ehpqf3q6dt6a2y7b64/telechargement/inspire/CONTOURS-IRIS-2017-06-30%24CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30/file/CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30.7z",
-              destfile = "tmp/geom.zip")
+              destfile = "tmp/geom.7z")
+
 ```
 Il n'est apparemment pas possible de décompresser le fichier avec la fonction unzip de R, donc on effectue cette opération manuellement. Il en résulte une arborescence très complexe de dossiers et de sous-dossiers correspondant aux IRIS de la Francé métropolitaine mais aussi de chacun des DOM. Il faut alors aller repérer dans cet arborescence le dossier où se trouve le fonds IRIS de la France métropolitaine qui est au *format shapefile* et comporte plusieurs fichiers avec des extensions différentes. 
 
