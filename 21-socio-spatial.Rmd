@@ -80,7 +80,7 @@ Nous avons besoin de trois fichiers
 
 ```{r}
 indiv <- readRDS("data/indiv2017.Rdata")
-meta <- readRDS("data/indiv_2017_meta.Rdata")
+meta <- readRDS("data/indiv2017_meta.Rdata")
 map <-readRDS("data/map_iris.Rdata")
 ```
 
@@ -124,17 +124,17 @@ On constate que la commune de *Sucy-en-Brie (94071*)* a une population estimée 
 
 #### nombre de ménage de la commune
 
-Pour calculer le nombre de ménages, il faut construire un tablean *menag* ne comportant que les personnes de références. Nous allons devoir utiliser pour cela la variable **LPRF** dont on affiche les métadonnées : 
+Pour calculer le nombre de ménages, il faut construire un tablean *menag* ne comportant que les personnes de références. Nous allons devoir utiliser pour cela la variable **LPRM** dont on affiche les métadonnées : 
 
 
 ```{r}
-metavar<-meta %>% filter(COD_VAR == "LPRF")
+metavar<-meta %>% filter(COD_VAR == "LPRM")
 kable(metavar)
 ```
 Ce tableau montre que la modalité "1" correspond précisément aux personnes de références. Il faut donc filtrer le tableau des individus sur la condition `LPRF==1`pour ne garder que les ménages.On peut alors dénombrer les ménages en appliquant exactement la même procédure de pondération que pour la population :
 
 ```{r}
-indiv %>% filter(LPRF == 1) %>%
+indiv %>% filter(LPRM == 1) %>%
           mutate(COM = substr(IRIS,1,5)) %>%
           filter(COM == "94071") %>%
           summarise(nbmen = sum(IPONDI))
@@ -173,7 +173,7 @@ kable(tabpop)
 On calcule le nombre de ménages par IRIS
 
 ```{r}
-tabmen <- indiv %>%   filter(LPRF == 1) %>%
+tabmen <- indiv %>%   filter(LPRM == 1) %>%
                       mutate(COM = substr(IRIS,1,5)) %>%
                       filter(COM == "94071") %>%
                       group_by (IRIS) %>%
@@ -281,7 +281,7 @@ mapdon <- function(indiv = indiv,
   
   
   # (2) Création du tableau de ménage par IRIS
-  tabmen <- indiv %>% filter(LPRF == 1) %>%
+  tabmen <- indiv %>% filter(LPRM == 1) %>%
                       mutate(COM = substr(IRIS,1,5)) %>%
                       filter(COM == codecom) %>%
                       group_by (IRIS) %>%
