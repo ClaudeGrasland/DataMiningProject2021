@@ -44,3 +44,13 @@ sauvegarde-du-résultat
 automatisation-du-travail
 ecriture-de-la-fonction
 test-de-la-fonction
+données-statistiques-sur-les-individus
+etape-1-téléchargement-des-données-et-stockage-temporaire
+données-statistiques-sur-les-logements-ordinaires
+etape-1-récupération-des-fichiers
+etape-2-transformation-des-données-au-format-r-1
+etape-3-sélection-des-données-utiles-et-sauvegarde-au-format-.rdata-1
+etape-4-chargement-et-sauvegarde-des-méta-données-1
+etape-4-création-dun-fonds-de-carte-des-communes
+etape-5-création-dun-fonds-de-carte-par-département
+etape-6-superposition-des-trois-fonds-de-carte
