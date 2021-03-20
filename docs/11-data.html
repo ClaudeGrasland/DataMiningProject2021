@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland et Camille Signoretto" />
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="00-presentation.html"/>
 <link rel="next" href="21-socio-spatial.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,16 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -187,6 +197,39 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.2.2" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#nombre-dhabitants-et-de-ménages-par-iris"><i class="fa fa-check"></i><b>2.2.2</b> Nombre d’habitants et de ménages par IRIS</a></li>
 <li class="chapter" data-level="2.2.3" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#ajout-de-la-géométrie"><i class="fa fa-check"></i><b>2.2.3</b> Ajout de la géométrie</a></li>
 <li class="chapter" data-level="2.2.4" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#automatisation-du-travail"><i class="fa fa-check"></i><b>2.2.4</b> Automatisation du travail</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="22-cartographie.html"><a href="22-cartographie.html"><i class="fa fa-check"></i><b>3</b> Cartographie</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="22-cartographie.html"><a href="22-cartographie.html#objectifs-1"><i class="fa fa-check"></i><b>3.1</b> Objectifs</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="22-cartographie.html"><a href="22-cartographie.html#packages-utilisés-1"><i class="fa fa-check"></i><b>3.1.1</b> Packages utilisés</a></li>
+<li class="chapter" data-level="3.1.2" data-path="22-cartographie.html"><a href="22-cartographie.html#chargement-des-données-1"><i class="fa fa-check"></i><b>3.1.2</b> Chargement des données</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="22-cartographie.html"><a href="22-cartographie.html#préparation-du-tableau-de-données"><i class="fa fa-check"></i><b>3.2</b> Préparation du tableau de données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="22-cartographie.html"><a href="22-cartographie.html#création-du-tableau-de-contingence"><i class="fa fa-check"></i><b>3.2.1</b> Création du tableau de contingence</a></li>
+<li class="chapter" data-level="3.2.2" data-path="22-cartographie.html"><a href="22-cartographie.html#ajout-dun-tableau-de-pourcentage"><i class="fa fa-check"></i><b>3.2.2</b> Ajout d’un tableau de pourcentage</a></li>
+<li class="chapter" data-level="3.2.3" data-path="22-cartographie.html"><a href="22-cartographie.html#estimation-du-nombre-moyen-dautomobile-par-menages"><i class="fa fa-check"></i><b>3.2.3</b> Estimation du nombre moyen d’automobile par menages</a></li>
+<li class="chapter" data-level="3.2.4" data-path="22-cartographie.html"><a href="22-cartographie.html#analyse-du-tableau"><i class="fa fa-check"></i><b>3.2.4</b> Analyse du tableau</a></li>
+<li class="chapter" data-level="3.2.5" data-path="22-cartographie.html"><a href="22-cartographie.html#sauvegarde-du-tableau-et-jointure-avec-le-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.5</b> Sauvegarde du tableau et jointure avec le fonds de carte</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="22-cartographie.html"><a href="22-cartographie.html#utilisation-du-package-cartography"><i class="fa fa-check"></i><b>3.3</b> Utilisation du package <em>cartography</em></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-de-stock"><i class="fa fa-check"></i><b>3.3.1</b> Carte de stock</a></li>
+<li class="chapter" data-level="3.3.2" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-dintensité-choroplèthe"><i class="fa fa-check"></i><b>3.3.2</b> Carte d’intensité (choroplèthe)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-de-stock-intensité"><i class="fa fa-check"></i><b>3.3.3</b> Carte de stock + intensité</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="22-cartographie.html"><a href="22-cartographie.html#cartographie-avec-leaflet"><i class="fa fa-check"></i><b>3.4</b> Cartographie avec <em>Leaflet</em></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="22-cartographie.html"><a href="22-cartographie.html#extraction-du-fonds-de-carte-dune-ou-plusieurs-commune"><i class="fa fa-check"></i><b>3.4.1</b> Extraction du fonds de carte d’une ou plusieurs commune</a></li>
+<li class="chapter" data-level="3.4.2" data-path="22-cartographie.html"><a href="22-cartographie.html#projection-et-calcul-des-centres"><i class="fa fa-check"></i><b>3.4.2</b> Projection et calcul des centres</a></li>
+<li class="chapter" data-level="3.4.3" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-1-centrage-et-niveau-de-zoom"><i class="fa fa-check"></i><b>3.4.3</b> Etape 1 : centrage et niveau de zoom</a></li>
+<li class="chapter" data-level="3.4.4" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-2-choix-des-tuiles"><i class="fa fa-check"></i><b>3.4.4</b> Etape 2 : Choix des tuiles</a></li>
+<li class="chapter" data-level="3.4.5" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-3-ajout-dune-carte-choroplèthe"><i class="fa fa-check"></i><b>3.4.5</b> Etape 3 : Ajout d’une carte choroplèthe</a></li>
+<li class="chapter" data-level="3.4.6" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-4-ajout-dune-carte-de-stock"><i class="fa fa-check"></i><b>3.4.6</b> Etape 4 : ajout d’une carte de stock</a></li>
+<li class="chapter" data-level="3.4.7" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-5-ajout-du-contour-des-communes"><i class="fa fa-check"></i><b>3.4.7</b> Etape 5 : ajout du contour des communes</a></li>
+<li class="chapter" data-level="3.4.8" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-6-ajout-dun-curseur-interactif"><i class="fa fa-check"></i><b>3.4.8</b> Etape 6 : Ajout d’un curseur interactif</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -406,7 +449,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Lorsqu’on récupère des fonds de carte au format shapefile (.shp) ou dans d’autres formats standards comme GeoJson, la première tâche consiste donc à les convertir au formt sf afin de pouvoir les utiliser facilement dans R. L’importation se fait à l’aide de l’instruction <code>st_read</code> en indiquant juste le nom du fichier .shp à charger. Les autres fichiers (.dbf ou .proj) seront lus également et intégrés dans l’objet qui hérite de la double classe <em>data.frame</em> et <em>sf</em></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="11-data.html#cb16-1"></a><span class="kw">library</span>(sf)</span>
 <span id="cb16-2"><a href="11-data.html#cb16-2"></a>map &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;tmp/CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2016/CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2016/CONTOURS-IRIS.shp&quot;</span>)</span></code></pre></div>
-<pre><code>Reading layer `CONTOURS-IRIS&#39; from data source `C:\Users\claude\cg\cours\DataMining\DataMiningProject2021\tmp\CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30\CONTOURS-IRIS\1_DONNEES_LIVRAISON_2016\CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2016\CONTOURS-IRIS.shp&#39; using driver `ESRI Shapefile&#39;
+<pre><code>Reading layer `CONTOURS-IRIS&#39; from data source `/Users/claudegrasland1/Documents/cg/cours/2020_M2_MECI_Datamining/DataMiningProject2021/tmp/CONTOURS-IRIS_2-1__SHP__FRA_2017-06-30/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2016/CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2016/CONTOURS-IRIS.shp&#39; using driver `ESRI Shapefile&#39;
 Simple feature collection with 49404 features and 6 fields
 geometry type:  MULTIPOLYGON
 dimension:      XY
@@ -420,8 +463,8 @@ projected CRS:  RGF93_Lambert_93</code></pre>
 <pre><code># A tibble: 2 x 7
   INSEE_COM NOM_COM IRIS  CODE_IRIS NOM_IRIS TYP_IRIS                   geometry
   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;            &lt;MULTIPOLYGON [m]&gt;
-1 72191     Mayet   0000  721910000 Mayet    Z        (((498083.5 6747517, 4981~
-2 77248     Lesches 0000  772480000 Lesches  Z        (((685753.1 6868613, 6857~</code></pre>
+1 72191     Mayet   0000  721910000 Mayet    Z        (((498083.5 6747517, 4981…
+2 77248     Lesches 0000  772480000 Lesches  Z        (((685753.1 6868613, 6857…</code></pre>
 </div>
 <div id="etape-3-extraction-des-iris-de-la-zone-détude" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Etape 3 : Extraction des IRIS de la zone d’étude</h3>
@@ -437,9 +480,9 @@ projected CRS:  RGF93_Lambert_93</code></pre>
 <pre><code># A tibble: 2 x 8
   INSEE_COM NOM_COM IRIS  CODE_IRIS NOM_IRIS TYP_IRIS                  geometry
   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;           &lt;MULTIPOLYGON [m]&gt;
-1 94021     Chevil~ 0107  940210107 Sorbiers H        (((652774.3 6853051, 652~
-2 94068     Saint-~ 0204  940680204 Le Vieu~ H        (((662096.5 6856264, 662~
-# ... with 1 more variable: DEPT &lt;chr&gt;</code></pre>
+1 94021     Chevil… 0107  940210107 Sorbiers H        (((652774.3 6853051, 652…
+2 94068     Saint-… 0204  940680204 Le Vieu… H        (((662096.5 6856264, 662…
+# … with 1 more variable: DEPT &lt;chr&gt;</code></pre>
 <p>Le nouveau tableau ne comporte plus que 2749 unités spatiales et 8 colonnes au lieu de 7 puisqu’ l’on a ajouté une colonne DEPT. On peut visualiser le résultat à l’aide de la fonction <code>geom_sf</code>du package <strong>ggplot2</strong> :</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="11-data.html#cb30-1"></a><span class="kw">ggplot</span>(map_iris)<span class="op">+</span><span class="kw">geom_sf</span>(<span class="dt">fill=</span><span class="st">&quot;lightyellow&quot;</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_void</span>()</span></code></pre></div>
 <p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-17-1.svg" width="672" /></p>
@@ -498,9 +541,10 @@ Et on sauvegarde le fonds de carte</p>
 <li>Les fonds de carte par iris, commune et département.</li>
 </ol>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="11-data.html#cb42-1"></a><span class="kw">list.files</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
-<pre><code>[1] &quot;indiv2017.Rdata&quot;      &quot;indiv2017_meta.Rdata&quot; &quot;logmt2017.Rdata&quot;     
-[4] &quot;logmt2017_meta.Rdata&quot; &quot;map_com.Rdata&quot;        &quot;map_dep.Rdata&quot;       
-[7] &quot;map_iris.Rdata&quot;      </code></pre>
+<pre><code> [1] &quot;indiv2017_meta.Rdata&quot; &quot;indiv2017.Rdata&quot;      &quot;logmt2017_meta.Rdata&quot;
+ [4] &quot;logmt2017.Rdata&quot;      &quot;map_com.Rdata&quot;        &quot;map_dep.Rdata&quot;       
+ [7] &quot;map_iris.Rdata&quot;       &quot;map_VOIT_IRIS.Rdata&quot;  &quot;mapdon_94068.Rdata&quot;  
+[10] &quot;mapdon_94071.Rdata&quot;   &quot;VOIT_IRIS.Rdata&quot;     </code></pre>
 <p>On peut alors décider de détruire le dossier <strong>tmp</strong> qui contient des dossiers très volumineux et pas forcément indispensables.</p>
 
 </div>

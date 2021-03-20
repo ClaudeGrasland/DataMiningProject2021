@@ -1,0 +1,603 @@
+# Cartographie {#c22-cartographie}
+
+
+## Objectifs
+
+L'objectif de cette section est de réaliser des cartographies d'indicateurs statistiques relatifs aux unités spatiales à différentes échelles.
+
+
+### Packages utilisés
+
+Nous allons nous limiter à un nombre limité de packages
+
+- **dplyr** et **tidyr**: pour la manipulation des tableaux et leur agrégation (inutile de charger l'ensemble du package tidyverse)
+- **knitr** : pour afficher proprement les tableaux de résultats
+- **ggplot2** : pour visualiser les résultats sous formes de graphiques
+- **sf** : pour manipuler les données cartographiques et les agréger
+- **cartography** : pour la réalisation de cartes statiques de qualité imprimables aux formats .pdf ou .doc
+- **leaflet** , **htmlwidgets**, **htmltools** pour la réalisation de cartes interactives accessibles sur le web.
+
+
+```{r}
+library(knitr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(cartography)
+library(leaflet)
+library(htmltools)
+library(htmlwidgets)
+```
+
+### Chargement des données 
+
+Nous avons besoin uniquement de trois fichiers
+
+- Le fichier des individus
+- le fichier des métadonnées relatives aux individus
+- le fonds de carte des IRIS
+
+```{r}
+indiv <- readRDS("data/indiv2017.Rdata")
+meta <- readRDS("data/indiv2017_meta.Rdata")
+map <-readRDS("data/map_iris.Rdata")
+```
+
+
+
+## Préparation du tableau de données
+
+Nous allons prendre comme exemple l'analyse d'un tableau du **nombre d'automobiles par ménage** en nous limitant aux ménages ordinaires c'est-à-dire en excluant les personnes habitant dans des logements collectifs (pensionnats, prisons, congrégations religieuses, ...)
+
+
+Nous ne conservons que les individus chefs de ménages (*LPRM=1*) ce qui va logiquement éliminer les individus présents dans les ménages non ordinaires (*LPRM=Z*) ainsi que tous les membres d'un logement qui ne sont pas chefs de ménages.
+
+
+```{r}
+menag<-indiv %>% filter(LPRM==1)
+```
+
+### Création du tableau de contingence
+
+Nous souhaitons ventiler les ménages en fonction de leur localisation géographique (*IRIS*) et de leur nombre d'automobile (*VOIT*) en tenant compte de leur poids (*IPONDI*) puisque les données sont issues d'uin échantillonage qu'il faut redresser. 
+
+Cette opération se réalise très facilement à l'aide du package **dplyr** à l'aide des fonctions `group_by`, `mutate` et `summarize` : 
+
+```{r}
+tab <- menag %>% group_by(IRIS, VOIT) %>%
+                 summarise(nbmen = sum(IPONDI)) %>% 
+                 ungroup()
+str(tab)
+head(tab,5)
+```
+Le résultat est un *tibble* au format "long" qui comporte 4 lignes différentes pour chaque IRIS, correspondant aux nombres de ménages ayant respectivement 0, 1, 2 et 3 voitures ou plus. 
+
+Nous allons transformer ce tableau en format "large" pour placer côte à côte les différentes modalités du nombre de voitures. Pour cela il faut utiliser la fonction `pivot_wider`du package **tidyr**. 
+
+```{r}
+library(tidyr)
+tabcont <- tab %>% pivot_wider(names_from = VOIT, 
+                           values_from = nbmen,
+                           names_prefix = "MEN_VOIT",
+                           values_fill = 0)
+
+head(tabcont)
+```
+Grâce à cette transformation, nous disposons maintenant pour chaque IRIS de la distribution des ménages en fonction de leur nombre de voitures, ce qui constitue le **tableau de contingence** recherché. 
+
+
+### Ajout d'un tableau de pourcentage 
+
+Nous allons maintenant calculer le nombre total de ménage puis en déduire la proportion de ménages en fonction de leur nombre d'automobile pour chacun des IRIS.
+
+```{r}
+tabdon <- tabcont %>% mutate (MEN_TOTAL = MEN_VOIT0+MEN_VOIT1+MEN_VOIT2+MEN_VOIT3,
+                              PCT_VOIT0 = 100* MEN_VOIT0 / MEN_TOTAL,
+                              PCT_VOIT1 = 100* MEN_VOIT1 / MEN_TOTAL,
+                              PCT_VOIT2 = 100* MEN_VOIT2 / MEN_TOTAL,
+                              PCT_VOIT3 = 100* MEN_VOIT3 / MEN_TOTAL)
+                              
+head(tabdon[,c(1,6:10)])                              
+```
+
+### Estimation du nombre moyen d'automobile par menages
+
+Il n'est pas possible d'estimer le nombre exact d'automobile par ménage car l'INSEE ne détaille pas la catégorie VOIT = 3 qui correspond à *"Trois automobiles ou +"*. On peut néanmoins procéder à une estimation minimale du nombre d'automobile en supposant que les ménages de ce type ont exactement rois automobiles. On en déduit alors le nombre total d'automobile par IRIS (VOIT_TOTAL) et le nombre moyen d'automobile par ménage (VOIT_MEN).
+
+```{r}
+tabdon <-tabdon %>% mutate(VOIT_TOTAL = MEN_VOIT1 + 2*MEN_VOIT2 + 3*MEN_VOIT3,
+                           VOIT_MEN = VOIT_TOTAL / MEN_TOTAL)
+head(tabdon[,c(1,6,11,12)])
+
+```
+
+### Analyse du tableau
+
+Avant de passer à la cartographie, on peut analyser quelques variables intéressantes.
+
+#### Part des ménages sans automobiles
+
+Les ménages sans automobiles sont une catégorie intéressante, même si elle peut recouper des situations très diverses (étudiants, personnes âgées, pauvres, ...).
+
+```{r}
+summary(tabdon$PCT_VOIT0)
+ggplot(tabdon, aes(x=PCT_VOIT0)) + 
+       geom_histogram(bins=20, fill="gray30") +
+       scale_y_continuous("Nombre d'IRIS")+
+       scale_x_continuous("% de ménages")+
+       ggtitle("Par des ménages sans automobiles en 2017")
+
+  
+       
+```
+
+La distribution apparaît très variable puisque les ménages sans automobiles sont absents de certains IRIS alors qu'ils représentent plus de la moitié des ménages dans d'autres IRIS.
+
+#### Nombre moyen d'automobiles par ménage
+
+Même s'il est légèrement sous-estimé, le nombre d'automobile par ménage est un bon indicateur de la dépendance de certains logements mals desservis par les transports en commun. 
+
+```{r}
+summary(tabdon$VOIT_MEN)
+ggplot(tabdon, aes(x=VOIT_MEN)) + 
+       geom_histogram(bins=20, fill="gray30") +
+       scale_y_continuous("Nombre d'IRIS")+
+       scale_x_continuous("voitures / ménage")+
+       ggtitle("Nombre moyen d'automobile par ménage en 2017")
+  
+       
+```
+
+Alors qu'on trouve en général entre 0.6 et 1.2 automobiles par ménage, certains IRIS affichent des valeurs moyennes de 1.5 à 2 automobiles par ménage. 
+
+
+### Sauvegarde du tableau et jointure avec le fonds de carte
+
+On commence par effectuer une sauvegarde simple de notre tableau :
+
+
+```{r}
+saveRDS(tabdon,"data/VOIT_IRIS.Rdata")
+```
+
+Puis on effectue une jointure avec le fonds de carte map_iris et on réalise une sauvegarde sous un autre nom. 
+
+
+
+```{r}
+tabfin<-tabdon %>% rename(CODE_IRIS = IRIS)
+map_VOIT_IRIS<-left_join(map, tabfin) %>% st_as_sf()
+
+saveRDS(map_VOIT_IRIS, "data/map_VOIT_IRIS.Rdata")
+```
+
+## Utilisation du package *cartography*
+
+
+Le package *cartography* permet de réaliser des cartes statiques de très haute qualité. Il a en effet été mis au point par des cartographes et des géomaticiens professionnels. Il propose une gamme de possibilités sans équivalent. On ne verra ici qu'une toute petite partie de ses possibilités. 
+
+
+
+### Carte de stock 
+
+Une *carte de stock* représente la localisation de quantités que l'on peut aditionner et dont le total a un sens. Par exemple un nombre d'habitants, un nombre de ménages, un nombre d'automobiles. Ce quantités doivent être représentées par des figures (cercles, carrés, ...) dont la *surface est proportionelle au stock* afin que l'oeil du lecteur puisse les aditionner visuellement. 
+
+Dans le package **cartography**, on réalise ce type de carte à l'aide de la fonction `PropSymbolLayer` et on complète l'habillage de la carte (titre, sources, auteur, ...) à l'aide de la fonction `layoutLayer`
+
+#### Distribution des ménages
+
+```{r}
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_VOIT_IRIS.Rdata")
+
+par(mar=c(0,0,2,0))
+
+
+plot(map_iris$geometry, col="lightyellow", border="gray80",lwd=0.4)
+plot(map_com$geometry, col=NA, border="gray40",lwd=0.8, add=T)
+
+propSymbolsLayer(x = map_iris,
+                 var = "MEN_TOTAL",
+                 col="blue",
+                 inches = 0.06,
+                 legend.title.txt = "Nb ménages",
+                 legend.pos = "left")
+
+layoutLayer(title = "Distribution des ménages du Val de Marne en 2017",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+
+#### Distribution des automobiles
+
+```{r}
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_VOIT_IRIS.Rdata")
+
+par(mar=c(0,0,2,0))
+
+
+plot(map_iris$geometry, col="lightyellow", border="gray80",lwd=0.4)
+plot(map_com$geometry, col=NA, border="gray40",lwd=0.8, add=T)
+
+propSymbolsLayer(x = map_iris,
+                 var = "VOIT_TOTAL",
+                 col="red",
+                 inches = 0.06,
+                 legend.title.txt = "nb. véhicules",
+                 legend.pos = "left")
+
+layoutLayer(title = "Distribution des automobiles des ménages du Val de Marne en 2017",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+### Carte d'intensité (choroplèthe) 
+
+Une *carte d'intensité* représente un phénomène relatif dont la somme n'a pas de sens. Par exemple, il serait absurde d'aditionner les nombres d'automobiles par habitant des IRIS du Val de Marne. Ces variables d'intensité caractèrisent donc l'état général d'une zone (*choros*) at elles vont être représentées par une couleur appliquée à toute la surface de la zone, d'où leur nom de *cartes choroplèthes*. 
+
+La fonction u package **cartography** adaptée aux variables d'intensité est la fonction `Chorolayer`. Comme précédemment on la combine avec la fonction `LayoutLayer`pour réaliser l'habillage de la carte.
+
+#### Part des ménages sans automobile
+
+On va réaliser une carte allant du vert clair au vert foncé au fur et à mesure que le nombre de ménages sans automobiles augmente.
+
+```{r}
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_VOIT_IRIS.Rdata")
+
+par(mar=c(0,0,2,0))
+
+
+mybreaks = c(0, 10, 20, 30, 40, 50, 60, 70)
+mycols <-carto.pal(pal1 = "green.pal", n1 = 7)
+
+
+choroLayer(x = map_iris,
+                 var = "PCT_VOIT0",
+                 breaks = mybreaks,
+                 col= mycols,
+                 lwd=0.2,
+                 colNA = "gray80",
+                 legend.title.txt = "% ménages",
+                 legend.pos = "left",
+                 legend.values.rnd = 2,
+                 legend.nodata = "Pas de données")
+
+
+plot(map_com$geometry, col=NA, border="gray10",lwd=0.8, add=T)
+
+layoutLayer(title = "Part des ménages sans automobiles du Val de Marne en 2017",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+#### Nombre moyen d'automobiles par ménage
+
+On va prendre comme référence la valeur de 1 automobile par ménage et on va construire une double palette qui se dirrige vers le brun lorsque le nombre d'automobile par ménage augmente et  vers l'orange lorsque le nombre d'automobile par ménage diminue
+
+```{r}
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_VOIT_IRIS.Rdata")
+
+par(mar=c(0,0,2,0))
+
+
+mybreaks = c(0.3,0.5, 0.6,0.7,0.8,0.9, 1,1.1, 1.2,1.3,1.4,1.5,2.1)
+mycols <-carto.pal(pal1 = "green.pal", n1 = 6, pal2 = "orange.pal", n2 = 6)
+
+
+choroLayer(x = map_iris,
+                 var = "VOIT_MEN",
+                 breaks = mybreaks,
+                 col= mycols,
+                 lwd=0.2,
+                 colNA = "gray80",
+                 legend.title.txt = "auto. / menage",
+                 legend.pos = "left",
+                 legend.values.rnd = 2,
+                 legend.nodata = "Pas de données")
+
+
+plot(map_com$geometry, col=NA, border="gray10",lwd=0.8, add=T)
+
+layoutLayer(title = "Dépendance automobile des ménages du Val de Marne en 2017",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+
+### Carte de stock + intensité
+
+On peut combiner les deux modes cartographiques. Prenons à titre d'exemple le cas des ménages ayant trois automobiles ou plus. Onn peut décrire ce phénomène soit en terme de stock, soit en termes d'intensité.
+
+```{r}
+summary(map_iris$MEN_VOIT3)
+summary(map_iris$PCT_VOIT3)
+```
+
+
+On réalise les deux cartes successivement en commençant par la carte de taux puis en lui ajoutant la carte de stock par dessus. 
+
+
+```{r}
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_VOIT_IRIS.Rdata")
+
+par(mar=c(0,0,2,0))
+
+
+mybreaks = c(0, 1,2,4,8,17)
+mycols <-carto.pal(pal1 = "taupe.pal", n1 = 5)
+
+
+choroLayer(x = map_iris,
+                 var = "PCT_VOIT3",
+                 breaks = mybreaks,
+                 col= mycols,
+                 lwd=0.2,
+                 colNA = "gray80",
+                 legend.title.txt = "% ménages",
+                 legend.pos = "topleft",
+                 legend.values.rnd = 2,
+                 legend.nodata = "Pas de données")
+
+
+plot(map_com$geometry, col=NA, border="gray10",lwd=0.8, add=T)
+
+propSymbolsLayer(x = map_iris,
+                 var = "MEN_VOIT3",
+                 col="red",
+                 inches = 0.06,
+                 legend.title.txt = "nb. ménages",
+                 legend.pos = "left")
+
+layoutLayer(title = "Nombre et proportion des ménages ayant 3 automobiles ou plus en 2017",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+## Cartographie avec *Leaflet*
+
+Le package Leaflet est particulièrement adapté aux cartographies locales et aux publication sur le web au format .html. Nous allons ici l'utiliser pour réaliser des zoom à l'échelle d'une commune. 
+
+
+### Extraction du fonds de carte d'une ou plusieurs commune
+
+Nous reprenons notre fichier de données sur l'automobile en ne conservant par exemple que les communes de Sucy-en-Brie (94071), Bonneuil (94011), Ormesson (94055), Chennevières sur Marne (94019) et Saint-Maur (94068)
+
+```{r}
+sel <- c("94071", "94011","94055","94068", "94019")
+
+map_iris <-readRDS("data/map_VOIT_IRIS.Rdata")
+sel_iris <-map_iris %>% filter(INSEE_COM %in% sel)
+
+map_com <-readRDS("data/map_com.Rdata")
+sel_com <-map_com %>% filter(INSEE_COM %in% sel)
+
+par(mar=c(0,0,0,0))
+plot(sel_iris$geometry, col="lightyellow", border="gray80", lwd=0.5)
+plot(sel_com$geometry, col=NA, border="gray40", lwd=1, add=TRUE)
+```
+
+### Projection et calcul des centres
+
+Le package **Leaflet** ne peut utiliser les fonds de carte que s'ils utilisent une projection spécifique en latitude longitude (projection 4326) permettant d'ajouter des "*tuiles*" cartographiques en arrière plan (typiquement, des plans de rue). Cette opération est effectuée à l'aide de la commande `st_transfrom` du package **sf**.
+
+Il est par ailleurs intéressant de calculer pour chaque unité spatiale un centre qui pourra être utilisé pour représenter des données sous la forme de points
+
+
+```{r}
+sel_com  <- st_transform(sel_com, 4326)
+sel_com_ctr <-st_centroid(sel_com)
+sel_iris <- st_transform(sel_iris, 4326)
+sel_iris_ctr<-st_centroid(sel_iris)
+
+par(mar=c(0,0,0,0))
+plot(sel_iris$geometry, col="lightyellow", border="blue", lwd=0.5)
+plot(sel_iris_ctr$geometry, col="blue", lwd=0.2, add=TRUE)
+plot(sel_com$geometry, col=NA, border="red", lwd=2, add=TRUE)
+plot(sel_com_ctr$geometry, col="red", lwd=2, add=TRUE)
+```
+
+
+### Etape 1 : centrage et niveau de zoom 
+
+Le package Leaflet est fondé sur l'usage de tuiles disponibles à différentes échelles et qu'il faut centrer sur la zone d'étude à l'aide des coordonnées de latitude et longitude. Si l'on veut par exemple travaillr sur Sucy-en-Brie, il faut trouver ses coordonnées sur le fonds de carte projeté en latitude longitude : 
+
+```{r}
+sel_com %>% filter(INSEE_COM =="94071") %>% st_centroid() %>% st_coordinates()
+```
+En ce qui concerne le niveau de zoom, on le trouve plutôt par essai et erreur. Dans notre exemple un zoom de niveau 12  sera adapté
+
+```{r}
+p <- leaflet() %>%
+        addTiles() %>%
+        setView(lng =2.533, lat=48.765, zoom = 12)
+p
+```
+
+### Etape 2 : Choix des tuiles
+
+Par défaut, Leaflet propose les "tuiles" d'OpenStreetMap, mais on peut en choisir d'autres. Par exemple, un fonds de carte npir et blanc peut être intéressant pour ne pas gêner la superposition de cartes ebn couleur.
+
+```{r}
+p <- leaflet() %>%
+        addTiles() %>%
+        addProviderTiles(providers$Stamen.TonerLite) %>%
+        setView(lng =2.533, lat=48.765, zoom = 12)
+p
+```
+
+### Etape 3 : Ajout d'une carte choroplèthe
+
+On décide d'ajouter le contour des IRIS des communes avec des couleurs correspondant à la variable dépendance automobile.
+
+```{r}
+mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
+                
+bin_pal = colorBin('Spectral', 
+                   sel_iris$VOIT_MEN,
+                   bins=mycut,
+                   reverse=T,)
+
+p <- leaflet() %>%
+        addTiles() %>%
+        addProviderTiles(providers$Stamen.TonerLite) %>%
+        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+
+
+    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
+              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
+              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
+  
+      addLegend(data = sel_iris, pal = bin_pal, title = "Dépendance automobile",
+            values = ~VOIT_MEN, position = 'topright',)
+p
+
+
+```
+
+
+### Etape 4 : ajout d'une carte de stock
+
+```{r}
+mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
+                
+bin_pal = colorBin('Spectral', 
+                   sel_iris$VOIT_MEN,
+                   bins=mycut,
+                   reverse=T,)
+
+p <- leaflet() %>%
+        addTiles() %>%
+        addProviderTiles(providers$Stamen.TonerLite) %>%
+        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+
+
+    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
+              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
+              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
+  
+      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
+            values = ~VOIT_MEN, position = 'topright',) %>%
+  
+    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
+    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
+    fillColor = "gray50",
+    stroke = FALSE, fillOpacity = 0.5) 
+p
+
+
+```
+
+
+
+
+### Etape 5 : ajout du contour des communes
+
+
+```{r}
+mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
+                
+bin_pal = colorBin('Spectral', 
+                   sel_iris$VOIT_MEN,
+                   bins=mycut,
+                   reverse=T,)
+
+p <- leaflet() %>%
+        addTiles() %>%
+        addProviderTiles(providers$Stamen.TonerLite) %>%
+        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+
+
+    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
+              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
+              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
+  
+      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
+            values = ~VOIT_MEN, position = 'topright',) %>%
+  
+    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
+    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
+    fillColor = "gray50",
+    stroke = FALSE, fillOpacity = 0.5) %>%
+  
+      addPolygons(data =sel_com, fill= FALSE, color = 'black',weight =2) 
+p
+
+
+```
+
+### Etape 6 : Ajout d'un curseur interactif
+
+En ajoutant le package **htmltools**
+
+
+```{r}
+
+# Round values
+sel_iris<-sel_iris %>% mutate(MEN_TOTAL = round(MEN_TOTAL,0),
+                 VOIT_TOTAL = round(VOIT_TOTAL,0),
+                 VOIT_MEN = round(VOIT_MEN,2))
+
+# Define class
+mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
+
+bin_pal = colorBin('Spectral', 
+                   sel_iris$VOIT_MEN,
+                   bins=mycut,
+                   reverse=T,)
+
+# Define labels
+
+labs <- lapply(seq(nrow(sel_iris)), function(i) {
+  paste0( paste("Commune :",sel_iris$NOM_COM[i]), '<p></p>',
+          paste("Code Iris :" ,sel_iris$IRIS[i]), '<p></p>', 
+          paste("Nom Iris :" ,sel_iris$NOM_IRIS[i]), '<p></p>',  
+          paste("Nb de ménages :",sel_iris$MEN_TOTAL[i]), '<p></p>',
+          paste("Nb de voitures:", sel_iris$VOIT_TOTAL[i]),'<p></p>',
+          paste("Voitures/Ménage:", sel_iris$VOIT_MEN[i]),'<p></p>'
+          ) 
+})
+
+labs<-lapply(labs, htmltools::HTML)
+
+
+
+
+p <- leaflet() %>%
+        addTiles() %>%
+        addProviderTiles(providers$Stamen.TonerLite) %>%
+        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+
+
+    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
+              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
+              highlightOptions = highlightOptions(weight = 2, color = 'black'),
+              label = labs) %>%
+  
+      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
+            values = ~VOIT_MEN, position = 'topright',) %>%
+  
+    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
+    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
+    fillColor = "gray50",
+    stroke = FALSE, fillOpacity = 0.5) %>%
+  
+      addPolygons(data =sel_com, fill= FALSE, color = 'black',weight =2) 
+p
+
+
+```
+
+
+
+
