@@ -12,7 +12,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./index.html">Projet Data Mining 2021  <em>C. Grasland (2021) & Camille Signoretto</em></a></li>
+        <li><a href="./index.html">Data Mining 2021  <em>C. Grasland  & C.Signoretto</em></a></li>
     sharing:
       twitter: no
       github: no

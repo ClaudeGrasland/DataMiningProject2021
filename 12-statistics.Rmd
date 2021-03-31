@@ -1,4 +1,4 @@
-# Analyse statistique et visualisation graphique {#c12-Stat}
+# Analyse statistique I (C.S.) {#c12-statistics1}
 
 ```{r setup2, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,7 +46,8 @@ RP <- as.data.frame(RP)
 head(RP)
 str(RP)
 ```
-On a donc `r ncol(RP)` variables et plus de 4 millions d'observations pour l'ensemble de l'Ile de France
+On a donc 88 variables et plus de 4 341 175 observations pour l'ensemble de l'Ile de France. Le fait que le nombre d'individus recensés soit inférieur à la population totale de l'Ile de France (plus de 12 millions d'habitants au RP 2017) s'explique par les méthodes de sondage utilisées dans le nouveau recensement en France depuis les années 2000. C'est la raison pour laquelle tous les calculs doivent être pondérés par la variable `IPONDI`pour être représentatifs
+
 
 Certaines des variables ont été codées comme numériques alors que, selon le dictionnaire des variables, elles devraient être toutes en caractères ou ici dans `R` en facteurs, on va regarder quelles variables sont concernées et on va les transformer pour qu'elles soient dans le bon format. Ci-dessous, la fonction `select_if` du package `dplyr` permet de sélectionner les variables avec une condition (d'où le "if") donnée entre parenthèses, ici donc si ces variables ont le format "numeric" : 
 
@@ -67,6 +68,7 @@ RP %>%
 ```
 
 On remplace maintenant la table et dans le même temps on ne garde que le département du Val de Marne (variable `DEPT`, modalité `'94'`) sur lequel on va travailler. On procède donc finalement avec le code suivant : 
+
 ```{r, eval=FALSE}
 RP <- RP %>% 
         mutate_at(c("AGED", "AGER20", "AGEREV", "AGEREVQ", "ANAI", "CATPC", "COUPLE", "CS1", "DEPT",
@@ -78,6 +80,7 @@ RP <- RP %>%
 On se retrouve avec une table moins lourde puisqu'il y a dorénavant `r format(nrow(RP), big.mark=" ")` observations.
 
 On peut enregistrer ce fichier, ainsi que celui contenant les métadonnées dans le dossier `R` au format RDS avec la fonction `saveRDS`.
+
 ```{r, eval=FALSE}
 saveRDS(object = RP,
         file = "data/indiv2017.Rdata")
@@ -118,7 +121,8 @@ Une fois cela effectué, il faut comprendre comment utiliser à bon escient ces 
 
 <center>
 
-![](images/Equipement automobile des ménages_94_RP2017.png)
+![](img/Equipement automobile des ménages_94_RP2017.png)
+
 
 </center>
 
@@ -155,7 +159,7 @@ RP %>%
 
 <center>
 
-![](images/Ancienneté d'emménagement dans la résidence principale en 2017.png)
+![](img/Ancienneté d'emménagement dans la résidence principale en 2017.png)
 
 </center>
 
@@ -225,6 +229,7 @@ Si besoin, pour vous aider à démarrer avec `ggplot`, 2 liens utiles : [ici](ht
 
 
 Dans la continuité des statistiques réalisées précédemment, **troisième exercice à faire** : réalisez d'abord un graphique représentant l'ancienneté d'emménagement des ménages dans le Val de Marne en 2017, selon 6 catégories ("Depuis moins de 2 ans", "De 2 à 4 ans", "De 5 à 9 ans", "De 10 à 19 ans", "De 20 à 29 ans", "30 ans ou plus") et en pourcentage. On peut repartir du 1er code précédent en ajoutant des catégories, puis en utilisant un `ggplot()`. 
+
 ```{r}
 # 2 exemples : 
 
@@ -260,6 +265,7 @@ RP %>%
 ```
 
 Réalisez ensuite un graphique de la distribution du nombre de pièces par type de logement en ne considérant que les maisons et appartements. Par exemple, cela pourrait donner cela : 
+
 ```{r warning=FALSE}
 RP %>%   
   filter(LPRM=="1" & TYPL %in% c("1", "2")) %>%
@@ -277,6 +283,7 @@ On va s'intéresser maintenant aux caractéristiques des individus qui résident
 
 
 **Premier exercice à faire** : faire un graphique décrivant la population de 15 ans ou plus selon la catégorie socioprofessionnelle (CS). Puis un second, différenciant la population par sexe, en plus de la CS (vous pourrez enlever les agriculteurs peu nombreux).
+
 ```{r}
 #Population de 15 ans ou plus selon la catégorie socioprofessionnelle (et sans les agriculteurs trop peu nombreux)
 RP %>% 
@@ -314,6 +321,7 @@ RP %>%
 
 
 On peut dorénavant s'intéresser aux personnes en emploi, **second exercice à faire** : faîtes un graphique représentant la population de 15 ans ou plus en emploi par statut (salariés/non-salariés), sexe et catégorie socioprofessionnelle (en enlevant de nouveau les agriculteurs)
+
 ```{r}
 RP %>% 
   filter(!AGER20 %in% c("02", "05", "10", "14") & TACT=="11" & CS1!="1") %>%
@@ -343,6 +351,7 @@ RP %>%
 Et oui, le copier-coller c'est bien et simple, mais voilà pour ré-utiliser un code de façon plus automatique, créer des fonctions est très utile (et on peut même les stocker dans un fichier  `.r` pour les réutiliser plus tard pour une autre étude). 
 
 L'idée est qu'à partir d'un bloc d'instructions ou de lignes de code, on l'intègre dans une fonction qui portera un nom et qui pourra être appliquée sur les paramètres que l'on veut (table/objet différent, ici communes différentes, variables différentes) et qui nous retournera une valeur en sortie (qu'il faut préciser donc). Par exemple : 
+
 ```{r eval=FALSE}
 #Les "..." seront des instructions bien sûr !
 nom_fonction <- function(data, var)
@@ -363,7 +372,9 @@ tab_var <- nom_fonction(data = nom_de_ma_table , var = nom_de_ma_variable)
 
 
 ### Création d'une fonction pour retourner un tableau
+
 Alors, reprenons notre code précédent (ci-dessous), et essayons d'écrire une fonction pour faire des sorties de tableaux, de sorte qu'il suffise d'appeler cette fonction en indiquant le nom de notre table, de notre commune et de notre variable. On n'exécute pas de nouveau ce code, mais on l'affiche seulement sur notre script : pour cela il faut, dans le chunk, mettre l'option `eval=FALSE` comme ceci : `{r eval=FALSE}`.
+
 ```{r eval=FALSE}
 #Rappel exemple code précédent (avec ajout de la commune prise en référence - Sucy-en-Brie) : 
 RP %>% 
@@ -376,6 +387,7 @@ RP %>%
 ```
 
 On crée donc une fonction qu'on appelle `tab_menage` avec comme paramètres "data", "codecom" et "var" qui s'appliquerait dans le cas de statistiques au niveau "ménages" :
+
 ```{r}
 tab_menage <- function(data, codecom, var)
 {
@@ -394,6 +406,7 @@ Le plus difficile ici est l'appel de la variable dans la fonction notamment lors
 En revanche, si l'on veut recoder la variable soit en regroupant des modalités, soit en renommant les modalités (ou les 2 !), il faudra le faire dans une étape préalable. De manière générale, il est bien comme on l'a vu dans les 2 premières séances de ce ciyrs (cf. script de cours associé) de prendre le temps de bien préparer la table, recoder toutes les variables comme on le souhaite, inspecter et traiter les valeurs manquantes, etc., avant l'étape de l'analyse statistique des données.
 
 Ainsi, si l'on reprend l'exemple des trois premiers tableaux que nous avons réalisés lors de la dernière séance (cf. plus haut), on peut le refaire en 2 étapes : préparation de la table, et appel des fonctions. (On peut aussi intégrer la fonction dans un code `dplyr` en ajoutant un `%>%`, dans ce cas il faut enlever le paramètre "data = " dans la fonction lorsqu'on l'appelle, cf. après.)
+
 ```{r}
 # Etape 1 : création d'une nouvelle table (ou en remplacement si on l'appelle de la même façon)
 RP <- RP %>% 
@@ -416,6 +429,7 @@ tab_nbvoit
 
 
 On peut créer une même fonction pour réaliser des statistiques cette fois au niveau individus, il suffit de supprimer le 1er filtre avec la variable `LPRM()`. 
+
 ```{r}
 tab_indiv <- function(data, codecom, var)
 {
@@ -430,6 +444,7 @@ tab_indiv <- function(data, codecom, var)
 ```
 
 Exemple, avec la variable `CS` de catégorie socio-professionnelle
+
 ```{r}
 #Pour être pertinent, table restreinte à la population de 15 ans ou plus (sans les agriculteurs non plus, trop peu nobmreux) :
 RP %>% 
@@ -444,6 +459,7 @@ RP %>%
 
 
 Et si on cherchait à n'avoir qu'une fonction à appliquer, que nos statistiques ensuite soient au niveau ménages ou au niveau individus ?
+
 ```{r}
 tab_var <- function(data, codecom, list_mod, var)
 {
@@ -458,10 +474,13 @@ tab_var <- function(data, codecom, list_mod, var)
 ```
 
 Ce qui donnerait pour le niveau ménage l'appel de la fonction : 
+
 ```{r}
 tab_var(data = RP, codecom = "94071", list_mod=c("1"), var = Nb_voiture)
 ```
+
 Et pour l'ensemble des individus : 
+
 ```{r}
 RP %>% 
   filter(!AGER20 %in% c("02", "05", "10", "14") & TACT!="23" & CS1!="1") %>%
@@ -473,6 +492,7 @@ RP %>%
 ```
 
 C'est un peu fastidieux ici de rentrer toutes les modalités de la variable `LPRM`. Une solution rapide est de créer une nouvelle variable à partir de `LPRM` qu'on appelerait `LPRM_1` qui n'ait que 2 modalités, ce qui peut être fait idéalement dans l'étape initiale de préparation des données (sinon comme ci-dessous) !
+
 ```{r}
 tab_var <- function(data, codecom, list_mod, var)
 {
@@ -498,9 +518,11 @@ RP %>%
 
 
 ### Création d'une fonction pour retourner un graphique
+
 Maintenant, créons, de la même façon, une fonction qui retourne en valeur de sortie un graphique, comme ceux que l'on a construit plus haut. On peut dans un premier temps, partir du principe que l'on appelera d'abord notre fonction `tab_var()` pour créer le tableau en sortie, à partir duquel on appliquera la fonction du graphe.
 
 Pour rappel, voici le code initialement utilisé pour créer un graphique représentant la population de 15 ans ou plus selon la catégorie socioprofessionnelle dans notre commune de référence (de nouveau, on ne l'exécute pas ici, et on spécifie `eval=FALSE`). 
+
 ```{r eval=FALSE}
 #Population de 15 ans ou plus selon la catégorie socioprofessionnelle (sans les agriculteurs ; et avec ajout de la commune prise en référence - Sucy-en-Brie)
 RP %>% 
@@ -519,6 +541,7 @@ RP %>%
 ```
 
 On s'intéresse donc aux dernières lignes de codes pour créer notre fonction qu'on appelera par exemple `graph_baton`, en considérant qu'on aura avant un tableau avec 3 colonnes : la variable, le nombre "n" et le pourcentage "pct". On peut donc réutiliser certains de ces noms de variables dans la fonction, ou se laisser la possibilité de l'indiquer dans les paramètres de la fonction (les lignes de codes suivantes ne sont pas exécutées, de nouveau l'option `{r eval=FALSE}` est ici inscrite dans le script Markdown).
+
 ```{r eval=FALSE}
 # On peut proposer une première écriture avec "pct" comme variable indiquée pour "y=" car ici c'est le pourcentage qu'on reprend, et dans nos tableaux il portera toujours le nom de "pct" :
 graph_baton <- function(data, var_x, nom_titre)
@@ -561,6 +584,7 @@ graph_baton <- function(data, var_x, var_y, nom_titre)
 ```
 
 Essayons de l'appliquer en lien avec le code initial : 
+
 ```{r}
 graph_baton <- function(data, var_x, var_y, nom_titre)
 {
@@ -592,7 +616,9 @@ Si certaines options du graphique ne s'adapteront pas bien pour d'autres variabl
 
 
 ### Création d'une seule fonction comprenant tableau et graphe
+
 Vous l'avez compris, on peut constamment optimiser son code, y compris ses fonctions. Par exemple ici, au lieu d'appeler la fonction tableau, puis ensuite la fonction graphe, on peut créer une fonction qui renverra le graphique voulu en intégrant l'étape du tableau. On va l'appeler `graph_baton1` : 
+
 ```{r}
 #Fonction Graph intégrant la fonction tab
 graph_baton1 <- function(data, codecom, list_mod, var, var_x, var_y, nom_titre)
@@ -621,6 +647,7 @@ RP %>% filter(!AGER20 %in% c("02", "05", "10", "14") & TACT!="23" & CS1!="1") %>
 
 En revanche, vous voyez ici qu'il nous renvoie le seul graphique. Et si on veut aussi le tableau ? 
 Le problème est qu'*a priori* une fonction ne sait pas renvoyer plusieurs valeurs de sortie. Par conséquent, on est obligés de contourner le problème en utilisant une petite astuce : on crée une liste d'objets. 
+
 ```{r}
 graph_baton2 <- function(data, codecom, list_mod, var, var_x, var_y, nom_titre)
 {
@@ -649,9 +676,11 @@ RP %>% filter(!AGER20 %in% c("02", "05", "10", "14") & TACT!="23" & CS1!="1") %>
 
 
 ### Et pour distinguer par groupe ? Et pour avoir des moyennes... ?
+
 Et si on veut représenter la population par catégorie socio-professionnelle en distinguant par sexe, comme précédemment ? Il faut rajouter la fonction `group_by()`, mais en faisant en sorte qu'on ne sache pas d'une part quelle variable on va mettre, ni combien de variables on va mettre, et d'autre part on pourrait se laisser le choix de ne pas en mettre du tout. 
 
 On peut repartir de notre fonction `tab_var`, pour rappel ci-dessous (non-exécutée) :
+
 ```{r eval=FALSE}
 tab_var <- function(data, codecom, list_mod, var)
 {
@@ -666,6 +695,7 @@ tab_var <- function(data, codecom, list_mod, var)
 ```
 
 Procédons par étapes : on lui ajoute la fonction `group_by()` qui nous permettrait de distinguer selon une seule autre variable : 
+
 ```{r}
 tab_var1 <- function(data, codecom, list_mod, var, var2)
 {
@@ -692,6 +722,7 @@ RP %>%
 
 Mais on voudrait pouvoir éventuellement distinguer selon plusieurs variables, par IRIS et sexe par exemple, ou tout autre chose ; et puis on voudrait aussi pendant qu'on y est n'avoir qu'une seule fonction `tab_var` pour avoir un tableau selon une seule variable ou selon plusieurs autres variables. 
 Pour laisser à la fonction la possibilité d'appeler plusieurs paramètres (ou aucun !), il faut utiliser les "...", que l'on va ici mettre dans la fonction `group_by(...)`.
+
 ```{r}
 tab_var <- function(data, codecom, list_mod, var, ...)
 {
@@ -720,6 +751,7 @@ tab_var(data=RP_stats, codecom="94071", list_mod=c("1", "0"), var=CS1, SEXE)
 ```
 
 Et on peut réécrire ainsi notre fonction `graph_baton1()` pour intégrer cette nouvelle version de notre fonction `tabvar()` ! 
+
 ```{r}
 graph_baton1 <- function(data, codecom, list_mod, var, ..., var_x, var_y, nom_titre)
 {
@@ -737,6 +769,7 @@ graph_baton1 <- function(data, codecom, list_mod, var, ..., var_x, var_y, nom_ti
 ```
 
 Ainsi, pour avoir un graphique similaire à celui de fin de section précédente (qui s'intitulait "Population de 15 ans ou plus par sexe et catégorie socioprofessionnelle"), on y arrive avec ce code, c'est-à-dire en sauvegardant le résultat de notre fonction dans un objet graphe (intitulé ici "gg") puis en lui ajoutant ensuite la fonction `facet_wrap()` et la variable qu'on a utilisée dans le `group_by()` à l'intérieur de la fonction (ici donc le sexe), et en lui spécifiant éventuellement quelques ajouts supplémentaires concernant l'arrière-plan du graphique avec `theme()` : 
+
 ```{r}
 gg <- RP %>% 
         filter(!AGER20 %in% c("02", "05", "10", "14") & TACT!="23" & CS1!="1") %>%  
@@ -756,6 +789,7 @@ gg + facet_wrap(~SEXE,nrow=1, ncol=2) +  theme_grey() +
 
 
 En réalité, pour une utilisation plus générale, il est sans doute préférable de ne pas indiquer dans la fonction les éléments relatifs ni au `theme()`, ni à `geom_text()`, et enfin de distinguer les variables utilisées pour le tableau, et les variables utilisées dans le graphique car dès qu'on sera sur des graphiques plus complexes avec plusieurs variables dans le `group_by()`, les choses risquent de ne pas fonctionner avec une fonction ne distinguant pas bien l'ensemble des variables. On peut donc finalement, ou en plus, proposer cette fonction, en ajoutant un paramètre "var_z" pour bien distinguer les différentes variables : 
+
 ```{r}
 graph_baton3 <- function(data, codecom, list_mod, var, ..., var_x, var_y, var_z, nom_titre)
 {
@@ -771,6 +805,7 @@ graph_baton3 <- function(data, codecom, list_mod, var, ..., var_x, var_y, var_z,
 ```
 
 Elle est par exemple utile pour réaliser le graphique en fin de section précédente qui était intitulé : "Population de 15 ans ou plus en emploi par statut, sexe et catégorie socioprofessionnelle":
+
 ```{r}
 gg <-RP %>% 
       filter(!AGER20 %in% c("02", "05", "10", "14") & TACT=="11" & CS1!="1") %>%
@@ -793,6 +828,7 @@ gg + facet_wrap(~EMPL, nrow=1, ncol=2) + geom_text(aes(label = after_stat(y)), c
 
 
 Enfin, on peut vouloir créer une fonction pour réaliser des statistiques sur des variables quantitatives, comme on le fait avec la fonction `summarise()`. On avait par exemple calculé, plus haut, le nombre moyen de pièces par logement selon l'ancienneté d'emménagement du ménage. On peut prendre exemple sur le code de notre fonction `tabvar()` et intégrer la fonction `summarise()` au lieu de `count()` ; et ajouter un paramètre pour expliciter le nom que l'on souhaite donner à la variable de sortie (la moyenne ici), avec les `{{ }}` comme pour la variable (paramètre "nom_var" ici donc).
+
 ```{r eval=FALSE}
 mean_var <- function(data, codecom,list_mod, var, ..., nom_var)
 {
@@ -805,8 +841,10 @@ mean_var <- function(data, codecom,list_mod, var, ..., nom_var)
   return(var_mean)
 }
 ```
+
 Mais si vous exécutez ce code, cela devrait vous mettre un message d'erreur en rouge : "*Erreur : '=' inattendu(e) in: "group_by(...) %>% summarise({{ nom }} ="*".
 Et oui, ça ne fonctionne pas car la fonction `summarise()` ne comprend pas le paramètre "nom_var", il faut en fait mettre avant `weighted.mean()` un **:=** et non un simple **=** !
+
 ```{r}
 mean_var <- function(data, codecom,list_mod, var, ..., nom_var)
 {
@@ -821,6 +859,7 @@ mean_var <- function(data, codecom,list_mod, var, ..., nom_var)
 ```
 
 On la teste : 
+
 ```{r warning=FALSE}
 # Nombre moyen de pièces par logement, pour notre commune de référence Sucy-en-Brie
 RP %>% 
@@ -841,6 +880,7 @@ RP %>%
 ```
 
 On peut également faire une fonction pour avoir une somme et non une moyenne, cela nous servira pour notre analyse de clustering (prochaine séance).
+
 ```{r}
 sum_var <- function(data, codecom,list_mod, ..., nom_var)
 {
@@ -861,9 +901,11 @@ RP %>% mutate(LPRM_1 = case_when(LPRM == "1" ~ "1", TRUE ~ "0")) %>%
 
 
 ### Enregistrer/Stocker ses fonctions
+
 Pour cela, il faut copier le seul code de la fonction ou des fonctions écrites et le(s) mettre dans un script (il faut bien les mettre l'une après l'autre si vous souhaitez en sauvegarder plusieurs dans un même fichier), puis enregistrer ce script. Vous pouvez pour cela créer un nouveau dossier dans votre projet et le nommer "Fonctions".
 
 Ensuite, pour l'appeler il faudra faire appel à la fonction `source()`. Vous pouvez le mettre en 1ère commande dans un nouveau script.
+
 ```{r eval=FALSE}
 #si j'ai enregistré mes 5 fonctions intitulé dans ce script `tab_var`, `graph_baton1`, `graph_baton3`, `mean_var` et `sum_var` dans un fichier/script "mes_fonctions" dans le dossier "Fonctions" de mon projet, alors je l'appelerai ainsi au début d'un nouveau script si je veux les réutiliser :
 source("fonctions/mes_fonctions.R")

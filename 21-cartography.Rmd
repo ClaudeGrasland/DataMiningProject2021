@@ -1,9 +1,12 @@
-# Cartographie {#c22-cartographie}
+# Analyse cartographique I (C.G.) {#c21-cartography1}
 
 
-## Objectifs
+## Introduction
 
-L'objectif de cette section est de réaliser des cartographies d'indicateurs statistiques relatifs aux unités spatiales à différentes échelles.
+L'objectif de cette section est 
+
+1. d'apprendre à réaliser des cartographies statiques d'indicateurs relatifs aux unités spatiales à différentes échelles à l'aide du package `cartography`.
+2. de créer des fonctions permetant d'automatiser la tâche de cartographie à l'échelle des communes
 
 
 ### Packages utilisés
@@ -15,7 +18,7 @@ Nous allons nous limiter à un nombre limité de packages
 - **ggplot2** : pour visualiser les résultats sous formes de graphiques
 - **sf** : pour manipuler les données cartographiques et les agréger
 - **cartography** : pour la réalisation de cartes statiques de qualité imprimables aux formats .pdf ou .doc
-- **leaflet** , **htmlwidgets**, **htmltools** pour la réalisation de cartes interactives accessibles sur le web.
+
 
 
 ```{r}
@@ -25,9 +28,6 @@ library(dplyr)
 library(ggplot2)
 library(sf)
 library(cartography)
-library(leaflet)
-library(htmltools)
-library(htmlwidgets)
 ```
 
 ### Chargement des données 
@@ -46,7 +46,11 @@ map <-readRDS("data/map_iris.Rdata")
 
 
 
-## Préparation du tableau de données
+##  Le package cartography
+
+
+
+Le package *cartography* permet de réaliser des cartes statiques de très haute qualité. Il a en effet été mis au point par des cartographes et des géomaticiens professionnels. Il propose une gamme de possibilités sans équivalent. On ne verra ici qu'une toute petite partie de ses possibilités. 
 
 Nous allons prendre comme exemple l'analyse d'un tableau du **nombre d'automobiles par ménage** en nous limitant aux ménages ordinaires c'est-à-dire en excluant les personnes habitant dans des logements collectifs (pensionnats, prisons, congrégations religieuses, ...)
 
@@ -112,7 +116,7 @@ head(tabdon[,c(1,6,11,12)])
 
 ```
 
-### Analyse du tableau
+### Analyse statistique
 
 Avant de passer à la cartographie, on peut analyser quelques variables intéressantes.
 
@@ -171,13 +175,6 @@ map_VOIT_IRIS<-left_join(map, tabfin) %>% st_as_sf()
 
 saveRDS(map_VOIT_IRIS, "data/map_VOIT_IRIS.Rdata")
 ```
-
-## Utilisation du package *cartography*
-
-
-Le package *cartography* permet de réaliser des cartes statiques de très haute qualité. Il a en effet été mis au point par des cartographes et des géomaticiens professionnels. Il propose une gamme de possibilités sans équivalent. On ne verra ici qu'une toute petite partie de ses possibilités. 
-
-
 
 ### Carte de stock 
 
@@ -364,240 +361,386 @@ layoutLayer(title = "Nombre et proportion des ménages ayant 3 automobiles ou pl
 
 ```
 
-## Cartographie avec *Leaflet*
-
-Le package Leaflet est particulièrement adapté aux cartographies locales et aux publication sur le web au format .html. Nous allons ici l'utiliser pour réaliser des zoom à l'échelle d'une commune. 
 
 
-### Extraction du fonds de carte d'une ou plusieurs commune
+## Création de fonctions
 
-Nous reprenons notre fichier de données sur l'automobile en ne conservant par exemple que les communes de Sucy-en-Brie (94071), Bonneuil (94011), Ormesson (94055), Chennevières sur Marne (94019) et Saint-Maur (94068)
 
-```{r}
-sel <- c("94071", "94011","94055","94068", "94019")
+L'objectif de cette section est de préparer des fonctions de cartographie qui pourront être intégrés dans une application shiny. On va pour cela reprendre les fonctions mises au point dans la partie statistiques et les coupler avec des procédures de cartographie. On se limitera dans l'immédiat à l'emploi des packages `sf`et `cartography`,mais on pourra par la suite créer d'autres fonctions fondées sur des packages tels que `leaflet`, `plotly`ou `tmap`... 
 
-map_iris <-readRDS("data/map_VOIT_IRIS.Rdata")
-sel_iris <-map_iris %>% filter(INSEE_COM %in% sel)
+### fonction tab_cont_iris()
 
-map_com <-readRDS("data/map_com.Rdata")
-sel_com <-map_com %>% filter(INSEE_COM %in% sel)
 
-par(mar=c(0,0,0,0))
-plot(sel_iris$geometry, col="lightyellow", border="gray80", lwd=0.5)
-plot(sel_com$geometry, col=NA, border="gray40", lwd=1, add=TRUE)
-```
+On va prendre comme point de départ la création d'un **tableau de contingence spatial** c'est-à-dire un tableau dont les lignes correspondent aux IRIS d'une commune et les colonnes aux modalités d'une variable de type factor. 
 
-### Projection et calcul des centres
 
-Le package **Leaflet** ne peut utiliser les fonds de carte que s'ils utilisent une projection spécifique en latitude longitude (projection 4326) permettant d'ajouter des "*tuiles*" cartographiques en arrière plan (typiquement, des plans de rue). Cette opération est effectuée à l'aide de la commande `st_transfrom` du package **sf**.
-
-Il est par ailleurs intéressant de calculer pour chaque unité spatiale un centre qui pourra être utilisé pour représenter des données sous la forme de points
-
+On récupère les fonctions statistiques mises au point précédemment
 
 ```{r}
-sel_com  <- st_transform(sel_com, 4326)
-sel_com_ctr <-st_centroid(sel_com)
-sel_iris <- st_transform(sel_iris, 4326)
-sel_iris_ctr<-st_centroid(sel_iris)
-
-par(mar=c(0,0,0,0))
-plot(sel_iris$geometry, col="lightyellow", border="blue", lwd=0.5)
-plot(sel_iris_ctr$geometry, col="blue", lwd=0.2, add=TRUE)
-plot(sel_com$geometry, col=NA, border="red", lwd=2, add=TRUE)
-plot(sel_com_ctr$geometry, col="red", lwd=2, add=TRUE)
+source("fonctions/mes_fonctions.R")
 ```
 
 
-### Etape 1 : centrage et niveau de zoom 
+On charge le fichier de données en lui ajoutant la variable LPRM_1 dont nous aurons besoin pour distinguer les données par ménage et pour l'ensemble de la population.
 
-Le package Leaflet est fondé sur l'usage de tuiles disponibles à différentes échelles et qu'il faut centrer sur la zone d'étude à l'aide des coordonnées de latitude et longitude. Si l'on veut par exemple travaillr sur Sucy-en-Brie, il faut trouver ses coordonnées sur le fonds de carte projeté en latitude longitude : 
-
-```{r}
-sel_com %>% filter(INSEE_COM =="94071") %>% st_centroid() %>% st_coordinates()
-```
-En ce qui concerne le niveau de zoom, on le trouve plutôt par essai et erreur. Dans notre exemple un zoom de niveau 12  sera adapté
-
-```{r}
-p <- leaflet() %>%
-        addTiles() %>%
-        setView(lng =2.533, lat=48.765, zoom = 12)
-p
+```{r, echo=FALSE}
+RP<-readRDS(file ="data/indiv2017.Rdata") %>%  
+    mutate(LPRM_1 = case_when(LPRM == "1" ~ "1", TRUE ~ "0")) 
+map_iris <- readRDS(file = "data/map_iris.Rdata")
+map_com  <- readRDS(file = "data/map_com.Rdata")
 ```
 
-### Etape 2 : Choix des tuiles
 
-Par défaut, Leaflet propose les "tuiles" d'OpenStreetMap, mais on peut en choisir d'autres. Par exemple, un fonds de carte npir et blanc peut être intéressant pour ne pas gêner la superposition de cartes ebn couleur.
+#### création du tableau avec la fonction tab_var
 
 ```{r}
-p <- leaflet() %>%
-        addTiles() %>%
-        addProviderTiles(providers$Stamen.TonerLite) %>%
-        setView(lng =2.533, lat=48.765, zoom = 12)
-p
+tab<-tab_var(data = RP, 
+              codecom = "94071", 
+              list_mod = c("1"),
+              var = VOIT, IRIS)
+
 ```
 
-### Etape 3 : Ajout d'une carte choroplèthe
+#### pivotage du tableau 
 
-On décide d'ajouter le contour des IRIS des communes avec des couleurs correspondant à la variable dépendance automobile.
+On opére deux opérations de pivotage du tableau pour récupérer les valeurs brutes (*raw*) et les valeurs en % (*pct*). 
 
 ```{r}
-mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
-                
-bin_pal = colorBin('Spectral', 
-                   sel_iris$VOIT_MEN,
-                   bins=mycut,
-                   reverse=T,)
+tab_raw <- pivot_wider(data = tab %>% select(-pct),
+                    names_from = VOIT,
+                    values_from = n,
+                    values_fill = 0)
+names(tab_raw)[-1] <- paste("count_",names(tab_raw)[-1], sep="")
+                    
+tab_pct <- pivot_wider(data = tab %>% select(-n),
+                    names_from = VOIT,
+                    values_from = pct,
+           values_fill = 0)                      
+names(tab_pct)[-1] <- paste("pct_",names(tab_pct)[-1], sep="")  
 
-p <- leaflet() %>%
-        addTiles() %>%
-        addProviderTiles(providers$Stamen.TonerLite) %>%
-        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+```
+
+#### Ajout de la géométrie
+
+On fusionne les deux tableaux précédents et bon effectue la jointure avec le fonds de carte, ce qui suppose de renommer la variable IRIS en CODE_IRIS.
+
+```{r}
+tab_geo <- left_join(tab_raw, tab_pct) %>% 
+            rename(CODE_IRIS=IRIS) %>%
+            left_join(map_iris) %>%
+            st_as_sf()
+```
+
+#### Création d'une fonction unique
+
+On reprend les étapes précédentes pour en faire une fonction unique appelée `tab_cont_iris`qui prend en entrée une variable quelconque de type factor et produit en sortie le tableau de contingence spatial soit par individu, soit par ménages. 
 
 
-    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
-              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
-              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
+```{r}
+tab_cont_iris <- function(data, codecom, list_mod, var)
+  {
+  # Create tab
+  tab <-tab_var(data, codecom, list_mod, {{var}}, IRIS)
   
-      addLegend(data = sel_iris, pal = bin_pal, title = "Dépendance automobile",
-            values = ~VOIT_MEN, position = 'topright',)
-p
-
-
-```
-
-
-### Etape 4 : ajout d'une carte de stock
-
-```{r}
-mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
-                
-bin_pal = colorBin('Spectral', 
-                   sel_iris$VOIT_MEN,
-                   bins=mycut,
-                   reverse=T,)
-
-p <- leaflet() %>%
-        addTiles() %>%
-        addProviderTiles(providers$Stamen.TonerLite) %>%
-        setView(lng =2.533, lat=48.765, zoom = 12) %>%
-
-
-    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
-              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
-              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
+  # Pivot count
+  tab_raw <- pivot_wider(data = tab %>% select(-pct),
+                    names_from = {{var}},
+                    values_from = n,
+                    values_fill = 0)
+  names(tab_raw)[-1] <- paste("count_",names(tab_raw)[-1], sep="")
   
-      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
-            values = ~VOIT_MEN, position = 'topright',) %>%
+  # Pivot pct                
+  tab_pct <- pivot_wider(data = tab %>% select(-n),
+                    names_from = {{var}},
+                    values_from = pct,
+           values_fill = 0)                      
+  names(tab_pct)[-1] <- paste("pct_",names(tab_pct)[-1], sep="") 
   
-    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
-    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
-    fillColor = "gray50",
-    stroke = FALSE, fillOpacity = 0.5) 
-p
-
+  # join with geom
+  tab_geo <- left_join(tab_raw, tab_pct) %>% 
+            rename(CODE_IRIS=IRIS) %>%
+            left_join(map_iris) %>%
+            st_as_sf()
+  return(tab_geo)
+  }
 
 ```
 
 
+#### Test de la fonction
 
+On peut tester la fonction sur la variable SEXE en effectuant un comptage :
 
-### Etape 5 : ajout du contour des communes
+- soit pour la **population totale** en prenant list_mod = "0" 
 
 
 ```{r}
-mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
-                
-bin_pal = colorBin('Spectral', 
-                   sel_iris$VOIT_MEN,
-                   bins=mycut,
-                   reverse=T,)
-
-p <- leaflet() %>%
-        addTiles() %>%
-        addProviderTiles(providers$Stamen.TonerLite) %>%
-        setView(lng =2.533, lat=48.765, zoom = 12) %>%
+SEXE_IRIS_pop <- tab_cont_iris(RP,"94071","0",SEXE)
+head(SEXE_IRIS_pop,3)
+```
 
 
-    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
-              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
-              highlightOptions = highlightOptions(weight = 2, color = 'black')) %>%
-  
-      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
-            values = ~VOIT_MEN, position = 'topright',) %>%
-  
-    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
-    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
-    fillColor = "gray50",
-    stroke = FALSE, fillOpacity = 0.5) %>%
-  
-      addPolygons(data =sel_com, fill= FALSE, color = 'black',weight =2) 
-p
+- soit pour les **chefs de ménage** en prenant list_mod = "1"  
 
+```{r}
+SEXE_IRIS_men <- tab_cont_iris(RP,"94071","1",SEXE)
+head(SEXE_IRIS_men,3)
+```
+
+
+### fonction map_count_iris 
+
+Nous allons créer différentes fonctions de cartographie selon que la variable à représenter est un stock (*count_x*) ou une intensité (*pct_xx*).
+
+Dans l'immédiat nous allons nous limiter aux fonctions de base du package `cartography`mais ou pourra par la suite proposer d'autres solutions.
+
+#### Objectifs 
+
+On prend comme entrée un tableau de contingence spatial et on décide de représenter l'une des modalités de type *count*. Soit par exemple la modalité 3 de la variable VOIT mesurée en nombre de ménages
+
+
+```{r}
+map<-tab_cont_iris(RP,"94071","0",VOIT)
+
+par(mar=c(0,0,2,0))
+plot(map$geometry, col="lightyellow", border="gray80",lwd=0.4)
+propSymbolsLayer(x = map,
+                 var = "count_3",
+                 col="blue",
+                 inches = 0.06,
+                 legend.title.txt = "Nb ménages",
+                 legend.pos = "topright")
+
+layoutLayer(title = "Ménages avec trois voitures ou plus",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
 
 ```
 
-### Etape 6 : Ajout d'un curseur interactif
+#### Fonction minimale
 
-En ajoutant le package **htmltools**
+On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 5 paramètres 
 
 
 ```{r}
+map_count_iris <- function (data,
+                            codecom,
+                            list_mod,
+                            var,
+                            mod,
+                            titre)
 
-# Round values
-sel_iris<-sel_iris %>% mutate(MEN_TOTAL = round(MEN_TOTAL,0),
-                 VOIT_TOTAL = round(VOIT_TOTAL,0),
-                 VOIT_MEN = round(VOIT_MEN,2))
-
-# Define class
-mycut<-quantile(sel_iris$VOIT_MEN, c(0,1/6, 2/6, 3/6,4/6,5/6,1 ))
-
-bin_pal = colorBin('Spectral', 
-                   sel_iris$VOIT_MEN,
-                   bins=mycut,
-                   reverse=T,)
-
-# Define labels
-
-labs <- lapply(seq(nrow(sel_iris)), function(i) {
-  paste0( paste("Commune :",sel_iris$NOM_COM[i]), '<p></p>',
-          paste("Code Iris :" ,sel_iris$IRIS[i]), '<p></p>', 
-          paste("Nom Iris :" ,sel_iris$NOM_IRIS[i]), '<p></p>',  
-          paste("Nb de ménages :",sel_iris$MEN_TOTAL[i]), '<p></p>',
-          paste("Nb de voitures:", sel_iris$VOIT_TOTAL[i]),'<p></p>',
-          paste("Voitures/Ménage:", sel_iris$VOIT_MEN[i]),'<p></p>'
-          ) 
-})
-
-labs<-lapply(labs, htmltools::HTML)
-
-
-
-
-p <- leaflet() %>%
-        addTiles() %>%
-        addProviderTiles(providers$Stamen.TonerLite) %>%
-        setView(lng =2.533, lat=48.765, zoom = 12) %>%
-
-
-    addPolygons(data = sel_iris, fillColor = ~bin_pal(VOIT_MEN),
-              color = 'grey', weight = 0.4, fillOpacity = 0.6, 
-              highlightOptions = highlightOptions(weight = 2, color = 'black'),
-              label = labs) %>%
+{
   
-      addLegend(data = sel_iris, pal = bin_pal, title = "Voiture / ménage",
-            values = ~VOIT_MEN, position = 'topright',) %>%
-  
-    addCircleMarkers(data=st_centroid(sel_iris$geometry, quiet =T),
-    radius = 8*sqrt(sel_iris$VOIT_TOTAL/max(sel_iris$VOIT_TOTAL)),
-    fillColor = "gray50",
-    stroke = FALSE, fillOpacity = 0.5) %>%
-  
-      addPolygons(data =sel_com, fill= FALSE, color = 'black',weight =2) 
-p
+ mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+ 
+ myvar <- paste("count_",mod, sep="")
+ 
+ if (list_mod==0) {myleg = "nb. d'habitants"} else
+ {myleg = "nb de ménages"}
+ 
 
+ 
+par(mar=c(0,0,2,0))
+plot(mymap$geometry, col="lightyellow", border="gray80",lwd=0.4)
+propSymbolsLayer(x = mymap,
+                 var = myvar,
+                 col="blue",
+                 inches = 0.06,
+                 legend.title.txt = myleg,
+                 legend.pos = "topright")
+
+layoutLayer(title = titre,
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail") 
+  
+}
 
 ```
 
 
+On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Brie
+
+```{r}
+map_count_iris(data = RP,
+               codecom = "94071",
+               list_mod = "1",
+               var = VOIT,
+               mod = 3,
+               "Ménages avec trois voitures ou plus")
+```
+
+On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des-Fossés (94068).
+
+```{r}
+map_count_iris(data = RP,
+               codecom = "94068",
+               list_mod = "1",
+               var = VOIT,
+               mod = 3,
+               "Ménages avec trois voitures ou plus")
+```
 
 
+... ou bien sur une autre modalité d'une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier à Sucy-en-Brie 
+
+```{r}
+map_count_iris(data = RP,
+               codecom = "94071",
+               list_mod = "1",
+               var = CS1,
+               mod = 6,
+               "Ménages ouvriers en 2017")
+```
+
+
+#### Fonction améliorée
+
+Vous pouvez maintenant améliorer la fonction en lui ajoutant d'autres paramètres variables tels que  :
+
+- la source
+- l'auteur
+- la couleur de remplissage des cercles
+- la couleur d'arrière-plan des iris
+- le zoom d'aggrandissement des cercles
+- etc.
+
+### fonction map_pct_iris
+
+Nous allons maintenant préparer un pogramme pour cartographier une variable d'intensité (*pct_xx*) dont la somme n'a pas de sens et qui doit donc utiliser le mode cartographique zonal (carte choroplèthe).
+
+#### Objectifs 
+
+
+On prend comme entrée le tableau de contingence spatial qui a été transformé en profil en ligne avec des modalités de type *pct*. Comme nous allons devoir établir automatiquement des classes sans connaître la forme de la distribution, nous devons utiliser une solution robuste. 
+
+- La méthode des **quantiles** apparaît alors comme la plus adaptée puisqu'elle consiste à découper la distribution en classes d'effectifs égaux. 
+- Concernant le **nombre de classes**, il doit dépendre du nombre d'éléments (ici d'IRIS) et nous allons utiliser pour cela la **formule de Huntsberger** qui indique le nombre maximum de classes souhaitable (K) en fonction du nombre d'élément (n).
+
+$K = 1 + \frac{10}{3}.log_{10}(x)$
+
+On définit à partir de là une carte-type en prenant l'exemple du % de ménages n'ayant pas de voiture à Sucy-en-Brie
+
+
+```{r}
+
+huntsberger <- function(x) {round(1+(10/3)*log10(x))}
+
+map<-tab_cont_iris(RP,"94071","0",VOIT)
+
+par(mar=c(0,0,2,0))
+nbc<-huntsberger(nrow(map))
+
+choroLayer(      x = map,
+                 nclass = nbc,
+                 method = "quantile",
+                 var = "pct_0",
+                 legend.title.txt = "% ménages",
+                 legend.pos = "topright",
+                 legend.values.rnd = 1)
+
+layoutLayer(title = "Ménages n'ayant pas de voiture",
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+```
+
+
+#### Fonction minimale
+
+On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 5 paramètres 
+
+
+```{r}
+map_pct_iris <- function (  data,
+                            codecom,
+                            list_mod,
+                            var,
+                            mod,
+                            titre)
+
+{
+  
+ mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+ 
+ myvar <- paste("pct_",mod, sep="")
+ 
+ if (list_mod==0) {myleg = "% des habitants"} else
+ {myleg = "% des ménages"}
+ 
+
+ 
+huntsberger <- function(x) {round(1+(10/3)*log10(x))}
+nbc<-huntsberger(nrow(map))
+
+par(mar=c(0,0,2,0))
+
+choroLayer(      x = mymap,
+                 var = myvar,
+                 nclass = nbc,
+                 method = "quantile",
+                 legend.title.txt = myleg,
+                 legend.pos = "topright",
+                 legend.values.rnd = 1)
+
+layoutLayer(title = titre,
+            author = "Master MECI / Option data mining",
+            sources = "INSEE, RP 2017, fichiers détail")
+
+
+}
+
+```
+
+
+On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Brie
+
+```{r}
+map_pct_iris(data = RP,
+               codecom = "94071",
+               list_mod = "1",
+               var = VOIT,
+               mod = 3,
+               "Ménages avec trois voitures ou plus")
+```
+
+
+On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des-Fossés (94068).
+
+```{r}
+map_pct_iris(data = RP,
+               codecom = "94068",
+               list_mod = "1",
+               var = VOIT,
+               mod = 3,
+               "Ménages avec trois voitures ou plus")
+```
+
+... ou bien sur une autre modalité d'une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier à Sucy-en-Brie 
+
+```{r}
+map_pct_iris(data = RP,
+               codecom = "94071",
+               list_mod = "1",
+               var = CS1,
+               mod = 6,
+               "Ménages ouvriers en 2017")
+```
+
+
+#### Fonction améliorée
+
+Vous pouvez maintenant améliorer la fonction en lui ajoutant d'autres paramètres variables tels que  :
+
+- la source
+- l'auteur
+- la palette de couleur
+- le nombre de classes
+- le mode de découpage des classes
+- etc.
+
+
+### Sauvegarde des fonctions
+
+
+On sauvegarde les nouvelles fonctions dans un nouveau fichier *mes_fonctions_V2.R* qui comporte les fonctions statistiques précédents et les nouvelles fonctions cartographiques mises au point dans ce chapitre.

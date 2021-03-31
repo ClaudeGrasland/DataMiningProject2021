@@ -1,7 +1,7 @@
 --- 
 title: "Projet DATA MINING 2021"
 subtitle: "Master Meci - Parcours Data - Options PISE et CCESE"
-author: "Claude Grasland et Camille Signoretto"
+author: "C. Grasland et C. Signoretto"
 date: "`r Sys.Date()`"
 documentclass: book
 link-citations: yes

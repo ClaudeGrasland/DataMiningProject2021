@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 1 Collecte de données statistiques et spatiales | Projet DATA MINING 2021</title>
+  <title>Chapitre 1 Données | Projet DATA MINING 2021</title>
   <meta name="description" content="Titre du cours" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 1 Collecte de données statistiques et spatiales | Projet DATA MINING 2021" />
+  <meta property="og:title" content="Chapitre 1 Données | Projet DATA MINING 2021" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 1 Collecte de données statistiques et spatiales | Projet DATA MINING 2021" />
+  <meta name="twitter:title" content="Chapitre 1 Données | Projet DATA MINING 2021" />
   
   <meta name="twitter:description" content="Titre du cours" />
   
 
-<meta name="author" content="Claude Grasland et Camille Signoretto" />
+<meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-03-29" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="00-presentation.html"/>
-<link rel="next" href="12-Stat.html"/>
+<link rel="next" href="12-statistics.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,16 +52,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -144,7 +134,7 @@ code span.wa { color: #bf0303; } /* Warning */
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./index.html">Projet Data Mining 2021  <em>C. Grasland (2021) & Camille Signoretto</em></a></li>
+<li><a href="./index.html">Data Mining 2021  <em>C. Grasland  & C.Signoretto</em></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
@@ -154,7 +144,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Collecte de données statistiques et spatiales</a>
+<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Données</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="11-data.html"><a href="11-data.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.2" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-individus"><i class="fa fa-check"></i><b>1.2</b> Données statistiques sur les individus</a>
@@ -180,74 +170,48 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="11-data.html"><a href="11-data.html#bilan-et-nettoyage"><i class="fa fa-check"></i><b>1.5</b> Bilan et nettoyage</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="12-Stat.html"><a href="12-Stat.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique et visualisation graphique</a>
+<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique I (C.S.)</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="12-Stat.html"><a href="12-Stat.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<li class="chapter" data-level="2.1" data-path="12-statistics.html"><a href="12-statistics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="12-Stat.html"><a href="12-Stat.html#les-données-du-recensement-de-la-population-rp"><i class="fa fa-check"></i><b>2.1.1</b> Les données du Recensement de la Population (RP)</a></li>
-<li class="chapter" data-level="2.1.2" data-path="12-Stat.html"><a href="12-Stat.html#quelles-variables-sont-présentes-dans-les-données-quelle-spécificité"><i class="fa fa-check"></i><b>2.1.2</b> Quelles variables sont présentes dans les données ? Quelle spécificité ?</a></li>
+<li class="chapter" data-level="2.1.1" data-path="12-statistics.html"><a href="12-statistics.html#les-données-du-recensement-de-la-population-rp"><i class="fa fa-check"></i><b>2.1.1</b> Les données du Recensement de la Population (RP)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="12-statistics.html"><a href="12-statistics.html#quelles-variables-sont-présentes-dans-les-données-quelle-spécificité"><i class="fa fa-check"></i><b>2.1.2</b> Quelles variables sont présentes dans les données ? Quelle spécificité ?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="12-Stat.html"><a href="12-Stat.html#quelques-statistiques-sur-les-logements-et-ménages"><i class="fa fa-check"></i><b>2.2</b> Quelques statistiques sur les logements et ménages</a></li>
-<li class="chapter" data-level="2.3" data-path="12-Stat.html"><a href="12-Stat.html#quelles-caractéristiques-des-individus-résidant-dans-le-val-de-marne-en-2017"><i class="fa fa-check"></i><b>2.3</b> Quelles caractéristiques des individus résidant dans le Val de Marne en 2017 ?</a></li>
-<li class="chapter" data-level="2.4" data-path="12-Stat.html"><a href="12-Stat.html#la-création-de-fonctions"><i class="fa fa-check"></i><b>2.4</b> La création de fonctions</a>
+<li class="chapter" data-level="2.2" data-path="12-statistics.html"><a href="12-statistics.html#quelques-statistiques-sur-les-logements-et-ménages"><i class="fa fa-check"></i><b>2.2</b> Quelques statistiques sur les logements et ménages</a></li>
+<li class="chapter" data-level="2.3" data-path="12-statistics.html"><a href="12-statistics.html#quelles-caractéristiques-des-individus-résidant-dans-le-val-de-marne-en-2017"><i class="fa fa-check"></i><b>2.3</b> Quelles caractéristiques des individus résidant dans le Val de Marne en 2017 ?</a></li>
+<li class="chapter" data-level="2.4" data-path="12-statistics.html"><a href="12-statistics.html#la-création-de-fonctions"><i class="fa fa-check"></i><b>2.4</b> La création de fonctions</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="12-Stat.html"><a href="12-Stat.html#création-dune-fonction-pour-retourner-un-tableau"><i class="fa fa-check"></i><b>2.4.1</b> Création d’une fonction pour retourner un tableau</a></li>
-<li class="chapter" data-level="2.4.2" data-path="12-Stat.html"><a href="12-Stat.html#création-dune-fonction-pour-retourner-un-graphique"><i class="fa fa-check"></i><b>2.4.2</b> Création d’une fonction pour retourner un graphique</a></li>
-<li class="chapter" data-level="2.4.3" data-path="12-Stat.html"><a href="12-Stat.html#création-dune-seule-fonction-comprenant-tableau-et-graphe"><i class="fa fa-check"></i><b>2.4.3</b> Création d’une seule fonction comprenant tableau et graphe</a></li>
-<li class="chapter" data-level="2.4.4" data-path="12-Stat.html"><a href="12-Stat.html#et-pour-distinguer-par-groupe-et-pour-avoir-des-moyennes"><i class="fa fa-check"></i><b>2.4.4</b> Et pour distinguer par groupe ? Et pour avoir des moyennes… ?</a></li>
-<li class="chapter" data-level="2.4.5" data-path="12-Stat.html"><a href="12-Stat.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html"><i class="fa fa-check"></i><b>3</b> Agrégation socio-spatiale</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#objectifs"><i class="fa fa-check"></i><b>3.1</b> Objectifs</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#ménages-ou-habitants"><i class="fa fa-check"></i><b>3.1.1</b> Ménages ou habitants ?</a></li>
-<li class="chapter" data-level="3.1.2" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#département-commune-ou-iris"><i class="fa fa-check"></i><b>3.1.2</b> Département, commune ou IRIS ?</a></li>
-<li class="chapter" data-level="3.1.3" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#tableaux-de-contingence-et-tableaux-de-profil"><i class="fa fa-check"></i><b>3.1.3</b> Tableaux de contingence et tableaux de profil</a></li>
-<li class="chapter" data-level="3.1.4" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#packages-utilisés"><i class="fa fa-check"></i><b>3.1.4</b> Packages utilisés</a></li>
-<li class="chapter" data-level="3.1.5" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#choix-dune-commune"><i class="fa fa-check"></i><b>3.1.5</b> Choix d’une commune</a></li>
-<li class="chapter" data-level="3.1.6" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#chargement-des-données"><i class="fa fa-check"></i><b>3.1.6</b> Chargement des données</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#fichier-de-référence"><i class="fa fa-check"></i><b>3.2</b> Fichier de référence</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#nombre-total-dhabitants-et-de-ménages-de-la-commune"><i class="fa fa-check"></i><b>3.2.1</b> Nombre total d’habitants et de ménages de la commune</a></li>
-<li class="chapter" data-level="3.2.2" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#nombre-dhabitants-et-de-ménages-par-iris"><i class="fa fa-check"></i><b>3.2.2</b> Nombre d’habitants et de ménages par IRIS</a></li>
-<li class="chapter" data-level="3.2.3" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#ajout-de-la-géométrie"><i class="fa fa-check"></i><b>3.2.3</b> Ajout de la géométrie</a></li>
-<li class="chapter" data-level="3.2.4" data-path="21-socio-spatial.html"><a href="21-socio-spatial.html#automatisation-du-travail"><i class="fa fa-check"></i><b>3.2.4</b> Automatisation du travail</a></li>
+<li class="chapter" data-level="2.4.1" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-tableau"><i class="fa fa-check"></i><b>2.4.1</b> Création d’une fonction pour retourner un tableau</a></li>
+<li class="chapter" data-level="2.4.2" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-graphique"><i class="fa fa-check"></i><b>2.4.2</b> Création d’une fonction pour retourner un graphique</a></li>
+<li class="chapter" data-level="2.4.3" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-seule-fonction-comprenant-tableau-et-graphe"><i class="fa fa-check"></i><b>2.4.3</b> Création d’une seule fonction comprenant tableau et graphe</a></li>
+<li class="chapter" data-level="2.4.4" data-path="12-statistics.html"><a href="12-statistics.html#et-pour-distinguer-par-groupe-et-pour-avoir-des-moyennes"><i class="fa fa-check"></i><b>2.4.4</b> Et pour distinguer par groupe ? Et pour avoir des moyennes… ?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="12-statistics.html"><a href="12-statistics.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="22-cartographie.html"><a href="22-cartographie.html"><i class="fa fa-check"></i><b>4</b> Cartographie</a>
+<li class="chapter" data-level="3" data-path="21-cartography.html"><a href="21-cartography.html"><i class="fa fa-check"></i><b>3</b> Analyse cartographique I (C.G.)</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="22-cartographie.html"><a href="22-cartographie.html#objectifs-1"><i class="fa fa-check"></i><b>4.1</b> Objectifs</a>
+<li class="chapter" data-level="3.1" data-path="21-cartography.html"><a href="21-cartography.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="22-cartographie.html"><a href="22-cartographie.html#packages-utilisés-1"><i class="fa fa-check"></i><b>4.1.1</b> Packages utilisés</a></li>
-<li class="chapter" data-level="4.1.2" data-path="22-cartographie.html"><a href="22-cartographie.html#chargement-des-données-1"><i class="fa fa-check"></i><b>4.1.2</b> Chargement des données</a></li>
+<li class="chapter" data-level="3.1.1" data-path="21-cartography.html"><a href="21-cartography.html#packages-utilisés"><i class="fa fa-check"></i><b>3.1.1</b> Packages utilisés</a></li>
+<li class="chapter" data-level="3.1.2" data-path="21-cartography.html"><a href="21-cartography.html#chargement-des-données"><i class="fa fa-check"></i><b>3.1.2</b> Chargement des données</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="22-cartographie.html"><a href="22-cartographie.html#préparation-du-tableau-de-données"><i class="fa fa-check"></i><b>4.2</b> Préparation du tableau de données</a>
+<li class="chapter" data-level="3.2" data-path="21-cartography.html"><a href="21-cartography.html#le-package-cartography"><i class="fa fa-check"></i><b>3.2</b> Le package cartography</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="22-cartographie.html"><a href="22-cartographie.html#création-du-tableau-de-contingence"><i class="fa fa-check"></i><b>4.2.1</b> Création du tableau de contingence</a></li>
-<li class="chapter" data-level="4.2.2" data-path="22-cartographie.html"><a href="22-cartographie.html#ajout-dun-tableau-de-pourcentage"><i class="fa fa-check"></i><b>4.2.2</b> Ajout d’un tableau de pourcentage</a></li>
-<li class="chapter" data-level="4.2.3" data-path="22-cartographie.html"><a href="22-cartographie.html#estimation-du-nombre-moyen-dautomobile-par-menages"><i class="fa fa-check"></i><b>4.2.3</b> Estimation du nombre moyen d’automobile par menages</a></li>
-<li class="chapter" data-level="4.2.4" data-path="22-cartographie.html"><a href="22-cartographie.html#analyse-du-tableau"><i class="fa fa-check"></i><b>4.2.4</b> Analyse du tableau</a></li>
-<li class="chapter" data-level="4.2.5" data-path="22-cartographie.html"><a href="22-cartographie.html#sauvegarde-du-tableau-et-jointure-avec-le-fonds-de-carte"><i class="fa fa-check"></i><b>4.2.5</b> Sauvegarde du tableau et jointure avec le fonds de carte</a></li>
+<li class="chapter" data-level="3.2.1" data-path="21-cartography.html"><a href="21-cartography.html#création-du-tableau-de-contingence"><i class="fa fa-check"></i><b>3.2.1</b> Création du tableau de contingence</a></li>
+<li class="chapter" data-level="3.2.2" data-path="21-cartography.html"><a href="21-cartography.html#ajout-dun-tableau-de-pourcentage"><i class="fa fa-check"></i><b>3.2.2</b> Ajout d’un tableau de pourcentage</a></li>
+<li class="chapter" data-level="3.2.3" data-path="21-cartography.html"><a href="21-cartography.html#estimation-du-nombre-moyen-dautomobile-par-menages"><i class="fa fa-check"></i><b>3.2.3</b> Estimation du nombre moyen d’automobile par menages</a></li>
+<li class="chapter" data-level="3.2.4" data-path="21-cartography.html"><a href="21-cartography.html#analyse-statistique"><i class="fa fa-check"></i><b>3.2.4</b> Analyse statistique</a></li>
+<li class="chapter" data-level="3.2.5" data-path="21-cartography.html"><a href="21-cartography.html#sauvegarde-du-tableau-et-jointure-avec-le-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.5</b> Sauvegarde du tableau et jointure avec le fonds de carte</a></li>
+<li class="chapter" data-level="3.2.6" data-path="21-cartography.html"><a href="21-cartography.html#carte-de-stock"><i class="fa fa-check"></i><b>3.2.6</b> Carte de stock</a></li>
+<li class="chapter" data-level="3.2.7" data-path="21-cartography.html"><a href="21-cartography.html#carte-dintensité-choroplèthe"><i class="fa fa-check"></i><b>3.2.7</b> Carte d’intensité (choroplèthe)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="21-cartography.html"><a href="21-cartography.html#carte-de-stock-intensité"><i class="fa fa-check"></i><b>3.2.8</b> Carte de stock + intensité</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="22-cartographie.html"><a href="22-cartographie.html#utilisation-du-package-cartography"><i class="fa fa-check"></i><b>4.3</b> Utilisation du package <em>cartography</em></a>
+<li class="chapter" data-level="3.3" data-path="21-cartography.html"><a href="21-cartography.html#création-de-fonctions"><i class="fa fa-check"></i><b>3.3</b> Création de fonctions</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-de-stock"><i class="fa fa-check"></i><b>4.3.1</b> Carte de stock</a></li>
-<li class="chapter" data-level="4.3.2" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-dintensité-choroplèthe"><i class="fa fa-check"></i><b>4.3.2</b> Carte d’intensité (choroplèthe)</a></li>
-<li class="chapter" data-level="4.3.3" data-path="22-cartographie.html"><a href="22-cartographie.html#carte-de-stock-intensité"><i class="fa fa-check"></i><b>4.3.3</b> Carte de stock + intensité</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="22-cartographie.html"><a href="22-cartographie.html#cartographie-avec-leaflet"><i class="fa fa-check"></i><b>4.4</b> Cartographie avec <em>Leaflet</em></a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="22-cartographie.html"><a href="22-cartographie.html#extraction-du-fonds-de-carte-dune-ou-plusieurs-commune"><i class="fa fa-check"></i><b>4.4.1</b> Extraction du fonds de carte d’une ou plusieurs commune</a></li>
-<li class="chapter" data-level="4.4.2" data-path="22-cartographie.html"><a href="22-cartographie.html#projection-et-calcul-des-centres"><i class="fa fa-check"></i><b>4.4.2</b> Projection et calcul des centres</a></li>
-<li class="chapter" data-level="4.4.3" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-1-centrage-et-niveau-de-zoom"><i class="fa fa-check"></i><b>4.4.3</b> Etape 1 : centrage et niveau de zoom</a></li>
-<li class="chapter" data-level="4.4.4" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-2-choix-des-tuiles"><i class="fa fa-check"></i><b>4.4.4</b> Etape 2 : Choix des tuiles</a></li>
-<li class="chapter" data-level="4.4.5" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-3-ajout-dune-carte-choroplèthe"><i class="fa fa-check"></i><b>4.4.5</b> Etape 3 : Ajout d’une carte choroplèthe</a></li>
-<li class="chapter" data-level="4.4.6" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-4-ajout-dune-carte-de-stock"><i class="fa fa-check"></i><b>4.4.6</b> Etape 4 : ajout d’une carte de stock</a></li>
-<li class="chapter" data-level="4.4.7" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-5-ajout-du-contour-des-communes"><i class="fa fa-check"></i><b>4.4.7</b> Etape 5 : ajout du contour des communes</a></li>
-<li class="chapter" data-level="4.4.8" data-path="22-cartographie.html"><a href="22-cartographie.html#etape-6-ajout-dun-curseur-interactif"><i class="fa fa-check"></i><b>4.4.8</b> Etape 6 : Ajout d’un curseur interactif</a></li>
+<li class="chapter" data-level="3.3.1" data-path="21-cartography.html"><a href="21-cartography.html#fonction-tab_cont_iris"><i class="fa fa-check"></i><b>3.3.1</b> fonction tab_cont_iris()</a></li>
+<li class="chapter" data-level="3.3.2" data-path="21-cartography.html"><a href="21-cartography.html#fonction-map_count_iris"><i class="fa fa-check"></i><b>3.3.2</b> fonction map_count_iris</a></li>
+<li class="chapter" data-level="3.3.3" data-path="21-cartography.html"><a href="21-cartography.html#fonction-map_pct_iris"><i class="fa fa-check"></i><b>3.3.3</b> fonction map_pct_iris</a></li>
+<li class="chapter" data-level="3.3.4" data-path="21-cartography.html"><a href="21-cartography.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.3.4</b> Sauvegarde des fonctions</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -268,7 +232,7 @@ code span.wa { color: #bf0303; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="c11-data" class="section level1" number="1">
-<h1><span class="header-section-number">Chapitre 1</span> Collecte de données statistiques et spatiales</h1>
+<h1><span class="header-section-number">Chapitre 1</span> Données</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="11-data.html#cb1-1"></a><span class="kw">library</span>(knitr)</span>
 <span id="cb1-2"><a href="11-data.html#cb1-2"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="11-data.html#cb1-3"></a><span class="kw">library</span>(data.table)</span>
@@ -574,7 +538,7 @@ Et on sauvegarde le fonds de carte</p>
         </div>
       </div>
 <a href="00-presentation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="12-Stat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="12-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -625,6 +589,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

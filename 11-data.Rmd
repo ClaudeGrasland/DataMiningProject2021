@@ -1,4 +1,4 @@
-# Collecte de données statistiques et spatiales {#c11-data}
+# Données {#c11-data}
 
 ```{r}
 library(knitr)
