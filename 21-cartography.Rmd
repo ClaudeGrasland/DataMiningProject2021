@@ -437,7 +437,7 @@ On reprend les étapes précédentes pour en faire une fonction unique appelée 
 
 
 ```{r}
-tab_cont_iris <- function(data, codecom, list_mod, var)
+tab_cont_iris <- function(data, map, codecom, list_mod, var)
   {
   # Create tab
   tab <-tab_var(data, codecom, list_mod, {{var}}, IRIS)
@@ -459,7 +459,7 @@ tab_cont_iris <- function(data, codecom, list_mod, var)
   # join with geom
   tab_geo <- left_join(tab_raw, tab_pct) %>% 
             rename(CODE_IRIS=IRIS) %>%
-            left_join(map_iris) %>%
+            left_join(map) %>%
             st_as_sf()
   return(tab_geo)
   }
@@ -475,7 +475,7 @@ On peut tester la fonction sur la variable SEXE en effectuant un comptage :
 
 
 ```{r}
-SEXE_IRIS_pop <- tab_cont_iris(RP,"94071","0",SEXE)
+SEXE_IRIS_pop <- tab_cont_iris(RP,map_iris,"94071","0",SEXE)
 head(SEXE_IRIS_pop,3)
 ```
 
@@ -483,7 +483,7 @@ head(SEXE_IRIS_pop,3)
 - soit pour les **chefs de ménage** en prenant list_mod = "1"  
 
 ```{r}
-SEXE_IRIS_men <- tab_cont_iris(RP,"94071","1",SEXE)
+SEXE_IRIS_men <- tab_cont_iris(RP,map_iris,"94071","1",SEXE)
 head(SEXE_IRIS_men,3)
 ```
 
@@ -500,7 +500,7 @@ On prend comme entrée un tableau de contingence spatial et on décide de repré
 
 
 ```{r}
-map<-tab_cont_iris(RP,"94071","0",VOIT)
+map<-tab_cont_iris(RP, map_iris,"94071","0",VOIT)
 
 par(mar=c(0,0,2,0))
 plot(map$geometry, col="lightyellow", border="gray80",lwd=0.4)
@@ -519,11 +519,12 @@ layoutLayer(title = "Ménages avec trois voitures ou plus",
 
 #### Fonction minimale
 
-On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 5 paramètres 
+On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 6 paramètres 
 
 
 ```{r}
 map_count_iris <- function (data,
+                            map,
                             codecom,
                             list_mod,
                             var,
@@ -532,7 +533,7 @@ map_count_iris <- function (data,
 
 {
   
- mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+ mymap<-tab_cont_iris(data,map_iris,codecom,list_mod,{{var}})
  
  myvar <- paste("count_",mod, sep="")
  
@@ -563,6 +564,7 @@ On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Br
 
 ```{r}
 map_count_iris(data = RP,
+               map = map_iris,
                codecom = "94071",
                list_mod = "1",
                var = VOIT,
@@ -574,6 +576,7 @@ On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des
 
 ```{r}
 map_count_iris(data = RP,
+               map = map_iris,
                codecom = "94068",
                list_mod = "1",
                var = VOIT,
@@ -586,6 +589,7 @@ map_count_iris(data = RP,
 
 ```{r}
 map_count_iris(data = RP,
+               map = map_iris,
                codecom = "94071",
                list_mod = "1",
                var = CS1,
@@ -626,7 +630,7 @@ On définit à partir de là une carte-type en prenant l'exemple du % de ménage
 
 huntsberger <- function(x) {round(1+(10/3)*log10(x))}
 
-map<-tab_cont_iris(RP,"94071","0",VOIT)
+map<-tab_cont_iris(RP,map_iris, "94071","0",VOIT)
 
 par(mar=c(0,0,2,0))
 nbc<-huntsberger(nrow(map))
@@ -648,11 +652,12 @@ layoutLayer(title = "Ménages n'ayant pas de voiture",
 
 #### Fonction minimale
 
-On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 5 paramètres 
+On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s'appliquer à n'importe quelle modalité de n'importe quelle variable. La fonction minimale devra comporter 7 paramètres 
 
 
 ```{r}
 map_pct_iris <- function (  data,
+                            map,
                             codecom,
                             list_mod,
                             var,
@@ -661,7 +666,7 @@ map_pct_iris <- function (  data,
 
 {
   
- mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+ mymap<-tab_cont_iris(data,map, codecom,list_mod,{{var}})
  
  myvar <- paste("pct_",mod, sep="")
  
@@ -697,6 +702,7 @@ On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Br
 
 ```{r}
 map_pct_iris(data = RP,
+             map= map_iris,
                codecom = "94071",
                list_mod = "1",
                var = VOIT,
@@ -709,6 +715,7 @@ On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des
 
 ```{r}
 map_pct_iris(data = RP,
+             map = map_iris,
                codecom = "94068",
                list_mod = "1",
                var = VOIT,
@@ -720,6 +727,7 @@ map_pct_iris(data = RP,
 
 ```{r}
 map_pct_iris(data = RP,
+             map = map_iris,
                codecom = "94071",
                list_mod = "1",
                var = CS1,

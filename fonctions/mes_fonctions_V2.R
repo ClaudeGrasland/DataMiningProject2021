@@ -77,10 +77,10 @@ sum_var <- function(data, codecom,list_mod, ..., nom_var)
 }
 
 
-tab_cont_iris <- function(data, codecom, list_mod, var)
+tab_cont_iris <- function(data, map, codecom, list_mod, var)
 {
   # Create tab
-  tab <-tab_var(data, codecom, list_mod, {{var}}, IRIS)
+  tab <-tab_var(data,codecom, list_mod, {{var}}, IRIS)
   
   # Pivot count
   tab_raw <- pivot_wider(data = tab %>% select(-pct),
@@ -99,13 +99,14 @@ tab_cont_iris <- function(data, codecom, list_mod, var)
   # join with geom
   tab_geo <- left_join(tab_raw, tab_pct) %>% 
     rename(CODE_IRIS=IRIS) %>%
-    left_join(map_iris) %>%
+    left_join(map) %>%
     st_as_sf()
   return(tab_geo)
 }
 
 
 map_count_iris <- function (data,
+                            map,
                             codecom,
                             list_mod,
                             var,
@@ -114,7 +115,7 @@ map_count_iris <- function (data,
   
 {
   
-  mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+  mymap<-tab_cont_iris(data,map, codecom,list_mod,{{var}})
   
   myvar <- paste("count_",mod, sep="")
   
@@ -141,6 +142,7 @@ map_count_iris <- function (data,
 
 
 map_pct_iris <- function (  data,
+                            map,
                             codecom,
                             list_mod,
                             var,
@@ -149,7 +151,7 @@ map_pct_iris <- function (  data,
   
 {
   
-  mymap<-tab_cont_iris(data,codecom,list_mod,{{var}})
+  mymap<-tab_cont_iris(data,map, codecom,list_mod,{{var}})
   
   myvar <- paste("pct_",mod, sep="")
   
