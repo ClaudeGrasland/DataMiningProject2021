@@ -6,7 +6,7 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 library(sf)
-library(cartography)
+library(mapsf)
 
 
 
@@ -76,6 +76,8 @@ sum_var <- function(data, codecom,list_mod, ..., nom_var)
   return(var_sum)
 }
 
+# ----------------------------------
+
 
 tab_cont_iris <- function(data, map, codecom, list_mod, var)
 {
@@ -104,6 +106,7 @@ tab_cont_iris <- function(data, map, codecom, list_mod, var)
   return(tab_geo)
 }
 
+# ----------------------------------
 
 map_count_iris <- function (data,
                             map,
@@ -115,7 +118,7 @@ map_count_iris <- function (data,
   
 {
   
-  mymap<-tab_cont_iris(data,map, codecom,list_mod,{{var}})
+  mymap<-tab_cont_iris(data,map_iris,codecom,list_mod,{{var}})
   
   myvar <- paste("count_",mod, sep="")
   
@@ -123,23 +126,25 @@ map_count_iris <- function (data,
   {myleg = "nb de ménages"}
   
   
+  mf_map(x= mymap,
+         type = "base",
+         col="lightyellow",
+         border="gray80",lwd=0.4)
   
-  par(mar=c(0,0,2,0))
-  plot(mymap$geometry, col="lightyellow", border="gray80",lwd=0.4)
-  propSymbolsLayer(x = mymap,
-                   var = myvar,
-                   col="blue",
-                   inches = 0.06,
-                   legend.title.txt = myleg,
-                   legend.pos = "topright")
+  mf_map(x = mymap,
+         var = myvar,
+         type = "prop",
+         col="blue",
+         leg_title = myleg,
+         inches = 0.06)
   
-  layoutLayer(title = titre,
-              author = "Master MECI / Option data mining",
-              sources = "INSEE, RP 2017, fichiers détail") 
-  
+  mf_layout(title = titre, 
+            frame = TRUE,
+            credits ="INSEE, RP 2017, fichiers détail")
 }
 
 
+#-----------------------
 
 map_pct_iris <- function (  data,
                             map,
@@ -161,21 +166,18 @@ map_pct_iris <- function (  data,
   
   
   huntsberger <- function(x) {round(1+(10/3)*log10(x))}
-  nbc<-huntsberger(nrow(map))
+  nbc<-huntsberger(nrow(mymap))
   
-  par(mar=c(0,0,2,0))
   
-  choroLayer(      x = mymap,
-                   var = myvar,
-                   nclass = nbc,
-                   method = "quantile",
-                   legend.title.txt = myleg,
-                   legend.pos = "topright",
-                   legend.values.rnd = 1)
   
-  layoutLayer(title = titre,
-              author = "Master MECI / Option data mining",
-              sources = "INSEE, RP 2017, fichiers détail")
+  mf_map(x = mymap,
+         var = myvar,
+         type = "choro",
+         nbreaks = nbc,
+         leg_title = myleg)
   
+  mf_layout(title = titre, 
+            frame = TRUE,
+            credits ="INSEE, RP 2017, fichiers détail")
   
 }
