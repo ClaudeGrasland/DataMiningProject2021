@@ -559,7 +559,7 @@ On va prendre comme point de départ la création d'un **tableau de contingence 
 On récupère les fonctions statistiques mises au point précédemment
 
 ```{r}
-source("fonctions/mes_fonctions.R")
+source("fonctions/mes_fonctions_V4.R")
 ```
 
 
@@ -573,12 +573,12 @@ map_com  <- readRDS(file = "data/map_com.Rdata")
 ```
 
 
-#### création du tableau avec la fonction tab_var
+#### création du tableau avec la fonction tab_var2
 
 ```{r}
-tab<-tab_var(data = RP, 
-              codecom = "94071", 
-              list_mod = c("1"),
+tab<-tab_var2(data = RP, 
+              listcom = "94071", 
+              menag = TRUE,
               var = VOIT, IRIS)
 
 ```
@@ -619,10 +619,10 @@ On reprend les étapes précédentes pour en faire une fonction unique appelée 
 
 
 ```{r}
-tab_cont_iris <- function(data, map, codecom, list_mod, var)
+tab_cont_iris <- function(data, map, listcom, menag, var)
   {
   # Create tab
-  tab <-tab_var(data, codecom, list_mod, {{var}}, IRIS)
+  tab <-tab_var2(data, listcom, menag, {{var}}, IRIS)
   
   # Pivot count
   tab_raw <- pivot_wider(data = tab %>% select(-pct),
@@ -653,19 +653,19 @@ tab_cont_iris <- function(data, map, codecom, list_mod, var)
 
 On peut tester la fonction sur la variable SEXE en effectuant un comptage :
 
-- soit pour la **population totale** en prenant list_mod = "0" 
+- soit pour la **population totale** en prenant menag = FALSE 
 
 
 ```{r}
-SEXE_IRIS_pop <- tab_cont_iris(RP,map_iris,"94071","0",SEXE)
+SEXE_IRIS_pop <- tab_cont_iris(RP,map_iris,"94071",menag = FALSE,SEXE)
 head(SEXE_IRIS_pop,3)
 ```
 
 
-- soit pour les **chefs de ménage** en prenant list_mod = "1"  
+- soit pour les **chefs de ménage** en prenant menag = TRUE  
 
 ```{r}
-SEXE_IRIS_men <- tab_cont_iris(RP,map_iris,"94071","1",SEXE)
+SEXE_IRIS_men <- tab_cont_iris(RP,map_iris,"94071",menag=TRUE,SEXE)
 head(SEXE_IRIS_men,3)
 ```
 
@@ -682,7 +682,7 @@ On prend comme entrée un tableau de contingence spatial et on décide de repré
 
 
 ```{r}
-map<-tab_cont_iris(RP, map_iris,"94071","0",VOIT)
+map<-tab_cont_iris(RP, map_iris,"94071",TRUE,VOIT)
 
 
 
@@ -696,19 +696,19 @@ On va maintenant créer une fonction ayant autant de paramètres que nécessaire
 ```{r}
 map_count_iris <- function (data,
                             map,
-                            codecom,
-                            list_mod,
+                            listcom,
+                            menag,
                             var,
                             mod,
                             titre)
 
 {
   
- mymap<-tab_cont_iris(data,map_iris,codecom,list_mod,{{var}})
+ mymap<-tab_cont_iris(data,map_iris,listcom,menag,{{var}})
  
  myvar <- paste("count_",mod, sep="")
  
- if (list_mod==0) {myleg = "nb. d'habitants"} else
+ if (menag==FALSE) {myleg = "nb. d'habitants"} else
  {myleg = "nb de ménages"}
  
 
@@ -737,33 +737,33 @@ On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Br
 ```{r}
 map_count_iris(data = RP,
                map = map_iris,
-               codecom = "94071",
-               list_mod = "1",
+               listcom = "94071",
+               menag= TRUE,
                var = VOIT,
                mod = 3,
                "Ménages avec trois voitures ou plus")
 ```
 
-On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des-Fossés (94068).
+On vérifie qu'elle marche également si on ajoute les communes voisines de Saint-Maur-des-Fossés (94068) , Bonneuil (94011), Ormesson (94055), Chennevières (94019) et Noiseau (94053)
 
 ```{r}
 map_count_iris(data = RP,
                map = map_iris,
-               codecom = "94068",
-               list_mod = "1",
+               listcom = c("94071","94068","94011","94055", "94019"),
+               menag= TRUE,
                var = VOIT,
                mod = 3,
                "Ménages avec trois voitures ou plus")
 ```
 
 
-... ou bien sur une autre modalité d'une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier à Sucy-en-Brie 
+... ou bien sur une autre modalité d'une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier.
 
 ```{r}
 map_count_iris(data = RP,
                map = map_iris,
-               codecom = "94071",
-               list_mod = "1",
+               listcom = c("94071","94068","94011","94055", "94019"),
+               menag= TRUE,
                var = CS1,
                mod = 6,
                "Ménages ouvriers en 2017")
@@ -804,19 +804,19 @@ On va maintenant créer une fonction ayant autant de paramètres que nécessaire
 ```{r}
 map_pct_iris <- function (  data,
                             map,
-                            codecom,
-                            list_mod,
+                            listcom,
+                            menag,
                             var,
                             mod,
                             titre)
 
 {
   
- mymap<-tab_cont_iris(data,map, codecom,list_mod,{{var}})
+ mymap<-tab_cont_iris(data,map,listcom,menag,{{var}})
  
  myvar <- paste("pct_",mod, sep="")
  
- if (list_mod==0) {myleg = "% des habitants"} else
+ if (menag==FALSE) {myleg = "% des habitants"} else
  {myleg = "% des ménages"}
  
 
@@ -846,21 +846,21 @@ On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Br
 ```{r}
 map_pct_iris(data = RP,
              map= map_iris,
-               codecom = "94071",
-               list_mod = "1",
+               listcom = "94071",
+               menag = "1",
                var = VOIT,
                mod = 3,
                "Ménages avec trois voitures ou plus")
 ```
 
 
-On vérifie qu'elle marche également sur une autre commune comme Saint-Maur-des-Fossés (94068).
+On vérifie qu'elle marche également sur un groupe de communes
 
 ```{r}
 map_pct_iris(data = RP,
-             map = map_iris,
-               codecom = "94068",
-               list_mod = "1",
+               map = map_iris,
+               listcom = c("94071","94068","94011","94055", "94019"),
+               menag= TRUE,
                var = VOIT,
                mod = 3,
                "Ménages avec trois voitures ou plus")
@@ -870,9 +870,9 @@ map_pct_iris(data = RP,
 
 ```{r}
 map_pct_iris(data = RP,
-             map = map_iris,
-               codecom = "94071",
-               list_mod = "1",
+               map = map_iris,
+               listcom = c("94071","94068","94011","94055", "94019"),
+               menag= TRUE,
                var = CS1,
                mod = 6,
                "Ménages ouvriers en 2017")
@@ -893,4 +893,4 @@ Vous pouvez maintenant améliorer la fonction en lui ajoutant d'autres paramètr
 ### Sauvegarde des fonctions
 
 
-On sauvegarde les nouvelles fonctions dans un nouveau fichier *mes_fonctions_V2.R* qui comporte les fonctions statistiques précédents et les nouvelles fonctions cartographiques mises au point dans ce chapitre.
+On sauvegarde les nouvelles fonctions dans un nouveau fichier *mes_fonctions_V4.R* qui comporte les fonctions statistiques précédents et les nouvelles fonctions cartographiques mises au point dans ce chapitre.
