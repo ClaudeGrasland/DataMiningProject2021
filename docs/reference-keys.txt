@@ -76,3 +76,12 @@ fonction-minimale-1
 fonction-améliorée-1
 sauvegarde-des-fonctions
 création-du-tableau-avec-la-fonction-tab_var2
+c22-leaflet_bpe
+objectifs-2
+packages-utilisés-1
+base-permanente-des-équipements
+chargement-des-données
+cartographie-avec-mapview
+construction-dune-carte-de-repérage
+carte-des-communes
+carte-des-iris

@@ -1,0 +1,155 @@
+# Cartes interactives {#c22-leaflet_bpe}
+
+
+## Objectifs
+
+L'objectif de cette section est d'apprendre réaliser des cartographies interactives à l'aide du package leaflet et plus généralement d'apprendre à cartographier des données ponctuelles telles que les équipements, commerces, services, ventes de biens ...
+
+
+### Packages utilisés
+
+Nous allons nous limiter à un nombre limité de packages
+
+- **dplyr** et **tidyr**: pour la manipulation des tableaux et leur agrégation (inutile de charger l'ensemble du package tidyverse)
+- **knitr** : pour afficher proprement les tableaux de résultats
+- **ggplot2** : pour visualiser les résultats sous formes de graphiques
+- **sf** : pour manipuler les données cartographiques et les agréger
+- **mapview**, **leaflet** , **htmlwidgets**, **htmltools** pour la réalisation de cartes interactives accessibles sur le web.
+
+
+```{r}
+library(knitr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(data.table)
+library(mapview)
+library(leaflet.providers)
+#library(leaflet)
+#library(htmltools)
+#library(htmlwidgets)
+```
+
+### Base permanente des équipements
+
+On répcupère les données de la Base Permanente des Equipements 2019 de l'INSEE sur le site web de cette organisation (https://www.insee.fr/fr/statistiques/3568638?sommaire=3568656) et on procède à l'extraction du département du Val de Marne. On stocke également le code des équipements. 
+
+```{r, eval=FALSE}
+list.files("tmp/bpe19_ensemble_xy_csv")
+bpe<-fread("tmp/bpe19_ensemble_xy_csv/bpe19_ensemble_xy.csv" )
+bpe<-bpe[bpe$DEP=="94",]
+
+# Sauvegarde fichier complet
+write.table(bpe,"data/bpe2019_94.csv",
+            row.names = F, 
+            sep = ";", 
+            fileEncoding = "UTF-8")
+
+# Extraction des coordonnées complètes
+bpe2<-bpe[is.na(bpe$LAMBERT_X)==F,]
+
+# Recheche du code de Projection INSEE
+map_iris<-readRDS("data/map_iris.Rdata")
+inseeproj<-st_crs(map_iris)
+
+# Transformation des équipements au format sf
+x<-st_as_sf(bpe2, coords = c("LAMBERT_X", "LAMBERT_Y"), crs = inseeproj, agr = "constant")
+
+# Sauvegarde
+saveRDS(x,"data/bpe2019_94_map.Rdata")
+
+# Code des équipements
+bpe_code<-fread("tmp/bpe19_ensemble_xy_csv/varmod_bpe19_ensemble_xy.csv")
+bpe_code<-bpe_code %>% filter(COD_VAR=="TYPEQU") %>% select(COD_MOD, LIB_MOD)
+
+write.table(bpe_code,"data/bpe2019_meta.csv",
+            row.names = F, 
+            sep = ";", 
+            fileEncoding = "UTF-8")
+```
+
+
+
+### Chargement des données
+
+```{r}
+
+bpe <- read.table("data/bpe2019_94.csv",
+            header = TRUE,
+            sep = ";", 
+            encoding = "UTF-8")
+
+bpe_map <- readRDS("data/bpe2019_94_map.Rdata")
+
+bpe_code <- read.table("data/bpe2019_meta.csv",
+            header = TRUE,
+            sep = ";", 
+            encoding = "UTF-8")
+
+map_com<-readRDS("data/map_com.Rdata")
+map_iris<-readRDS("data/map_iris.Rdata")
+
+```
+
+
+
+
+## Cartographie avec Mapview
+
+
+Le package `mapview` permet d'émuler de façon simple les commandes du package de référence `leaflet`et d'obtenir facilement des cartographies interactives de très bonne qualité. Il ne remplace pas l'apprentissage du package `leaflet`qui est une référence incontournable pour le spécialiste de dataminiing, mais il présente l'avantage de permettre d'obtenir rapidement des cartes de bonnes qualité.
+
+On trouvera une courte introduction en français [ici](!https://rcarto.github.io/carto_avec_r/chapitre3.html#cartographie-interactive) et une documentation complète [ici](!https://r-spatial.github.io/mapview/)
+
+
+
+
+### Construction d'une carte de repérage
+
+
+Supposons que l'on veuille travailler sur les cinq communes de Bonneuil (94011), Chennevières (94019), Ormesson (94055), Saint-Maur (94068) et Sucy (94071). On commence par sélectionner les simples communes dans le fichier des communes et on réalise la carte avec la simple commande `mapview()`:
+
+#### Carte des communes
+
+```{r}
+selcom<-c("94011","94019","94055","94068","94071")
+cartecom<-map_com %>% filter(INSEE_COM %in% selcom)
+mapview(cartecom)
+
+```
+
+Vous remarquez que la carte est interactive et permet à la fois d'ffectuer des zoom et de changer les tuiles de fonds. Lorsque l'on clique sur une commune, on récupère les données présentes dans le tableau.
+
+#### Carte des iris
+
+On va maintenant tracer la carte des Iris en ajoutant quelques paramètres en plus :
+
+```{r}
+selcom<-c("94011","94019","94055","94068","94071")
+cartecom <- map_com %>% filter(INSEE_COM %in% selcom)
+carteiris <- map_iris %>% filter(INSEE_COM %in% selcom) %>% select(NOM_COM, CODE_IRIS, NOM_IRIS)
+
+map2<-mapview(carteiris, 
+           # Selection des tuiles
+   #        map.types=c("CartoDB.Positron","OpenStreetMap"),
+           
+           # Remplissage des IRIS
+           zcol= "NOM_COM",    
+           alpha.regions = 0.2,
+           
+           # Contour des IRIS
+           lwd=0.6, 
+           color="gray50",
+           alpha = 0.4,
+           
+           # Affichage de la Légende
+           legend = FALSE
+           )
+
+ 
+map2        
+
+```
+
+
