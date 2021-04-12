@@ -52,8 +52,95 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
+<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
+<link id="cartecom-1-attachment" rel="attachment" href="libs/cartecom-0.0.1/cartecom_layer.fgb"/>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="carteiris-NOM_COM-1-attachment" rel="attachment" href="libs/carteiris-NOM_COM-0.0.1/carteiris-NOM_COM_layer.fgb"/>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
 </head>
@@ -151,6 +238,19 @@
 <li class="chapter" data-level="3.4.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_count_iris"><i class="fa fa-check"></i><b>3.4.2</b> fonction map_count_iris</a></li>
 <li class="chapter" data-level="3.4.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_pct_iris"><i class="fa fa-check"></i><b>3.4.3</b> fonction map_pct_iris</a></li>
 <li class="chapter" data-level="3.4.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.4.4</b> Sauvegarde des fonctions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html"><i class="fa fa-check"></i><b>4</b> Cartes interactives</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#objectifs-2"><i class="fa fa-check"></i><b>4.1</b> Objectifs</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#packages-utilisés-1"><i class="fa fa-check"></i><b>4.1.1</b> Packages utilisés</a></li>
+<li class="chapter" data-level="4.1.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#base-permanente-des-équipements"><i class="fa fa-check"></i><b>4.1.2</b> Base permanente des équipements</a></li>
+<li class="chapter" data-level="4.1.3" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#chargement-des-données"><i class="fa fa-check"></i><b>4.1.3</b> Chargement des données</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#cartographie-avec-mapview"><i class="fa fa-check"></i><b>4.2</b> Cartographie avec Mapview</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#construction-dune-carte-de-repérage"><i class="fa fa-check"></i><b>4.2.1</b> Construction d’une carte de repérage</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -274,6 +374,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -61,7 +61,7 @@ carte-avec-habillage
 carte-de-stock-intensité
 création-de-fonctions
 fonction-tab_cont_iris
-création-du-tableau-avec-la-fonction-tab_var
+création-du-tableau-avec-la-fonction-tab_var2
 pivotage-du-tableau
 ajout-de-la-géométrie
 création-dune-fonction-unique
@@ -75,7 +75,6 @@ objectifs-1
 fonction-minimale-1
 fonction-améliorée-1
 sauvegarde-des-fonctions
-création-du-tableau-avec-la-fonction-tab_var2
 c22-leaflet_bpe
 objectifs-2
 packages-utilisés-1
