@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Cartes interactives | Projet DATA MINING 2021</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Cartes interactives | Projet DATA MINING 2021" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Cartes interactives | Projet DATA MINING 2021" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="C. Grasland et C. Signoretto" />
+
+
+<meta name="date" content="2021-04-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="21-cartography_V2.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
+<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
+<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
+<link id="cartecom-1-attachment" rel="attachment" href="libs/cartecom-0.0.1/cartecom_layer.fgb"/>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link id="carteiris-NOM_COM-1-attachment" rel="attachment" href="libs/carteiris-NOM_COM-0.0.1/carteiris-NOM_COM_layer.fgb"/>
+<link id="services-1-attachment" rel="attachment" href="libs/services-0.0.1/services_layer.fgb"/>
+<link id="Communes-1-attachment" rel="attachment" href="libs/Communes-0.0.1/Communes_layer.fgb"/>
+<link id="Boulangeries-1-attachment" rel="attachment" href="libs/Boulangeries-0.0.1/Boulangeries_layer.fgb"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining 2021  <em>C. Grasland  & C.Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Données</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="11-data.html"><a href="11-data.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-individus"><i class="fa fa-check"></i><b>1.2</b> Données statistiques sur les individus</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="11-data.html"><a href="11-data.html#etape-1-téléchargement-des-données-et-stockage-temporaire"><i class="fa fa-check"></i><b>1.2.1</b> Etape 1 : téléchargement des données et stockage temporaire</a></li>
+<li class="chapter" data-level="1.2.2" data-path="11-data.html"><a href="11-data.html#etape-2-transformation-des-données-au-format-r"><i class="fa fa-check"></i><b>1.2.2</b> Etape 2 : Transformation des données au format R</a></li>
+<li class="chapter" data-level="1.2.3" data-path="11-data.html"><a href="11-data.html#etape-3-sélection-des-données-utiles-et-sauvegarde-au-format-.rdata"><i class="fa fa-check"></i><b>1.2.3</b> Etape 3 : Sélection des données utiles et sauvegarde au format .Rdata</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-logements-ordinaires"><i class="fa fa-check"></i><b>1.3</b> Données statistiques sur les logements ordinaires</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="11-data.html"><a href="11-data.html#etape-1-récupération-des-fichiers"><i class="fa fa-check"></i><b>1.3.1</b> Etape 1 : récupération des fichiers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="11-data.html"><a href="11-data.html#etape-2-transformation-des-données-au-format-r-1"><i class="fa fa-check"></i><b>1.3.2</b> Etape 2 : Transformation des données au format R</a></li>
+<li class="chapter" data-level="1.3.3" data-path="11-data.html"><a href="11-data.html#etape-3-sélection-des-données-utiles-et-sauvegarde-au-format-.rdata-1"><i class="fa fa-check"></i><b>1.3.3</b> Etape 3 : Sélection des données utiles et sauvegarde au format .Rdata</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="11-data.html"><a href="11-data.html#données-géométriques"><i class="fa fa-check"></i><b>1.4</b> Données géométriques</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="11-data.html"><a href="11-data.html#etape-1-récupération-du-fonds-iris-au-format-shapefile"><i class="fa fa-check"></i><b>1.4.1</b> Etape 1 : récupération du fonds IRIS au format shapefile</a></li>
+<li class="chapter" data-level="1.4.2" data-path="11-data.html"><a href="11-data.html#etape-2-importation-et-transformation-au-format-sf"><i class="fa fa-check"></i><b>1.4.2</b> Etape 2 : Importation et transformation au format sf</a></li>
+<li class="chapter" data-level="1.4.3" data-path="11-data.html"><a href="11-data.html#etape-3-extraction-des-iris-de-la-zone-détude"><i class="fa fa-check"></i><b>1.4.3</b> Etape 3 : Extraction des IRIS de la zone d’étude</a></li>
+<li class="chapter" data-level="1.4.4" data-path="11-data.html"><a href="11-data.html#etape-4-création-dun-fonds-de-carte-des-communes"><i class="fa fa-check"></i><b>1.4.4</b> Etape 4 : création d’un fonds de carte des communes</a></li>
+<li class="chapter" data-level="1.4.5" data-path="11-data.html"><a href="11-data.html#etape-5-création-dun-fonds-de-carte-par-département"><i class="fa fa-check"></i><b>1.4.5</b> Etape 5 : création d’un fonds de carte par département</a></li>
+<li class="chapter" data-level="1.4.6" data-path="11-data.html"><a href="11-data.html#etape-6-superposition-des-trois-fonds-de-carte"><i class="fa fa-check"></i><b>1.4.6</b> Etape 6: Superposition des trois fonds de carte</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="11-data.html"><a href="11-data.html#bilan-et-nettoyage"><i class="fa fa-check"></i><b>1.5</b> Bilan et nettoyage</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique I (C.S.)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="12-statistics.html"><a href="12-statistics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="12-statistics.html"><a href="12-statistics.html#les-données-du-recensement-de-la-population-rp"><i class="fa fa-check"></i><b>2.1.1</b> Les données du Recensement de la Population (RP)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="12-statistics.html"><a href="12-statistics.html#quelles-variables-sont-présentes-dans-les-données-quelle-spécificité"><i class="fa fa-check"></i><b>2.1.2</b> Quelles variables sont présentes dans les données ? Quelle spécificité ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="12-statistics.html"><a href="12-statistics.html#quelques-statistiques-sur-les-logements-et-ménages"><i class="fa fa-check"></i><b>2.2</b> Quelques statistiques sur les logements et ménages</a></li>
+<li class="chapter" data-level="2.3" data-path="12-statistics.html"><a href="12-statistics.html#quelles-caractéristiques-des-individus-résidant-dans-le-val-de-marne-en-2017"><i class="fa fa-check"></i><b>2.3</b> Quelles caractéristiques des individus résidant dans le Val de Marne en 2017 ?</a></li>
+<li class="chapter" data-level="2.4" data-path="12-statistics.html"><a href="12-statistics.html#la-création-de-fonctions"><i class="fa fa-check"></i><b>2.4</b> La création de fonctions</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-tableau"><i class="fa fa-check"></i><b>2.4.1</b> Création d’une fonction pour retourner un tableau</a></li>
+<li class="chapter" data-level="2.4.2" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-graphique"><i class="fa fa-check"></i><b>2.4.2</b> Création d’une fonction pour retourner un graphique</a></li>
+<li class="chapter" data-level="2.4.3" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-seule-fonction-comprenant-tableau-et-graphe"><i class="fa fa-check"></i><b>2.4.3</b> Création d’une seule fonction comprenant tableau et graphe</a></li>
+<li class="chapter" data-level="2.4.4" data-path="12-statistics.html"><a href="12-statistics.html#et-pour-distinguer-par-groupe-et-pour-avoir-des-moyennes"><i class="fa fa-check"></i><b>2.4.4</b> Et pour distinguer par groupe ? Et pour avoir des moyennes… ?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="12-statistics.html"><a href="12-statistics.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Analyse cartographique avec mapsf (new)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#packages-utilisés"><i class="fa fa-check"></i><b>3.1.1</b> Packages utilisés</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#préparation-des-données"><i class="fa fa-check"></i><b>3.2</b> Préparation des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#chargement-des-fichiers-de-référence"><i class="fa fa-check"></i><b>3.2.1</b> Chargement des fichiers de référence</a></li>
+<li class="chapter" data-level="3.2.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#choix-dun-indicateur"><i class="fa fa-check"></i><b>3.2.2</b> Choix d’un indicateur</a></li>
+<li class="chapter" data-level="3.2.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-du-tableau-de-contingence"><i class="fa fa-check"></i><b>3.2.3</b> Création du tableau de contingence</a></li>
+<li class="chapter" data-level="3.2.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-dun-tableau-de-pourcentages-en-ligne"><i class="fa fa-check"></i><b>3.2.4</b> Création d’un tableau de pourcentages en ligne</a></li>
+<li class="chapter" data-level="3.2.5" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#estimation-du-nombre-moyen-dautomobile-par-menages"><i class="fa fa-check"></i><b>3.2.5</b> Estimation du nombre moyen d’automobile par menages</a></li>
+<li class="chapter" data-level="3.2.6" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#analyse-statistique-des-vraiables"><i class="fa fa-check"></i><b>3.2.6</b> Analyse statistique des vraiables</a></li>
+<li class="chapter" data-level="3.2.7" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#jointure-avec-le-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.7</b> Jointure avec le fonds de carte</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#le-package-mapsf"><i class="fa fa-check"></i><b>3.3</b> Le package mapsf</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-dun-template-cartographique"><i class="fa fa-check"></i><b>3.3.1</b> Création d’un template cartographique</a></li>
+<li class="chapter" data-level="3.3.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-de-stock"><i class="fa fa-check"></i><b>3.3.2</b> Carte de stock</a></li>
+<li class="chapter" data-level="3.3.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-dintensité-choroplèthe"><i class="fa fa-check"></i><b>3.3.3</b> Carte d’intensité (choroplèthe)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-de-stock-intensité"><i class="fa fa-check"></i><b>3.3.4</b> Carte de stock + intensité</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-de-fonctions"><i class="fa fa-check"></i><b>3.4</b> Création de fonctions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-tab_cont_iris"><i class="fa fa-check"></i><b>3.4.1</b> fonction tab_cont_iris()</a></li>
+<li class="chapter" data-level="3.4.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_count_iris"><i class="fa fa-check"></i><b>3.4.2</b> fonction map_count_iris</a></li>
+<li class="chapter" data-level="3.4.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_pct_iris"><i class="fa fa-check"></i><b>3.4.3</b> fonction map_pct_iris</a></li>
+<li class="chapter" data-level="3.4.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.4.4</b> Sauvegarde des fonctions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html"><i class="fa fa-check"></i><b>4</b> Cartes interactives</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#objectifs-2"><i class="fa fa-check"></i><b>4.1</b> Objectifs</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#packages-utilisés-1"><i class="fa fa-check"></i><b>4.1.1</b> Packages utilisés</a></li>
+<li class="chapter" data-level="4.1.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#base-permanente-des-équipements"><i class="fa fa-check"></i><b>4.1.2</b> Base permanente des équipements</a></li>
+<li class="chapter" data-level="4.1.3" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#chargement-des-données"><i class="fa fa-check"></i><b>4.1.3</b> Chargement des données</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#cartographie-avec-mapview"><i class="fa fa-check"></i><b>4.2</b> Cartographie avec Mapview</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#construction-dune-carte-de-repérage"><i class="fa fa-check"></i><b>4.2.1</b> Construction d’une carte de repérage</a></li>
+<li class="chapter" data-level="4.2.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#cartes-pontuelles"><i class="fa fa-check"></i><b>4.2.2</b> Cartes pontuelles</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Projet DATA MINING 2021</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c22-leaflet_bpe" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Cartes interactives</h1>
+<div id="objectifs-2" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Objectifs</h2>
+<p>L’objectif de cette section est d’apprendre réaliser des cartographies interactives à l’aide du package leaflet et plus généralement d’apprendre à cartographier des données ponctuelles telles que les équipements, commerces, services, ventes de biens …</p>
+<div id="packages-utilisés-1" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Packages utilisés</h3>
+<p>Nous allons nous limiter à un nombre limité de packages</p>
+<ul>
+<li><strong>dplyr</strong> et <strong>tidyr</strong>: pour la manipulation des tableaux et leur agrégation (inutile de charger l’ensemble du package tidyverse)</li>
+<li><strong>knitr</strong> : pour afficher proprement les tableaux de résultats</li>
+<li><strong>ggplot2</strong> : pour visualiser les résultats sous formes de graphiques</li>
+<li><strong>sf</strong> : pour manipuler les données cartographiques et les agréger</li>
+<li><strong>mapview</strong>, <strong>leaflet</strong> , <strong>htmlwidgets</strong>, <strong>htmltools</strong> pour la réalisation de cartes interactives accessibles sur le web.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="22-leaflet_mapview.html#cb1-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-2"><a href="22-leaflet_mapview.html#cb1-2"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="22-leaflet_mapview.html#cb1-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="22-leaflet_mapview.html#cb1-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="22-leaflet_mapview.html#cb1-5"></a><span class="kw">library</span>(sf)</span></code></pre></div>
+<pre><code>Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="22-leaflet_mapview.html#cb3-1"></a><span class="kw">library</span>(data.table)</span></code></pre></div>
+<pre><code>
+Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    between, first, last</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    transpose</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="22-leaflet_mapview.html#cb7-1"></a><span class="kw">library</span>(mapview)</span></code></pre></div>
+<pre><code>GDAL version &gt;= 3.1.0 | setting mapviewOptions(fgb = TRUE)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="22-leaflet_mapview.html#cb9-1"></a><span class="kw">library</span>(leaflet.providers)</span>
+<span id="cb9-2"><a href="22-leaflet_mapview.html#cb9-2"></a><span class="co">#library(leaflet)</span></span>
+<span id="cb9-3"><a href="22-leaflet_mapview.html#cb9-3"></a><span class="co">#library(htmltools)</span></span>
+<span id="cb9-4"><a href="22-leaflet_mapview.html#cb9-4"></a><span class="co">#library(htmlwidgets)</span></span></code></pre></div>
+</div>
+<div id="base-permanente-des-équipements" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Base permanente des équipements</h3>
+<p>On répcupère les données de la Base Permanente des Equipements 2019 de l’INSEE sur le site web de cette organisation (<a href="https://www.insee.fr/fr/statistiques/3568638?sommaire=3568656" class="uri">https://www.insee.fr/fr/statistiques/3568638?sommaire=3568656</a>) et on procède à l’extraction du département du Val de Marne. On stocke également le code des équipements.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="22-leaflet_mapview.html#cb10-1"></a><span class="kw">list.files</span>(<span class="st">&quot;tmp/bpe19_ensemble_xy_csv&quot;</span>)</span>
+<span id="cb10-2"><a href="22-leaflet_mapview.html#cb10-2"></a>bpe&lt;-<span class="kw">fread</span>(<span class="st">&quot;tmp/bpe19_ensemble_xy_csv/bpe19_ensemble_xy.csv&quot;</span> )</span>
+<span id="cb10-3"><a href="22-leaflet_mapview.html#cb10-3"></a>bpe&lt;-bpe[bpe<span class="op">$</span>DEP<span class="op">==</span><span class="st">&quot;94&quot;</span>,]</span>
+<span id="cb10-4"><a href="22-leaflet_mapview.html#cb10-4"></a></span>
+<span id="cb10-5"><a href="22-leaflet_mapview.html#cb10-5"></a><span class="co"># Sauvegarde fichier complet</span></span>
+<span id="cb10-6"><a href="22-leaflet_mapview.html#cb10-6"></a><span class="kw">write.table</span>(bpe,<span class="st">&quot;data/bpe2019_94.csv&quot;</span>,</span>
+<span id="cb10-7"><a href="22-leaflet_mapview.html#cb10-7"></a>            <span class="dt">row.names =</span> F, </span>
+<span id="cb10-8"><a href="22-leaflet_mapview.html#cb10-8"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </span>
+<span id="cb10-9"><a href="22-leaflet_mapview.html#cb10-9"></a>            <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb10-10"><a href="22-leaflet_mapview.html#cb10-10"></a></span>
+<span id="cb10-11"><a href="22-leaflet_mapview.html#cb10-11"></a><span class="co"># Extraction des coordonnées complètes</span></span>
+<span id="cb10-12"><a href="22-leaflet_mapview.html#cb10-12"></a>bpe2&lt;-bpe[<span class="kw">is.na</span>(bpe<span class="op">$</span>LAMBERT_X)<span class="op">==</span>F,]</span>
+<span id="cb10-13"><a href="22-leaflet_mapview.html#cb10-13"></a></span>
+<span id="cb10-14"><a href="22-leaflet_mapview.html#cb10-14"></a><span class="co"># Recheche du code de Projection INSEE</span></span>
+<span id="cb10-15"><a href="22-leaflet_mapview.html#cb10-15"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span>
+<span id="cb10-16"><a href="22-leaflet_mapview.html#cb10-16"></a>inseeproj&lt;-<span class="kw">st_crs</span>(map_iris)</span>
+<span id="cb10-17"><a href="22-leaflet_mapview.html#cb10-17"></a></span>
+<span id="cb10-18"><a href="22-leaflet_mapview.html#cb10-18"></a><span class="co"># Transformation des équipements au format sf</span></span>
+<span id="cb10-19"><a href="22-leaflet_mapview.html#cb10-19"></a>x&lt;-<span class="kw">st_as_sf</span>(bpe2, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;LAMBERT_X&quot;</span>, <span class="st">&quot;LAMBERT_Y&quot;</span>), <span class="dt">crs =</span> inseeproj, <span class="dt">agr =</span> <span class="st">&quot;constant&quot;</span>)</span>
+<span id="cb10-20"><a href="22-leaflet_mapview.html#cb10-20"></a></span>
+<span id="cb10-21"><a href="22-leaflet_mapview.html#cb10-21"></a><span class="co"># Sauvegarde</span></span>
+<span id="cb10-22"><a href="22-leaflet_mapview.html#cb10-22"></a><span class="kw">saveRDS</span>(x,<span class="st">&quot;data/bpe2019_94_map.Rdata&quot;</span>)</span>
+<span id="cb10-23"><a href="22-leaflet_mapview.html#cb10-23"></a></span>
+<span id="cb10-24"><a href="22-leaflet_mapview.html#cb10-24"></a><span class="co"># Code des équipements</span></span>
+<span id="cb10-25"><a href="22-leaflet_mapview.html#cb10-25"></a>bpe_code&lt;-<span class="kw">fread</span>(<span class="st">&quot;tmp/bpe19_ensemble_xy_csv/varmod_bpe19_ensemble_xy.csv&quot;</span>)</span>
+<span id="cb10-26"><a href="22-leaflet_mapview.html#cb10-26"></a>bpe_code&lt;-bpe_code <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(COD_VAR<span class="op">==</span><span class="st">&quot;TYPEQU&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(COD_MOD, LIB_MOD)</span>
+<span id="cb10-27"><a href="22-leaflet_mapview.html#cb10-27"></a></span>
+<span id="cb10-28"><a href="22-leaflet_mapview.html#cb10-28"></a><span class="kw">write.table</span>(bpe_code,<span class="st">&quot;data/bpe2019_meta.csv&quot;</span>,</span>
+<span id="cb10-29"><a href="22-leaflet_mapview.html#cb10-29"></a>            <span class="dt">row.names =</span> F, </span>
+<span id="cb10-30"><a href="22-leaflet_mapview.html#cb10-30"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </span>
+<span id="cb10-31"><a href="22-leaflet_mapview.html#cb10-31"></a>            <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+</div>
+<div id="chargement-des-données" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Chargement des données</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="22-leaflet_mapview.html#cb11-1"></a>bpe &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/bpe2019_94.csv&quot;</span>,</span>
+<span id="cb11-2"><a href="22-leaflet_mapview.html#cb11-2"></a>            <span class="dt">header =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb11-3"><a href="22-leaflet_mapview.html#cb11-3"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </span>
+<span id="cb11-4"><a href="22-leaflet_mapview.html#cb11-4"></a>            <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb11-5"><a href="22-leaflet_mapview.html#cb11-5"></a></span>
+<span id="cb11-6"><a href="22-leaflet_mapview.html#cb11-6"></a>bpe_map &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/bpe2019_94_map.Rdata&quot;</span>)</span>
+<span id="cb11-7"><a href="22-leaflet_mapview.html#cb11-7"></a></span>
+<span id="cb11-8"><a href="22-leaflet_mapview.html#cb11-8"></a>bpe_code &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/bpe2019_meta.csv&quot;</span>,</span>
+<span id="cb11-9"><a href="22-leaflet_mapview.html#cb11-9"></a>            <span class="dt">header =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb11-10"><a href="22-leaflet_mapview.html#cb11-10"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, </span>
+<span id="cb11-11"><a href="22-leaflet_mapview.html#cb11-11"></a>            <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb11-12"><a href="22-leaflet_mapview.html#cb11-12"></a></span>
+<span id="cb11-13"><a href="22-leaflet_mapview.html#cb11-13"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb11-14"><a href="22-leaflet_mapview.html#cb11-14"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="cartographie-avec-mapview" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Cartographie avec Mapview</h2>
+<p>Le package <code>mapview</code> permet d’émuler de façon simple les commandes du package de référence <code>leaflet</code>et d’obtenir facilement des cartographies interactives de très bonne qualité. Il ne remplace pas l’apprentissage du package <code>leaflet</code>qui est une référence incontournable pour le spécialiste de dataminiing, mais il présente l’avantage de permettre d’obtenir rapidement des cartes de bonnes qualité.</p>
+<p>On trouvera une courte introduction en français <a href="!https://rcarto.github.io/carto_avec_r/chapitre3.html#cartographie-interactive">ici</a> et une documentation complète <a href="!https://r-spatial.github.io/mapview/">ici</a></p>
+<div id="construction-dune-carte-de-repérage" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Construction d’une carte de repérage</h3>
+<p>Supposons que l’on veuille travailler sur les cinq communes de Bonneuil (94011), Chennevières (94019), Ormesson (94055), Saint-Maur (94068) et Sucy (94071). On commence par sélectionner les simples communes dans le fichier des communes et on réalise la carte avec la simple commande <code>mapview()</code>:</p>
+<div id="carte-des-communes" class="section level4" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> Carte des communes</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="22-leaflet_mapview.html#cb12-1"></a>selcom&lt;-<span class="kw">c</span>(<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94019&quot;</span>,<span class="st">&quot;94055&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94071&quot;</span>)</span>
+<span id="cb12-2"><a href="22-leaflet_mapview.html#cb12-2"></a>cartecom&lt;-map_com <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(INSEE_COM <span class="op">%in%</span><span class="st"> </span>selcom)</span>
+<span id="cb12-3"><a href="22-leaflet_mapview.html#cb12-3"></a><span class="kw">mapview</span>(cartecom)</span></code></pre></div>
+<div id="htmlwidget-8f622d50670093dd0387" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8f622d50670093dd0387">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addFlatGeoBuf","args":["cartecom","cartecom",null,true,"mvFeatureId",{"radius":6,"stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},{"className":"","pane":"polygon"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,"cartecom","Zoom to cartecom","<strong> cartecom <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"cartecom",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["cartecom"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"cartecom"}]}],"fitBounds":[48.751230462539,2.46059190025833,48.8154049715593,2.57996282725186,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<p>Vous remarquez que la carte est interactive et permet à la fois d’ffectuer des zoom et de changer les tuiles de fonds. Lorsque l’on clique sur une commune, on récupère les données présentes dans le tableau.</p>
+</div>
+<div id="carte-des-iris" class="section level4" number="4.2.1.2">
+<h4><span class="header-section-number">4.2.1.2</span> Carte des iris</h4>
+<p>On va maintenant tracer la carte des Iris en ajoutant quelques paramètres en plus :</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="22-leaflet_mapview.html#cb13-1"></a>selcom&lt;-<span class="kw">c</span>(<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94019&quot;</span>,<span class="st">&quot;94055&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94071&quot;</span>)</span>
+<span id="cb13-2"><a href="22-leaflet_mapview.html#cb13-2"></a>cartecom &lt;-<span class="st"> </span>map_com <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(INSEE_COM <span class="op">%in%</span><span class="st"> </span>selcom)</span>
+<span id="cb13-3"><a href="22-leaflet_mapview.html#cb13-3"></a>carteiris &lt;-<span class="st"> </span>map_iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(INSEE_COM <span class="op">%in%</span><span class="st"> </span>selcom) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(NOM_COM, CODE_IRIS, NOM_IRIS)</span>
+<span id="cb13-4"><a href="22-leaflet_mapview.html#cb13-4"></a></span>
+<span id="cb13-5"><a href="22-leaflet_mapview.html#cb13-5"></a>map2&lt;-<span class="kw">mapview</span>(carteiris, </span>
+<span id="cb13-6"><a href="22-leaflet_mapview.html#cb13-6"></a>           <span class="co"># Selection des tuiles</span></span>
+<span id="cb13-7"><a href="22-leaflet_mapview.html#cb13-7"></a>   <span class="co">#        map.types=c(&quot;CartoDB.Positron&quot;,&quot;OpenStreetMap&quot;),</span></span>
+<span id="cb13-8"><a href="22-leaflet_mapview.html#cb13-8"></a>           </span>
+<span id="cb13-9"><a href="22-leaflet_mapview.html#cb13-9"></a>           <span class="co"># Remplissage des IRIS</span></span>
+<span id="cb13-10"><a href="22-leaflet_mapview.html#cb13-10"></a>           <span class="dt">zcol=</span> <span class="st">&quot;NOM_COM&quot;</span>,    </span>
+<span id="cb13-11"><a href="22-leaflet_mapview.html#cb13-11"></a>           <span class="dt">alpha.regions =</span> <span class="fl">0.2</span>,</span>
+<span id="cb13-12"><a href="22-leaflet_mapview.html#cb13-12"></a>           </span>
+<span id="cb13-13"><a href="22-leaflet_mapview.html#cb13-13"></a>           <span class="co"># Contour des IRIS</span></span>
+<span id="cb13-14"><a href="22-leaflet_mapview.html#cb13-14"></a>           <span class="dt">lwd=</span><span class="fl">0.6</span>, </span>
+<span id="cb13-15"><a href="22-leaflet_mapview.html#cb13-15"></a>           <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>,</span>
+<span id="cb13-16"><a href="22-leaflet_mapview.html#cb13-16"></a>           <span class="dt">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb13-17"><a href="22-leaflet_mapview.html#cb13-17"></a>           </span>
+<span id="cb13-18"><a href="22-leaflet_mapview.html#cb13-18"></a>           <span class="co"># Affichage de la Légende</span></span>
+<span id="cb13-19"><a href="22-leaflet_mapview.html#cb13-19"></a>           <span class="dt">legend =</span> <span class="ot">FALSE</span></span>
+<span id="cb13-20"><a href="22-leaflet_mapview.html#cb13-20"></a>           )</span>
+<span id="cb13-21"><a href="22-leaflet_mapview.html#cb13-21"></a></span>
+<span id="cb13-22"><a href="22-leaflet_mapview.html#cb13-22"></a> </span>
+<span id="cb13-23"><a href="22-leaflet_mapview.html#cb13-23"></a>map2        </span></code></pre></div>
+<div id="htmlwidget-7b1043147e705fc8ff1c" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7b1043147e705fc8ff1c">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addFlatGeoBuf","args":["carteiris-NOM_COM","carteiris - NOM_COM",null,true,"NOM_COM",{"radius":6,"stroke":true,"color":"#7F7F7F","weight":0.6,"opacity":0.4,"fill":true,"fillColor":null,"fillOpacity":0.2},{"className":"","pane":"polygon"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,"carteiris - NOM_COM","Zoom to carteiris - NOM_COM","<strong> carteiris - NOM_COM <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"carteiris - NOM_COM",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"fitBounds":[48.751230462539,2.46059190025833,48.8154049715593,2.57996282725186,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+<div id="cartes-pontuelles" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Cartes pontuelles</h3>
+<p>Les équipements étant enregistrés dans un fichier de type ‘sf’ ils peuvent facilement être visualisés à l’aide de mapview en quelques clicks.</p>
+<div id="carte-dun-équipement-isolé" class="section level4" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Carte d’un équipement isolé</h4>
+<p>Prenons l’exemple des boulangeries dont le code est <em>B103</em> dans la bpe et essayons de tracer celles de la zone d’étude sur le fonds des communes</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="22-leaflet_mapview.html#cb14-1"></a>selcom&lt;-<span class="kw">c</span>(<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94019&quot;</span>,<span class="st">&quot;94055&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94071&quot;</span>)</span>
+<span id="cb14-2"><a href="22-leaflet_mapview.html#cb14-2"></a>cartecom&lt;-map_com <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(INSEE_COM <span class="op">%in%</span><span class="st"> </span>selcom)</span>
+<span id="cb14-3"><a href="22-leaflet_mapview.html#cb14-3"></a></span>
+<span id="cb14-4"><a href="22-leaflet_mapview.html#cb14-4"></a>services &lt;-<span class="st"> </span>bpe_map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(TYPEQU <span class="op">==</span><span class="st"> &quot;B203&quot;</span>,</span>
+<span id="cb14-5"><a href="22-leaflet_mapview.html#cb14-5"></a>                          DEPCOM <span class="op">%in%</span><span class="st"> </span>selcom) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-6"><a href="22-leaflet_mapview.html#cb14-6"></a><span class="st">                          </span><span class="kw">select</span>(TYPEQU)</span>
+<span id="cb14-7"><a href="22-leaflet_mapview.html#cb14-7"></a></span>
+<span id="cb14-8"><a href="22-leaflet_mapview.html#cb14-8"></a></span>
+<span id="cb14-9"><a href="22-leaflet_mapview.html#cb14-9"></a><span class="kw">mapview</span>(cartecom)<span class="op">+</span><span class="kw">mapview</span>(services)</span></code></pre></div>
+<div id="htmlwidget-6008c30bd12161f45585" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6008c30bd12161f45585">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addFlatGeoBuf","args":["cartecom","cartecom",null,true,"mvFeatureId",{"radius":6,"stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},{"className":"","pane":"polygon"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,"cartecom","Zoom to cartecom","<strong> cartecom <\/strong>","bottomright"]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["cartecom"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"cartecom"}]},{"method":"createMapPane","args":["point",440]},{"method":"addFlatGeoBuf","args":["services","services",null,true,["B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203"],{"radius":6,"stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},{"className":"","pane":"point"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addHomeButton","args":[2.46931998954334,48.7576903575013,2.55536399844729,48.8128530215631,"services","Zoom to services","<strong> services <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],["cartecom","services"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["B203"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"services"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"fitBounds":[48.751230462539,2.46059190025833,48.8154049715593,2.57996282725186,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<p>Essayons d’améliorer un peu l’ergonomie en raffinant les deux couches à l’aide de paramètres :</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="22-leaflet_mapview.html#cb15-1"></a><span class="co"># Couche des communes</span></span>
+<span id="cb15-2"><a href="22-leaflet_mapview.html#cb15-2"></a>cart_com &lt;-<span class="kw">mapview</span>(cartecom, </span>
+<span id="cb15-3"><a href="22-leaflet_mapview.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="22-leaflet_mapview.html#cb15-4"></a>           <span class="dt">zcol=</span> <span class="st">&quot;NOM_COM&quot;</span>,    </span>
+<span id="cb15-5"><a href="22-leaflet_mapview.html#cb15-5"></a>           <span class="dt">alpha.regions =</span> <span class="fl">0.2</span>,</span>
+<span id="cb15-6"><a href="22-leaflet_mapview.html#cb15-6"></a>           </span>
+<span id="cb15-7"><a href="22-leaflet_mapview.html#cb15-7"></a>           <span class="co"># Contour des communes</span></span>
+<span id="cb15-8"><a href="22-leaflet_mapview.html#cb15-8"></a>           <span class="dt">lwd=</span><span class="dv">1</span>, </span>
+<span id="cb15-9"><a href="22-leaflet_mapview.html#cb15-9"></a>           <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>,</span>
+<span id="cb15-10"><a href="22-leaflet_mapview.html#cb15-10"></a>           <span class="dt">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb15-11"><a href="22-leaflet_mapview.html#cb15-11"></a>           </span>
+<span id="cb15-12"><a href="22-leaflet_mapview.html#cb15-12"></a>           <span class="co"># Affichage de la Légende</span></span>
+<span id="cb15-13"><a href="22-leaflet_mapview.html#cb15-13"></a>           <span class="dt">legend =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb15-14"><a href="22-leaflet_mapview.html#cb15-14"></a>           <span class="dt">layer.name =</span> <span class="st">&quot;Communes&quot;</span></span>
+<span id="cb15-15"><a href="22-leaflet_mapview.html#cb15-15"></a>           )</span>
+<span id="cb15-16"><a href="22-leaflet_mapview.html#cb15-16"></a></span>
+<span id="cb15-17"><a href="22-leaflet_mapview.html#cb15-17"></a><span class="co"># Couche des boulangeries</span></span>
+<span id="cb15-18"><a href="22-leaflet_mapview.html#cb15-18"></a>cart_boul &lt;-<span class="st"> </span><span class="kw">mapview</span>(services,</span>
+<span id="cb15-19"><a href="22-leaflet_mapview.html#cb15-19"></a>                <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb15-20"><a href="22-leaflet_mapview.html#cb15-20"></a>                <span class="dt">col.regions =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb15-21"><a href="22-leaflet_mapview.html#cb15-21"></a>                <span class="dt">cex=</span><span class="dv">2</span>,</span>
+<span id="cb15-22"><a href="22-leaflet_mapview.html#cb15-22"></a>                <span class="dt">legend =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb15-23"><a href="22-leaflet_mapview.html#cb15-23"></a>                <span class="dt">layer.name =</span> <span class="st">&quot;Boulangeries&quot;</span>)</span>
+<span id="cb15-24"><a href="22-leaflet_mapview.html#cb15-24"></a></span>
+<span id="cb15-25"><a href="22-leaflet_mapview.html#cb15-25"></a><span class="co"># Assemblage des deux couches</span></span>
+<span id="cb15-26"><a href="22-leaflet_mapview.html#cb15-26"></a>cart_com<span class="op">+</span>cart_boul</span></code></pre></div>
+<div id="htmlwidget-be6583a6ad2a83e6a4a5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be6583a6ad2a83e6a4a5">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addFlatGeoBuf","args":["Communes","Communes",null,true,"NOM_COM",{"radius":6,"stroke":true,"color":"#7F7F7F","weight":1,"opacity":0.6,"fill":true,"fillColor":null,"fillOpacity":0.2},{"className":"","pane":"polygon"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,"Communes","Zoom to Communes","<strong> Communes <\/strong>","bottomright"]},{"method":"createMapPane","args":["point",440]},{"method":"addFlatGeoBuf","args":["Boulangeries","Boulangeries",null,true,["B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203","B203"],{"radius":2,"stroke":true,"color":"#FF0000","weight":1,"opacity":0.9,"fill":true,"fillColor":"#FFFF00","fillOpacity":0.6},{"className":"","pane":"point"},"mapview-popup",{"radius":{"to":[3,15],"from":[3,15]},"weight":{"to":[1,10],"from":[1,10]},"opacity":{"to":[0,1],"from":[0,1]},"fillOpacity":{"to":[0,1],"from":[0,1]}}]},{"method":"addHomeButton","args":[2.46931998954334,48.7576903575013,2.55536399844729,48.8128530215631,"Boulangeries","Zoom to Boulangeries","<strong> Boulangeries <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],["Communes","Boulangeries"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addHomeButton","args":[2.46059190025833,48.751230462539,2.57996282725186,48.8154049715593,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"fitBounds":[48.751230462539,2.46059190025833,48.8154049715593,2.57996282725186,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+
+</div>
+</div>
+</div>
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="21-cartography_V2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

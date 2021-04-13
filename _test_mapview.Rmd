@@ -1,6 +1,13 @@
-# Cartes interactives {#c22-leaflet_bpe}
+---
+title: "Test_mapview"
+author: "Claude Grasland"
+date: "4/13/2021"
+output: html_document
+---
 
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 ## Objectifs
 
 L'objectif de cette section est d'apprendre réaliser des cartographies interactives à l'aide du package leaflet et plus généralement d'apprendre à cartographier des données ponctuelles telles que les équipements, commerces, services, ventes de biens ...
@@ -151,67 +158,3 @@ map2<-mapview(carteiris,
 map2        
 
 ```
-
-
-
-### Cartes pontuelles
-
-Les équipements étant enregistrés dans un fichier de type 'sf' ils peuvent facilement être visualisés à l'aide de mapview en quelques clicks. 
-
-
-#### Carte d'un équipement isolé
-
-Prenons l'exemple des boulangeries dont le code est *B103* dans la bpe et essayons de tracer celles de la zone d'étude sur le fonds des communes
-
-```{r}
-
-selcom<-c("94011","94019","94055","94068","94071")
-cartecom<-map_com %>% filter(INSEE_COM %in% selcom)
-
-services <- bpe_map %>% filter(TYPEQU == "B203",
-                          DEPCOM %in% selcom) %>% 
-                          select(TYPEQU)
-
-
-mapview(cartecom)+mapview(services)
-
-```
-
-Essayons d'améliorer un peu l'ergonomie en raffinant les deux couches à l'aide de paramètres :
-
-```{r}
-
-# Couche des communes
-cart_com <-mapview(cartecom, 
-
-           zcol= "NOM_COM",    
-           alpha.regions = 0.2,
-           
-           # Contour des communes
-           lwd=1, 
-           color="gray50",
-           alpha = 0.6,
-           
-           # Affichage de la Légende
-           legend = FALSE,
-           layer.name = "Communes"
-           )
-
-# Couche des boulangeries
-cart_boul <- mapview(services,
-                color = "red",
-                col.regions = "yellow",
-                cex=2,
-                legend = FALSE,
-                layer.name = "Boulangeries")
-
-# Assemblage des deux couches
-cart_com+cart_boul
-
-
-```
-
-
-
-
-
