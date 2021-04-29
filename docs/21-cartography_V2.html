@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 3 Analyse cartographique avec mapsf (new) | Projet DATA MINING 2021</title>
+  <title>Chapitre 3 Cartes statistiques avec mapsf (CG) | Projet DATA MINING 2021</title>
   <meta name="description" content="Titre du cours" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 3 Analyse cartographique avec mapsf (new) | Projet DATA MINING 2021" />
+  <meta property="og:title" content="Chapitre 3 Cartes statistiques avec mapsf (CG) | Projet DATA MINING 2021" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 3 Analyse cartographique avec mapsf (new) | Projet DATA MINING 2021" />
+  <meta name="twitter:title" content="Chapitre 3 Cartes statistiques avec mapsf (CG) | Projet DATA MINING 2021" />
   
   <meta name="twitter:description" content="Titre du cours" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="12-statistics.html"/>
-<link rel="next" href="22-leaflet_mapview.html"/>
+<link rel="next" href="22-leaflet.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -62,17 +62,6 @@
 <script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
-<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
-<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
-<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
-<link id="cartecom-1-attachment" rel="attachment" href="libs/cartecom-0.0.1/cartecom_layer.fgb"/>
-<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
-<script src="libs/HomeButton-0.0.1/home-button.js"></script>
-<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
-<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
-<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
-<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<link id="carteiris-NOM_COM-1-attachment" rel="attachment" href="libs/carteiris-NOM_COM-0.0.1/carteiris-NOM_COM_layer.fgb"/>
 
 
 <style type="text/css">
@@ -165,7 +154,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Données</a>
+<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Préparation des données (CG)</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="11-data.html"><a href="11-data.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.2" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-individus"><i class="fa fa-check"></i><b>1.2</b> Données statistiques sur les individus</a>
@@ -191,7 +180,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="11-data.html"><a href="11-data.html#bilan-et-nettoyage"><i class="fa fa-check"></i><b>1.5</b> Bilan et nettoyage</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique I (C.S.)</a>
+<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique (CS)</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="12-statistics.html"><a href="12-statistics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
 <ul>
@@ -209,7 +198,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.4.5" data-path="12-statistics.html"><a href="12-statistics.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Analyse cartographique avec mapsf (new)</a>
+<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Cartes statistiques avec mapsf (CG)</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
 <ul>
@@ -240,17 +229,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.4.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.4.4</b> Sauvegarde des fonctions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html"><i class="fa fa-check"></i><b>4</b> Cartes interactives</a>
+<li class="chapter" data-level="4" data-path="22-leaflet.html"><a href="22-leaflet.html"><i class="fa fa-check"></i><b>4</b> Cartes dynamiques (CG)</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#objectifs-2"><i class="fa fa-check"></i><b>4.1</b> Objectifs</a>
+<li class="chapter" data-level="" data-path="22-leaflet.html"><a href="22-leaflet.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-élémentaire"><i class="fa fa-check"></i><b>4.1</b> Une carte élémentaire</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#packages-utilisés-1"><i class="fa fa-check"></i><b>4.1.1</b> Packages utilisés</a></li>
-<li class="chapter" data-level="4.1.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#base-permanente-des-équipements"><i class="fa fa-check"></i><b>4.1.2</b> Base permanente des équipements</a></li>
-<li class="chapter" data-level="4.1.3" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#chargement-des-données"><i class="fa fa-check"></i><b>4.1.3</b> Chargement des données</a></li>
+<li class="chapter" data-level="4.1.1" data-path="22-leaflet.html"><a href="22-leaflet.html#lancement-avec-leaflet"><i class="fa fa-check"></i><b>4.1.1</b> Lancement avec <code>leaflet()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="22-leaflet.html"><a href="22-leaflet.html#remplissage-avec-addtiles"><i class="fa fa-check"></i><b>4.1.2</b> Remplissage avec <code>addTiles()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="22-leaflet.html"><a href="22-leaflet.html#calage-avec-setview"><i class="fa fa-check"></i><b>4.1.3</b> Calage avec <code>setView()</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="22-leaflet.html"><a href="22-leaflet.html#personalisation-avec-addprovidertiles"><i class="fa fa-check"></i><b>4.1.4</b> Personalisation avec <code>addProviderTiles()</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="22-leaflet.html"><a href="22-leaflet.html#affichage-dun-point-avec-addmarkers"><i class="fa fa-check"></i><b>4.1.5</b> Affichage d’un point avec <code>addMarkers()</code></a></li>
+<li class="chapter" data-level="4.1.6" data-path="22-leaflet.html"><a href="22-leaflet.html#ajout-dun-labelou-dun-popup"><i class="fa fa-check"></i><b>4.1.6</b> Ajout d’un <code>label</code>ou d’un <code>popup</code></a></li>
+<li class="chapter" data-level="4.1.7" data-path="22-leaflet.html"><a href="22-leaflet.html#amélioration-du-popup"><i class="fa fa-check"></i><b>4.1.7</b> Amélioration du <code>popup</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#cartographie-avec-mapview"><i class="fa fa-check"></i><b>4.2</b> Cartographie avec Mapview</a>
+<li class="chapter" data-level="4.2" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-statistique"><i class="fa fa-check"></i><b>4.2</b> Une carte statistique</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#construction-dune-carte-de-repérage"><i class="fa fa-check"></i><b>4.2.1</b> Construction d’une carte de repérage</a></li>
+<li class="chapter" data-level="4.2.1" data-path="22-leaflet.html"><a href="22-leaflet.html#préparation-des-données-1"><i class="fa fa-check"></i><b>4.2.1</b> Préparation des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="22-leaflet.html"><a href="22-leaflet.html#contours-des-iris-et-communes-avec-addpolygons"><i class="fa fa-check"></i><b>4.2.2</b> Contours des iris et communes avec <code>addPolygons()</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-choroplèthes-avec-addpolygon-et-colorbin"><i class="fa fa-check"></i><b>4.2.3</b> Cartes choroplèthes avec <code>addPolygon()</code> et <code>colorBin()</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-de-stock-avec-addcirclemarkers"><i class="fa fa-check"></i><b>4.2.4</b> Cartes de stock avec <code>addCircleMarkers()</code></a></li>
+<li class="chapter" data-level="4.2.5" data-path="22-leaflet.html"><a href="22-leaflet.html#finition-avec-un-popup-et-highlightoptions"><i class="fa fa-check"></i><b>4.2.5</b> Finition avec un <code>popup</code> et <code>highlightOptions()</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -271,12 +269,12 @@ code span.wa { color: #bf0303; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="c21-mapsf" class="section level1" number="3">
-<h1><span class="header-section-number">Chapitre 3</span> Analyse cartographique avec mapsf (new)</h1>
+<h1><span class="header-section-number">Chapitre 3</span> Cartes statistiques avec mapsf (CG)</h1>
 <div id="introduction-2" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Introduction</h2>
 <p>L’objectif de cette section est</p>
 <ol style="list-style-type: decimal">
-<li>d’apprendre à réaliser des cartographies statiques d’indicateurs relatifs aux unités spatiales à différentes échelles à l’aide du package <code>cartography</code>.</li>
+<li>d’apprendre à réaliser des cartographies statiques d’indicateurs relatifs aux unités spatiales à différentes échelles à l’aide du package <code>mapsf</code>.</li>
 <li>de créer des fonctions permetant d’automatiser la tâche de cartographie à l’échelle des communes</li>
 </ol>
 <div id="packages-utilisés" class="section level3" number="3.1.1">
@@ -289,12 +287,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><strong>sf</strong> : pour manipuler les données cartographiques et les agréger</li>
 <li><strong>mapsf</strong> : pour la réalisation de cartes statiques de qualité imprimables aux formats .pdf ou .doc. Le package <em>mapsf</em> remplace le package <em>cartography</em> dpuis le 1er avril 2021</li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="21-cartography_V2.html#cb114-1"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb114-2"><a href="21-cartography_V2.html#cb114-2"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb114-3"><a href="21-cartography_V2.html#cb114-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb114-4"><a href="21-cartography_V2.html#cb114-4"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb114-5"><a href="21-cartography_V2.html#cb114-5"></a><span class="kw">library</span>(sf)</span>
-<span id="cb114-6"><a href="21-cartography_V2.html#cb114-6"></a><span class="kw">library</span>(mapsf)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="21-cartography_V2.html#cb120-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb120-2"><a href="21-cartography_V2.html#cb120-2"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb120-3"><a href="21-cartography_V2.html#cb120-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb120-4"><a href="21-cartography_V2.html#cb120-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb120-5"><a href="21-cartography_V2.html#cb120-5"></a><span class="kw">library</span>(sf)</span>
+<span id="cb120-6"><a href="21-cartography_V2.html#cb120-6"></a><span class="kw">library</span>(mapsf)</span></code></pre></div>
 </div>
 </div>
 <div id="préparation-des-données" class="section level2" number="3.2">
@@ -308,30 +306,30 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>le fichier des métadonnées relatives aux individus</li>
 <li>le fonds de carte des IRIS</li>
 </ul>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="21-cartography_V2.html#cb115-1"></a>indiv &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>)</span>
-<span id="cb115-2"><a href="21-cartography_V2.html#cb115-2"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017_meta.Rdata&quot;</span>)</span>
-<span id="cb115-3"><a href="21-cartography_V2.html#cb115-3"></a>map &lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="21-cartography_V2.html#cb121-1"></a>indiv &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>)</span>
+<span id="cb121-2"><a href="21-cartography_V2.html#cb121-2"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017_meta.Rdata&quot;</span>)</span>
+<span id="cb121-3"><a href="21-cartography_V2.html#cb121-3"></a>map &lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="choix-dun-indicateur" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Choix d’un indicateur</h3>
 <p>Nous allons prendre comme exemple l’analyse d’un tableau du <strong>nombre d’automobiles par ménage</strong> en nous limitant aux ménages ordinaires c’est-à-dire en excluant les personnes habitant dans des logements collectifs (pensionnats, prisons, congrégations religieuses, …)</p>
 <p>Nous ne conservons que les individus chefs de ménages (<em>LPRM=1</em>) ce qui va logiquement éliminer les individus présents dans les ménages non ordinaires (<em>LPRM=Z</em>) ainsi que tous les membres d’un logement qui ne sont pas chefs de ménages.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="21-cartography_V2.html#cb116-1"></a>menag&lt;-indiv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(LPRM<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="21-cartography_V2.html#cb122-1"></a>menag&lt;-indiv <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(LPRM<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="création-du-tableau-de-contingence" class="section level3" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Création du tableau de contingence</h3>
 <p>Nous souhaitons ventiler les ménages en fonction de leur localisation géographique (<em>IRIS</em>) et de leur nombre d’automobile (<em>VOIT</em>) en tenant compte de leur poids (<em>IPONDI</em>) puisque les données sont issues d’uin échantillonage qu’il faut redresser.</p>
 <p>Cette opération se réalise très facilement à l’aide du package <strong>dplyr</strong> à l’aide des fonctions <code>group_by</code>, <code>mutate</code> et <code>summarize</code> :</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="21-cartography_V2.html#cb117-1"></a>tab &lt;-<span class="st"> </span>menag <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(IRIS, VOIT) <span class="op">%&gt;%</span></span>
-<span id="cb117-2"><a href="21-cartography_V2.html#cb117-2"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">nbmen =</span> <span class="kw">sum</span>(IPONDI)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb117-3"><a href="21-cartography_V2.html#cb117-3"></a><span class="st">                 </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="21-cartography_V2.html#cb123-1"></a>tab &lt;-<span class="st"> </span>menag <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(IRIS, VOIT) <span class="op">%&gt;%</span></span>
+<span id="cb123-2"><a href="21-cartography_V2.html#cb123-2"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">nbmen =</span> <span class="kw">sum</span>(IPONDI)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb123-3"><a href="21-cartography_V2.html#cb123-3"></a><span class="st">                 </span><span class="kw">ungroup</span>()</span></code></pre></div>
 <pre><code>`summarise()` regrouping output by &#39;IRIS&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="21-cartography_V2.html#cb119-1"></a><span class="kw">str</span>(tab)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="21-cartography_V2.html#cb125-1"></a><span class="kw">str</span>(tab)</span></code></pre></div>
 <pre><code>tibble [2,070 × 3] (S3: tbl_df/tbl/data.frame)
  $ IRIS : Factor w/ 4243 levels &quot;751010101&quot;,&quot;751010102&quot;,..: 3300 3300 3300 3300 3301 3301 3301 3301 3302 3302 ...
  $ VOIT : Factor w/ 5 levels &quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,..: 1 2 3 4 1 2 3 4 1 2 ...
  $ nbmen: num [1:2070] 674.1 679.5 142.2 29.5 801.4 ...</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="21-cartography_V2.html#cb121-1"></a><span class="kw">head</span>(tab,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="21-cartography_V2.html#cb127-1"></a><span class="kw">head</span>(tab,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code># A tibble: 5 x 3
   IRIS      VOIT  nbmen
   &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt;
@@ -342,13 +340,13 @@ code span.wa { color: #bf0303; } /* Warning */
 5 940020102 0     801. </code></pre>
 <p>Le résultat est un <em>tibble</em> au format “long” qui comporte 4 lignes différentes pour chaque IRIS, correspondant aux nombres de ménages ayant respectivement 0, 1, 2 et 3 voitures ou plus.</p>
 <p>Nous allons transformer ce tableau en format “large” pour placer côte à côte les différentes modalités du nombre de voitures. Pour cela il faut utiliser la fonction <code>pivot_wider</code>du package <strong>tidyr</strong>.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="21-cartography_V2.html#cb123-1"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb123-2"><a href="21-cartography_V2.html#cb123-2"></a>tabcont &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> VOIT, </span>
-<span id="cb123-3"><a href="21-cartography_V2.html#cb123-3"></a>                           <span class="dt">values_from =</span> nbmen,</span>
-<span id="cb123-4"><a href="21-cartography_V2.html#cb123-4"></a>                           <span class="dt">names_prefix =</span> <span class="st">&quot;MEN_VOIT&quot;</span>,</span>
-<span id="cb123-5"><a href="21-cartography_V2.html#cb123-5"></a>                           <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb123-6"><a href="21-cartography_V2.html#cb123-6"></a></span>
-<span id="cb123-7"><a href="21-cartography_V2.html#cb123-7"></a><span class="kw">head</span>(tabcont)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="21-cartography_V2.html#cb129-1"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb129-2"><a href="21-cartography_V2.html#cb129-2"></a>tabcont &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> VOIT, </span>
+<span id="cb129-3"><a href="21-cartography_V2.html#cb129-3"></a>                           <span class="dt">values_from =</span> nbmen,</span>
+<span id="cb129-4"><a href="21-cartography_V2.html#cb129-4"></a>                           <span class="dt">names_prefix =</span> <span class="st">&quot;MEN_VOIT&quot;</span>,</span>
+<span id="cb129-5"><a href="21-cartography_V2.html#cb129-5"></a>                           <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
+<span id="cb129-6"><a href="21-cartography_V2.html#cb129-6"></a></span>
+<span id="cb129-7"><a href="21-cartography_V2.html#cb129-7"></a><span class="kw">head</span>(tabcont)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   IRIS      MEN_VOIT0 MEN_VOIT1 MEN_VOIT2 MEN_VOIT3
   &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -363,13 +361,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="création-dun-tableau-de-pourcentages-en-ligne" class="section level3" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Création d’un tableau de pourcentages en ligne</h3>
 <p>Nous allons maintenant calculer le nombre total de ménage puis en déduire la proportion de ménages en fonction de leur nombre d’automobile pour chacun des IRIS.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="21-cartography_V2.html#cb125-1"></a>tabdon &lt;-<span class="st"> </span>tabcont <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span> (<span class="dt">MEN_TOTAL =</span> MEN_VOIT0<span class="op">+</span>MEN_VOIT1<span class="op">+</span>MEN_VOIT2<span class="op">+</span>MEN_VOIT3,</span>
-<span id="cb125-2"><a href="21-cartography_V2.html#cb125-2"></a>                              <span class="dt">PCT_VOIT0 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT0 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
-<span id="cb125-3"><a href="21-cartography_V2.html#cb125-3"></a>                              <span class="dt">PCT_VOIT1 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT1 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
-<span id="cb125-4"><a href="21-cartography_V2.html#cb125-4"></a>                              <span class="dt">PCT_VOIT2 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT2 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
-<span id="cb125-5"><a href="21-cartography_V2.html#cb125-5"></a>                              <span class="dt">PCT_VOIT3 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT3 <span class="op">/</span><span class="st"> </span>MEN_TOTAL)</span>
-<span id="cb125-6"><a href="21-cartography_V2.html#cb125-6"></a>                              </span>
-<span id="cb125-7"><a href="21-cartography_V2.html#cb125-7"></a><span class="kw">head</span>(tabdon[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>)])                              </span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="21-cartography_V2.html#cb131-1"></a>tabdon &lt;-<span class="st"> </span>tabcont <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span> (<span class="dt">MEN_TOTAL =</span> MEN_VOIT0<span class="op">+</span>MEN_VOIT1<span class="op">+</span>MEN_VOIT2<span class="op">+</span>MEN_VOIT3,</span>
+<span id="cb131-2"><a href="21-cartography_V2.html#cb131-2"></a>                              <span class="dt">PCT_VOIT0 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT0 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
+<span id="cb131-3"><a href="21-cartography_V2.html#cb131-3"></a>                              <span class="dt">PCT_VOIT1 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT1 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
+<span id="cb131-4"><a href="21-cartography_V2.html#cb131-4"></a>                              <span class="dt">PCT_VOIT2 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT2 <span class="op">/</span><span class="st"> </span>MEN_TOTAL,</span>
+<span id="cb131-5"><a href="21-cartography_V2.html#cb131-5"></a>                              <span class="dt">PCT_VOIT3 =</span> <span class="dv">100</span><span class="op">*</span><span class="st"> </span>MEN_VOIT3 <span class="op">/</span><span class="st"> </span>MEN_TOTAL)</span>
+<span id="cb131-6"><a href="21-cartography_V2.html#cb131-6"></a>                              </span>
+<span id="cb131-7"><a href="21-cartography_V2.html#cb131-7"></a><span class="kw">head</span>(tabdon[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span><span class="op">:</span><span class="dv">10</span>)])                              </span></code></pre></div>
 <pre><code># A tibble: 6 x 6
   IRIS      MEN_TOTAL PCT_VOIT0 PCT_VOIT1 PCT_VOIT2 PCT_VOIT3
   &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -383,9 +381,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="estimation-du-nombre-moyen-dautomobile-par-menages" class="section level3" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Estimation du nombre moyen d’automobile par menages</h3>
 <p>Il n’est pas possible d’estimer le nombre exact d’automobile par ménage car l’INSEE ne détaille pas la catégorie VOIT = 3 qui correspond à <em>“Trois automobiles ou +”</em>. On peut néanmoins procéder à une estimation minimale du nombre d’automobile en supposant que les ménages de ce type ont exactement rois automobiles. On en déduit alors le nombre total d’automobile par IRIS (VOIT_TOTAL) et le nombre moyen d’automobile par ménage (VOIT_MEN).</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="21-cartography_V2.html#cb127-1"></a>tabdon &lt;-tabdon <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">VOIT_TOTAL =</span> MEN_VOIT1 <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>MEN_VOIT2 <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>MEN_VOIT3,</span>
-<span id="cb127-2"><a href="21-cartography_V2.html#cb127-2"></a>                           <span class="dt">VOIT_MEN =</span> VOIT_TOTAL <span class="op">/</span><span class="st"> </span>MEN_TOTAL)</span>
-<span id="cb127-3"><a href="21-cartography_V2.html#cb127-3"></a><span class="kw">head</span>(tabdon[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">11</span>,<span class="dv">12</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="21-cartography_V2.html#cb133-1"></a>tabdon &lt;-tabdon <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">VOIT_TOTAL =</span> MEN_VOIT1 <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>MEN_VOIT2 <span class="op">+</span><span class="st"> </span><span class="dv">3</span><span class="op">*</span>MEN_VOIT3,</span>
+<span id="cb133-2"><a href="21-cartography_V2.html#cb133-2"></a>                           <span class="dt">VOIT_MEN =</span> VOIT_TOTAL <span class="op">/</span><span class="st"> </span>MEN_TOTAL)</span>
+<span id="cb133-3"><a href="21-cartography_V2.html#cb133-3"></a><span class="kw">head</span>(tabdon[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">11</span>,<span class="dv">12</span>)])</span></code></pre></div>
 <pre><code># A tibble: 6 x 4
   IRIS      MEN_TOTAL VOIT_TOTAL VOIT_MEN
   &lt;fct&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -402,41 +400,41 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="part-des-ménages-sans-automobiles" class="section level4" number="3.2.6.1">
 <h4><span class="header-section-number">3.2.6.1</span> Part des ménages sans automobiles</h4>
 <p>Les ménages sans automobiles sont une catégorie intéressante, même si elle peut recouper des situations très diverses (étudiants, personnes âgées, pauvres, …).</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="21-cartography_V2.html#cb129-1"></a><span class="kw">summary</span>(tabdon<span class="op">$</span>PCT_VOIT0)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="21-cartography_V2.html#cb135-1"></a><span class="kw">summary</span>(tabdon<span class="op">$</span>PCT_VOIT0)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00   21.94   30.95   31.13   40.84   65.31 </code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="21-cartography_V2.html#cb131-1"></a><span class="kw">ggplot</span>(tabdon, <span class="kw">aes</span>(<span class="dt">x=</span>PCT_VOIT0)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb131-2"><a href="21-cartography_V2.html#cb131-2"></a><span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">20</span>, <span class="dt">fill=</span><span class="st">&quot;gray30&quot;</span>) <span class="op">+</span></span>
-<span id="cb131-3"><a href="21-cartography_V2.html#cb131-3"></a><span class="st">       </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Nombre d&#39;IRIS&quot;</span>)<span class="op">+</span></span>
-<span id="cb131-4"><a href="21-cartography_V2.html#cb131-4"></a><span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;% de ménages&quot;</span>)<span class="op">+</span></span>
-<span id="cb131-5"><a href="21-cartography_V2.html#cb131-5"></a><span class="st">       </span><span class="kw">ggtitle</span>(<span class="st">&quot;Par des ménages sans automobiles en 2017&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-75-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="21-cartography_V2.html#cb137-1"></a><span class="kw">ggplot</span>(tabdon, <span class="kw">aes</span>(<span class="dt">x=</span>PCT_VOIT0)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb137-2"><a href="21-cartography_V2.html#cb137-2"></a><span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">20</span>, <span class="dt">fill=</span><span class="st">&quot;gray30&quot;</span>) <span class="op">+</span></span>
+<span id="cb137-3"><a href="21-cartography_V2.html#cb137-3"></a><span class="st">       </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Nombre d&#39;IRIS&quot;</span>)<span class="op">+</span></span>
+<span id="cb137-4"><a href="21-cartography_V2.html#cb137-4"></a><span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;% de ménages&quot;</span>)<span class="op">+</span></span>
+<span id="cb137-5"><a href="21-cartography_V2.html#cb137-5"></a><span class="st">       </span><span class="kw">ggtitle</span>(<span class="st">&quot;Par des ménages sans automobiles en 2017&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-75-1.svg" width="672" /></p>
 <p>La distribution apparaît très variable puisque les ménages sans automobiles sont absents de certains IRIS alors qu’ils représentent plus de la moitié des ménages dans d’autres IRIS.</p>
 </div>
 <div id="nombre-moyen-dautomobiles-par-ménage" class="section level4" number="3.2.6.2">
 <h4><span class="header-section-number">3.2.6.2</span> Nombre moyen d’automobiles par ménage</h4>
 <p>Même s’il est légèrement sous-estimé, le nombre d’automobile par ménage est un bon indicateur de la dépendance de certains logements mals desservis par les transports en commun.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="21-cartography_V2.html#cb132-1"></a><span class="kw">summary</span>(tabdon<span class="op">$</span>VOIT_MEN)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="21-cartography_V2.html#cb138-1"></a><span class="kw">summary</span>(tabdon<span class="op">$</span>VOIT_MEN)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.3944  0.7190  0.8675  0.9003  1.0458  2.0000 </code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="21-cartography_V2.html#cb134-1"></a><span class="kw">ggplot</span>(tabdon, <span class="kw">aes</span>(<span class="dt">x=</span>VOIT_MEN)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb134-2"><a href="21-cartography_V2.html#cb134-2"></a><span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">20</span>, <span class="dt">fill=</span><span class="st">&quot;gray30&quot;</span>) <span class="op">+</span></span>
-<span id="cb134-3"><a href="21-cartography_V2.html#cb134-3"></a><span class="st">       </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Nombre d&#39;IRIS&quot;</span>)<span class="op">+</span></span>
-<span id="cb134-4"><a href="21-cartography_V2.html#cb134-4"></a><span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;voitures / ménage&quot;</span>)<span class="op">+</span></span>
-<span id="cb134-5"><a href="21-cartography_V2.html#cb134-5"></a><span class="st">       </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nombre moyen d&#39;automobile par ménage en 2017&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-76-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="21-cartography_V2.html#cb140-1"></a><span class="kw">ggplot</span>(tabdon, <span class="kw">aes</span>(<span class="dt">x=</span>VOIT_MEN)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb140-2"><a href="21-cartography_V2.html#cb140-2"></a><span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">20</span>, <span class="dt">fill=</span><span class="st">&quot;gray30&quot;</span>) <span class="op">+</span></span>
+<span id="cb140-3"><a href="21-cartography_V2.html#cb140-3"></a><span class="st">       </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Nombre d&#39;IRIS&quot;</span>)<span class="op">+</span></span>
+<span id="cb140-4"><a href="21-cartography_V2.html#cb140-4"></a><span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;voitures / ménage&quot;</span>)<span class="op">+</span></span>
+<span id="cb140-5"><a href="21-cartography_V2.html#cb140-5"></a><span class="st">       </span><span class="kw">ggtitle</span>(<span class="st">&quot;Nombre moyen d&#39;automobile par ménage en 2017&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-76-1.svg" width="672" /></p>
 <p>Alors qu’on trouve en général entre 0.6 et 1.2 automobiles par ménage, certains IRIS affichent des valeurs moyennes de 1.5 à 2 automobiles par ménage.</p>
 </div>
 </div>
 <div id="jointure-avec-le-fonds-de-carte" class="section level3" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> Jointure avec le fonds de carte</h3>
 <p>On commence par effectuer une sauvegarde simple de notre tableau statistique</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="21-cartography_V2.html#cb135-1"></a><span class="kw">saveRDS</span>(tabdon,<span class="st">&quot;data/VOIT_IRIS.Rdata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="21-cartography_V2.html#cb141-1"></a><span class="kw">saveRDS</span>(tabdon,<span class="st">&quot;data/VOIT_IRIS.Rdata&quot;</span>)</span></code></pre></div>
 <p>Puis on effectue une jointure avec le fonds de carte map_iris et on réalise une sauvegarde sous un autre nom.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="21-cartography_V2.html#cb136-1"></a>tabfin&lt;-tabdon <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS =</span> IRIS)</span>
-<span id="cb136-2"><a href="21-cartography_V2.html#cb136-2"></a>map_VOIT_IRIS&lt;-<span class="kw">left_join</span>(map, tabfin) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="21-cartography_V2.html#cb142-1"></a>tabfin&lt;-tabdon <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS =</span> IRIS)</span>
+<span id="cb142-2"><a href="21-cartography_V2.html#cb142-2"></a>map_VOIT_IRIS&lt;-<span class="kw">left_join</span>(map, tabfin) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>()</span></code></pre></div>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="21-cartography_V2.html#cb138-1"></a><span class="kw">saveRDS</span>(map_VOIT_IRIS, <span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="21-cartography_V2.html#cb144-1"></a><span class="kw">saveRDS</span>(map_VOIT_IRIS, <span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="le-package-mapsf" class="section level2" number="3.3">
@@ -447,107 +445,107 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="création-dun-template-cartographique" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Création d’un template cartographique</h3>
 <p>Nous allons dans un premier temps apprendre à créer un fonds de carte vierge mais comportant tout l’habillage nécessaire (“template”). Pour cela nous allons charger différentes couches cartographiques correspondant respectivement au département, aux communes et aux iris :</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="21-cartography_V2.html#cb139-1"></a>map_dep  &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_dep.Rdata&quot;</span>)</span>
-<span id="cb139-2"><a href="21-cartography_V2.html#cb139-2"></a>map_com  &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
-<span id="cb139-3"><a href="21-cartography_V2.html#cb139-3"></a>map_iris &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="21-cartography_V2.html#cb145-1"></a>map_dep  &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_dep.Rdata&quot;</span>)</span>
+<span id="cb145-2"><a href="21-cartography_V2.html#cb145-2"></a>map_com  &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb145-3"><a href="21-cartography_V2.html#cb145-3"></a>map_iris &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>)</span></code></pre></div>
 <p><a href="https://riatelab.github.io/mapsf/articles/mapsf.html" class="uri">https://riatelab.github.io/mapsf/articles/mapsf.html</a></p>
 <div id="tracé-dun-fonds-de-carte" class="section level4" number="3.3.1.1">
 <h4><span class="header-section-number">3.3.1.1</span> tracé d’un fonds de carte</h4>
 <p>La fonction <code>mf_map()</code> avec le paramètre <code>type = "base"</code>permet de tracer une carte vide</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="21-cartography_V2.html#cb140-1"></a><span class="kw">mf_map</span>(map_iris, <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="21-cartography_V2.html#cb146-1"></a><span class="kw">mf_map</span>(map_iris, <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
 </div>
 <div id="superposition-de-couches" class="section level4" number="3.3.1.2">
 <h4><span class="header-section-number">3.3.1.2</span> Superposition de couches</h4>
 <p>On peut toutefois ajouter toute une série de paramètres supplémentaire (<code>col=</code>, <code>border=</code>, <code>lwd=</code>, …) et superposer plusieurs fonds de carte avec le paramètre <code>add = TRUE</code>. L’ajout de la fonction <code>layout</code> permet de rajouter un cadre une légende.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="21-cartography_V2.html#cb141-1"></a><span class="co">#library(mapsf)</span></span>
-<span id="cb141-2"><a href="21-cartography_V2.html#cb141-2"></a></span>
-<span id="cb141-3"><a href="21-cartography_V2.html#cb141-3"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
-<span id="cb141-4"><a href="21-cartography_V2.html#cb141-4"></a><span class="kw">mf_map</span>(map_iris, </span>
-<span id="cb141-5"><a href="21-cartography_V2.html#cb141-5"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb141-6"><a href="21-cartography_V2.html#cb141-6"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
-<span id="cb141-7"><a href="21-cartography_V2.html#cb141-7"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb141-8"><a href="21-cartography_V2.html#cb141-8"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
-<span id="cb141-9"><a href="21-cartography_V2.html#cb141-9"></a></span>
-<span id="cb141-10"><a href="21-cartography_V2.html#cb141-10"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb141-11"><a href="21-cartography_V2.html#cb141-11"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb141-12"><a href="21-cartography_V2.html#cb141-12"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb141-13"><a href="21-cartography_V2.html#cb141-13"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb141-14"><a href="21-cartography_V2.html#cb141-14"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
-<span id="cb141-15"><a href="21-cartography_V2.html#cb141-15"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb141-16"><a href="21-cartography_V2.html#cb141-16"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb141-17"><a href="21-cartography_V2.html#cb141-17"></a></span>
-<span id="cb141-18"><a href="21-cartography_V2.html#cb141-18"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb141-19"><a href="21-cartography_V2.html#cb141-19"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Val de Marne&quot;</span>, </span>
-<span id="cb141-20"><a href="21-cartography_V2.html#cb141-20"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-81-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="21-cartography_V2.html#cb147-1"></a><span class="co">#library(mapsf)</span></span>
+<span id="cb147-2"><a href="21-cartography_V2.html#cb147-2"></a></span>
+<span id="cb147-3"><a href="21-cartography_V2.html#cb147-3"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
+<span id="cb147-4"><a href="21-cartography_V2.html#cb147-4"></a><span class="kw">mf_map</span>(map_iris, </span>
+<span id="cb147-5"><a href="21-cartography_V2.html#cb147-5"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb147-6"><a href="21-cartography_V2.html#cb147-6"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
+<span id="cb147-7"><a href="21-cartography_V2.html#cb147-7"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb147-8"><a href="21-cartography_V2.html#cb147-8"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
+<span id="cb147-9"><a href="21-cartography_V2.html#cb147-9"></a></span>
+<span id="cb147-10"><a href="21-cartography_V2.html#cb147-10"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb147-11"><a href="21-cartography_V2.html#cb147-11"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb147-12"><a href="21-cartography_V2.html#cb147-12"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb147-13"><a href="21-cartography_V2.html#cb147-13"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb147-14"><a href="21-cartography_V2.html#cb147-14"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb147-15"><a href="21-cartography_V2.html#cb147-15"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb147-16"><a href="21-cartography_V2.html#cb147-16"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb147-17"><a href="21-cartography_V2.html#cb147-17"></a></span>
+<span id="cb147-18"><a href="21-cartography_V2.html#cb147-18"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb147-19"><a href="21-cartography_V2.html#cb147-19"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Val de Marne&quot;</span>, </span>
+<span id="cb147-20"><a href="21-cartography_V2.html#cb147-20"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-81-1.svg" width="672" /></p>
 </div>
 <div id="ajout-dun-thème" class="section level4" number="3.3.1.3">
 <h4><span class="header-section-number">3.3.1.3</span> Ajout d’un thème</h4>
 <p>On peut finalement modifier l’ensemble de la carte en lui ajoutant une instruction <code>mf_theme()</code> qui peut reprendre des styles existants ( <em>“default”, “brutal”, “ink”, “dark”, “agolalight”, “candy”, “darkula”, “iceberg”, “green”, “nevermind”, “jsk”, “barcelona”</em>) mais aussi créer ses propres thèmes</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="21-cartography_V2.html#cb142-1"></a><span class="co">#library(mapsf)</span></span>
-<span id="cb142-2"><a href="21-cartography_V2.html#cb142-2"></a></span>
-<span id="cb142-3"><a href="21-cartography_V2.html#cb142-3"></a></span>
-<span id="cb142-4"><a href="21-cartography_V2.html#cb142-4"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
-<span id="cb142-5"><a href="21-cartography_V2.html#cb142-5"></a></span>
-<span id="cb142-6"><a href="21-cartography_V2.html#cb142-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
-<span id="cb142-7"><a href="21-cartography_V2.html#cb142-7"></a><span class="kw">mf_map</span>(map_iris, </span>
-<span id="cb142-8"><a href="21-cartography_V2.html#cb142-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb142-9"><a href="21-cartography_V2.html#cb142-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
-<span id="cb142-10"><a href="21-cartography_V2.html#cb142-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb142-11"><a href="21-cartography_V2.html#cb142-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
-<span id="cb142-12"><a href="21-cartography_V2.html#cb142-12"></a></span>
-<span id="cb142-13"><a href="21-cartography_V2.html#cb142-13"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb142-14"><a href="21-cartography_V2.html#cb142-14"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb142-15"><a href="21-cartography_V2.html#cb142-15"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb142-16"><a href="21-cartography_V2.html#cb142-16"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb142-17"><a href="21-cartography_V2.html#cb142-17"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
-<span id="cb142-18"><a href="21-cartography_V2.html#cb142-18"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb142-19"><a href="21-cartography_V2.html#cb142-19"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb142-20"><a href="21-cartography_V2.html#cb142-20"></a></span>
-<span id="cb142-21"><a href="21-cartography_V2.html#cb142-21"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb142-22"><a href="21-cartography_V2.html#cb142-22"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Val de Marne&quot;</span>, </span>
-<span id="cb142-23"><a href="21-cartography_V2.html#cb142-23"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb142-24"><a href="21-cartography_V2.html#cb142-24"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="21-cartography_V2.html#cb148-1"></a><span class="co">#library(mapsf)</span></span>
+<span id="cb148-2"><a href="21-cartography_V2.html#cb148-2"></a></span>
+<span id="cb148-3"><a href="21-cartography_V2.html#cb148-3"></a></span>
+<span id="cb148-4"><a href="21-cartography_V2.html#cb148-4"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
+<span id="cb148-5"><a href="21-cartography_V2.html#cb148-5"></a></span>
+<span id="cb148-6"><a href="21-cartography_V2.html#cb148-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
+<span id="cb148-7"><a href="21-cartography_V2.html#cb148-7"></a><span class="kw">mf_map</span>(map_iris, </span>
+<span id="cb148-8"><a href="21-cartography_V2.html#cb148-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb148-9"><a href="21-cartography_V2.html#cb148-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
+<span id="cb148-10"><a href="21-cartography_V2.html#cb148-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb148-11"><a href="21-cartography_V2.html#cb148-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
+<span id="cb148-12"><a href="21-cartography_V2.html#cb148-12"></a></span>
+<span id="cb148-13"><a href="21-cartography_V2.html#cb148-13"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb148-14"><a href="21-cartography_V2.html#cb148-14"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb148-15"><a href="21-cartography_V2.html#cb148-15"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb148-16"><a href="21-cartography_V2.html#cb148-16"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb148-17"><a href="21-cartography_V2.html#cb148-17"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb148-18"><a href="21-cartography_V2.html#cb148-18"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb148-19"><a href="21-cartography_V2.html#cb148-19"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb148-20"><a href="21-cartography_V2.html#cb148-20"></a></span>
+<span id="cb148-21"><a href="21-cartography_V2.html#cb148-21"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb148-22"><a href="21-cartography_V2.html#cb148-22"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Val de Marne&quot;</span>, </span>
+<span id="cb148-23"><a href="21-cartography_V2.html#cb148-23"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb148-24"><a href="21-cartography_V2.html#cb148-24"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
 </div>
 <div id="ajout-de-texte" class="section level4" number="3.3.1.4">
 <h4><span class="header-section-number">3.3.1.4</span> Ajout de texte</h4>
 <p>On peut ajouter une couche de texte avec la fonction <code>mf_label()</code>. Par exemple, on va ajouter à la carte précédente le nom des communes</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="21-cartography_V2.html#cb143-1"></a><span class="co">#library(mapsf)</span></span>
-<span id="cb143-2"><a href="21-cartography_V2.html#cb143-2"></a></span>
-<span id="cb143-3"><a href="21-cartography_V2.html#cb143-3"></a></span>
-<span id="cb143-4"><a href="21-cartography_V2.html#cb143-4"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
-<span id="cb143-5"><a href="21-cartography_V2.html#cb143-5"></a></span>
-<span id="cb143-6"><a href="21-cartography_V2.html#cb143-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
-<span id="cb143-7"><a href="21-cartography_V2.html#cb143-7"></a><span class="kw">mf_map</span>(map_iris, </span>
-<span id="cb143-8"><a href="21-cartography_V2.html#cb143-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb143-9"><a href="21-cartography_V2.html#cb143-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
-<span id="cb143-10"><a href="21-cartography_V2.html#cb143-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb143-11"><a href="21-cartography_V2.html#cb143-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
-<span id="cb143-12"><a href="21-cartography_V2.html#cb143-12"></a></span>
-<span id="cb143-13"><a href="21-cartography_V2.html#cb143-13"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb143-14"><a href="21-cartography_V2.html#cb143-14"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb143-15"><a href="21-cartography_V2.html#cb143-15"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb143-16"><a href="21-cartography_V2.html#cb143-16"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb143-17"><a href="21-cartography_V2.html#cb143-17"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
-<span id="cb143-18"><a href="21-cartography_V2.html#cb143-18"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb143-19"><a href="21-cartography_V2.html#cb143-19"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb143-20"><a href="21-cartography_V2.html#cb143-20"></a></span>
-<span id="cb143-21"><a href="21-cartography_V2.html#cb143-21"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb143-22"><a href="21-cartography_V2.html#cb143-22"></a><span class="kw">mf_label</span>(map_com, </span>
-<span id="cb143-23"><a href="21-cartography_V2.html#cb143-23"></a>         <span class="dt">var=</span><span class="st">&quot;NOM_COM&quot;</span>,</span>
-<span id="cb143-24"><a href="21-cartography_V2.html#cb143-24"></a>         <span class="dt">cex=</span><span class="fl">0.4</span>,</span>
-<span id="cb143-25"><a href="21-cartography_V2.html#cb143-25"></a>         <span class="dt">overlap =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb143-26"><a href="21-cartography_V2.html#cb143-26"></a></span>
-<span id="cb143-27"><a href="21-cartography_V2.html#cb143-27"></a></span>
-<span id="cb143-28"><a href="21-cartography_V2.html#cb143-28"></a></span>
-<span id="cb143-29"><a href="21-cartography_V2.html#cb143-29"></a></span>
-<span id="cb143-30"><a href="21-cartography_V2.html#cb143-30"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb143-31"><a href="21-cartography_V2.html#cb143-31"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Communes et Iris du Val de Marne en 2017&quot;</span>, </span>
-<span id="cb143-32"><a href="21-cartography_V2.html#cb143-32"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb143-33"><a href="21-cartography_V2.html#cb143-33"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-83-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="21-cartography_V2.html#cb149-1"></a><span class="co">#library(mapsf)</span></span>
+<span id="cb149-2"><a href="21-cartography_V2.html#cb149-2"></a></span>
+<span id="cb149-3"><a href="21-cartography_V2.html#cb149-3"></a></span>
+<span id="cb149-4"><a href="21-cartography_V2.html#cb149-4"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
+<span id="cb149-5"><a href="21-cartography_V2.html#cb149-5"></a></span>
+<span id="cb149-6"><a href="21-cartography_V2.html#cb149-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
+<span id="cb149-7"><a href="21-cartography_V2.html#cb149-7"></a><span class="kw">mf_map</span>(map_iris, </span>
+<span id="cb149-8"><a href="21-cartography_V2.html#cb149-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb149-9"><a href="21-cartography_V2.html#cb149-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
+<span id="cb149-10"><a href="21-cartography_V2.html#cb149-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb149-11"><a href="21-cartography_V2.html#cb149-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
+<span id="cb149-12"><a href="21-cartography_V2.html#cb149-12"></a></span>
+<span id="cb149-13"><a href="21-cartography_V2.html#cb149-13"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb149-14"><a href="21-cartography_V2.html#cb149-14"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb149-15"><a href="21-cartography_V2.html#cb149-15"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb149-16"><a href="21-cartography_V2.html#cb149-16"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb149-17"><a href="21-cartography_V2.html#cb149-17"></a>       <span class="dt">border=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb149-18"><a href="21-cartography_V2.html#cb149-18"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb149-19"><a href="21-cartography_V2.html#cb149-19"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb149-20"><a href="21-cartography_V2.html#cb149-20"></a></span>
+<span id="cb149-21"><a href="21-cartography_V2.html#cb149-21"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb149-22"><a href="21-cartography_V2.html#cb149-22"></a><span class="kw">mf_label</span>(map_com, </span>
+<span id="cb149-23"><a href="21-cartography_V2.html#cb149-23"></a>         <span class="dt">var=</span><span class="st">&quot;NOM_COM&quot;</span>,</span>
+<span id="cb149-24"><a href="21-cartography_V2.html#cb149-24"></a>         <span class="dt">cex=</span><span class="fl">0.4</span>,</span>
+<span id="cb149-25"><a href="21-cartography_V2.html#cb149-25"></a>         <span class="dt">overlap =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb149-26"><a href="21-cartography_V2.html#cb149-26"></a></span>
+<span id="cb149-27"><a href="21-cartography_V2.html#cb149-27"></a></span>
+<span id="cb149-28"><a href="21-cartography_V2.html#cb149-28"></a></span>
+<span id="cb149-29"><a href="21-cartography_V2.html#cb149-29"></a></span>
+<span id="cb149-30"><a href="21-cartography_V2.html#cb149-30"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb149-31"><a href="21-cartography_V2.html#cb149-31"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Communes et Iris du Val de Marne en 2017&quot;</span>, </span>
+<span id="cb149-32"><a href="21-cartography_V2.html#cb149-32"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb149-33"><a href="21-cartography_V2.html#cb149-33"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-83-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="carte-de-stock" class="section level3" number="3.3.2">
@@ -558,66 +556,66 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="carte-minimale" class="section level4" number="3.3.2.1">
 <h4><span class="header-section-number">3.3.2.1</span> Carte minimale</h4>
 <p>Les instructions minimales sont les suivantes :</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="21-cartography_V2.html#cb144-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
-<span id="cb144-2"><a href="21-cartography_V2.html#cb144-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
-<span id="cb144-3"><a href="21-cartography_V2.html#cb144-3"></a></span>
-<span id="cb144-4"><a href="21-cartography_V2.html#cb144-4"></a></span>
-<span id="cb144-5"><a href="21-cartography_V2.html#cb144-5"></a><span class="co"># Trace les contours des communes</span></span>
-<span id="cb144-6"><a href="21-cartography_V2.html#cb144-6"></a><span class="kw">mf_map</span>(<span class="dt">x=</span> map_iris, </span>
-<span id="cb144-7"><a href="21-cartography_V2.html#cb144-7"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>)</span>
-<span id="cb144-8"><a href="21-cartography_V2.html#cb144-8"></a></span>
-<span id="cb144-9"><a href="21-cartography_V2.html#cb144-9"></a><span class="co"># Ajoute le nombre de ménages par IRIS</span></span>
-<span id="cb144-10"><a href="21-cartography_V2.html#cb144-10"></a></span>
-<span id="cb144-11"><a href="21-cartography_V2.html#cb144-11"></a><span class="kw">mf_map</span>(<span class="dt">x =</span>map_iris, </span>
-<span id="cb144-12"><a href="21-cartography_V2.html#cb144-12"></a>      <span class="dt">type =</span><span class="st">&quot;prop&quot;</span>,</span>
-<span id="cb144-13"><a href="21-cartography_V2.html#cb144-13"></a>      <span class="dt">var =</span> <span class="st">&quot;VOIT_TOTAL&quot;</span>,</span>
-<span id="cb144-14"><a href="21-cartography_V2.html#cb144-14"></a>      <span class="dt">add=</span><span class="ot">TRUE</span></span>
-<span id="cb144-15"><a href="21-cartography_V2.html#cb144-15"></a>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-84-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="21-cartography_V2.html#cb150-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb150-2"><a href="21-cartography_V2.html#cb150-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
+<span id="cb150-3"><a href="21-cartography_V2.html#cb150-3"></a></span>
+<span id="cb150-4"><a href="21-cartography_V2.html#cb150-4"></a></span>
+<span id="cb150-5"><a href="21-cartography_V2.html#cb150-5"></a><span class="co"># Trace les contours des communes</span></span>
+<span id="cb150-6"><a href="21-cartography_V2.html#cb150-6"></a><span class="kw">mf_map</span>(<span class="dt">x=</span> map_iris, </span>
+<span id="cb150-7"><a href="21-cartography_V2.html#cb150-7"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>)</span>
+<span id="cb150-8"><a href="21-cartography_V2.html#cb150-8"></a></span>
+<span id="cb150-9"><a href="21-cartography_V2.html#cb150-9"></a><span class="co"># Ajoute le nombre de ménages par IRIS</span></span>
+<span id="cb150-10"><a href="21-cartography_V2.html#cb150-10"></a></span>
+<span id="cb150-11"><a href="21-cartography_V2.html#cb150-11"></a><span class="kw">mf_map</span>(<span class="dt">x =</span>map_iris, </span>
+<span id="cb150-12"><a href="21-cartography_V2.html#cb150-12"></a>      <span class="dt">type =</span><span class="st">&quot;prop&quot;</span>,</span>
+<span id="cb150-13"><a href="21-cartography_V2.html#cb150-13"></a>      <span class="dt">var =</span> <span class="st">&quot;VOIT_TOTAL&quot;</span>,</span>
+<span id="cb150-14"><a href="21-cartography_V2.html#cb150-14"></a>      <span class="dt">add=</span><span class="ot">TRUE</span></span>
+<span id="cb150-15"><a href="21-cartography_V2.html#cb150-15"></a>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-84-1.svg" width="672" /></p>
 <p>Mais le résultat est peu satisfaisant car les cercles sont trop grands. Il faut en pratique toujours effectuer un réglage de ceux-ci avec l’instruction <code>inches=</code></p>
 </div>
 <div id="carte-habillée" class="section level4" number="3.3.2.2">
 <h4><span class="header-section-number">3.3.2.2</span> Carte habillée</h4>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="21-cartography_V2.html#cb145-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
-<span id="cb145-2"><a href="21-cartography_V2.html#cb145-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
-<span id="cb145-3"><a href="21-cartography_V2.html#cb145-3"></a></span>
-<span id="cb145-4"><a href="21-cartography_V2.html#cb145-4"></a></span>
-<span id="cb145-5"><a href="21-cartography_V2.html#cb145-5"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
-<span id="cb145-6"><a href="21-cartography_V2.html#cb145-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
-<span id="cb145-7"><a href="21-cartography_V2.html#cb145-7"></a><span class="kw">mf_map</span>(map_iris, </span>
-<span id="cb145-8"><a href="21-cartography_V2.html#cb145-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb145-9"><a href="21-cartography_V2.html#cb145-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
-<span id="cb145-10"><a href="21-cartography_V2.html#cb145-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb145-11"><a href="21-cartography_V2.html#cb145-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
-<span id="cb145-12"><a href="21-cartography_V2.html#cb145-12"></a></span>
-<span id="cb145-13"><a href="21-cartography_V2.html#cb145-13"></a></span>
-<span id="cb145-14"><a href="21-cartography_V2.html#cb145-14"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb145-15"><a href="21-cartography_V2.html#cb145-15"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb145-16"><a href="21-cartography_V2.html#cb145-16"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb145-17"><a href="21-cartography_V2.html#cb145-17"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb145-18"><a href="21-cartography_V2.html#cb145-18"></a>       <span class="dt">border=</span><span class="st">&quot;black&quot;</span>,</span>
-<span id="cb145-19"><a href="21-cartography_V2.html#cb145-19"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb145-20"><a href="21-cartography_V2.html#cb145-20"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb145-21"><a href="21-cartography_V2.html#cb145-21"></a></span>
-<span id="cb145-22"><a href="21-cartography_V2.html#cb145-22"></a><span class="co"># Ajoute les cercles proportionnels</span></span>
-<span id="cb145-23"><a href="21-cartography_V2.html#cb145-23"></a></span>
-<span id="cb145-24"><a href="21-cartography_V2.html#cb145-24"></a><span class="kw">mf_map</span>(</span>
-<span id="cb145-25"><a href="21-cartography_V2.html#cb145-25"></a>  <span class="dt">x =</span>map_iris, </span>
-<span id="cb145-26"><a href="21-cartography_V2.html#cb145-26"></a>  <span class="dt">var =</span> <span class="st">&quot;MEN_TOTAL&quot;</span>,</span>
-<span id="cb145-27"><a href="21-cartography_V2.html#cb145-27"></a>  <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
-<span id="cb145-28"><a href="21-cartography_V2.html#cb145-28"></a>  <span class="dt">inches =</span> <span class="fl">0.04</span>, </span>
-<span id="cb145-29"><a href="21-cartography_V2.html#cb145-29"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb145-30"><a href="21-cartography_V2.html#cb145-30"></a>  <span class="dt">leg_pos =</span> <span class="st">&quot;left&quot;</span>,  </span>
-<span id="cb145-31"><a href="21-cartography_V2.html#cb145-31"></a>  <span class="dt">leg_title =</span> <span class="st">&quot;Nombre de voitures&quot;</span>,</span>
-<span id="cb145-32"><a href="21-cartography_V2.html#cb145-32"></a>  <span class="dt">add=</span><span class="ot">TRUE</span></span>
-<span id="cb145-33"><a href="21-cartography_V2.html#cb145-33"></a>)</span>
-<span id="cb145-34"><a href="21-cartography_V2.html#cb145-34"></a></span>
-<span id="cb145-35"><a href="21-cartography_V2.html#cb145-35"></a></span>
-<span id="cb145-36"><a href="21-cartography_V2.html#cb145-36"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb145-37"><a href="21-cartography_V2.html#cb145-37"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution des voitures du Val de Marne en 2017&quot;</span>, </span>
-<span id="cb145-38"><a href="21-cartography_V2.html#cb145-38"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb145-39"><a href="21-cartography_V2.html#cb145-39"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-85-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="21-cartography_V2.html#cb151-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb151-2"><a href="21-cartography_V2.html#cb151-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
+<span id="cb151-3"><a href="21-cartography_V2.html#cb151-3"></a></span>
+<span id="cb151-4"><a href="21-cartography_V2.html#cb151-4"></a></span>
+<span id="cb151-5"><a href="21-cartography_V2.html#cb151-5"></a><span class="kw">mf_theme</span>(<span class="st">&quot;candy&quot;</span>)</span>
+<span id="cb151-6"><a href="21-cartography_V2.html#cb151-6"></a><span class="co"># Trace les Iris avec des paramètres</span></span>
+<span id="cb151-7"><a href="21-cartography_V2.html#cb151-7"></a><span class="kw">mf_map</span>(map_iris, </span>
+<span id="cb151-8"><a href="21-cartography_V2.html#cb151-8"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb151-9"><a href="21-cartography_V2.html#cb151-9"></a>       <span class="dt">col =</span> <span class="st">&quot;lightyellow&quot;</span>,</span>
+<span id="cb151-10"><a href="21-cartography_V2.html#cb151-10"></a>       <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb151-11"><a href="21-cartography_V2.html#cb151-11"></a>       <span class="dt">lwd=</span><span class="fl">0.3</span>)</span>
+<span id="cb151-12"><a href="21-cartography_V2.html#cb151-12"></a></span>
+<span id="cb151-13"><a href="21-cartography_V2.html#cb151-13"></a></span>
+<span id="cb151-14"><a href="21-cartography_V2.html#cb151-14"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb151-15"><a href="21-cartography_V2.html#cb151-15"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb151-16"><a href="21-cartography_V2.html#cb151-16"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb151-17"><a href="21-cartography_V2.html#cb151-17"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb151-18"><a href="21-cartography_V2.html#cb151-18"></a>       <span class="dt">border=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb151-19"><a href="21-cartography_V2.html#cb151-19"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb151-20"><a href="21-cartography_V2.html#cb151-20"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb151-21"><a href="21-cartography_V2.html#cb151-21"></a></span>
+<span id="cb151-22"><a href="21-cartography_V2.html#cb151-22"></a><span class="co"># Ajoute les cercles proportionnels</span></span>
+<span id="cb151-23"><a href="21-cartography_V2.html#cb151-23"></a></span>
+<span id="cb151-24"><a href="21-cartography_V2.html#cb151-24"></a><span class="kw">mf_map</span>(</span>
+<span id="cb151-25"><a href="21-cartography_V2.html#cb151-25"></a>  <span class="dt">x =</span>map_iris, </span>
+<span id="cb151-26"><a href="21-cartography_V2.html#cb151-26"></a>  <span class="dt">var =</span> <span class="st">&quot;MEN_TOTAL&quot;</span>,</span>
+<span id="cb151-27"><a href="21-cartography_V2.html#cb151-27"></a>  <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
+<span id="cb151-28"><a href="21-cartography_V2.html#cb151-28"></a>  <span class="dt">inches =</span> <span class="fl">0.04</span>, </span>
+<span id="cb151-29"><a href="21-cartography_V2.html#cb151-29"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb151-30"><a href="21-cartography_V2.html#cb151-30"></a>  <span class="dt">leg_pos =</span> <span class="st">&quot;left&quot;</span>,  </span>
+<span id="cb151-31"><a href="21-cartography_V2.html#cb151-31"></a>  <span class="dt">leg_title =</span> <span class="st">&quot;Nombre de voitures&quot;</span>,</span>
+<span id="cb151-32"><a href="21-cartography_V2.html#cb151-32"></a>  <span class="dt">add=</span><span class="ot">TRUE</span></span>
+<span id="cb151-33"><a href="21-cartography_V2.html#cb151-33"></a>)</span>
+<span id="cb151-34"><a href="21-cartography_V2.html#cb151-34"></a></span>
+<span id="cb151-35"><a href="21-cartography_V2.html#cb151-35"></a></span>
+<span id="cb151-36"><a href="21-cartography_V2.html#cb151-36"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb151-37"><a href="21-cartography_V2.html#cb151-37"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Distribution des voitures du Val de Marne en 2017&quot;</span>, </span>
+<span id="cb151-38"><a href="21-cartography_V2.html#cb151-38"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb151-39"><a href="21-cartography_V2.html#cb151-39"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-85-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="carte-dintensité-choroplèthe" class="section level3" number="3.3.3">
@@ -628,120 +626,120 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="carte-minimale-1" class="section level4" number="3.3.3.1">
 <h4><span class="header-section-number">3.3.3.1</span> Carte minimale</h4>
 <p>Si on ne précise rien, la carte est réalisée à l’aide de la palette par défaut avec un découpage des classes en quantiles (effectifs égaux).</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="21-cartography_V2.html#cb146-1"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
-<span id="cb146-2"><a href="21-cartography_V2.html#cb146-2"></a></span>
-<span id="cb146-3"><a href="21-cartography_V2.html#cb146-3"></a></span>
-<span id="cb146-4"><a href="21-cartography_V2.html#cb146-4"></a><span class="co"># Carte choroplèthe</span></span>
-<span id="cb146-5"><a href="21-cartography_V2.html#cb146-5"></a></span>
-<span id="cb146-6"><a href="21-cartography_V2.html#cb146-6"></a><span class="kw">mf_map</span>(</span>
-<span id="cb146-7"><a href="21-cartography_V2.html#cb146-7"></a>  <span class="dt">x =</span> map_iris, </span>
-<span id="cb146-8"><a href="21-cartography_V2.html#cb146-8"></a>  <span class="dt">var =</span> <span class="st">&quot;VOIT_MEN&quot;</span>,</span>
-<span id="cb146-9"><a href="21-cartography_V2.html#cb146-9"></a>  <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span></span>
-<span id="cb146-10"><a href="21-cartography_V2.html#cb146-10"></a>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-86-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="21-cartography_V2.html#cb152-1"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
+<span id="cb152-2"><a href="21-cartography_V2.html#cb152-2"></a></span>
+<span id="cb152-3"><a href="21-cartography_V2.html#cb152-3"></a></span>
+<span id="cb152-4"><a href="21-cartography_V2.html#cb152-4"></a><span class="co"># Carte choroplèthe</span></span>
+<span id="cb152-5"><a href="21-cartography_V2.html#cb152-5"></a></span>
+<span id="cb152-6"><a href="21-cartography_V2.html#cb152-6"></a><span class="kw">mf_map</span>(</span>
+<span id="cb152-7"><a href="21-cartography_V2.html#cb152-7"></a>  <span class="dt">x =</span> map_iris, </span>
+<span id="cb152-8"><a href="21-cartography_V2.html#cb152-8"></a>  <span class="dt">var =</span> <span class="st">&quot;VOIT_MEN&quot;</span>,</span>
+<span id="cb152-9"><a href="21-cartography_V2.html#cb152-9"></a>  <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span></span>
+<span id="cb152-10"><a href="21-cartography_V2.html#cb152-10"></a>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-86-1.svg" width="672" /></p>
 </div>
 <div id="carte-avec-habillage" class="section level4" number="3.3.3.2">
 <h4><span class="header-section-number">3.3.3.2</span> Carte avec habillage</h4>
 <p>On peut arriver à une carte beaucoup plus satisfaisante en contrôlant l’ensemble des paramètres de couleur et de découpage des classes. Puis en superposant les contours de communes au dessus de la carte des IRIS pour faciliter le repérage.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="21-cartography_V2.html#cb147-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
-<span id="cb147-2"><a href="21-cartography_V2.html#cb147-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
-<span id="cb147-3"><a href="21-cartography_V2.html#cb147-3"></a></span>
-<span id="cb147-4"><a href="21-cartography_V2.html#cb147-4"></a></span>
-<span id="cb147-5"><a href="21-cartography_V2.html#cb147-5"></a><span class="co"># Choisit les classes</span></span>
-<span id="cb147-6"><a href="21-cartography_V2.html#cb147-6"></a>mybreaks =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>,<span class="fl">0.5</span>, <span class="fl">0.6</span>,<span class="fl">0.7</span>,<span class="fl">0.8</span>,<span class="fl">0.9</span>, <span class="dv">1</span>,<span class="fl">1.1</span>, <span class="fl">1.2</span>,<span class="fl">1.3</span>,<span class="fl">1.4</span>,<span class="fl">1.5</span>,<span class="fl">2.1</span>)</span>
-<span id="cb147-7"><a href="21-cartography_V2.html#cb147-7"></a></span>
-<span id="cb147-8"><a href="21-cartography_V2.html#cb147-8"></a><span class="co"># Crée une palette</span></span>
-<span id="cb147-9"><a href="21-cartography_V2.html#cb147-9"></a>mypal &lt;-<span class="st"> </span><span class="kw">mf_get_pal</span>(<span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">6</span>), <span class="dt">pal =</span> <span class="kw">c</span>(<span class="st">&quot;Greens&quot;</span>, <span class="st">&quot;Reds&quot;</span>))</span>
-<span id="cb147-10"><a href="21-cartography_V2.html#cb147-10"></a></span>
-<span id="cb147-11"><a href="21-cartography_V2.html#cb147-11"></a></span>
-<span id="cb147-12"><a href="21-cartography_V2.html#cb147-12"></a><span class="co"># Trace la carte choroplèthe</span></span>
-<span id="cb147-13"><a href="21-cartography_V2.html#cb147-13"></a><span class="kw">mf_map</span>(</span>
-<span id="cb147-14"><a href="21-cartography_V2.html#cb147-14"></a>  <span class="dt">x =</span> map_iris, </span>
-<span id="cb147-15"><a href="21-cartography_V2.html#cb147-15"></a>  <span class="dt">var =</span> <span class="st">&quot;VOIT_MEN&quot;</span>,</span>
-<span id="cb147-16"><a href="21-cartography_V2.html#cb147-16"></a> <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
-<span id="cb147-17"><a href="21-cartography_V2.html#cb147-17"></a>  <span class="dt">breaks =</span> mybreaks,</span>
-<span id="cb147-18"><a href="21-cartography_V2.html#cb147-18"></a>  <span class="dt">pal =</span> mypal,</span>
-<span id="cb147-19"><a href="21-cartography_V2.html#cb147-19"></a>  <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
-<span id="cb147-20"><a href="21-cartography_V2.html#cb147-20"></a>  <span class="dt">col_na =</span> <span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb147-21"><a href="21-cartography_V2.html#cb147-21"></a> <span class="dt">leg_title =</span> <span class="st">&quot;voiture/ménage&quot;</span></span>
-<span id="cb147-22"><a href="21-cartography_V2.html#cb147-22"></a>  </span>
-<span id="cb147-23"><a href="21-cartography_V2.html#cb147-23"></a>)</span>
-<span id="cb147-24"><a href="21-cartography_V2.html#cb147-24"></a></span>
-<span id="cb147-25"><a href="21-cartography_V2.html#cb147-25"></a></span>
-<span id="cb147-26"><a href="21-cartography_V2.html#cb147-26"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb147-27"><a href="21-cartography_V2.html#cb147-27"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb147-28"><a href="21-cartography_V2.html#cb147-28"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb147-29"><a href="21-cartography_V2.html#cb147-29"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb147-30"><a href="21-cartography_V2.html#cb147-30"></a>       <span class="dt">border=</span><span class="st">&quot;black&quot;</span>,</span>
-<span id="cb147-31"><a href="21-cartography_V2.html#cb147-31"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb147-32"><a href="21-cartography_V2.html#cb147-32"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb147-33"><a href="21-cartography_V2.html#cb147-33"></a></span>
-<span id="cb147-34"><a href="21-cartography_V2.html#cb147-34"></a></span>
-<span id="cb147-35"><a href="21-cartography_V2.html#cb147-35"></a></span>
-<span id="cb147-36"><a href="21-cartography_V2.html#cb147-36"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb147-37"><a href="21-cartography_V2.html#cb147-37"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Dépendance automobile dans le Val de Marne en 2017&quot;</span>, </span>
-<span id="cb147-38"><a href="21-cartography_V2.html#cb147-38"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb147-39"><a href="21-cartography_V2.html#cb147-39"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-87-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="21-cartography_V2.html#cb153-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb153-2"><a href="21-cartography_V2.html#cb153-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
+<span id="cb153-3"><a href="21-cartography_V2.html#cb153-3"></a></span>
+<span id="cb153-4"><a href="21-cartography_V2.html#cb153-4"></a></span>
+<span id="cb153-5"><a href="21-cartography_V2.html#cb153-5"></a><span class="co"># Choisit les classes</span></span>
+<span id="cb153-6"><a href="21-cartography_V2.html#cb153-6"></a>mybreaks =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>,<span class="fl">0.5</span>, <span class="fl">0.6</span>,<span class="fl">0.7</span>,<span class="fl">0.8</span>,<span class="fl">0.9</span>, <span class="dv">1</span>,<span class="fl">1.1</span>, <span class="fl">1.2</span>,<span class="fl">1.3</span>,<span class="fl">1.4</span>,<span class="fl">1.5</span>,<span class="fl">2.1</span>)</span>
+<span id="cb153-7"><a href="21-cartography_V2.html#cb153-7"></a></span>
+<span id="cb153-8"><a href="21-cartography_V2.html#cb153-8"></a><span class="co"># Crée une palette</span></span>
+<span id="cb153-9"><a href="21-cartography_V2.html#cb153-9"></a>mypal &lt;-<span class="st"> </span><span class="kw">mf_get_pal</span>(<span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">6</span>), <span class="dt">pal =</span> <span class="kw">c</span>(<span class="st">&quot;Greens&quot;</span>, <span class="st">&quot;Reds&quot;</span>))</span>
+<span id="cb153-10"><a href="21-cartography_V2.html#cb153-10"></a></span>
+<span id="cb153-11"><a href="21-cartography_V2.html#cb153-11"></a></span>
+<span id="cb153-12"><a href="21-cartography_V2.html#cb153-12"></a><span class="co"># Trace la carte choroplèthe</span></span>
+<span id="cb153-13"><a href="21-cartography_V2.html#cb153-13"></a><span class="kw">mf_map</span>(</span>
+<span id="cb153-14"><a href="21-cartography_V2.html#cb153-14"></a>  <span class="dt">x =</span> map_iris, </span>
+<span id="cb153-15"><a href="21-cartography_V2.html#cb153-15"></a>  <span class="dt">var =</span> <span class="st">&quot;VOIT_MEN&quot;</span>,</span>
+<span id="cb153-16"><a href="21-cartography_V2.html#cb153-16"></a> <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
+<span id="cb153-17"><a href="21-cartography_V2.html#cb153-17"></a>  <span class="dt">breaks =</span> mybreaks,</span>
+<span id="cb153-18"><a href="21-cartography_V2.html#cb153-18"></a>  <span class="dt">pal =</span> mypal,</span>
+<span id="cb153-19"><a href="21-cartography_V2.html#cb153-19"></a>  <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
+<span id="cb153-20"><a href="21-cartography_V2.html#cb153-20"></a>  <span class="dt">col_na =</span> <span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb153-21"><a href="21-cartography_V2.html#cb153-21"></a> <span class="dt">leg_title =</span> <span class="st">&quot;voiture/ménage&quot;</span></span>
+<span id="cb153-22"><a href="21-cartography_V2.html#cb153-22"></a>  </span>
+<span id="cb153-23"><a href="21-cartography_V2.html#cb153-23"></a>)</span>
+<span id="cb153-24"><a href="21-cartography_V2.html#cb153-24"></a></span>
+<span id="cb153-25"><a href="21-cartography_V2.html#cb153-25"></a></span>
+<span id="cb153-26"><a href="21-cartography_V2.html#cb153-26"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb153-27"><a href="21-cartography_V2.html#cb153-27"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb153-28"><a href="21-cartography_V2.html#cb153-28"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb153-29"><a href="21-cartography_V2.html#cb153-29"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb153-30"><a href="21-cartography_V2.html#cb153-30"></a>       <span class="dt">border=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb153-31"><a href="21-cartography_V2.html#cb153-31"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb153-32"><a href="21-cartography_V2.html#cb153-32"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb153-33"><a href="21-cartography_V2.html#cb153-33"></a></span>
+<span id="cb153-34"><a href="21-cartography_V2.html#cb153-34"></a></span>
+<span id="cb153-35"><a href="21-cartography_V2.html#cb153-35"></a></span>
+<span id="cb153-36"><a href="21-cartography_V2.html#cb153-36"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb153-37"><a href="21-cartography_V2.html#cb153-37"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Dépendance automobile dans le Val de Marne en 2017&quot;</span>, </span>
+<span id="cb153-38"><a href="21-cartography_V2.html#cb153-38"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb153-39"><a href="21-cartography_V2.html#cb153-39"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-87-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="carte-de-stock-intensité" class="section level3" number="3.3.4">
 <h3><span class="header-section-number">3.3.4</span> Carte de stock + intensité</h3>
 <p>On peut combiner les deux modes cartographiques. Prenons à titre d’exemple le cas des ménages ayant trois automobiles ou plus. Onn peut décrire ce phénomène soit en terme de stock, soit en termes d’intensité.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="21-cartography_V2.html#cb148-1"></a><span class="kw">summary</span>(map_iris<span class="op">$</span>MEN_VOIT3)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="21-cartography_V2.html#cb154-1"></a><span class="kw">summary</span>(map_iris<span class="op">$</span>MEN_VOIT3)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
    0.00   12.50   21.42   26.20   33.77  145.76       9 </code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="21-cartography_V2.html#cb150-1"></a><span class="kw">summary</span>(map_iris<span class="op">$</span>PCT_VOIT3)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="21-cartography_V2.html#cb156-1"></a><span class="kw">summary</span>(map_iris<span class="op">$</span>PCT_VOIT3)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
   0.000   1.170   1.943   2.510   3.160  16.114       9 </code></pre>
 <p>On réalise les deux cartes successivement en commençant par la carte de taux puis en lui ajoutant la carte de stock par dessus.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="21-cartography_V2.html#cb152-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
-<span id="cb152-2"><a href="21-cartography_V2.html#cb152-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
-<span id="cb152-3"><a href="21-cartography_V2.html#cb152-3"></a></span>
-<span id="cb152-4"><a href="21-cartography_V2.html#cb152-4"></a></span>
-<span id="cb152-5"><a href="21-cartography_V2.html#cb152-5"></a><span class="co"># Choisit les classes</span></span>
-<span id="cb152-6"><a href="21-cartography_V2.html#cb152-6"></a></span>
-<span id="cb152-7"><a href="21-cartography_V2.html#cb152-7"></a></span>
-<span id="cb152-8"><a href="21-cartography_V2.html#cb152-8"></a></span>
-<span id="cb152-9"><a href="21-cartography_V2.html#cb152-9"></a><span class="co"># Trace la carte choroplèthe</span></span>
-<span id="cb152-10"><a href="21-cartography_V2.html#cb152-10"></a><span class="kw">mf_map</span>(</span>
-<span id="cb152-11"><a href="21-cartography_V2.html#cb152-11"></a>  <span class="dt">x =</span> map_iris, </span>
-<span id="cb152-12"><a href="21-cartography_V2.html#cb152-12"></a>  <span class="dt">var =</span> <span class="st">&quot;PCT_VOIT3&quot;</span>,</span>
-<span id="cb152-13"><a href="21-cartography_V2.html#cb152-13"></a>  <span class="dt">nbreaks =</span> <span class="dv">5</span>,</span>
-<span id="cb152-14"><a href="21-cartography_V2.html#cb152-14"></a> <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
-<span id="cb152-15"><a href="21-cartography_V2.html#cb152-15"></a>  <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
-<span id="cb152-16"><a href="21-cartography_V2.html#cb152-16"></a>  <span class="dt">col_na =</span> <span class="st">&quot;gray80&quot;</span>,</span>
-<span id="cb152-17"><a href="21-cartography_V2.html#cb152-17"></a> <span class="dt">lwd=</span><span class="fl">0.3</span>,</span>
-<span id="cb152-18"><a href="21-cartography_V2.html#cb152-18"></a> <span class="dt">leg_title =</span> <span class="st">&quot;% ménages&quot;</span></span>
-<span id="cb152-19"><a href="21-cartography_V2.html#cb152-19"></a>  </span>
-<span id="cb152-20"><a href="21-cartography_V2.html#cb152-20"></a>)</span>
-<span id="cb152-21"><a href="21-cartography_V2.html#cb152-21"></a></span>
-<span id="cb152-22"><a href="21-cartography_V2.html#cb152-22"></a><span class="co"># Ajoute les cercles proportionnels</span></span>
-<span id="cb152-23"><a href="21-cartography_V2.html#cb152-23"></a></span>
-<span id="cb152-24"><a href="21-cartography_V2.html#cb152-24"></a><span class="kw">mf_map</span>(</span>
-<span id="cb152-25"><a href="21-cartography_V2.html#cb152-25"></a>  <span class="dt">x =</span>map_iris, </span>
-<span id="cb152-26"><a href="21-cartography_V2.html#cb152-26"></a>  <span class="dt">var =</span> <span class="st">&quot;MEN_VOIT3&quot;</span>,</span>
-<span id="cb152-27"><a href="21-cartography_V2.html#cb152-27"></a>  <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
-<span id="cb152-28"><a href="21-cartography_V2.html#cb152-28"></a>  <span class="dt">inches =</span> <span class="fl">0.04</span>, </span>
-<span id="cb152-29"><a href="21-cartography_V2.html#cb152-29"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb152-30"><a href="21-cartography_V2.html#cb152-30"></a>  <span class="dt">leg_pos =</span> <span class="st">&quot;right&quot;</span>,  </span>
-<span id="cb152-31"><a href="21-cartography_V2.html#cb152-31"></a>  <span class="dt">leg_title =</span> <span class="st">&quot;Nb ménages&quot;</span>,</span>
-<span id="cb152-32"><a href="21-cartography_V2.html#cb152-32"></a>  <span class="dt">add=</span><span class="ot">TRUE</span></span>
-<span id="cb152-33"><a href="21-cartography_V2.html#cb152-33"></a>)</span>
-<span id="cb152-34"><a href="21-cartography_V2.html#cb152-34"></a></span>
-<span id="cb152-35"><a href="21-cartography_V2.html#cb152-35"></a><span class="co"># Ajoute les contours des communes</span></span>
-<span id="cb152-36"><a href="21-cartography_V2.html#cb152-36"></a><span class="kw">mf_map</span>(map_com, </span>
-<span id="cb152-37"><a href="21-cartography_V2.html#cb152-37"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
-<span id="cb152-38"><a href="21-cartography_V2.html#cb152-38"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
-<span id="cb152-39"><a href="21-cartography_V2.html#cb152-39"></a>       <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
-<span id="cb152-40"><a href="21-cartography_V2.html#cb152-40"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
-<span id="cb152-41"><a href="21-cartography_V2.html#cb152-41"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb152-42"><a href="21-cartography_V2.html#cb152-42"></a></span>
-<span id="cb152-43"><a href="21-cartography_V2.html#cb152-43"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
-<span id="cb152-44"><a href="21-cartography_V2.html#cb152-44"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Les ménages ayant trois voitures et plus  2017&quot;</span>, </span>
-<span id="cb152-45"><a href="21-cartography_V2.html#cb152-45"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb152-46"><a href="21-cartography_V2.html#cb152-46"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-89-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="21-cartography_V2.html#cb158-1"></a>map_com&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_com.Rdata&quot;</span>)</span>
+<span id="cb158-2"><a href="21-cartography_V2.html#cb158-2"></a>map_iris&lt;-<span class="kw">readRDS</span>(<span class="st">&quot;data/map_VOIT_IRIS.Rdata&quot;</span>)</span>
+<span id="cb158-3"><a href="21-cartography_V2.html#cb158-3"></a></span>
+<span id="cb158-4"><a href="21-cartography_V2.html#cb158-4"></a></span>
+<span id="cb158-5"><a href="21-cartography_V2.html#cb158-5"></a><span class="co"># Choisit les classes</span></span>
+<span id="cb158-6"><a href="21-cartography_V2.html#cb158-6"></a></span>
+<span id="cb158-7"><a href="21-cartography_V2.html#cb158-7"></a></span>
+<span id="cb158-8"><a href="21-cartography_V2.html#cb158-8"></a></span>
+<span id="cb158-9"><a href="21-cartography_V2.html#cb158-9"></a><span class="co"># Trace la carte choroplèthe</span></span>
+<span id="cb158-10"><a href="21-cartography_V2.html#cb158-10"></a><span class="kw">mf_map</span>(</span>
+<span id="cb158-11"><a href="21-cartography_V2.html#cb158-11"></a>  <span class="dt">x =</span> map_iris, </span>
+<span id="cb158-12"><a href="21-cartography_V2.html#cb158-12"></a>  <span class="dt">var =</span> <span class="st">&quot;PCT_VOIT3&quot;</span>,</span>
+<span id="cb158-13"><a href="21-cartography_V2.html#cb158-13"></a>  <span class="dt">nbreaks =</span> <span class="dv">5</span>,</span>
+<span id="cb158-14"><a href="21-cartography_V2.html#cb158-14"></a> <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
+<span id="cb158-15"><a href="21-cartography_V2.html#cb158-15"></a>  <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
+<span id="cb158-16"><a href="21-cartography_V2.html#cb158-16"></a>  <span class="dt">col_na =</span> <span class="st">&quot;gray80&quot;</span>,</span>
+<span id="cb158-17"><a href="21-cartography_V2.html#cb158-17"></a> <span class="dt">lwd=</span><span class="fl">0.3</span>,</span>
+<span id="cb158-18"><a href="21-cartography_V2.html#cb158-18"></a> <span class="dt">leg_title =</span> <span class="st">&quot;% ménages&quot;</span></span>
+<span id="cb158-19"><a href="21-cartography_V2.html#cb158-19"></a>  </span>
+<span id="cb158-20"><a href="21-cartography_V2.html#cb158-20"></a>)</span>
+<span id="cb158-21"><a href="21-cartography_V2.html#cb158-21"></a></span>
+<span id="cb158-22"><a href="21-cartography_V2.html#cb158-22"></a><span class="co"># Ajoute les cercles proportionnels</span></span>
+<span id="cb158-23"><a href="21-cartography_V2.html#cb158-23"></a></span>
+<span id="cb158-24"><a href="21-cartography_V2.html#cb158-24"></a><span class="kw">mf_map</span>(</span>
+<span id="cb158-25"><a href="21-cartography_V2.html#cb158-25"></a>  <span class="dt">x =</span>map_iris, </span>
+<span id="cb158-26"><a href="21-cartography_V2.html#cb158-26"></a>  <span class="dt">var =</span> <span class="st">&quot;MEN_VOIT3&quot;</span>,</span>
+<span id="cb158-27"><a href="21-cartography_V2.html#cb158-27"></a>  <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
+<span id="cb158-28"><a href="21-cartography_V2.html#cb158-28"></a>  <span class="dt">inches =</span> <span class="fl">0.04</span>, </span>
+<span id="cb158-29"><a href="21-cartography_V2.html#cb158-29"></a>  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb158-30"><a href="21-cartography_V2.html#cb158-30"></a>  <span class="dt">leg_pos =</span> <span class="st">&quot;right&quot;</span>,  </span>
+<span id="cb158-31"><a href="21-cartography_V2.html#cb158-31"></a>  <span class="dt">leg_title =</span> <span class="st">&quot;Nb ménages&quot;</span>,</span>
+<span id="cb158-32"><a href="21-cartography_V2.html#cb158-32"></a>  <span class="dt">add=</span><span class="ot">TRUE</span></span>
+<span id="cb158-33"><a href="21-cartography_V2.html#cb158-33"></a>)</span>
+<span id="cb158-34"><a href="21-cartography_V2.html#cb158-34"></a></span>
+<span id="cb158-35"><a href="21-cartography_V2.html#cb158-35"></a><span class="co"># Ajoute les contours des communes</span></span>
+<span id="cb158-36"><a href="21-cartography_V2.html#cb158-36"></a><span class="kw">mf_map</span>(map_com, </span>
+<span id="cb158-37"><a href="21-cartography_V2.html#cb158-37"></a>       <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>, </span>
+<span id="cb158-38"><a href="21-cartography_V2.html#cb158-38"></a>       <span class="dt">col =</span> <span class="ot">NA</span>,</span>
+<span id="cb158-39"><a href="21-cartography_V2.html#cb158-39"></a>       <span class="dt">border=</span><span class="st">&quot;white&quot;</span>,</span>
+<span id="cb158-40"><a href="21-cartography_V2.html#cb158-40"></a>       <span class="dt">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb158-41"><a href="21-cartography_V2.html#cb158-41"></a>       <span class="dt">add =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb158-42"><a href="21-cartography_V2.html#cb158-42"></a></span>
+<span id="cb158-43"><a href="21-cartography_V2.html#cb158-43"></a><span class="co"># Ajoute un cadre, un titre et des sources</span></span>
+<span id="cb158-44"><a href="21-cartography_V2.html#cb158-44"></a><span class="kw">mf_layout</span>(<span class="dt">title =</span> <span class="st">&quot;Les ménages ayant trois voitures et plus  2017&quot;</span>, </span>
+<span id="cb158-45"><a href="21-cartography_V2.html#cb158-45"></a>          <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb158-46"><a href="21-cartography_V2.html#cb158-46"></a>          <span class="dt">credits =</span> <span class="st">&quot;Sources : IGN et INSEE&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-89-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="création-de-fonctions" class="section level2" number="3.4">
@@ -751,69 +749,69 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">3.4.1</span> fonction tab_cont_iris()</h3>
 <p>On va prendre comme point de départ la création d’un <strong>tableau de contingence spatial</strong> c’est-à-dire un tableau dont les lignes correspondent aux IRIS d’une commune et les colonnes aux modalités d’une variable de type factor.</p>
 <p>On récupère les fonctions statistiques mises au point précédemment</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="21-cartography_V2.html#cb153-1"></a><span class="kw">source</span>(<span class="st">&quot;fonctions/mes_fonctions_V4.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="21-cartography_V2.html#cb159-1"></a><span class="kw">source</span>(<span class="st">&quot;fonctions/mes_fonctions_V4.R&quot;</span>)</span></code></pre></div>
 <p>On charge le fichier de données en lui ajoutant la variable LPRM_1 dont nous aurons besoin pour distinguer les données par ménage et pour l’ensemble de la population.</p>
 <div id="création-du-tableau-avec-la-fonction-tab_var2" class="section level4" number="3.4.1.1">
 <h4><span class="header-section-number">3.4.1.1</span> création du tableau avec la fonction tab_var2</h4>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="21-cartography_V2.html#cb154-1"></a>tab&lt;-<span class="kw">tab_var2</span>(<span class="dt">data =</span> RP, </span>
-<span id="cb154-2"><a href="21-cartography_V2.html#cb154-2"></a>              <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>, </span>
-<span id="cb154-3"><a href="21-cartography_V2.html#cb154-3"></a>              <span class="dt">menag =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb154-4"><a href="21-cartography_V2.html#cb154-4"></a>              <span class="dt">var =</span> VOIT, IRIS)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="21-cartography_V2.html#cb160-1"></a>tab&lt;-<span class="kw">tab_var2</span>(<span class="dt">data =</span> RP, </span>
+<span id="cb160-2"><a href="21-cartography_V2.html#cb160-2"></a>              <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>, </span>
+<span id="cb160-3"><a href="21-cartography_V2.html#cb160-3"></a>              <span class="dt">menag =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb160-4"><a href="21-cartography_V2.html#cb160-4"></a>              <span class="dt">var =</span> VOIT, IRIS)</span></code></pre></div>
 </div>
 <div id="pivotage-du-tableau" class="section level4" number="3.4.1.2">
 <h4><span class="header-section-number">3.4.1.2</span> pivotage du tableau</h4>
 <p>On opére deux opérations de pivotage du tableau pour récupérer les valeurs brutes (<em>raw</em>) et les valeurs en % (<em>pct</em>).</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="21-cartography_V2.html#cb155-1"></a>tab_raw &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>pct),</span>
-<span id="cb155-2"><a href="21-cartography_V2.html#cb155-2"></a>                    <span class="dt">names_from =</span> VOIT,</span>
-<span id="cb155-3"><a href="21-cartography_V2.html#cb155-3"></a>                    <span class="dt">values_from =</span> n,</span>
-<span id="cb155-4"><a href="21-cartography_V2.html#cb155-4"></a>                    <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb155-5"><a href="21-cartography_V2.html#cb155-5"></a><span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,<span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb155-6"><a href="21-cartography_V2.html#cb155-6"></a>                    </span>
-<span id="cb155-7"><a href="21-cartography_V2.html#cb155-7"></a>tab_pct &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n),</span>
-<span id="cb155-8"><a href="21-cartography_V2.html#cb155-8"></a>                    <span class="dt">names_from =</span> VOIT,</span>
-<span id="cb155-9"><a href="21-cartography_V2.html#cb155-9"></a>                    <span class="dt">values_from =</span> pct,</span>
-<span id="cb155-10"><a href="21-cartography_V2.html#cb155-10"></a>           <span class="dt">values_fill =</span> <span class="dv">0</span>)                      </span>
-<span id="cb155-11"><a href="21-cartography_V2.html#cb155-11"></a><span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,<span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="21-cartography_V2.html#cb161-1"></a>tab_raw &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>pct),</span>
+<span id="cb161-2"><a href="21-cartography_V2.html#cb161-2"></a>                    <span class="dt">names_from =</span> VOIT,</span>
+<span id="cb161-3"><a href="21-cartography_V2.html#cb161-3"></a>                    <span class="dt">values_from =</span> n,</span>
+<span id="cb161-4"><a href="21-cartography_V2.html#cb161-4"></a>                    <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
+<span id="cb161-5"><a href="21-cartography_V2.html#cb161-5"></a><span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,<span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb161-6"><a href="21-cartography_V2.html#cb161-6"></a>                    </span>
+<span id="cb161-7"><a href="21-cartography_V2.html#cb161-7"></a>tab_pct &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n),</span>
+<span id="cb161-8"><a href="21-cartography_V2.html#cb161-8"></a>                    <span class="dt">names_from =</span> VOIT,</span>
+<span id="cb161-9"><a href="21-cartography_V2.html#cb161-9"></a>                    <span class="dt">values_from =</span> pct,</span>
+<span id="cb161-10"><a href="21-cartography_V2.html#cb161-10"></a>           <span class="dt">values_fill =</span> <span class="dv">0</span>)                      </span>
+<span id="cb161-11"><a href="21-cartography_V2.html#cb161-11"></a><span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,<span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)  </span></code></pre></div>
 </div>
 <div id="ajout-de-la-géométrie" class="section level4" number="3.4.1.3">
 <h4><span class="header-section-number">3.4.1.3</span> Ajout de la géométrie</h4>
 <p>On fusionne les deux tableaux précédents et bon effectue la jointure avec le fonds de carte, ce qui suppose de renommer la variable IRIS en CODE_IRIS.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="21-cartography_V2.html#cb156-1"></a>tab_geo &lt;-<span class="st"> </span><span class="kw">left_join</span>(tab_raw, tab_pct) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb156-2"><a href="21-cartography_V2.html#cb156-2"></a><span class="st">            </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS=</span>IRIS) <span class="op">%&gt;%</span></span>
-<span id="cb156-3"><a href="21-cartography_V2.html#cb156-3"></a><span class="st">            </span><span class="kw">left_join</span>(map_iris) <span class="op">%&gt;%</span></span>
-<span id="cb156-4"><a href="21-cartography_V2.html#cb156-4"></a><span class="st">            </span><span class="kw">st_as_sf</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="21-cartography_V2.html#cb162-1"></a>tab_geo &lt;-<span class="st"> </span><span class="kw">left_join</span>(tab_raw, tab_pct) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-2"><a href="21-cartography_V2.html#cb162-2"></a><span class="st">            </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS=</span>IRIS) <span class="op">%&gt;%</span></span>
+<span id="cb162-3"><a href="21-cartography_V2.html#cb162-3"></a><span class="st">            </span><span class="kw">left_join</span>(map_iris) <span class="op">%&gt;%</span></span>
+<span id="cb162-4"><a href="21-cartography_V2.html#cb162-4"></a><span class="st">            </span><span class="kw">st_as_sf</span>()</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
 </div>
 <div id="création-dune-fonction-unique" class="section level4" number="3.4.1.4">
 <h4><span class="header-section-number">3.4.1.4</span> Création d’une fonction unique</h4>
 <p>On reprend les étapes précédentes pour en faire une fonction unique appelée <code>tab_cont_iris</code>qui prend en entrée une variable quelconque de type factor et produit en sortie le tableau de contingence spatial soit par individu, soit par ménages.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="21-cartography_V2.html#cb159-1"></a>tab_cont_iris &lt;-<span class="st"> </span><span class="cf">function</span>(data, map, listcom, menag, var)</span>
-<span id="cb159-2"><a href="21-cartography_V2.html#cb159-2"></a>  {</span>
-<span id="cb159-3"><a href="21-cartography_V2.html#cb159-3"></a>  <span class="co"># Create tab</span></span>
-<span id="cb159-4"><a href="21-cartography_V2.html#cb159-4"></a>  tab &lt;-<span class="kw">tab_var2</span>(data, listcom, menag, {{var}}, IRIS)</span>
-<span id="cb159-5"><a href="21-cartography_V2.html#cb159-5"></a>  </span>
-<span id="cb159-6"><a href="21-cartography_V2.html#cb159-6"></a>  <span class="co"># Pivot count</span></span>
-<span id="cb159-7"><a href="21-cartography_V2.html#cb159-7"></a>  tab_raw &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>pct),</span>
-<span id="cb159-8"><a href="21-cartography_V2.html#cb159-8"></a>                    <span class="dt">names_from =</span> {{var}},</span>
-<span id="cb159-9"><a href="21-cartography_V2.html#cb159-9"></a>                    <span class="dt">values_from =</span> n,</span>
-<span id="cb159-10"><a href="21-cartography_V2.html#cb159-10"></a>                    <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb159-11"><a href="21-cartography_V2.html#cb159-11"></a>  <span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,<span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb159-12"><a href="21-cartography_V2.html#cb159-12"></a>  </span>
-<span id="cb159-13"><a href="21-cartography_V2.html#cb159-13"></a>  <span class="co"># Pivot pct                </span></span>
-<span id="cb159-14"><a href="21-cartography_V2.html#cb159-14"></a>  tab_pct &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n),</span>
-<span id="cb159-15"><a href="21-cartography_V2.html#cb159-15"></a>                    <span class="dt">names_from =</span> {{var}},</span>
-<span id="cb159-16"><a href="21-cartography_V2.html#cb159-16"></a>                    <span class="dt">values_from =</span> pct,</span>
-<span id="cb159-17"><a href="21-cartography_V2.html#cb159-17"></a>           <span class="dt">values_fill =</span> <span class="dv">0</span>)                      </span>
-<span id="cb159-18"><a href="21-cartography_V2.html#cb159-18"></a>  <span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,<span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>) </span>
-<span id="cb159-19"><a href="21-cartography_V2.html#cb159-19"></a>  </span>
-<span id="cb159-20"><a href="21-cartography_V2.html#cb159-20"></a>  <span class="co"># join with geom</span></span>
-<span id="cb159-21"><a href="21-cartography_V2.html#cb159-21"></a>  tab_geo &lt;-<span class="st"> </span><span class="kw">left_join</span>(tab_raw, tab_pct) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb159-22"><a href="21-cartography_V2.html#cb159-22"></a><span class="st">            </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS=</span>IRIS) <span class="op">%&gt;%</span></span>
-<span id="cb159-23"><a href="21-cartography_V2.html#cb159-23"></a><span class="st">            </span><span class="kw">left_join</span>(map) <span class="op">%&gt;%</span></span>
-<span id="cb159-24"><a href="21-cartography_V2.html#cb159-24"></a><span class="st">            </span><span class="kw">st_as_sf</span>()</span>
-<span id="cb159-25"><a href="21-cartography_V2.html#cb159-25"></a>  <span class="kw">return</span>(tab_geo)</span>
-<span id="cb159-26"><a href="21-cartography_V2.html#cb159-26"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="21-cartography_V2.html#cb165-1"></a>tab_cont_iris &lt;-<span class="st"> </span><span class="cf">function</span>(data, map, listcom, menag, var)</span>
+<span id="cb165-2"><a href="21-cartography_V2.html#cb165-2"></a>  {</span>
+<span id="cb165-3"><a href="21-cartography_V2.html#cb165-3"></a>  <span class="co"># Create tab</span></span>
+<span id="cb165-4"><a href="21-cartography_V2.html#cb165-4"></a>  tab &lt;-<span class="kw">tab_var2</span>(data, listcom, menag, {{var}}, IRIS)</span>
+<span id="cb165-5"><a href="21-cartography_V2.html#cb165-5"></a>  </span>
+<span id="cb165-6"><a href="21-cartography_V2.html#cb165-6"></a>  <span class="co"># Pivot count</span></span>
+<span id="cb165-7"><a href="21-cartography_V2.html#cb165-7"></a>  tab_raw &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>pct),</span>
+<span id="cb165-8"><a href="21-cartography_V2.html#cb165-8"></a>                    <span class="dt">names_from =</span> {{var}},</span>
+<span id="cb165-9"><a href="21-cartography_V2.html#cb165-9"></a>                    <span class="dt">values_from =</span> n,</span>
+<span id="cb165-10"><a href="21-cartography_V2.html#cb165-10"></a>                    <span class="dt">values_fill =</span> <span class="dv">0</span>)</span>
+<span id="cb165-11"><a href="21-cartography_V2.html#cb165-11"></a>  <span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,<span class="kw">names</span>(tab_raw)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb165-12"><a href="21-cartography_V2.html#cb165-12"></a>  </span>
+<span id="cb165-13"><a href="21-cartography_V2.html#cb165-13"></a>  <span class="co"># Pivot pct                </span></span>
+<span id="cb165-14"><a href="21-cartography_V2.html#cb165-14"></a>  tab_pct &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(<span class="dt">data =</span> tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>n),</span>
+<span id="cb165-15"><a href="21-cartography_V2.html#cb165-15"></a>                    <span class="dt">names_from =</span> {{var}},</span>
+<span id="cb165-16"><a href="21-cartography_V2.html#cb165-16"></a>                    <span class="dt">values_from =</span> pct,</span>
+<span id="cb165-17"><a href="21-cartography_V2.html#cb165-17"></a>           <span class="dt">values_fill =</span> <span class="dv">0</span>)                      </span>
+<span id="cb165-18"><a href="21-cartography_V2.html#cb165-18"></a>  <span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,<span class="kw">names</span>(tab_pct)[<span class="op">-</span><span class="dv">1</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>) </span>
+<span id="cb165-19"><a href="21-cartography_V2.html#cb165-19"></a>  </span>
+<span id="cb165-20"><a href="21-cartography_V2.html#cb165-20"></a>  <span class="co"># join with geom</span></span>
+<span id="cb165-21"><a href="21-cartography_V2.html#cb165-21"></a>  tab_geo &lt;-<span class="st"> </span><span class="kw">left_join</span>(tab_raw, tab_pct) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb165-22"><a href="21-cartography_V2.html#cb165-22"></a><span class="st">            </span><span class="kw">rename</span>(<span class="dt">CODE_IRIS=</span>IRIS) <span class="op">%&gt;%</span></span>
+<span id="cb165-23"><a href="21-cartography_V2.html#cb165-23"></a><span class="st">            </span><span class="kw">left_join</span>(map) <span class="op">%&gt;%</span></span>
+<span id="cb165-24"><a href="21-cartography_V2.html#cb165-24"></a><span class="st">            </span><span class="kw">st_as_sf</span>()</span>
+<span id="cb165-25"><a href="21-cartography_V2.html#cb165-25"></a>  <span class="kw">return</span>(tab_geo)</span>
+<span id="cb165-26"><a href="21-cartography_V2.html#cb165-26"></a>  }</span></code></pre></div>
 </div>
 <div id="test-de-la-fonction" class="section level4" number="3.4.1.5">
 <h4><span class="header-section-number">3.4.1.5</span> Test de la fonction</h4>
@@ -821,10 +819,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <ul>
 <li>soit pour la <strong>population totale</strong> en prenant menag = FALSE</li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="21-cartography_V2.html#cb160-1"></a>SEXE_IRIS_pop &lt;-<span class="st"> </span><span class="kw">tab_cont_iris</span>(RP,map_iris,<span class="st">&quot;94071&quot;</span>,<span class="dt">menag =</span> <span class="ot">FALSE</span>,SEXE)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="21-cartography_V2.html#cb166-1"></a>SEXE_IRIS_pop &lt;-<span class="st"> </span><span class="kw">tab_cont_iris</span>(RP,map_iris,<span class="st">&quot;94071&quot;</span>,<span class="dt">menag =</span> <span class="ot">FALSE</span>,SEXE)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="21-cartography_V2.html#cb163-1"></a><span class="kw">head</span>(SEXE_IRIS_pop,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="21-cartography_V2.html#cb169-1"></a><span class="kw">head</span>(SEXE_IRIS_pop,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code># A tibble: 3 x 12
   CODE_IRIS count_1 count_2 pct_1 pct_2 INSEE_COM NOM_COM IRIS  NOM_IRIS
   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   
@@ -836,10 +834,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <ul>
 <li>soit pour les <strong>chefs de ménage</strong> en prenant menag = TRUE</li>
 </ul>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="21-cartography_V2.html#cb165-1"></a>SEXE_IRIS_men &lt;-<span class="st"> </span><span class="kw">tab_cont_iris</span>(RP,map_iris,<span class="st">&quot;94071&quot;</span>,<span class="dt">menag=</span><span class="ot">TRUE</span>,SEXE)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="21-cartography_V2.html#cb171-1"></a>SEXE_IRIS_men &lt;-<span class="st"> </span><span class="kw">tab_cont_iris</span>(RP,map_iris,<span class="st">&quot;94071&quot;</span>,<span class="dt">menag=</span><span class="ot">TRUE</span>,SEXE)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="21-cartography_V2.html#cb168-1"></a><span class="kw">head</span>(SEXE_IRIS_men,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="21-cartography_V2.html#cb174-1"></a><span class="kw">head</span>(SEXE_IRIS_men,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code># A tibble: 3 x 12
   CODE_IRIS count_1 count_2 pct_1 pct_2 INSEE_COM NOM_COM IRIS  NOM_IRIS
   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   
@@ -849,6 +847,41 @@ code span.wa { color: #bf0303; } /* Warning */
 # … with 3 more variables: TYP_IRIS &lt;chr&gt;, geometry &lt;MULTIPOLYGON [m]&gt;,
 #   DEPT &lt;chr&gt;</code></pre>
 </div>
+<div id="préparation-de-fichiers-sur-une-zone-détude" class="section level4" number="3.4.1.6">
+<h4><span class="header-section-number">3.4.1.6</span> Préparation de fichiers sur une zone d’étude</h4>
+<p>On prépare une séruie de fichiers pour étudier un ensemble de 5 communes</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="21-cartography_V2.html#cb176-1"></a>sel &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>)</span>
+<span id="cb176-2"><a href="21-cartography_V2.html#cb176-2"></a></span>
+<span id="cb176-3"><a href="21-cartography_V2.html#cb176-3"></a><span class="co"># Selection des logements ordinaire</span></span>
+<span id="cb176-4"><a href="21-cartography_V2.html#cb176-4"></a>don &lt;-RP <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(LPRM <span class="op">!=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb176-5"><a href="21-cartography_V2.html#cb176-5"></a></span>
+<span id="cb176-6"><a href="21-cartography_V2.html#cb176-6"></a><span class="co"># Equipement automobile des ménages</span></span>
+<span id="cb176-7"><a href="21-cartography_V2.html#cb176-7"></a>map&lt;-<span class="kw">tab_cont_iris</span>(don, map_iris,sel,<span class="ot">TRUE</span>,VOIT)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
+<pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="21-cartography_V2.html#cb179-1"></a><span class="kw">saveRDS</span>(mapauto,<span class="st">&quot;data/sel_map_men_auto.Rdata&quot;</span>)</span>
+<span id="cb179-2"><a href="21-cartography_V2.html#cb179-2"></a></span>
+<span id="cb179-3"><a href="21-cartography_V2.html#cb179-3"></a><span class="co"># LOGEMENT EN hlm</span></span>
+<span id="cb179-4"><a href="21-cartography_V2.html#cb179-4"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(HLML <span class="op">!=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb179-5"><a href="21-cartography_V2.html#cb179-5"></a>map&lt;-<span class="kw">tab_cont_iris</span>(don2, map_iris,sel,<span class="ot">TRUE</span>,HLML)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="21-cartography_V2.html#cb181-1"></a><span class="kw">saveRDS</span>(map,<span class="st">&quot;data/sel_map_pop_hlm.Rdata&quot;</span>)</span>
+<span id="cb181-2"><a href="21-cartography_V2.html#cb181-2"></a></span>
+<span id="cb181-3"><a href="21-cartography_V2.html#cb181-3"></a><span class="co"># Catégorie social des actifs</span></span>
+<span id="cb181-4"><a href="21-cartography_V2.html#cb181-4"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(CS1 <span class="op">!=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb181-5"><a href="21-cartography_V2.html#cb181-5"></a>map&lt;-<span class="kw">tab_cont_iris</span>(don2, map_iris,sel,<span class="ot">TRUE</span>,CS1)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="21-cartography_V2.html#cb183-1"></a><span class="kw">saveRDS</span>(map,<span class="st">&quot;data/sel_map_pop_csp.Rdata&quot;</span>)</span>
+<span id="cb183-2"><a href="21-cartography_V2.html#cb183-2"></a></span>
+<span id="cb183-3"><a href="21-cartography_V2.html#cb183-3"></a><span class="co"># Mode de transport des actifs</span></span>
+<span id="cb183-4"><a href="21-cartography_V2.html#cb183-4"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(TRANS <span class="op">!=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb183-5"><a href="21-cartography_V2.html#cb183-5"></a>map&lt;-<span class="kw">tab_cont_iris</span>(don2, map_iris,sel,<span class="ot">FALSE</span>,TRANS)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="21-cartography_V2.html#cb185-1"></a><span class="kw">saveRDS</span>(map,<span class="st">&quot;data/sel_map_act_csp.Rdata&quot;</span>)</span></code></pre></div>
+</div>
 </div>
 <div id="fonction-map_count_iris" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> fonction map_count_iris</h3>
@@ -857,80 +890,95 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="objectifs" class="section level4" number="3.4.2.1">
 <h4><span class="header-section-number">3.4.2.1</span> Objectifs</h4>
 <p>On prend comme entrée un tableau de contingence spatial et on décide de représenter l’une des modalités de type <em>count</em>. Soit par exemple la modalité 3 de la variable VOIT mesurée en nombre de ménages</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="21-cartography_V2.html#cb170-1"></a>map&lt;-<span class="kw">tab_cont_iris</span>(RP, map_iris,<span class="st">&quot;94071&quot;</span>,<span class="ot">TRUE</span>,VOIT)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="21-cartography_V2.html#cb186-1"></a>map&lt;-<span class="kw">tab_cont_iris</span>(RP, map_iris,<span class="st">&quot;94071&quot;</span>,<span class="ot">TRUE</span>,VOIT)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="21-cartography_V2.html#cb189-1"></a>map&lt;-<span class="kw">tab_cont_iris</span>(RP, map_iris,<span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),<span class="ot">TRUE</span>,VOIT)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="21-cartography_V2.html#cb191-1"></a><span class="kw">saveRDS</span>(mapauto,<span class="st">&quot;data/sel_map_men_auto.Rdata&quot;</span>)</span>
+<span id="cb191-2"><a href="21-cartography_V2.html#cb191-2"></a></span>
+<span id="cb191-3"><a href="21-cartography_V2.html#cb191-3"></a>map&lt;-<span class="kw">tab_cont_iris</span>(RP, map_iris,<span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),<span class="ot">TRUE</span>,CS1)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="21-cartography_V2.html#cb193-1"></a><span class="kw">saveRDS</span>(map,<span class="st">&quot;data/sel_map_men_csp.Rdata&quot;</span>)</span>
+<span id="cb193-2"><a href="21-cartography_V2.html#cb193-2"></a></span>
+<span id="cb193-3"><a href="21-cartography_V2.html#cb193-3"></a>don&lt;-RP <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(TRANS <span class="op">!=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb193-4"><a href="21-cartography_V2.html#cb193-4"></a>map&lt;-<span class="kw">tab_cont_iris</span>(don, map_iris,<span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),<span class="ot">FALSE</span>,TRANS)</span></code></pre></div>
+<pre><code>Joining, by = &quot;IRIS&quot;
+Joining, by = &quot;CODE_IRIS&quot;</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="21-cartography_V2.html#cb195-1"></a><span class="kw">saveRDS</span>(map,<span class="st">&quot;data/sel_map_act_csp.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="fonction-minimale" class="section level4" number="3.4.2.2">
 <h4><span class="header-section-number">3.4.2.2</span> Fonction minimale</h4>
 <p>On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s’appliquer à n’importe quelle modalité de n’importe quelle variable. La fonction minimale devra comporter 6 paramètres</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="21-cartography_V2.html#cb173-1"></a>map_count_iris &lt;-<span class="st"> </span><span class="cf">function</span> (data,</span>
-<span id="cb173-2"><a href="21-cartography_V2.html#cb173-2"></a>                            map,</span>
-<span id="cb173-3"><a href="21-cartography_V2.html#cb173-3"></a>                            listcom,</span>
-<span id="cb173-4"><a href="21-cartography_V2.html#cb173-4"></a>                            menag,</span>
-<span id="cb173-5"><a href="21-cartography_V2.html#cb173-5"></a>                            var,</span>
-<span id="cb173-6"><a href="21-cartography_V2.html#cb173-6"></a>                            mod,</span>
-<span id="cb173-7"><a href="21-cartography_V2.html#cb173-7"></a>                            titre)</span>
-<span id="cb173-8"><a href="21-cartography_V2.html#cb173-8"></a></span>
-<span id="cb173-9"><a href="21-cartography_V2.html#cb173-9"></a>{</span>
-<span id="cb173-10"><a href="21-cartography_V2.html#cb173-10"></a>  </span>
-<span id="cb173-11"><a href="21-cartography_V2.html#cb173-11"></a> mymap&lt;-<span class="kw">tab_cont_iris</span>(data,map_iris,listcom,menag,{{var}})</span>
-<span id="cb173-12"><a href="21-cartography_V2.html#cb173-12"></a> </span>
-<span id="cb173-13"><a href="21-cartography_V2.html#cb173-13"></a> myvar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,mod, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb173-14"><a href="21-cartography_V2.html#cb173-14"></a> </span>
-<span id="cb173-15"><a href="21-cartography_V2.html#cb173-15"></a> <span class="cf">if</span> (menag<span class="op">==</span><span class="ot">FALSE</span>) {myleg =<span class="st"> &quot;nb. d&#39;habitants&quot;</span>} <span class="cf">else</span></span>
-<span id="cb173-16"><a href="21-cartography_V2.html#cb173-16"></a> {myleg =<span class="st"> &quot;nb de ménages&quot;</span>}</span>
-<span id="cb173-17"><a href="21-cartography_V2.html#cb173-17"></a> </span>
-<span id="cb173-18"><a href="21-cartography_V2.html#cb173-18"></a></span>
-<span id="cb173-19"><a href="21-cartography_V2.html#cb173-19"></a> <span class="kw">mf_map</span>(<span class="dt">x=</span> mymap,</span>
-<span id="cb173-20"><a href="21-cartography_V2.html#cb173-20"></a>        <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>,</span>
-<span id="cb173-21"><a href="21-cartography_V2.html#cb173-21"></a>        <span class="dt">col=</span><span class="st">&quot;lightyellow&quot;</span>,</span>
-<span id="cb173-22"><a href="21-cartography_V2.html#cb173-22"></a>        <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,<span class="dt">lwd=</span><span class="fl">0.4</span>)</span>
-<span id="cb173-23"><a href="21-cartography_V2.html#cb173-23"></a> </span>
-<span id="cb173-24"><a href="21-cartography_V2.html#cb173-24"></a> <span class="kw">mf_map</span>(<span class="dt">x =</span> mymap,</span>
-<span id="cb173-25"><a href="21-cartography_V2.html#cb173-25"></a>        <span class="dt">var =</span> myvar,</span>
-<span id="cb173-26"><a href="21-cartography_V2.html#cb173-26"></a>        <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
-<span id="cb173-27"><a href="21-cartography_V2.html#cb173-27"></a>        <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb173-28"><a href="21-cartography_V2.html#cb173-28"></a>        <span class="dt">leg_title =</span> myleg,</span>
-<span id="cb173-29"><a href="21-cartography_V2.html#cb173-29"></a>        <span class="dt">inches =</span> <span class="fl">0.06</span>)</span>
-<span id="cb173-30"><a href="21-cartography_V2.html#cb173-30"></a> </span>
-<span id="cb173-31"><a href="21-cartography_V2.html#cb173-31"></a> <span class="kw">mf_layout</span>(<span class="dt">title =</span> titre, </span>
-<span id="cb173-32"><a href="21-cartography_V2.html#cb173-32"></a>           <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb173-33"><a href="21-cartography_V2.html#cb173-33"></a>          <span class="dt">credits =</span><span class="st">&quot;INSEE, RP 2017, fichiers détail&quot;</span>)</span>
-<span id="cb173-34"><a href="21-cartography_V2.html#cb173-34"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="21-cartography_V2.html#cb196-1"></a>map_count_iris &lt;-<span class="st"> </span><span class="cf">function</span> (data,</span>
+<span id="cb196-2"><a href="21-cartography_V2.html#cb196-2"></a>                            map,</span>
+<span id="cb196-3"><a href="21-cartography_V2.html#cb196-3"></a>                            listcom,</span>
+<span id="cb196-4"><a href="21-cartography_V2.html#cb196-4"></a>                            menag,</span>
+<span id="cb196-5"><a href="21-cartography_V2.html#cb196-5"></a>                            var,</span>
+<span id="cb196-6"><a href="21-cartography_V2.html#cb196-6"></a>                            mod,</span>
+<span id="cb196-7"><a href="21-cartography_V2.html#cb196-7"></a>                            titre)</span>
+<span id="cb196-8"><a href="21-cartography_V2.html#cb196-8"></a></span>
+<span id="cb196-9"><a href="21-cartography_V2.html#cb196-9"></a>{</span>
+<span id="cb196-10"><a href="21-cartography_V2.html#cb196-10"></a>  </span>
+<span id="cb196-11"><a href="21-cartography_V2.html#cb196-11"></a> mymap&lt;-<span class="kw">tab_cont_iris</span>(data,map_iris,listcom,menag,{{var}})</span>
+<span id="cb196-12"><a href="21-cartography_V2.html#cb196-12"></a> </span>
+<span id="cb196-13"><a href="21-cartography_V2.html#cb196-13"></a> myvar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;count_&quot;</span>,mod, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb196-14"><a href="21-cartography_V2.html#cb196-14"></a> </span>
+<span id="cb196-15"><a href="21-cartography_V2.html#cb196-15"></a> <span class="cf">if</span> (menag<span class="op">==</span><span class="ot">FALSE</span>) {myleg =<span class="st"> &quot;nb. d&#39;habitants&quot;</span>} <span class="cf">else</span></span>
+<span id="cb196-16"><a href="21-cartography_V2.html#cb196-16"></a> {myleg =<span class="st"> &quot;nb de ménages&quot;</span>}</span>
+<span id="cb196-17"><a href="21-cartography_V2.html#cb196-17"></a> </span>
+<span id="cb196-18"><a href="21-cartography_V2.html#cb196-18"></a></span>
+<span id="cb196-19"><a href="21-cartography_V2.html#cb196-19"></a> <span class="kw">mf_map</span>(<span class="dt">x=</span> mymap,</span>
+<span id="cb196-20"><a href="21-cartography_V2.html#cb196-20"></a>        <span class="dt">type =</span> <span class="st">&quot;base&quot;</span>,</span>
+<span id="cb196-21"><a href="21-cartography_V2.html#cb196-21"></a>        <span class="dt">col=</span><span class="st">&quot;lightyellow&quot;</span>,</span>
+<span id="cb196-22"><a href="21-cartography_V2.html#cb196-22"></a>        <span class="dt">border=</span><span class="st">&quot;gray80&quot;</span>,<span class="dt">lwd=</span><span class="fl">0.4</span>)</span>
+<span id="cb196-23"><a href="21-cartography_V2.html#cb196-23"></a> </span>
+<span id="cb196-24"><a href="21-cartography_V2.html#cb196-24"></a> <span class="kw">mf_map</span>(<span class="dt">x =</span> mymap,</span>
+<span id="cb196-25"><a href="21-cartography_V2.html#cb196-25"></a>        <span class="dt">var =</span> myvar,</span>
+<span id="cb196-26"><a href="21-cartography_V2.html#cb196-26"></a>        <span class="dt">type =</span> <span class="st">&quot;prop&quot;</span>,</span>
+<span id="cb196-27"><a href="21-cartography_V2.html#cb196-27"></a>        <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb196-28"><a href="21-cartography_V2.html#cb196-28"></a>        <span class="dt">leg_title =</span> myleg,</span>
+<span id="cb196-29"><a href="21-cartography_V2.html#cb196-29"></a>        <span class="dt">inches =</span> <span class="fl">0.06</span>)</span>
+<span id="cb196-30"><a href="21-cartography_V2.html#cb196-30"></a> </span>
+<span id="cb196-31"><a href="21-cartography_V2.html#cb196-31"></a> <span class="kw">mf_layout</span>(<span class="dt">title =</span> titre, </span>
+<span id="cb196-32"><a href="21-cartography_V2.html#cb196-32"></a>           <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb196-33"><a href="21-cartography_V2.html#cb196-33"></a>          <span class="dt">credits =</span><span class="st">&quot;INSEE, RP 2017, fichiers détail&quot;</span>)</span>
+<span id="cb196-34"><a href="21-cartography_V2.html#cb196-34"></a>}</span></code></pre></div>
 <p>On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Brie</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="21-cartography_V2.html#cb174-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb174-2"><a href="21-cartography_V2.html#cb174-2"></a>               <span class="dt">map =</span> map_iris,</span>
-<span id="cb174-3"><a href="21-cartography_V2.html#cb174-3"></a>               <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>,</span>
-<span id="cb174-4"><a href="21-cartography_V2.html#cb174-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
-<span id="cb174-5"><a href="21-cartography_V2.html#cb174-5"></a>               <span class="dt">var =</span> VOIT,</span>
-<span id="cb174-6"><a href="21-cartography_V2.html#cb174-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
-<span id="cb174-7"><a href="21-cartography_V2.html#cb174-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="21-cartography_V2.html#cb197-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb197-2"><a href="21-cartography_V2.html#cb197-2"></a>               <span class="dt">map =</span> map_iris,</span>
+<span id="cb197-3"><a href="21-cartography_V2.html#cb197-3"></a>               <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>,</span>
+<span id="cb197-4"><a href="21-cartography_V2.html#cb197-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
+<span id="cb197-5"><a href="21-cartography_V2.html#cb197-5"></a>               <span class="dt">var =</span> VOIT,</span>
+<span id="cb197-6"><a href="21-cartography_V2.html#cb197-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
+<span id="cb197-7"><a href="21-cartography_V2.html#cb197-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-100-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-101-1.svg" width="672" /></p>
 <p>On vérifie qu’elle marche également si on ajoute les communes voisines de Saint-Maur-des-Fossés (94068) , Bonneuil (94011), Ormesson (94055), Chennevières (94019) et Noiseau (94053)</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="21-cartography_V2.html#cb177-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb177-2"><a href="21-cartography_V2.html#cb177-2"></a>               <span class="dt">map =</span> map_iris,</span>
-<span id="cb177-3"><a href="21-cartography_V2.html#cb177-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
-<span id="cb177-4"><a href="21-cartography_V2.html#cb177-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
-<span id="cb177-5"><a href="21-cartography_V2.html#cb177-5"></a>               <span class="dt">var =</span> VOIT,</span>
-<span id="cb177-6"><a href="21-cartography_V2.html#cb177-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
-<span id="cb177-7"><a href="21-cartography_V2.html#cb177-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="21-cartography_V2.html#cb200-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb200-2"><a href="21-cartography_V2.html#cb200-2"></a>               <span class="dt">map =</span> map_iris,</span>
+<span id="cb200-3"><a href="21-cartography_V2.html#cb200-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
+<span id="cb200-4"><a href="21-cartography_V2.html#cb200-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
+<span id="cb200-5"><a href="21-cartography_V2.html#cb200-5"></a>               <span class="dt">var =</span> VOIT,</span>
+<span id="cb200-6"><a href="21-cartography_V2.html#cb200-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
+<span id="cb200-7"><a href="21-cartography_V2.html#cb200-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-101-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-102-1.svg" width="672" /></p>
 <p>… ou bien sur une autre modalité d’une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="21-cartography_V2.html#cb180-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb180-2"><a href="21-cartography_V2.html#cb180-2"></a>               <span class="dt">map =</span> map_iris,</span>
-<span id="cb180-3"><a href="21-cartography_V2.html#cb180-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
-<span id="cb180-4"><a href="21-cartography_V2.html#cb180-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
-<span id="cb180-5"><a href="21-cartography_V2.html#cb180-5"></a>               <span class="dt">var =</span> CS1,</span>
-<span id="cb180-6"><a href="21-cartography_V2.html#cb180-6"></a>               <span class="dt">mod =</span> <span class="dv">6</span>,</span>
-<span id="cb180-7"><a href="21-cartography_V2.html#cb180-7"></a>               <span class="st">&quot;Ménages ouvriers en 2017&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="21-cartography_V2.html#cb203-1"></a><span class="kw">map_count_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb203-2"><a href="21-cartography_V2.html#cb203-2"></a>               <span class="dt">map =</span> map_iris,</span>
+<span id="cb203-3"><a href="21-cartography_V2.html#cb203-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
+<span id="cb203-4"><a href="21-cartography_V2.html#cb203-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
+<span id="cb203-5"><a href="21-cartography_V2.html#cb203-5"></a>               <span class="dt">var =</span> CS1,</span>
+<span id="cb203-6"><a href="21-cartography_V2.html#cb203-6"></a>               <span class="dt">mod =</span> <span class="dv">6</span>,</span>
+<span id="cb203-7"><a href="21-cartography_V2.html#cb203-7"></a>               <span class="st">&quot;Ménages ouvriers en 2017&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-102-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-103-1.svg" width="672" /></p>
 </div>
 <div id="fonction-améliorée" class="section level4" number="3.4.2.3">
 <h4><span class="header-section-number">3.4.2.3</span> Fonction améliorée</h4>
@@ -958,74 +1006,74 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="fonction-minimale-1" class="section level4" number="3.4.3.2">
 <h4><span class="header-section-number">3.4.3.2</span> Fonction minimale</h4>
 <p>On va maintenant créer une fonction ayant autant de paramètres que nécessaire pour pouvoir s’appliquer à n’importe quelle modalité de n’importe quelle variable. La fonction minimale devra comporter 7 paramètres</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="21-cartography_V2.html#cb183-1"></a>map_pct_iris &lt;-<span class="st"> </span><span class="cf">function</span> (  data,</span>
-<span id="cb183-2"><a href="21-cartography_V2.html#cb183-2"></a>                            map,</span>
-<span id="cb183-3"><a href="21-cartography_V2.html#cb183-3"></a>                            listcom,</span>
-<span id="cb183-4"><a href="21-cartography_V2.html#cb183-4"></a>                            menag,</span>
-<span id="cb183-5"><a href="21-cartography_V2.html#cb183-5"></a>                            var,</span>
-<span id="cb183-6"><a href="21-cartography_V2.html#cb183-6"></a>                            mod,</span>
-<span id="cb183-7"><a href="21-cartography_V2.html#cb183-7"></a>                            titre)</span>
-<span id="cb183-8"><a href="21-cartography_V2.html#cb183-8"></a></span>
-<span id="cb183-9"><a href="21-cartography_V2.html#cb183-9"></a>{</span>
-<span id="cb183-10"><a href="21-cartography_V2.html#cb183-10"></a>  </span>
-<span id="cb183-11"><a href="21-cartography_V2.html#cb183-11"></a> mymap&lt;-<span class="kw">tab_cont_iris</span>(data,map,listcom,menag,{{var}})</span>
-<span id="cb183-12"><a href="21-cartography_V2.html#cb183-12"></a> </span>
-<span id="cb183-13"><a href="21-cartography_V2.html#cb183-13"></a> myvar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,mod, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb183-14"><a href="21-cartography_V2.html#cb183-14"></a> </span>
-<span id="cb183-15"><a href="21-cartography_V2.html#cb183-15"></a> <span class="cf">if</span> (menag<span class="op">==</span><span class="ot">FALSE</span>) {myleg =<span class="st"> &quot;% des habitants&quot;</span>} <span class="cf">else</span></span>
-<span id="cb183-16"><a href="21-cartography_V2.html#cb183-16"></a> {myleg =<span class="st"> &quot;% des ménages&quot;</span>}</span>
-<span id="cb183-17"><a href="21-cartography_V2.html#cb183-17"></a> </span>
-<span id="cb183-18"><a href="21-cartography_V2.html#cb183-18"></a></span>
-<span id="cb183-19"><a href="21-cartography_V2.html#cb183-19"></a> </span>
-<span id="cb183-20"><a href="21-cartography_V2.html#cb183-20"></a>huntsberger &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">round</span>(<span class="dv">1</span><span class="op">+</span>(<span class="dv">10</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span><span class="kw">log10</span>(x))}</span>
-<span id="cb183-21"><a href="21-cartography_V2.html#cb183-21"></a>nbc&lt;-<span class="kw">huntsberger</span>(<span class="kw">nrow</span>(mymap))</span>
-<span id="cb183-22"><a href="21-cartography_V2.html#cb183-22"></a></span>
-<span id="cb183-23"><a href="21-cartography_V2.html#cb183-23"></a></span>
-<span id="cb183-24"><a href="21-cartography_V2.html#cb183-24"></a> </span>
-<span id="cb183-25"><a href="21-cartography_V2.html#cb183-25"></a> <span class="kw">mf_map</span>(<span class="dt">x =</span> mymap,</span>
-<span id="cb183-26"><a href="21-cartography_V2.html#cb183-26"></a>        <span class="dt">var =</span> myvar,</span>
-<span id="cb183-27"><a href="21-cartography_V2.html#cb183-27"></a>        <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
-<span id="cb183-28"><a href="21-cartography_V2.html#cb183-28"></a>        <span class="dt">nbreaks =</span> nbc,</span>
-<span id="cb183-29"><a href="21-cartography_V2.html#cb183-29"></a>        <span class="dt">leg_title =</span> myleg)</span>
-<span id="cb183-30"><a href="21-cartography_V2.html#cb183-30"></a> </span>
-<span id="cb183-31"><a href="21-cartography_V2.html#cb183-31"></a> <span class="kw">mf_layout</span>(<span class="dt">title =</span> titre, </span>
-<span id="cb183-32"><a href="21-cartography_V2.html#cb183-32"></a>           <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb183-33"><a href="21-cartography_V2.html#cb183-33"></a>          <span class="dt">credits =</span><span class="st">&quot;INSEE, RP 2017, fichiers détail&quot;</span>)</span>
-<span id="cb183-34"><a href="21-cartography_V2.html#cb183-34"></a></span>
-<span id="cb183-35"><a href="21-cartography_V2.html#cb183-35"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="21-cartography_V2.html#cb206-1"></a>map_pct_iris &lt;-<span class="st"> </span><span class="cf">function</span> (  data,</span>
+<span id="cb206-2"><a href="21-cartography_V2.html#cb206-2"></a>                            map,</span>
+<span id="cb206-3"><a href="21-cartography_V2.html#cb206-3"></a>                            listcom,</span>
+<span id="cb206-4"><a href="21-cartography_V2.html#cb206-4"></a>                            menag,</span>
+<span id="cb206-5"><a href="21-cartography_V2.html#cb206-5"></a>                            var,</span>
+<span id="cb206-6"><a href="21-cartography_V2.html#cb206-6"></a>                            mod,</span>
+<span id="cb206-7"><a href="21-cartography_V2.html#cb206-7"></a>                            titre)</span>
+<span id="cb206-8"><a href="21-cartography_V2.html#cb206-8"></a></span>
+<span id="cb206-9"><a href="21-cartography_V2.html#cb206-9"></a>{</span>
+<span id="cb206-10"><a href="21-cartography_V2.html#cb206-10"></a>  </span>
+<span id="cb206-11"><a href="21-cartography_V2.html#cb206-11"></a> mymap&lt;-<span class="kw">tab_cont_iris</span>(data,map,listcom,menag,{{var}})</span>
+<span id="cb206-12"><a href="21-cartography_V2.html#cb206-12"></a> </span>
+<span id="cb206-13"><a href="21-cartography_V2.html#cb206-13"></a> myvar &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pct_&quot;</span>,mod, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb206-14"><a href="21-cartography_V2.html#cb206-14"></a> </span>
+<span id="cb206-15"><a href="21-cartography_V2.html#cb206-15"></a> <span class="cf">if</span> (menag<span class="op">==</span><span class="ot">FALSE</span>) {myleg =<span class="st"> &quot;% des habitants&quot;</span>} <span class="cf">else</span></span>
+<span id="cb206-16"><a href="21-cartography_V2.html#cb206-16"></a> {myleg =<span class="st"> &quot;% des ménages&quot;</span>}</span>
+<span id="cb206-17"><a href="21-cartography_V2.html#cb206-17"></a> </span>
+<span id="cb206-18"><a href="21-cartography_V2.html#cb206-18"></a></span>
+<span id="cb206-19"><a href="21-cartography_V2.html#cb206-19"></a> </span>
+<span id="cb206-20"><a href="21-cartography_V2.html#cb206-20"></a>huntsberger &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">round</span>(<span class="dv">1</span><span class="op">+</span>(<span class="dv">10</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span><span class="kw">log10</span>(x))}</span>
+<span id="cb206-21"><a href="21-cartography_V2.html#cb206-21"></a>nbc&lt;-<span class="kw">huntsberger</span>(<span class="kw">nrow</span>(mymap))</span>
+<span id="cb206-22"><a href="21-cartography_V2.html#cb206-22"></a></span>
+<span id="cb206-23"><a href="21-cartography_V2.html#cb206-23"></a></span>
+<span id="cb206-24"><a href="21-cartography_V2.html#cb206-24"></a> </span>
+<span id="cb206-25"><a href="21-cartography_V2.html#cb206-25"></a> <span class="kw">mf_map</span>(<span class="dt">x =</span> mymap,</span>
+<span id="cb206-26"><a href="21-cartography_V2.html#cb206-26"></a>        <span class="dt">var =</span> myvar,</span>
+<span id="cb206-27"><a href="21-cartography_V2.html#cb206-27"></a>        <span class="dt">type =</span> <span class="st">&quot;choro&quot;</span>,</span>
+<span id="cb206-28"><a href="21-cartography_V2.html#cb206-28"></a>        <span class="dt">nbreaks =</span> nbc,</span>
+<span id="cb206-29"><a href="21-cartography_V2.html#cb206-29"></a>        <span class="dt">leg_title =</span> myleg)</span>
+<span id="cb206-30"><a href="21-cartography_V2.html#cb206-30"></a> </span>
+<span id="cb206-31"><a href="21-cartography_V2.html#cb206-31"></a> <span class="kw">mf_layout</span>(<span class="dt">title =</span> titre, </span>
+<span id="cb206-32"><a href="21-cartography_V2.html#cb206-32"></a>           <span class="dt">frame =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb206-33"><a href="21-cartography_V2.html#cb206-33"></a>          <span class="dt">credits =</span><span class="st">&quot;INSEE, RP 2017, fichiers détail&quot;</span>)</span>
+<span id="cb206-34"><a href="21-cartography_V2.html#cb206-34"></a></span>
+<span id="cb206-35"><a href="21-cartography_V2.html#cb206-35"></a>}</span></code></pre></div>
 <p>On teste la fonction sur les ménages ayant plus de trois voitures à Sucy-en-Brie</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="21-cartography_V2.html#cb184-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb184-2"><a href="21-cartography_V2.html#cb184-2"></a>             <span class="dt">map=</span> map_iris,</span>
-<span id="cb184-3"><a href="21-cartography_V2.html#cb184-3"></a>               <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>,</span>
-<span id="cb184-4"><a href="21-cartography_V2.html#cb184-4"></a>               <span class="dt">menag =</span> <span class="st">&quot;1&quot;</span>,</span>
-<span id="cb184-5"><a href="21-cartography_V2.html#cb184-5"></a>               <span class="dt">var =</span> VOIT,</span>
-<span id="cb184-6"><a href="21-cartography_V2.html#cb184-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
-<span id="cb184-7"><a href="21-cartography_V2.html#cb184-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="21-cartography_V2.html#cb207-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb207-2"><a href="21-cartography_V2.html#cb207-2"></a>             <span class="dt">map=</span> map_iris,</span>
+<span id="cb207-3"><a href="21-cartography_V2.html#cb207-3"></a>               <span class="dt">listcom =</span> <span class="st">&quot;94071&quot;</span>,</span>
+<span id="cb207-4"><a href="21-cartography_V2.html#cb207-4"></a>               <span class="dt">menag =</span> <span class="st">&quot;1&quot;</span>,</span>
+<span id="cb207-5"><a href="21-cartography_V2.html#cb207-5"></a>               <span class="dt">var =</span> VOIT,</span>
+<span id="cb207-6"><a href="21-cartography_V2.html#cb207-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
+<span id="cb207-7"><a href="21-cartography_V2.html#cb207-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-104-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-105-1.svg" width="672" /></p>
 <p>On vérifie qu’elle marche également sur un groupe de communes</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="21-cartography_V2.html#cb187-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb187-2"><a href="21-cartography_V2.html#cb187-2"></a>               <span class="dt">map =</span> map_iris,</span>
-<span id="cb187-3"><a href="21-cartography_V2.html#cb187-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
-<span id="cb187-4"><a href="21-cartography_V2.html#cb187-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
-<span id="cb187-5"><a href="21-cartography_V2.html#cb187-5"></a>               <span class="dt">var =</span> VOIT,</span>
-<span id="cb187-6"><a href="21-cartography_V2.html#cb187-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
-<span id="cb187-7"><a href="21-cartography_V2.html#cb187-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="21-cartography_V2.html#cb210-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb210-2"><a href="21-cartography_V2.html#cb210-2"></a>               <span class="dt">map =</span> map_iris,</span>
+<span id="cb210-3"><a href="21-cartography_V2.html#cb210-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
+<span id="cb210-4"><a href="21-cartography_V2.html#cb210-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
+<span id="cb210-5"><a href="21-cartography_V2.html#cb210-5"></a>               <span class="dt">var =</span> VOIT,</span>
+<span id="cb210-6"><a href="21-cartography_V2.html#cb210-6"></a>               <span class="dt">mod =</span> <span class="dv">3</span>,</span>
+<span id="cb210-7"><a href="21-cartography_V2.html#cb210-7"></a>               <span class="st">&quot;Ménages avec trois voitures ou plus&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-105-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-106-1.svg" width="672" /></p>
 <p>… ou bien sur une autre modalité d’une autre variable. Par exemple la distribution des ménages dont la personne de référence est ouvrier à Sucy-en-Brie</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="21-cartography_V2.html#cb190-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
-<span id="cb190-2"><a href="21-cartography_V2.html#cb190-2"></a>               <span class="dt">map =</span> map_iris,</span>
-<span id="cb190-3"><a href="21-cartography_V2.html#cb190-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
-<span id="cb190-4"><a href="21-cartography_V2.html#cb190-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
-<span id="cb190-5"><a href="21-cartography_V2.html#cb190-5"></a>               <span class="dt">var =</span> CS1,</span>
-<span id="cb190-6"><a href="21-cartography_V2.html#cb190-6"></a>               <span class="dt">mod =</span> <span class="dv">6</span>,</span>
-<span id="cb190-7"><a href="21-cartography_V2.html#cb190-7"></a>               <span class="st">&quot;Ménages ouvriers en 2017&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="21-cartography_V2.html#cb213-1"></a><span class="kw">map_pct_iris</span>(<span class="dt">data =</span> RP,</span>
+<span id="cb213-2"><a href="21-cartography_V2.html#cb213-2"></a>               <span class="dt">map =</span> map_iris,</span>
+<span id="cb213-3"><a href="21-cartography_V2.html#cb213-3"></a>               <span class="dt">listcom =</span> <span class="kw">c</span>(<span class="st">&quot;94071&quot;</span>,<span class="st">&quot;94068&quot;</span>,<span class="st">&quot;94011&quot;</span>,<span class="st">&quot;94055&quot;</span>, <span class="st">&quot;94019&quot;</span>),</span>
+<span id="cb213-4"><a href="21-cartography_V2.html#cb213-4"></a>               <span class="dt">menag=</span> <span class="ot">TRUE</span>,</span>
+<span id="cb213-5"><a href="21-cartography_V2.html#cb213-5"></a>               <span class="dt">var =</span> CS1,</span>
+<span id="cb213-6"><a href="21-cartography_V2.html#cb213-6"></a>               <span class="dt">mod =</span> <span class="dv">6</span>,</span>
+<span id="cb213-7"><a href="21-cartography_V2.html#cb213-7"></a>               <span class="st">&quot;Ménages ouvriers en 2017&quot;</span>)</span></code></pre></div>
 <pre><code>Joining, by = &quot;IRIS&quot;</code></pre>
 <pre><code>Joining, by = &quot;CODE_IRIS&quot;</code></pre>
-<p><img src="Projet-Data-Mining-2021_files/figure-html/unnamed-chunk-106-1.svg" width="672" /></p>
+<p><img src="Data-Mining-Project-2021_files/figure-html/unnamed-chunk-107-1.svg" width="672" /></p>
 </div>
 <div id="fonction-améliorée-1" class="section level4" number="3.4.3.3">
 <h4><span class="header-section-number">3.4.3.3</span> Fonction améliorée</h4>
@@ -1052,7 +1100,7 @@ code span.wa { color: #bf0303; } /* Warning */
         </div>
       </div>
 <a href="12-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="22-leaflet_mapview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="22-leaflet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

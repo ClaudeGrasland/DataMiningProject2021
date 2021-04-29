@@ -1,4 +1,4 @@
-# Analyse statistique I (C.S.) {#c12-statistics1}
+# Analyse statistique (CS) {#c12-statistics1}
 
 ```{r setup2, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

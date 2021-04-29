@@ -24,7 +24,7 @@
 <meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -62,17 +62,6 @@
 <script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
-<script src="libs/FlatGeoBuf-3.3.3/fgb.js"></script>
-<script src="libs/FlatGeoBuf-3.3.3/flatgeobuf-geojson.min.js"></script>
-<script src="libs/chromajs-2.1.0/chroma.min.js"></script>
-<link id="cartecom-1-attachment" rel="attachment" href="libs/cartecom-0.0.1/cartecom_layer.fgb"/>
-<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
-<script src="libs/HomeButton-0.0.1/home-button.js"></script>
-<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
-<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
-<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
-<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<link id="carteiris-NOM_COM-1-attachment" rel="attachment" href="libs/carteiris-NOM_COM-0.0.1/carteiris-NOM_COM_layer.fgb"/>
 
 
 <style type="text/css">
@@ -165,7 +154,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Données</a>
+<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Préparation des données (CG)</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="11-data.html"><a href="11-data.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.2" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-individus"><i class="fa fa-check"></i><b>1.2</b> Données statistiques sur les individus</a>
@@ -191,7 +180,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="11-data.html"><a href="11-data.html#bilan-et-nettoyage"><i class="fa fa-check"></i><b>1.5</b> Bilan et nettoyage</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique I (C.S.)</a>
+<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique (CS)</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="12-statistics.html"><a href="12-statistics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
 <ul>
@@ -209,7 +198,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.4.5" data-path="12-statistics.html"><a href="12-statistics.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Analyse cartographique avec mapsf (new)</a>
+<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Cartes statistiques avec mapsf (CG)</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
 <ul>
@@ -240,17 +229,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.4.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.4.4</b> Sauvegarde des fonctions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html"><i class="fa fa-check"></i><b>4</b> Cartes interactives</a>
+<li class="chapter" data-level="4" data-path="22-leaflet.html"><a href="22-leaflet.html"><i class="fa fa-check"></i><b>4</b> Cartes dynamiques (CG)</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#objectifs-2"><i class="fa fa-check"></i><b>4.1</b> Objectifs</a>
+<li class="chapter" data-level="" data-path="22-leaflet.html"><a href="22-leaflet.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-élémentaire"><i class="fa fa-check"></i><b>4.1</b> Une carte élémentaire</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#packages-utilisés-1"><i class="fa fa-check"></i><b>4.1.1</b> Packages utilisés</a></li>
-<li class="chapter" data-level="4.1.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#base-permanente-des-équipements"><i class="fa fa-check"></i><b>4.1.2</b> Base permanente des équipements</a></li>
-<li class="chapter" data-level="4.1.3" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#chargement-des-données"><i class="fa fa-check"></i><b>4.1.3</b> Chargement des données</a></li>
+<li class="chapter" data-level="4.1.1" data-path="22-leaflet.html"><a href="22-leaflet.html#lancement-avec-leaflet"><i class="fa fa-check"></i><b>4.1.1</b> Lancement avec <code>leaflet()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="22-leaflet.html"><a href="22-leaflet.html#remplissage-avec-addtiles"><i class="fa fa-check"></i><b>4.1.2</b> Remplissage avec <code>addTiles()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="22-leaflet.html"><a href="22-leaflet.html#calage-avec-setview"><i class="fa fa-check"></i><b>4.1.3</b> Calage avec <code>setView()</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="22-leaflet.html"><a href="22-leaflet.html#personalisation-avec-addprovidertiles"><i class="fa fa-check"></i><b>4.1.4</b> Personalisation avec <code>addProviderTiles()</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="22-leaflet.html"><a href="22-leaflet.html#affichage-dun-point-avec-addmarkers"><i class="fa fa-check"></i><b>4.1.5</b> Affichage d’un point avec <code>addMarkers()</code></a></li>
+<li class="chapter" data-level="4.1.6" data-path="22-leaflet.html"><a href="22-leaflet.html#ajout-dun-labelou-dun-popup"><i class="fa fa-check"></i><b>4.1.6</b> Ajout d’un <code>label</code>ou d’un <code>popup</code></a></li>
+<li class="chapter" data-level="4.1.7" data-path="22-leaflet.html"><a href="22-leaflet.html#amélioration-du-popup"><i class="fa fa-check"></i><b>4.1.7</b> Amélioration du <code>popup</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#cartographie-avec-mapview"><i class="fa fa-check"></i><b>4.2</b> Cartographie avec Mapview</a>
+<li class="chapter" data-level="4.2" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-statistique"><i class="fa fa-check"></i><b>4.2</b> Une carte statistique</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="22-leaflet_mapview.html"><a href="22-leaflet_mapview.html#construction-dune-carte-de-repérage"><i class="fa fa-check"></i><b>4.2.1</b> Construction d’une carte de repérage</a></li>
+<li class="chapter" data-level="4.2.1" data-path="22-leaflet.html"><a href="22-leaflet.html#préparation-des-données-1"><i class="fa fa-check"></i><b>4.2.1</b> Préparation des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="22-leaflet.html"><a href="22-leaflet.html#contours-des-iris-et-communes-avec-addpolygons"><i class="fa fa-check"></i><b>4.2.2</b> Contours des iris et communes avec <code>addPolygons()</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-choroplèthes-avec-addpolygon-et-colorbin"><i class="fa fa-check"></i><b>4.2.3</b> Cartes choroplèthes avec <code>addPolygon()</code> et <code>colorBin()</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-de-stock-avec-addcirclemarkers"><i class="fa fa-check"></i><b>4.2.4</b> Cartes de stock avec <code>addCircleMarkers()</code></a></li>
+<li class="chapter" data-level="4.2.5" data-path="22-leaflet.html"><a href="22-leaflet.html#finition-avec-un-popup-et-highlightoptions"><i class="fa fa-check"></i><b>4.2.5</b> Finition avec un <code>popup</code> et <code>highlightOptions()</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -274,7 +272,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <h1 class="title">Projet DATA MINING 2021</h1>
 <h2 class="subtitle"><em>Master Meci - Parcours Data - Options PISE et CCESE</em></h2>
 <p class="author"><em>C. Grasland et C. Signoretto</em></p>
-<p class="date"><em>2021-04-12</em></p>
+<p class="date"><em>2021-04-29</em></p>
 </div>
 
 <script src="js/tidyverse.js"></script>

@@ -1,11 +1,11 @@
-# Analyse cartographique avec mapsf (new) {#c21-mapsf}
+# Cartes statistiques avec mapsf (CG) {#c21-mapsf}
 
 
 ## Introduction
 
 L'objectif de cette section est 
 
-1. d'apprendre à réaliser des cartographies statiques d'indicateurs relatifs aux unités spatiales à différentes échelles à l'aide du package `cartography`.
+1. d'apprendre à réaliser des cartographies statiques d'indicateurs relatifs aux unités spatiales à différentes échelles à l'aide du package `mapsf`.
 2. de créer des fonctions permetant d'automatiser la tâche de cartographie à l'échelle des communes
 
 
@@ -669,6 +669,38 @@ SEXE_IRIS_men <- tab_cont_iris(RP,map_iris,"94071",menag=TRUE,SEXE)
 head(SEXE_IRIS_men,3)
 ```
 
+#### Préparation de fichiers sur une zone d'étude
+
+On prépare une séruie de fichiers pour étudier un ensemble de 5 communes
+
+```{r}
+sel <- c("94071","94068","94011","94055", "94019")
+
+# Selection des logements ordinaire
+don <-RP %>% filter(LPRM !="Z")
+
+# Equipement automobile des ménages
+map<-tab_cont_iris(don, map_iris,sel,TRUE,VOIT)
+saveRDS(mapauto,"data/sel_map_men_auto.Rdata")
+
+# LOGEMENT EN hlm
+don2<-don %>% filter(HLML !="Z")
+map<-tab_cont_iris(don2, map_iris,sel,TRUE,HLML)
+saveRDS(map,"data/sel_map_pop_hlm.Rdata")
+
+# Catégorie social des actifs
+don2<-don %>% filter(CS1 !="Z")
+map<-tab_cont_iris(don2, map_iris,sel,TRUE,CS1)
+saveRDS(map,"data/sel_map_pop_csp.Rdata")
+
+# Mode de transport des actifs
+don2<-don %>% filter(TRANS !="Z")
+map<-tab_cont_iris(don2, map_iris,sel,FALSE,TRANS)
+saveRDS(map,"data/sel_map_act_csp.Rdata")
+
+
+```
+
 
 ### fonction map_count_iris 
 
@@ -684,6 +716,15 @@ On prend comme entrée un tableau de contingence spatial et on décide de repré
 ```{r}
 map<-tab_cont_iris(RP, map_iris,"94071",TRUE,VOIT)
 
+map<-tab_cont_iris(RP, map_iris,c("94071","94068","94011","94055", "94019"),TRUE,VOIT)
+saveRDS(mapauto,"data/sel_map_men_auto.Rdata")
+
+map<-tab_cont_iris(RP, map_iris,c("94071","94068","94011","94055", "94019"),TRUE,CS1)
+saveRDS(map,"data/sel_map_men_csp.Rdata")
+
+don<-RP %>% filter(TRANS !="Z")
+map<-tab_cont_iris(don, map_iris,c("94071","94068","94011","94055", "94019"),FALSE,TRANS)
+saveRDS(map,"data/sel_map_act_csp.Rdata")
 
 
 ```

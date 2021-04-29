@@ -1,4 +1,4 @@
-# Données {#c11-data}
+# Préparation des données (CG) {#c11-data}
 
 ```{r}
 library(knitr)
