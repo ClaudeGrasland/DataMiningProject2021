@@ -1,0 +1,195 @@
+# Modèle de données (CG) {#c31-datamodel}
+
+
+```{r , echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+library(leaflet)
+library(htmlwidgets)
+library(htmltools)
+library(dplyr)
+library(sf)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=FALSE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               options(scipen=999))
+opts_knit$set(width=75)
+```
+
+<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
+Ce cours propose de construire une structure de donnée permettant l'analyse à la fois sociologique et géographique des données individuelles qui ont fait l'objet des chapitres précédent. Ce modèle de donnée servira par la suite au développement d'applications shiny. 
+<br>
+**Claude Grasland** (Professeur à l'Université de Paris)
+</p>
+<br>
+
+
+## Objectif {-}
+
+L'objectif de ce chapitre est de construire une structure de données croisant une dimension spatiale $i$ et une dimension sociale $j$ à partir d'un comptage du nombre d'individus ou du nombre de ménages $X_{ij}$ localisés dans l'unité spatiale $i$ et ayant l'attribut sociologique $j$. 
+
+La structure de donnée devra permettre la représentation cartographique des résultats (ajout de la geométrie des unités spatiales $i$).
+
+Elle devra également permettre d'agréger les unités spatiale et sociales élémentaires vers des niveaux d'agrégation supérieur qu'on notera $i2,i3, ...$ pour les niveaux géographiques et $j2,j3,...$ pour les niveaux sociologiques. 
+
+L'ensemble des données utiles devra être stockée dans un objet unique, si possible de petite taille,  sous la forme d'une liste. 
+
+Nous allons prendre comme exemple l'analyse de la distribution des CSP (variable CS1) par IRIS dans le Val-de-Marne lors du RP de 2017 pour les personnes âgées de 18 ans et plus
+
+
+
+##  tableau de contingence `tab`
+
+Notre tableau de contingence ne contiendra que trois variables 
+
+- i : code géographique de l'IRIS
+- j : code socioloqiue de la CSP
+- Pij : effectif de personnes appartenant à la CSP i et résidant dans l'unité spatiale j
+
+
+La création sera effectuée par le programme suivant où l'on retire les personnes résidant dans des communes non découpées en IRIS.
+
+```{r}
+# Sélection des individus de 18 ans et +
+ind18 <- readRDS("data/indiv2017.Rdata") %>% 
+         filter(as.numeric(AGEREV)>=18) %>%
+         filter(IRIS != "ZZZZZZZZZ")
+
+# Création du tableau de contingence
+tab <- ind18 %>% select(i =IRIS,
+                        j = CS1,
+                        Xij = IPONDI) %>%
+                  group_by(i,j) %>%
+                  summarise(Xij = round(sum(Xij),0))
+
+# Visualisation du résultat
+kable(head(tab))
+
+```
+
+## Attributs sociologiques `soc`
+
+Nous avons besoin d'ajouter des renseignements sur les modalités sociologiques $j$ que l'on va chercher dans le fichier des métadonnées. 
+
+- j : code de la modalité
+- var_j : nom de la variable
+- lab_j : label de la modalité j
+
+
+```{r}
+# Chargement du fichier des méta données 
+meta <- readRDS("data/indiv_2017_meta.Rdata")
+
+# Identification des modalités à extraire
+listmod <- unique(tab$j)
+
+# extraction des informations
+soc<-meta %>% filter(COD_VAR == "CS1" ) %>%
+              filter(COD_MOD %in% listmod) %>%
+              select(j = COD_MOD,
+                     var_j = LIB_VAR,
+                     lab_j = LIB_MOD)
+
+kable(soc)
+
+```
+
+On peut ajouter à ce tableau un niveau d'agrégation supérieur en ajoutant une liste de variables :
+
+- j2 : code d'agrégation
+- var_j2 :  nom de la variable agrégée
+- lab_j2 : label des modalités de la variable agrégée
+
+```{r}
+soc$j2 <-as.factor(soc$j)
+levels(soc$j2) <-c("B","A","A","B","C","C",NA,NA)
+soc$var_j2 <- "CSP des actifs en 3 classes"
+soc$lab_2 <-soc$j2
+levels(soc$lab_2) <-list("Haut" = "A","Moyen" = "B","Bas" = "C")
+kable(soc)
+```
+
+
+## Attributs géographiques `geo`
+
+
+Les attributs géographiques comportent le nom des unités spatiales observées, le nom  et le code des unités spatiales de nbiveau supérieur (s'il y en a) et enfin la géométrie des unités spatiales. Soit la structure :
+
+- i : code de l'unité géographique
+- lab_i : nom de l'unité géographique
+- i2 : code de l'unité géographique  englobante (facultatif)
+- lab_i2 : nom de l'unité géographique englobante (facultatif)
+- lat : latitude du centroïde de l'unité géographique
+- lng : longitude du centroïde de l'unité géographique
+- geometry : contours de l'unité géographique s'il s'agit d'une surface en latitude longitude (WGS94 soit crs = 4326)
+
+
+```{r}
+# Chargement du fonds de carte et projection en WGS94
+map <- readRDS("data/map_iris.Rdata") %>% st_as_sf() %>% st_transform (crs=4326)
+
+
+# Définition de la liste des unités spatiales utiles
+listgeo <- unique(tab$i)
+
+# Extraction et recodage des informations utiles
+geo <-map %>% select(i = CODE_IRIS,
+                     lab_i = NOM_IRIS,
+                     i2 = INSEE_COM,
+                     lab_i2 = NOM_COM,
+                     geometry)
+
+# Ajout des centroïdes
+coo <- st_coordinates(st_centroid(geo))
+geo$lng <-coo[,1]
+geo$lat <-coo[,2]
+
+kable(head(geo))
+
+
+```
+
+
+## Assemblage et sauvegarde
+
+Il peut être intéressant d'ajouter à la liste des objets quelques variables supplémentaires comme la source, l'auteur et un bref résumé du contenu du tableau :
+
+```{r}
+source = c("Source : INSEE - RP 2017 - Fichier individu & IGN - Geofla - IRIS")
+author = "Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr"
+info = "Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur les CSP des individus résidant dans le Val de Marne à l'échelon des IRIS lors du RP 2017"
+```
+
+
+Pour éviter la prolifération des fichiers, on va assembler toutes nos composantes dans un unique objet servant de base de données à l'aide de la fonction `list()` :
+
+```{r}
+base = list("tab" = tab,
+            "soc" = soc,
+            "geo" = geo,
+            "source" = source,
+            "author" = author,
+            "info" = info)
+
+saveRDS(base,"data/VDM_RP2017_CS1_IRIS.Rdata")
+```
+
+
+### Bilan
+
+Notre base de donnée tient désormais dans un seul fichier qui ne pèse que 382 Ko et pourra être facilement mobilisé dans toute une série d'applications de visualisation statistique ou cartographique interactives. 
+
+On peut évidemment créer autant de bases que l'on veut selon le même format, ce qui permettra de standardiser les procédures d'exploitation ultérieures. 
+
+
+
+
+
+

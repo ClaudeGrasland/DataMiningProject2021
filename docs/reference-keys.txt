@@ -91,3 +91,9 @@ contours-des-iris-et-communes-avec-addpolygons
 cartes-choroplèthes-avec-addpolygon-et-colorbin
 cartes-de-stock-avec-addcirclemarkers
 finition-avec-un-popup-et-highlightoptions
+c31-datamodel
+tableau-de-contingence-tab
+attributs-sociologiques-soc
+attributs-géographiques-geo
+assemblage-et-sauvegarde
+bilan
