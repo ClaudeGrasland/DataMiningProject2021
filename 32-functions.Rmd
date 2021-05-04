@@ -41,9 +41,9 @@ Les fonctions doivent pouvoir s'applique à n'importe quelle base de données su
 - anc94 : base de données des ménages et par IRIS en fonction de l'ancienneté d'installation dans le logement au RP2017, contenue dans le fichier *VDM_RP2017_ANEMR_IRIS_MEN.Rdata*
 
 ```{r}
-csp94 <- readRDS("data/VDM_RP2017_CS1_IRIS_POP.Rdata")
-tra94 <- readRDS("data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
-anc94 <- readRDS("data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
+csp94 <- readRDS("myproject/data/VDM_RP2017_CS1_IRIS_POP.rds")
+tra94 <- readRDS("myproject/data/VDM_RP2017_TRANS_IRIS_ACT.rds")
+anc94 <- readRDS("myproject/data/VDM_RP2017_ANEMR_IRIS_MEN.rds")
 
 ```
 
@@ -233,7 +233,7 @@ Les fonctions de normalisation sont destinées à transformer les données absol
 Cette fonction permet d'exprimer les modalités de la variable en % du total des unités géographiques. Elle va essentiellement modifier le fichier `tab`auquel on va adjoindre deux colonnes :
 
 - Xi = effectif total de l'unité spatiale
-- Pj_i = Xij/Xi = probabilité de i sachant j 
+- Pj_i = Xij/Xi = proportion de i dans j
 
 
 ```{r}
@@ -254,21 +254,53 @@ csp94_geo <- base_norm_geo(csp94)
 head(csp94_geo$tab)
 ```
 
-### Normalisation sociologique`base_norm_soc()`
+### Normalisation sociologique `base_norm_soc()`
 
 Cette fonction permet d'exprimer les modalités de la variable en % du total des catagories sociales. Elle va donc également modifier le fichier `tab` et lui adjoindre deux autres colonnes :
 
 - Xj = effectif total de la catégorie
-- Pi_j = Xij/Xi = probabilité de i sachant j 
+- Pi_j = Xij/Xi = proportion de j dans i
 
 ```{r}
 base_norm_soc <- function(base = base) {
         b <- base
        tab_j <- b$tab %>% group_by(j) %>%
                             summarize(Xj = sum(Xij))
-        b$tab <-b$tab %>% left_join(tab_j) %>% mutate(Pi_j = Xij/Xi)
+        b$tab <-b$tab %>% left_join(tab_j) %>% mutate(Pi_j = Xij/Xj)
         return(b)
 }
+```
+
+par exemple :
+
+```{r}
+csp94_soc <- base_norm_soc(csp94)
+kable(head(csp94_soc$tab))
+```
+
+
+### Normalisation statistique `base_norm_stat()`
+
+Si on veut effectuer une analyse des anomalies statistiques à l'intérieur du tableau, on effectue la double normalisation géographique et sociologique puis on calcule la valeur théorique  `E_ij `sous hypothèse d'indépendance des variables sociologiques et géographiques. On en déduit le résidu `R_ij` qui mesure les sur et sous-représentation des individus ainsi que le chi-2 correspondant `K2_ij`. 
+
+
+```{r}
+base_norm_stat <- function(base=base) {
+  b<-base
+  b<-base_norm_geo(b)
+  b<-base_norm_soc(b)
+  b$tab<-b$tab %>% mutate(Eij = Xi * Xj/sum(Xj),
+                  Rij = Xij-Eij,
+                  K2ij = (Rij**2)/Eij)
+  return(b)
+}
+```
+
+par exemple :
+
+```{r}
+csp94_stat <- base_norm_stat(csp94)
+kable(head(csp94_stat$tab))
 ```
 
 

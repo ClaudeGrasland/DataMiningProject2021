@@ -182,7 +182,7 @@ base = list("tab" = tab,
             "author" = author,
             "info" = info)
 
-saveRDS(base,"data/VDM_RP2017_CS1_IRIS_POP.Rdata")
+saveRDS(base,"myproject/data/VDM_RP2017_CS1_IRIS_POP.rds")
 ```
 
 
@@ -274,7 +274,7 @@ base = list("tab" = tab,
             "author" = author,
             "info" = info)
 
-saveRDS(base,"data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
+saveRDS(base,"myproject/data/VDM_RP2017_TRANS_IRIS_ACT.rds")
 
 
 ```
@@ -362,7 +362,7 @@ base = list("tab" = tab,
             "author" = author,
             "info" = info)
 
-saveRDS(base,"data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
+saveRDS(base,"myproject/data/VDM_RP2017_ANEMR_IRIS_MEN.rds")
 
 
 ```

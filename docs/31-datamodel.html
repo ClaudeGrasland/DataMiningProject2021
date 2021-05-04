@@ -266,7 +266,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.3" data-path="32-functions.html"><a href="32-functions.html#fonctions-de-normalisation"><i class="fa fa-check"></i><b>6.3</b> Fonctions de normalisation</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="32-functions.html"><a href="32-functions.html#normalisation-géographique-base_norm_geo"><i class="fa fa-check"></i><b>6.3.1</b> Normalisation géographique <code>base_norm_geo()</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="32-functions.html"><a href="32-functions.html#normalisation-sociologiquebase_norm_soc"><i class="fa fa-check"></i><b>6.3.2</b> Normalisation sociologique<code>base_norm_soc()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="32-functions.html"><a href="32-functions.html#normalisation-sociologique-base_norm_soc"><i class="fa fa-check"></i><b>6.3.2</b> Normalisation sociologique <code>base_norm_soc()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="32-functions.html"><a href="32-functions.html#normalisation-statistique-base_norm_stat"><i class="fa fa-check"></i><b>6.3.3</b> Normalisation statistique <code>base_norm_stat()</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -996,7 +997,7 @@ Communes
 <span id="cb7-6"><a href="31-datamodel.html#cb7-6"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
 <span id="cb7-7"><a href="31-datamodel.html#cb7-7"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
 <span id="cb7-8"><a href="31-datamodel.html#cb7-8"></a></span>
-<span id="cb7-9"><a href="31-datamodel.html#cb7-9"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_CS1_IRIS_POP.Rdata&quot;</span>)</span></code></pre></div>
+<span id="cb7-9"><a href="31-datamodel.html#cb7-9"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;myproject/data/VDM_RP2017_CS1_IRIS_POP.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="prolongements" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Prolongements</h2>
@@ -1498,7 +1499,7 @@ Communes
 <span id="cb13-12"><a href="31-datamodel.html#cb13-12"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
 <span id="cb13-13"><a href="31-datamodel.html#cb13-13"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
 <span id="cb13-14"><a href="31-datamodel.html#cb13-14"></a></span>
-<span id="cb13-15"><a href="31-datamodel.html#cb13-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_TRANS_IRIS_ACT.Rdata&quot;</span>)</span></code></pre></div>
+<span id="cb13-15"><a href="31-datamodel.html#cb13-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;myproject/data/VDM_RP2017_TRANS_IRIS_ACT.rds&quot;</span>)</span></code></pre></div>
 <p>Puis un fichier de l’ancienneté d’installation des ménages dans leur logement actuel, ce qui donnera une idée transversale de leur mobilité.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="31-datamodel.html#cb14-1"></a><span class="co"># Sélection des ménages ordinaires</span></span>
 <span id="cb14-2"><a href="31-datamodel.html#cb14-2"></a>mob &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -2096,7 +2097,7 @@ Communes
 <span id="cb19-12"><a href="31-datamodel.html#cb19-12"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
 <span id="cb19-13"><a href="31-datamodel.html#cb19-13"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
 <span id="cb19-14"><a href="31-datamodel.html#cb19-14"></a></span>
-<span id="cb19-15"><a href="31-datamodel.html#cb19-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata&quot;</span>)</span></code></pre></div>
+<span id="cb19-15"><a href="31-datamodel.html#cb19-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;myproject/data/VDM_RP2017_ANEMR_IRIS_MEN.rds&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

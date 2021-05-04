@@ -1,0 +1,37 @@
+---
+title: "Demo"
+author: "Claude Grasland"
+date: "5/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+
+## Chargement des fonctions
+
+```{r}
+source("pgm/base_functions.R")
+```
+
+
+## Chargement des bases
+
+```{r}
+csp94<-readRDS("data/VDM_RP2017_CS1_IRIS_POP.Rdata")
+anc94<-readRDS("data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
+tra94<-readRDS("data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
+```
+
+## Exemple de réalisation d'un histogramme du % d'ouvriers par commune
+
+
+```{r}
+base <-base_norm_geo(csp94) 
+tab<-base$tab %>% filter(j=="6") %>% mutate(pct = Pj_i*100)
+  ggplot(tab, aes(x=pct)) + geom_histogram()
+```
+
