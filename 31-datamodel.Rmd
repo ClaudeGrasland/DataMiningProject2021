@@ -144,7 +144,9 @@ geo <-map %>% select(i = CODE_IRIS,
                      lab_i = NOM_IRIS,
                      i2 = INSEE_COM,
                      lab_i2 = NOM_COM,
-                     geometry)
+                     geometry) %>%
+              mutate(var_i = "quartier IRIS",
+                     var_i2 = "Communes")
 
 # Ajout des centroïdes
 coo <- st_coordinates(st_centroid(geo))
@@ -247,7 +249,9 @@ geo <-map %>% select(i = CODE_IRIS,
                      lab_i = NOM_IRIS,
                      i2 = INSEE_COM,
                      lab_i2 = NOM_COM,
-                     geometry)
+                     geometry) %>%
+              mutate(var_i = "quartier IRIS",
+                     var_i2 = "Communes")
 
 # Ajout des centroïdes
 coo <- st_coordinates(st_centroid(geo))
@@ -333,7 +337,9 @@ geo <-map %>% select(i = CODE_IRIS,
                      lab_i = NOM_IRIS,
                      i2 = INSEE_COM,
                      lab_i2 = NOM_COM,
-                     geometry)
+                     geometry) %>%
+              mutate(var_i = "quartier IRIS",
+                     var_i2 = "Communes")
 
 # Ajout des centroïdes
 coo <- st_coordinates(st_centroid(geo))
