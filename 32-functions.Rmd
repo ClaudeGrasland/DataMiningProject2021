@@ -45,7 +45,6 @@ csp94 <- readRDS("data/VDM_RP2017_CS1_IRIS_POP.Rdata")
 tra94 <- readRDS("data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
 anc94 <- readRDS("data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
 
-x<-csp94$geo
 ```
 
 
@@ -233,8 +232,8 @@ Les fonctions de normalisation sont destinées à transformer les données absol
 
 Cette fonction permet d'exprimer les modalités de la variable en % du total des unités géographiques. Elle va essentiellement modifier le fichier `tab`auquel on va adjoindre deux colonnes :
 
-Xi = effectif total de l'unité spatiale
-Pji = Xi/Xij = probabilité de j sachant i 
+- Xi = effectif total de l'unité spatiale
+- Pj_i = Xij/Xi = probabilité de i sachant j 
 
 
 ```{r}
@@ -242,13 +241,36 @@ base_norm_geo <- function(base = base) {
         b <- base
        tab_i <- b$tab %>% group_by(i) %>%
                             summarize(Xi = sum(Xij))
-        b$tab <-b$tab %>% left_join(tab_i) %>% mutate(Pji = Xij/Xi)
+        b$tab <-b$tab %>% left_join(tab_i) %>% mutate(Pj_i = Xij/Xi)
         return(b)
 }
 ```
 
 
 Par exemple :
+
+```{r}
+csp94_geo <- base_norm_geo(csp94)
+head(csp94_geo$tab)
+```
+
+### Normalisation sociologique`base_norm_soc()`
+
+Cette fonction permet d'exprimer les modalités de la variable en % du total des catagories sociales. Elle va donc également modifier le fichier `tab` et lui adjoindre deux autres colonnes :
+
+- Xj = effectif total de la catégorie
+- Pi_j = Xij/Xi = probabilité de i sachant j 
+
+```{r}
+base_norm_soc <- function(base = base) {
+        b <- base
+       tab_j <- b$tab %>% group_by(j) %>%
+                            summarize(Xj = sum(Xij))
+        b$tab <-b$tab %>% left_join(tab_j) %>% mutate(Pi_j = Xij/Xi)
+        return(b)
+}
+```
+
 
 
 

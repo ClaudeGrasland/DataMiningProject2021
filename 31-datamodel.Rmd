@@ -275,13 +275,13 @@ saveRDS(base,"data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
 
 ```
 
-Puis un fichier  de l'ancienneté d'installation des ménages dans leur logemen actuel, ce qui donnera une idée transversale de leur mobilité.
+Puis un fichier  de l'ancienneté d'installation des ménages dans leur logement actuel, ce qui donnera une idée transversale de leur mobilité.
 
 ```{r}
 # Sélection des ménages ordinaires
 mob <- readRDS("data/indiv2017.Rdata") %>% 
          filter(LPRM=="1") %>% # sélectionne les ménages ordinaires
-         filter(ANEMR!="ZZ") %>% # élimineles personnes non concernées 
+         filter(ANEMR!="ZZ") %>% # élimine les personnes non concernées 
          filter(IRIS != "ZZZZZZZZZ")
 
 # ----------------------------------------
