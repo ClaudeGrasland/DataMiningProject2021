@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 6 Fonctions | Projet DATA MINING 2021</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 6 Fonctions | Projet DATA MINING 2021" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 6 Fonctions | Projet DATA MINING 2021" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="C. Grasland et C. Signoretto" />
+
+
+<meta name="date" content="2021-05-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="31-datamodel.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining 2021  <em>C. Grasland  & C.Signoretto</em></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="11-data.html"><a href="11-data.html"><i class="fa fa-check"></i><b>1</b> Préparation des données (CG)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="11-data.html"><a href="11-data.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-individus"><i class="fa fa-check"></i><b>1.2</b> Données statistiques sur les individus</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="11-data.html"><a href="11-data.html#etape-1-téléchargement-des-données-et-stockage-temporaire"><i class="fa fa-check"></i><b>1.2.1</b> Etape 1 : téléchargement des données et stockage temporaire</a></li>
+<li class="chapter" data-level="1.2.2" data-path="11-data.html"><a href="11-data.html#etape-2-transformation-des-données-au-format-r"><i class="fa fa-check"></i><b>1.2.2</b> Etape 2 : Transformation des données au format R</a></li>
+<li class="chapter" data-level="1.2.3" data-path="11-data.html"><a href="11-data.html#etape-3-sélection-des-données-utiles-et-sauvegarde-au-format-.rdata"><i class="fa fa-check"></i><b>1.2.3</b> Etape 3 : Sélection des données utiles et sauvegarde au format .Rdata</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="11-data.html"><a href="11-data.html#données-statistiques-sur-les-logements-ordinaires"><i class="fa fa-check"></i><b>1.3</b> Données statistiques sur les logements ordinaires</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="11-data.html"><a href="11-data.html#etape-1-récupération-des-fichiers"><i class="fa fa-check"></i><b>1.3.1</b> Etape 1 : récupération des fichiers</a></li>
+<li class="chapter" data-level="1.3.2" data-path="11-data.html"><a href="11-data.html#etape-2-transformation-des-données-au-format-r-1"><i class="fa fa-check"></i><b>1.3.2</b> Etape 2 : Transformation des données au format R</a></li>
+<li class="chapter" data-level="1.3.3" data-path="11-data.html"><a href="11-data.html#etape-3-sélection-des-données-utiles-et-sauvegarde-au-format-.rdata-1"><i class="fa fa-check"></i><b>1.3.3</b> Etape 3 : Sélection des données utiles et sauvegarde au format .Rdata</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="11-data.html"><a href="11-data.html#données-géométriques"><i class="fa fa-check"></i><b>1.4</b> Données géométriques</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="11-data.html"><a href="11-data.html#etape-1-récupération-du-fonds-iris-au-format-shapefile"><i class="fa fa-check"></i><b>1.4.1</b> Etape 1 : récupération du fonds IRIS au format shapefile</a></li>
+<li class="chapter" data-level="1.4.2" data-path="11-data.html"><a href="11-data.html#etape-2-importation-et-transformation-au-format-sf"><i class="fa fa-check"></i><b>1.4.2</b> Etape 2 : Importation et transformation au format sf</a></li>
+<li class="chapter" data-level="1.4.3" data-path="11-data.html"><a href="11-data.html#etape-3-extraction-des-iris-de-la-zone-détude"><i class="fa fa-check"></i><b>1.4.3</b> Etape 3 : Extraction des IRIS de la zone d’étude</a></li>
+<li class="chapter" data-level="1.4.4" data-path="11-data.html"><a href="11-data.html#etape-4-création-dun-fonds-de-carte-des-communes"><i class="fa fa-check"></i><b>1.4.4</b> Etape 4 : création d’un fonds de carte des communes</a></li>
+<li class="chapter" data-level="1.4.5" data-path="11-data.html"><a href="11-data.html#etape-5-création-dun-fonds-de-carte-par-département"><i class="fa fa-check"></i><b>1.4.5</b> Etape 5 : création d’un fonds de carte par département</a></li>
+<li class="chapter" data-level="1.4.6" data-path="11-data.html"><a href="11-data.html#etape-6-superposition-des-trois-fonds-de-carte"><i class="fa fa-check"></i><b>1.4.6</b> Etape 6: Superposition des trois fonds de carte</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="11-data.html"><a href="11-data.html#bilan-et-nettoyage"><i class="fa fa-check"></i><b>1.5</b> Bilan et nettoyage</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="12-statistics.html"><a href="12-statistics.html"><i class="fa fa-check"></i><b>2</b> Analyse statistique (CS)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="12-statistics.html"><a href="12-statistics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="12-statistics.html"><a href="12-statistics.html#les-données-du-recensement-de-la-population-rp"><i class="fa fa-check"></i><b>2.1.1</b> Les données du Recensement de la Population (RP)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="12-statistics.html"><a href="12-statistics.html#quelles-variables-sont-présentes-dans-les-données-quelle-spécificité"><i class="fa fa-check"></i><b>2.1.2</b> Quelles variables sont présentes dans les données ? Quelle spécificité ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="12-statistics.html"><a href="12-statistics.html#quelques-statistiques-sur-les-logements-et-ménages"><i class="fa fa-check"></i><b>2.2</b> Quelques statistiques sur les logements et ménages</a></li>
+<li class="chapter" data-level="2.3" data-path="12-statistics.html"><a href="12-statistics.html#quelles-caractéristiques-des-individus-résidant-dans-le-val-de-marne-en-2017"><i class="fa fa-check"></i><b>2.3</b> Quelles caractéristiques des individus résidant dans le Val de Marne en 2017 ?</a></li>
+<li class="chapter" data-level="2.4" data-path="12-statistics.html"><a href="12-statistics.html#la-création-de-fonctions"><i class="fa fa-check"></i><b>2.4</b> La création de fonctions</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-tableau"><i class="fa fa-check"></i><b>2.4.1</b> Création d’une fonction pour retourner un tableau</a></li>
+<li class="chapter" data-level="2.4.2" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-fonction-pour-retourner-un-graphique"><i class="fa fa-check"></i><b>2.4.2</b> Création d’une fonction pour retourner un graphique</a></li>
+<li class="chapter" data-level="2.4.3" data-path="12-statistics.html"><a href="12-statistics.html#création-dune-seule-fonction-comprenant-tableau-et-graphe"><i class="fa fa-check"></i><b>2.4.3</b> Création d’une seule fonction comprenant tableau et graphe</a></li>
+<li class="chapter" data-level="2.4.4" data-path="12-statistics.html"><a href="12-statistics.html#et-pour-distinguer-par-groupe-et-pour-avoir-des-moyennes"><i class="fa fa-check"></i><b>2.4.4</b> Et pour distinguer par groupe ? Et pour avoir des moyennes… ?</a></li>
+<li class="chapter" data-level="2.4.5" data-path="12-statistics.html"><a href="12-statistics.html#enregistrerstocker-ses-fonctions"><i class="fa fa-check"></i><b>2.4.5</b> Enregistrer/Stocker ses fonctions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html"><i class="fa fa-check"></i><b>3</b> Cartes statistiques avec mapsf (CG)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#packages-utilisés"><i class="fa fa-check"></i><b>3.1.1</b> Packages utilisés</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#préparation-des-données"><i class="fa fa-check"></i><b>3.2</b> Préparation des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#chargement-des-fichiers-de-référence"><i class="fa fa-check"></i><b>3.2.1</b> Chargement des fichiers de référence</a></li>
+<li class="chapter" data-level="3.2.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#choix-dun-indicateur"><i class="fa fa-check"></i><b>3.2.2</b> Choix d’un indicateur</a></li>
+<li class="chapter" data-level="3.2.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-du-tableau-de-contingence"><i class="fa fa-check"></i><b>3.2.3</b> Création du tableau de contingence</a></li>
+<li class="chapter" data-level="3.2.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-dun-tableau-de-pourcentages-en-ligne"><i class="fa fa-check"></i><b>3.2.4</b> Création d’un tableau de pourcentages en ligne</a></li>
+<li class="chapter" data-level="3.2.5" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#estimation-du-nombre-moyen-dautomobile-par-menages"><i class="fa fa-check"></i><b>3.2.5</b> Estimation du nombre moyen d’automobile par menages</a></li>
+<li class="chapter" data-level="3.2.6" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#analyse-statistique-des-vraiables"><i class="fa fa-check"></i><b>3.2.6</b> Analyse statistique des vraiables</a></li>
+<li class="chapter" data-level="3.2.7" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#jointure-avec-le-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.7</b> Jointure avec le fonds de carte</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#le-package-mapsf"><i class="fa fa-check"></i><b>3.3</b> Le package mapsf</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-dun-template-cartographique"><i class="fa fa-check"></i><b>3.3.1</b> Création d’un template cartographique</a></li>
+<li class="chapter" data-level="3.3.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-de-stock"><i class="fa fa-check"></i><b>3.3.2</b> Carte de stock</a></li>
+<li class="chapter" data-level="3.3.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-dintensité-choroplèthe"><i class="fa fa-check"></i><b>3.3.3</b> Carte d’intensité (choroplèthe)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#carte-de-stock-intensité"><i class="fa fa-check"></i><b>3.3.4</b> Carte de stock + intensité</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#création-de-fonctions"><i class="fa fa-check"></i><b>3.4</b> Création de fonctions</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-tab_cont_iris"><i class="fa fa-check"></i><b>3.4.1</b> fonction tab_cont_iris()</a></li>
+<li class="chapter" data-level="3.4.2" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_count_iris"><i class="fa fa-check"></i><b>3.4.2</b> fonction map_count_iris</a></li>
+<li class="chapter" data-level="3.4.3" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#fonction-map_pct_iris"><i class="fa fa-check"></i><b>3.4.3</b> fonction map_pct_iris</a></li>
+<li class="chapter" data-level="3.4.4" data-path="21-cartography_V2.html"><a href="21-cartography_V2.html#sauvegarde-des-fonctions"><i class="fa fa-check"></i><b>3.4.4</b> Sauvegarde des fonctions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="22-leaflet.html"><a href="22-leaflet.html"><i class="fa fa-check"></i><b>4</b> Cartes dynamiques (CG)</a>
+<ul>
+<li class="chapter" data-level="" data-path="22-leaflet.html"><a href="22-leaflet.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-élémentaire"><i class="fa fa-check"></i><b>4.1</b> Une carte élémentaire</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="22-leaflet.html"><a href="22-leaflet.html#lancement-avec-leaflet"><i class="fa fa-check"></i><b>4.1.1</b> Lancement avec <code>leaflet()</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="22-leaflet.html"><a href="22-leaflet.html#remplissage-avec-addtiles"><i class="fa fa-check"></i><b>4.1.2</b> Remplissage avec <code>addTiles()</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="22-leaflet.html"><a href="22-leaflet.html#calage-avec-setview"><i class="fa fa-check"></i><b>4.1.3</b> Calage avec <code>setView()</code></a></li>
+<li class="chapter" data-level="4.1.4" data-path="22-leaflet.html"><a href="22-leaflet.html#personalisation-avec-addprovidertiles"><i class="fa fa-check"></i><b>4.1.4</b> Personalisation avec <code>addProviderTiles()</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="22-leaflet.html"><a href="22-leaflet.html#affichage-dun-point-avec-addmarkers"><i class="fa fa-check"></i><b>4.1.5</b> Affichage d’un point avec <code>addMarkers()</code></a></li>
+<li class="chapter" data-level="4.1.6" data-path="22-leaflet.html"><a href="22-leaflet.html#ajout-dun-labelou-dun-popup"><i class="fa fa-check"></i><b>4.1.6</b> Ajout d’un <code>label</code>ou d’un <code>popup</code></a></li>
+<li class="chapter" data-level="4.1.7" data-path="22-leaflet.html"><a href="22-leaflet.html#amélioration-du-popup"><i class="fa fa-check"></i><b>4.1.7</b> Amélioration du <code>popup</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-statistique"><i class="fa fa-check"></i><b>4.2</b> Une carte statistique</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="22-leaflet.html"><a href="22-leaflet.html#préparation-des-données-1"><i class="fa fa-check"></i><b>4.2.1</b> Préparation des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="22-leaflet.html"><a href="22-leaflet.html#contours-des-iris-et-communes-avec-addpolygons"><i class="fa fa-check"></i><b>4.2.2</b> Contours des iris et communes avec <code>addPolygons()</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-choroplèthes-avec-addpolygon-et-colorbin"><i class="fa fa-check"></i><b>4.2.3</b> Cartes choroplèthes avec <code>addPolygon()</code> et <code>colorBin()</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-de-stock-avec-addcirclemarkers"><i class="fa fa-check"></i><b>4.2.4</b> Cartes de stock avec <code>addCircleMarkers()</code></a></li>
+<li class="chapter" data-level="4.2.5" data-path="22-leaflet.html"><a href="22-leaflet.html#finition-avec-un-popup-et-highlightoptions"><i class="fa fa-check"></i><b>4.2.5</b> Finition avec un <code>popup</code> et <code>highlightOptions()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="31-datamodel.html"><a href="31-datamodel.html"><i class="fa fa-check"></i><b>5</b> Modèle de données (CG)</a>
+<ul>
+<li class="chapter" data-level="" data-path="31-datamodel.html"><a href="31-datamodel.html#objectif"><i class="fa fa-check"></i>Objectif</a></li>
+<li class="chapter" data-level="5.1" data-path="31-datamodel.html"><a href="31-datamodel.html#tableau-de-contingence-tab"><i class="fa fa-check"></i><b>5.1</b> tableau de contingence <code>tab</code></a></li>
+<li class="chapter" data-level="5.2" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-sociologiques-soc"><i class="fa fa-check"></i><b>5.2</b> Attributs sociologiques <code>soc</code></a></li>
+<li class="chapter" data-level="5.3" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-géographiques-geo"><i class="fa fa-check"></i><b>5.3</b> Attributs géographiques <code>geo</code></a></li>
+<li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a></li>
+<li class="chapter" data-level="5.5" data-path="31-datamodel.html"><a href="31-datamodel.html#prolongements"><i class="fa fa-check"></i><b>5.5</b> Prolongements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="32-functions.html"><a href="32-functions.html"><i class="fa fa-check"></i><b>6</b> Fonctions</a>
+<ul>
+<li class="chapter" data-level="" data-path="32-functions.html"><a href="32-functions.html#objectif-1"><i class="fa fa-check"></i>Objectif</a></li>
+<li class="chapter" data-level="6.1" data-path="32-functions.html"><a href="32-functions.html#fonctions-de-sélection"><i class="fa fa-check"></i><b>6.1</b> Fonctions de sélection</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="32-functions.html"><a href="32-functions.html#sélection-géographique-base_select_geo"><i class="fa fa-check"></i><b>6.1.1</b> Sélection géographique <code>base_select_geo()</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="32-functions.html"><a href="32-functions.html#sélection-sociologique-base_select_soc"><i class="fa fa-check"></i><b>6.1.2</b> Sélection sociologique <code>base_select_soc()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="32-functions.html"><a href="32-functions.html#fonctions-dagrégation"><i class="fa fa-check"></i><b>6.2</b> Fonctions d’agrégation</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="32-functions.html"><a href="32-functions.html#agrégation-géographique-base_agreg_geo"><i class="fa fa-check"></i><b>6.2.1</b> Agrégation géographique <code>base_agreg_geo())</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="32-functions.html"><a href="32-functions.html#agrégation-sociologique-base_agreg_soc"><i class="fa fa-check"></i><b>6.2.2</b> Agrégation sociologique <code>base_agreg_soc()</code></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Projet DATA MINING 2021</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c32-functions" class="section level1" number="6">
+<h1><span class="header-section-number">Chapitre 6</span> Fonctions</h1>
+<pre><code>Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
+<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
+Un modèle de donnée n’a d’intérêt que s’il est conçu en fonction d’objectifs qui seront réalisés à l’aide de fonctions exploitant les possibilités du modèle de donnée. Nous allons montrer ici à l’aide de quelques exemples simples l’intérêt du modèle de donnée défini au chapitre précédent.
+<br>
+</p>
+<p><br></p>
+<div id="objectif-1" class="section level2 unnumbered" number="">
+<h2>Objectif</h2>
+<p>L’objectif de ce chapitre est de construire une série de fonctions exploitant le modèle de donnée défini précédemment que nous appellerons <code>base</code>. Pour bien mettre en évidence le fait que les fonctions dépendent de ce modèle de données, on leur donnera des noms qui commenceront toujours par ce radical suivi de suffixes. Plus précisément on définira une arborescence de fonctions à l’aide de suffixes de précision croissante. On se place ainsi dans une logique de création d’un <strong>package</strong> pouvant encapsuler à terme ces différentes fonctions (mais cela dépasse le cadre de ce cours).</p>
+<p>Les fonctions doivent pouvoir s’applique à n’importe quelle base de données suivant le modèle prescrit. On les testera donc sur au moins trois bases différentes portant respectivement sur les individus âgés de de 18 ans et plus, les actifs mobiles et les ménages ordinaires</p>
+<ul>
+<li>csp94 : base de données des individus âgés de 18 ans et plus par CSP et par IRIS au RP 2017, contenue dans le fichier <em>VDM_RP2017_CS1_IRIS_POP.Rdata</em>.</li>
+<li>tra94 : base de données des actifs mobiles et par IRIS selon le mode de transport au 2017, contenue dans le fichier <em>VDM_RP2017_TRANS_IRIS_ACT.Rdata</em></li>
+<li>anc94 : base de données des ménages et par IRIS en fonction de l’ancienneté d’installation dans le logement au RP2017, contenue dans le fichier <em>VDM_RP2017_ANEMR_IRIS_MEN.Rdata</em></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="32-functions.html#cb2-1"></a>csp94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/VDM_RP2017_CS1_IRIS_POP.Rdata&quot;</span>)</span>
+<span id="cb2-2"><a href="32-functions.html#cb2-2"></a>tra94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/VDM_RP2017_TRANS_IRIS_ACT.Rdata&quot;</span>)</span>
+<span id="cb2-3"><a href="32-functions.html#cb2-3"></a>anc94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata&quot;</span>)</span>
+<span id="cb2-4"><a href="32-functions.html#cb2-4"></a></span>
+<span id="cb2-5"><a href="32-functions.html#cb2-5"></a>x&lt;-csp94<span class="op">$</span>geo</span></code></pre></div>
+</div>
+<div id="fonctions-de-sélection" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Fonctions de sélection</h2>
+<p>Les fonctions utilitaires permettent de transformer une base en une autre base en filtrant ou agrégeant des données selon les dimensions sociales ou spatiales. Le résultat est obligatoirement une base de même type que la base d’origine.</p>
+<div id="sélection-géographique-base_select_geo" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Sélection géographique <code>base_select_geo()</code></h3>
+<p>On peut tout d’abord effectuer une sélection géographique en ne conservant que certains IRIS. La sélection peut s’effectuer par défaut sur les unités géographique de base <code>i</code> mais elle peut aussi utiliser n’importe quelle variable du fichier <code>geo</code>, notamment les niveaux d’agrégation supérieurs ce qui est en général plus pratique.</p>
+<p>Pour cela on va commencer par modifier le fichier <code>geo</code> puis le fichier <code>tab</code> et enfin le fichier <code>soc</code> afin d’y éliminer les catégories éventuellement absentes de la zone d’étude.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="32-functions.html#cb3-1"></a>base_select_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb3-2"><a href="32-functions.html#cb3-2"></a>                            <span class="dt">var =</span> i2,</span>
+<span id="cb3-3"><a href="32-functions.html#cb3-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Geo1&quot;</span>,<span class="st">&quot;Geo2&quot;</span>,<span class="st">&quot;Geo3&quot;</span>)) {</span>
+<span id="cb3-4"><a href="32-functions.html#cb3-4"></a>  b&lt;-base</span>
+<span id="cb3-5"><a href="32-functions.html#cb3-5"></a>  b<span class="op">$</span>geo&lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
+<span id="cb3-6"><a href="32-functions.html#cb3-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>geo<span class="op">$</span>i)</span>
+<span id="cb3-7"><a href="32-functions.html#cb3-7"></a>  b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>j))</span>
+<span id="cb3-8"><a href="32-functions.html#cb3-8"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb3-9"><a href="32-functions.html#cb3-9"></a>                            }</span></code></pre></div>
+<p>Essayons d’appliquer notre fonction à l’extraction des CSP de la commune de Sucy-en-Brie :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="32-functions.html#cb4-1"></a>csp_sucy &lt;-<span class="st"> </span><span class="kw">base_select_geo</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb4-2"><a href="32-functions.html#cb4-2"></a>                            <span class="dt">var =</span> i2,</span>
+<span id="cb4-3"><a href="32-functions.html#cb4-3"></a>                            <span class="dt">sel =</span> <span class="st">&quot;94071&quot;</span>)</span></code></pre></div>
+<p>On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="32-functions.html#cb5-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>tab,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940710101
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940710101
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+367
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940710101
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+269
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="32-functions.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+lab_i
+</th>
+<th style="text-align:left;">
+i2
+</th>
+<th style="text-align:left;">
+lab_i2
+</th>
+<th style="text-align:left;">
+geometry
+</th>
+<th style="text-align:right;">
+lng
+</th>
+<th style="text-align:right;">
+lat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940710107
+</td>
+<td style="text-align:left;">
+Notre Dame … Bruyeres
+</td>
+<td style="text-align:left;">
+94071
+</td>
+<td style="text-align:left;">
+Sucy-en-Brie
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.557576 48…
+</td>
+<td style="text-align:right;">
+2.562682
+</td>
+<td style="text-align:right;">
+48.75904
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940710103
+</td>
+<td style="text-align:left;">
+La Cite Verte
+</td>
+<td style="text-align:left;">
+94071
+</td>
+<td style="text-align:left;">
+Sucy-en-Brie
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.525385 48…
+</td>
+<td style="text-align:right;">
+2.521975
+</td>
+<td style="text-align:right;">
+48.77332
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940710102
+</td>
+<td style="text-align:left;">
+La Fosse Rouge
+</td>
+<td style="text-align:left;">
+94071
+</td>
+<td style="text-align:left;">
+Sucy-en-Brie
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.534443 48…
+</td>
+<td style="text-align:right;">
+2.527384
+</td>
+<td style="text-align:right;">
+48.77628
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="32-functions.html#cb7-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:left;">
+var_j
+</th>
+<th style="text-align:left;">
+lab_j
+</th>
+<th style="text-align:left;">
+j2
+</th>
+<th style="text-align:left;">
+var_j2
+</th>
+<th style="text-align:left;">
+lab_j2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Catégorie socioprofessionnelle en 8 postes
+</td>
+<td style="text-align:left;">
+Artisans, commerçants et chefs d’entreprise
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+CSP des actifs en 3 classes
+</td>
+<td style="text-align:left;">
+Haut
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Catégorie socioprofessionnelle en 8 postes
+</td>
+<td style="text-align:left;">
+Cadres et professions intellectuelles supérieures
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+CSP des actifs en 3 classes
+</td>
+<td style="text-align:left;">
+Haut
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Catégorie socioprofessionnelle en 8 postes
+</td>
+<td style="text-align:left;">
+Professions Intermédiaires
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+CSP des actifs en 3 classes
+</td>
+<td style="text-align:left;">
+Moyen
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sélection-sociologique-base_select_soc" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Sélection sociologique <code>base_select_soc()</code></h3>
+<p>On peut tout effectuer l’opération symétrique sur les données sociologiques</p>
+<p>Pour cela on va commencer par modifier le fichier <code>soc</code> puis le fichier <code>tab</code> et enfin le fichier <code>geo</code>pour éliminer les unités spatiales où l’ensemble des catégories ciblées sont absentes.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="32-functions.html#cb8-1"></a>base_select_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb8-2"><a href="32-functions.html#cb8-2"></a>                            <span class="dt">var =</span> j2,</span>
+<span id="cb8-3"><a href="32-functions.html#cb8-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Cat1&quot;</span>,<span class="st">&quot;Cat2&quot;</span>,<span class="st">&quot;Cat3&quot;</span>)) {</span>
+<span id="cb8-4"><a href="32-functions.html#cb8-4"></a>  b&lt;-base</span>
+<span id="cb8-5"><a href="32-functions.html#cb8-5"></a>  b<span class="op">$</span>soc&lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
+<span id="cb8-6"><a href="32-functions.html#cb8-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>soc<span class="op">$</span>j)</span>
+<span id="cb8-7"><a href="32-functions.html#cb8-7"></a>  b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>i))</span>
+<span id="cb8-8"><a href="32-functions.html#cb8-8"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb8-9"><a href="32-functions.html#cb8-9"></a>                            }</span></code></pre></div>
+<p>A titre d’exemple on ne va conserver que les deux modes de transport doux (marche et vélo) dans le fichier des déplacements des actifs :</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="32-functions.html#cb9-1"></a>tra_doux &lt;-<span class="st"> </span><span class="kw">base_select_soc</span>(<span class="dt">base =</span> tra94,</span>
+<span id="cb9-2"><a href="32-functions.html#cb9-2"></a>                          <span class="dt">var =</span> j2,</span>
+<span id="cb9-3"><a href="32-functions.html#cb9-3"></a>                          <span class="dt">sel =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<p>On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="32-functions.html#cb10-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>tab,<span class="dv">4</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+102
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020102
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+103
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020102
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="32-functions.html#cb11-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+lab_i
+</th>
+<th style="text-align:left;">
+i2
+</th>
+<th style="text-align:left;">
+lab_i2
+</th>
+<th style="text-align:left;">
+geometry
+</th>
+<th style="text-align:right;">
+lng
+</th>
+<th style="text-align:right;">
+lat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940210107
+</td>
+<td style="text-align:left;">
+Sorbiers
+</td>
+<td style="text-align:left;">
+94021
+</td>
+<td style="text-align:left;">
+Chevilly-Larue
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.357357 48…
+</td>
+<td style="text-align:right;">
+2.357553
+</td>
+<td style="text-align:right;">
+48.77377
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940680204
+</td>
+<td style="text-align:left;">
+Le Vieux Saint-Maur 4
+</td>
+<td style="text-align:left;">
+94068
+</td>
+<td style="text-align:left;">
+Saint-Maur-des-Fossés
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.483923 48…
+</td>
+<td style="text-align:right;">
+2.481153
+</td>
+<td style="text-align:right;">
+48.80862
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940810308
+</td>
+<td style="text-align:left;">
+Robespierre
+</td>
+<td style="text-align:left;">
+94081
+</td>
+<td style="text-align:left;">
+Vitry-sur-Seine
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.388071 48…
+</td>
+<td style="text-align:right;">
+2.388817
+</td>
+<td style="text-align:right;">
+48.79110
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="32-functions.html#cb12-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:left;">
+var_j
+</th>
+<th style="text-align:left;">
+lab_j
+</th>
+<th style="text-align:left;">
+j2
+</th>
+<th style="text-align:left;">
+var_j2
+</th>
+<th style="text-align:left;">
+lab_j2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Marche à pied (ou rollers, patinette)
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Marche ou en vélo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Vélo (y compris à assistance électrique)
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Marche ou en vélo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="fonctions-dagrégation" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Fonctions d’agrégation</h2>
+<div id="agrégation-géographique-base_agreg_geo" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Agrégation géographique <code>base_agreg_geo())</code></h3>
+<p>Supposons maintenant que l’on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Pour des raisons de compatibilité il faudra impérativement fournir un label à la nouvelle variable géographique, quitte à dupliquer le code.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="32-functions.html#cb13-1"></a>base_agreg_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb13-2"><a href="32-functions.html#cb13-2"></a>                           <span class="dt">var =</span> i2,</span>
+<span id="cb13-3"><a href="32-functions.html#cb13-3"></a>                           <span class="dt">lab =</span> lab_i2) {</span>
+<span id="cb13-4"><a href="32-functions.html#cb13-4"></a> b&lt;-base</span>
+<span id="cb13-5"><a href="32-functions.html#cb13-5"></a> key &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(i, {{var}})</span>
+<span id="cb13-6"><a href="32-functions.html#cb13-6"></a> </span>
+<span id="cb13-7"><a href="32-functions.html#cb13-7"></a> b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-8"><a href="32-functions.html#cb13-8"></a><span class="st">                   </span><span class="kw">group_by</span>({{var}},j) <span class="op">%&gt;%</span></span>
+<span id="cb13-9"><a href="32-functions.html#cb13-9"></a><span class="st">                   </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="kw">as.factor</span>({{var}}),<span class="dt">j =</span> j,<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="32-functions.html#cb13-10"></a><span class="st">                   </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></span>
+<span id="cb13-11"><a href="32-functions.html#cb13-11"></a><span class="st">                   </span><span class="kw">select</span>(i,j,Xij)</span>
+<span id="cb13-12"><a href="32-functions.html#cb13-12"></a></span>
+<span id="cb13-13"><a href="32-functions.html#cb13-13"></a>               </span>
+<span id="cb13-14"><a href="32-functions.html#cb13-14"></a> b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">i =</span> {{var}}, <span class="dt">lab_i =</span> {{lab}}) <span class="op">%&gt;%</span></span>
+<span id="cb13-15"><a href="32-functions.html#cb13-15"></a><span class="st">                    </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
+<span id="cb13-16"><a href="32-functions.html#cb13-16"></a><span class="st">                    </span><span class="kw">summarize</span>(<span class="dt">lab_i =</span> <span class="kw">unique</span>(lab_i),</span>
+<span id="cb13-17"><a href="32-functions.html#cb13-17"></a>                              <span class="dt">lat =</span> <span class="kw">mean</span>(lat),</span>
+<span id="cb13-18"><a href="32-functions.html#cb13-18"></a>                              <span class="dt">lng=</span><span class="kw">mean</span>(lng)) <span class="op">%&gt;%</span></span>
+<span id="cb13-19"><a href="32-functions.html#cb13-19"></a><span class="st">                    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-20"><a href="32-functions.html#cb13-20"></a><span class="st">                    </span><span class="kw">st_as_sf</span>()</span>
+<span id="cb13-21"><a href="32-functions.html#cb13-21"></a>                    </span>
+<span id="cb13-22"><a href="32-functions.html#cb13-22"></a> <span class="kw">return</span>(b)</span>
+<span id="cb13-23"><a href="32-functions.html#cb13-23"></a>  </span>
+<span id="cb13-24"><a href="32-functions.html#cb13-24"></a>                           }</span></code></pre></div>
+<p>Appliquons ceci au fichier CSP des IRIS. On obtient une nouvelle base par CSP mais au niveau des communes. Il y a un message d’avertissement concernant l’agrégation des unités spatiales qu’il vaut normalement mieux effectuer après une projection planaire.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="32-functions.html#cb14-1"></a>com &lt;-<span class="kw">base_agreg_geo</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb14-2"><a href="32-functions.html#cb14-2"></a>                     <span class="dt">var =</span> i2,</span>
+<span id="cb14-3"><a href="32-functions.html#cb14-3"></a>                     <span class="dt">lab=</span> lab_i2)</span>
+<span id="cb14-4"><a href="32-functions.html#cb14-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>tab))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+1030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+5746
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+6251
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+6783
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+3439
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+5959
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="32-functions.html#cb15-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>geo))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+lab_i
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:right;">
+lng
+</th>
+<th style="text-align:left;">
+geometry
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+94001
+</td>
+<td style="text-align:left;">
+Ablon-sur-Seine
+</td>
+<td style="text-align:right;">
+48.72462
+</td>
+<td style="text-align:right;">
+2.421236
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.43501 48….
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+Alfortville
+</td>
+<td style="text-align:right;">
+48.79967
+</td>
+<td style="text-align:right;">
+2.421002
+</td>
+<td style="text-align:left;">
+POLYGON ((2.433383 48.78383…
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94003
+</td>
+<td style="text-align:left;">
+Arcueil
+</td>
+<td style="text-align:right;">
+48.80620
+</td>
+<td style="text-align:right;">
+2.333503
+</td>
+<td style="text-align:left;">
+POLYGON ((2.343535 48.79781…
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94004
+</td>
+<td style="text-align:left;">
+Boissy-Saint-Léger
+</td>
+<td style="text-align:right;">
+48.75209
+</td>
+<td style="text-align:right;">
+2.509456
+</td>
+<td style="text-align:left;">
+POLYGON ((2.516929 48.73853…
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94011
+</td>
+<td style="text-align:left;">
+Bonneuil-sur-Marne
+</td>
+<td style="text-align:right;">
+48.77062
+</td>
+<td style="text-align:right;">
+2.482723
+</td>
+<td style="text-align:left;">
+POLYGON ((2.476012 48.76572…
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94015
+</td>
+<td style="text-align:left;">
+Bry-sur-Marne
+</td>
+<td style="text-align:right;">
+48.83884
+</td>
+<td style="text-align:right;">
+2.523050
+</td>
+<td style="text-align:left;">
+POLYGON ((2.518283 48.829, …
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="agrégation-sociologique-base_agreg_soc" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Agrégation sociologique <code>base_agreg_soc()</code></h3>
+<p>On reproduit un code équivalent pour procéder à une agrégation des catégories sociales</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="32-functions.html#cb16-1"></a>base_agreg_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb16-2"><a href="32-functions.html#cb16-2"></a>                           <span class="dt">var =</span> j2,</span>
+<span id="cb16-3"><a href="32-functions.html#cb16-3"></a>                           <span class="dt">lab =</span> lab_j2) {</span>
+<span id="cb16-4"><a href="32-functions.html#cb16-4"></a> b&lt;-base</span>
+<span id="cb16-5"><a href="32-functions.html#cb16-5"></a> key &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(j, {{var}})</span>
+<span id="cb16-6"><a href="32-functions.html#cb16-6"></a> </span>
+<span id="cb16-7"><a href="32-functions.html#cb16-7"></a> b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-8"><a href="32-functions.html#cb16-8"></a><span class="st">                   </span><span class="kw">group_by</span>(i,{{var}}) <span class="op">%&gt;%</span></span>
+<span id="cb16-9"><a href="32-functions.html#cb16-9"></a><span class="st">                   </span><span class="kw">mutate</span>(<span class="dt">i =</span>i, <span class="dt">j=</span> <span class="kw">as.factor</span>({{var}}),<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
+<span id="cb16-10"><a href="32-functions.html#cb16-10"></a><span class="st">                   </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></span>
+<span id="cb16-11"><a href="32-functions.html#cb16-11"></a><span class="st">                   </span><span class="kw">select</span>(i,j,Xij)</span>
+<span id="cb16-12"><a href="32-functions.html#cb16-12"></a></span>
+<span id="cb16-13"><a href="32-functions.html#cb16-13"></a>               </span>
+<span id="cb16-14"><a href="32-functions.html#cb16-14"></a> b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">j =</span> {{var}}, <span class="dt">lab_j =</span> {{lab}}) <span class="op">%&gt;%</span></span>
+<span id="cb16-15"><a href="32-functions.html#cb16-15"></a><span class="st">                    </span><span class="kw">select</span>(j,lab_j)</span>
+<span id="cb16-16"><a href="32-functions.html#cb16-16"></a>  </span>
+<span id="cb16-17"><a href="32-functions.html#cb16-17"></a>                    </span>
+<span id="cb16-18"><a href="32-functions.html#cb16-18"></a> <span class="kw">return</span>(b)</span>
+<span id="cb16-19"><a href="32-functions.html#cb16-19"></a>  </span>
+<span id="cb16-20"><a href="32-functions.html#cb16-20"></a>                           }</span></code></pre></div>
+<p>Appliquons ceci au fichier CSP des IRIS pour le regrouper en 3 catégories.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="32-functions.html#cb17-1"></a>csp3 &lt;-<span class="kw">base_agreg_soc</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb17-2"><a href="32-functions.html#cb17-2"></a>                     <span class="dt">var =</span> j2,</span>
+<span id="cb17-3"><a href="32-functions.html#cb17-3"></a>                     <span class="dt">lab=</span> lab_j2)</span>
+<span id="cb17-4"><a href="32-functions.html#cb17-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>tab))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+480
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+691
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+691
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+695
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="32-functions.html#cb18-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>soc))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:left;">
+lab_j
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Moyen
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Haut
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Haut
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Moyen
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Bas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Bas
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="31-datamodel.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ClaudeGrasland/DataMiningProject2021/blob/master/32-functions.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

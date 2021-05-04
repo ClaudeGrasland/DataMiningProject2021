@@ -111,8 +111,8 @@ On peut ajouter à ce tableau un niveau d'agrégation supérieur en ajoutant une
 soc$j2 <-as.factor(soc$j)
 levels(soc$j2) <-c("B","A","A","B","C","C",NA,NA)
 soc$var_j2 <- "CSP des actifs en 3 classes"
-soc$lab_2 <-soc$j2
-levels(soc$lab_2) <-list("Haut" = "A","Moyen" = "B","Bas" = "C")
+soc$lab_j2 <-soc$j2
+levels(soc$lab_j2) <-list("Haut" = "A","Moyen" = "B","Bas" = "C")
 kable(soc)
 ```
 
@@ -162,9 +162,10 @@ kable(head(geo))
 Il peut être intéressant d'ajouter à la liste des objets quelques variables supplémentaires comme la source, l'auteur et un bref résumé du contenu du tableau :
 
 ```{r}
+count = "Population 18 ans et +"
 source = c("Source : INSEE - RP 2017 - Fichier individu & IGN - Geofla - IRIS")
 author = "Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr"
-info = "Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur les CSP des individus résidant dans le Val de Marne à l'échelon des IRIS lors du RP 2017"
+info = "Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur les CSP des individus de 18 ans et plus résidant dans le Val de Marne à l'échelon des IRIS lors du RP 2017"
 ```
 
 
@@ -174,22 +175,191 @@ Pour éviter la prolifération des fichiers, on va assembler toutes nos composan
 base = list("tab" = tab,
             "soc" = soc,
             "geo" = geo,
+            "count" = count,
             "source" = source,
             "author" = author,
             "info" = info)
 
-saveRDS(base,"data/VDM_RP2017_CS1_IRIS.Rdata")
+saveRDS(base,"data/VDM_RP2017_CS1_IRIS_POP.Rdata")
 ```
 
 
-### Bilan
+## Prolongements
 
-Notre base de donnée tient désormais dans un seul fichier qui ne pèse que 382 Ko et pourra être facilement mobilisé dans toute une série d'applications de visualisation statistique ou cartographique interactives. 
+Notre base de donnée tient désormais dans un seul fichier qui ne pèse que 382 Ko et pourra être facilement mobilisé dans toute une série d'applications de visualisation statistique ou cartographique interactives. On peut évidemment créer autant de bases que l'on veut selon le même format, ce qui permettra de standardiser les procédures d'exploitation ultérieures. 
 
-On peut évidemment créer autant de bases que l'on veut selon le même format, ce qui permettra de standardiser les procédures d'exploitation ultérieures. 
+On va créer à titre d'exemple un second fichier donnant le mode de transport le plus souvent utilisé pour se rendre au travail pour les personnes mobiles
 
 
+```{r}
+# Sélection des personnes mobiles
+mob <- readRDS("data/indiv2017.Rdata") %>% 
+         filter(TRANS!="Z") %>% # Elimine les personnes non concernées
+         filter(TRANS!="1") %>% # Elimine les actifs non mobiles
+         filter(IRIS != "ZZZZZZZZZ")
 
+# ----------------------------------------
+# Création du tableau de contingence
+tab <- mob %>% select(i =IRIS,
+                        j = TRANS,
+                        Xij = IPONDI) %>%
+                  group_by(i,j) %>%
+                  summarise(Xij = round(sum(Xij),0))
+
+# Visualisation du résultat
+kable(head(tab))
+
+#----------------------------------------------
+# Chargement du fichier des méta données 
+meta <- readRDS("data/indiv_2017_meta.Rdata")
+
+# Identification des modalités à extraire
+listmod <- unique(tab$j)
+
+# extraction des informations
+soc<-meta %>% filter(COD_VAR == "TRANS" ) %>%
+              filter(COD_MOD %in% listmod) %>%
+              select(j = COD_MOD,
+                     var_j = LIB_VAR,
+                     lab_j = LIB_MOD)
+
+# Agrégation en modes "doux" et "dur"
+
+soc$j2 <-as.factor(soc$j)
+levels(soc$j2)
+levels(soc$j2) <-c("A","A","B","B","C")
+soc$var_j2 <- "Modes de déplacement en 3 classes"
+soc$lab_j2 <-soc$j2
+levels(soc$lab_j2) <-list("Marche ou en vélo" = "A","Véhicule à moteur" = "B","Transports en commun" = "C")
+kable(soc)
+
+#--------------------------------------------
+
+# Chargement du fonds de carte et projection en WGS94
+map <- readRDS("data/map_iris.Rdata") %>% st_as_sf() %>% st_transform (crs=4326)
+
+
+# Définition de la liste des unités spatiales utiles
+listgeo <- unique(tab$i)
+
+# Extraction et recodage des informations utiles
+geo <-map %>% select(i = CODE_IRIS,
+                     lab_i = NOM_IRIS,
+                     i2 = INSEE_COM,
+                     lab_i2 = NOM_COM,
+                     geometry)
+
+# Ajout des centroïdes
+coo <- st_coordinates(st_centroid(geo))
+geo$lng <-coo[,1]
+geo$lat <-coo[,2]
+
+kable(head(geo))
+
+#----------------------------------------------
+count = "Actifs mobiles"
+source = c("Source : INSEE - RP 2017 - Fichier individu & IGN - Geofla - IRIS")
+author = "Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr"
+info = "Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur déplacements des actifs mobiles résidant dans le Val de Marne à l'échelon des IRIS lors du RP 2017"
+
+base = list("tab" = tab,
+            "soc" = soc,
+            "geo" = geo,
+            "count" = count,
+            "source" = source,
+            "author" = author,
+            "info" = info)
+
+saveRDS(base,"data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
+
+
+```
+
+Puis un fichier  de l'ancienneté d'installation des ménages dans leur logemen actuel, ce qui donnera une idée transversale de leur mobilité.
+
+```{r}
+# Sélection des ménages ordinaires
+mob <- readRDS("data/indiv2017.Rdata") %>% 
+         filter(LPRM=="1") %>% # sélectionne les ménages ordinaires
+         filter(ANEMR!="ZZ") %>% # élimineles personnes non concernées 
+         filter(IRIS != "ZZZZZZZZZ")
+
+# ----------------------------------------
+# Création du tableau de contingence
+tab <- mob %>% select(i =IRIS,
+                        j = ANEMR,
+                        Xij = IPONDI) %>%
+                  group_by(i,j) %>%
+                  summarise(Xij = round(sum(Xij),0))
+
+# Visualisation du résultat
+kable(head(tab))
+
+#----------------------------------------------
+# Chargement du fichier des méta données 
+meta <- readRDS("data/indiv_2017_meta.Rdata")
+
+# Identification des modalités à extraire
+listmod <- unique(tab$j)
+
+# extraction des informations
+soc<-meta %>% filter(COD_VAR == "ANEMR" ) %>%
+              filter(COD_MOD %in% listmod) %>%
+              select(j = COD_MOD,
+                     var_j = LIB_VAR,
+                     lab_j = LIB_MOD)
+
+# Agrégation en modes "doux" et "dur"
+
+soc$j2 <-as.factor(soc$j)
+levels(soc$j2)
+levels(soc$j2) <-c("A","A","B","B","C","C","C","C","C","C")
+soc$var_j2 <- "Ancienneté d'emménagement en 3 classes"
+soc$lab_j2 <-soc$j2
+levels(soc$lab_j2) <-list("Moins de 4 ans" = "A","5 à 19 ans" = "B","20 ans et plus" = "C")
+kable(soc)
+
+#--------------------------------------------
+
+# Chargement du fonds de carte et projection en WGS94
+map <- readRDS("data/map_iris.Rdata") %>% st_as_sf() %>% st_transform (crs=4326)
+
+
+# Définition de la liste des unités spatiales utiles
+listgeo <- unique(tab$i)
+
+# Extraction et recodage des informations utiles
+geo <-map %>% select(i = CODE_IRIS,
+                     lab_i = NOM_IRIS,
+                     i2 = INSEE_COM,
+                     lab_i2 = NOM_COM,
+                     geometry)
+
+# Ajout des centroïdes
+coo <- st_coordinates(st_centroid(geo))
+geo$lng <-coo[,1]
+geo$lat <-coo[,2]
+
+kable(head(geo))
+
+#----------------------------------------------
+count= "Ménages"
+source = c("Source : INSEE - RP 2017 - Fichier individu & IGN - Geofla - IRIS")
+author = "Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr"
+info = "Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur l'ancienneté d'instalklation des ménages résidant dans le Val de Marne à l'échelon des IRIS lors du RP 2017"
+
+base = list("tab" = tab,
+            "soc" = soc,
+            "geo" = geo,
+            "count" = count,
+            "source" = source,
+            "author" = author,
+            "info" = info)
+
+saveRDS(base,"data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
+
+
+```
 
 
 

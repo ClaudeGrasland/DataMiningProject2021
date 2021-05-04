@@ -1,0 +1,222 @@
+# Fonctions  {#c32-functions}
+
+
+```{r , echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+library(leaflet)
+library(htmlwidgets)
+library(htmltools)
+library(dplyr)
+library(sf)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=FALSE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               options(scipen=999))
+opts_knit$set(width=75)
+```
+
+<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
+Un modèle de donnée n'a d'intérêt que s'il est conçu en fonction d'objectifs qui seront réalisés à l'aide de fonctions exploitant les possibilités du modèle de donnée. Nous allons montrer ici à l'aide de quelques exemples simples l'intérêt du modèle de donnée défini au chapitre précédent. 
+<br>
+</p>
+<br>
+
+
+## Objectif {-}
+
+L'objectif de ce chapitre est de construire une série de fonctions exploitant le modèle de donnée défini précédemment que nous appellerons `base`. Pour bien mettre en évidence le fait que les fonctions dépendent de ce modèle de données, on leur donnera des noms qui commenceront toujours par ce radical suivi de suffixes. Plus précisément on définira une arborescence de fonctions à l'aide de suffixes de précision croissante. On se place ainsi dans une logique de création d'un  **package** pouvant encapsuler à terme ces différentes fonctions (mais cela dépasse le cadre de ce cours).
+
+Les fonctions doivent pouvoir s'applique à n'importe quelle base de données suivant le modèle prescrit. On les testera donc sur au moins trois bases différentes portant respectivement sur les individus âgés de de 18 ans et plus, les actifs mobiles et les ménages ordinaires
+
+- csp94 : base de données des individus âgés de 18 ans et plus par CSP et par IRIS au RP 2017, contenue dans le fichier *VDM_RP2017_CS1_IRIS_POP.Rdata*.
+- tra94 : base de données des actifs mobiles et par IRIS selon le mode de transport au 2017, contenue dans le fichier *VDM_RP2017_TRANS_IRIS_ACT.Rdata*
+- anc94 : base de données des ménages et par IRIS en fonction de l'ancienneté d'installation dans le logement au RP2017, contenue dans le fichier *VDM_RP2017_ANEMR_IRIS_MEN.Rdata*
+
+```{r}
+csp94 <- readRDS("data/VDM_RP2017_CS1_IRIS_POP.Rdata")
+tra94 <- readRDS("data/VDM_RP2017_TRANS_IRIS_ACT.Rdata")
+anc94 <- readRDS("data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata")
+
+x<-csp94$geo
+```
+
+
+
+
+
+
+##  Fonctions de sélection
+
+Les fonctions utilitaires permettent de transformer une base en une autre base en filtrant ou agrégeant des données selon les dimensions sociales ou spatiales. Le résultat est obligatoirement une base de même type que la base d'origine.
+
+### Sélection géographique `base_select_geo()`
+
+On peut tout d'abord effectuer une sélection géographique en ne conservant que certains IRIS. La sélection peut s'effectuer par défaut sur les unités géographique de base `i` mais elle peut aussi utiliser n'importe quelle variable du fichier `geo`, notamment les niveaux d'agrégation supérieurs ce qui est en général plus pratique. 
+
+Pour cela on va commencer par modifier le fichier `geo` puis le fichier `tab` et enfin le fichier `soc` afin d'y éliminer les catégories éventuellement absentes de la zone d'étude.
+
+```{r}
+base_select_geo <- function(base = base,
+                            var = i2,
+                            sel = c("Geo1","Geo2","Geo3")) {
+  b<-base
+  b$geo<- b$geo %>% filter({{var}} %in% sel)
+  b$tab<- b$tab %>% filter(i %in% b$geo$i)
+  b$soc <- b$soc %>% filter(j %in% unique(b$tab$j))
+  return(b)
+                            }
+```
+
+Essayons d'appliquer notre fonction à l'extraction des CSP de la commune de Sucy-en-Brie :
+
+```{r}
+csp_sucy <- base_select_geo(base = csp94,
+                            var = i2,
+                            sel = "94071")
+
+```
+
+
+On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.
+
+```{r}
+kable(head(csp_sucy$tab,3))
+kable(head(csp_sucy$geo,3))
+kable(head(csp_sucy$soc,3))
+```
+
+### Sélection sociologique `base_select_soc()`
+
+On peut tout effectuer l'opération symétrique sur les données sociologiques
+
+Pour cela on va commencer par modifier le fichier `soc` puis le fichier `tab` et enfin le fichier `geo`pour éliminer les unités spatiales où l'ensemble des catégories ciblées sont absentes. 
+
+```{r}
+base_select_soc <- function(base = base,
+                            var = j2,
+                            sel = c("Cat1","Cat2","Cat3")) {
+  b<-base
+  b$soc<- b$soc %>% filter({{var}} %in% sel)
+  b$tab<- b$tab %>% filter(j %in% b$soc$j)
+  b$geo <- b$geo %>% filter(i %in% unique(b$tab$i))
+  return(b)
+                            }
+```
+
+A titre d'exemple on ne va conserver que les deux modes de transport doux (marche et vélo) dans le fichier des déplacements des actifs :
+
+```{r}
+tra_doux <- base_select_soc(base = tra94,
+                          var = j2,
+                          sel = "A")
+```
+
+
+On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.
+
+```{r}
+kable(head(tra_doux$tab,4))
+kable(head(tra_doux$geo,3))
+kable(head(tra_doux$soc,3))
+```
+
+## Fonctions d'agrégation
+
+### Agrégation géographique `base_agreg_geo())`
+
+
+Supposons maintenant que l'on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Pour des raisons de compatibilité il faudra impérativement fournir un label à la nouvelle variable géographique, quitte à dupliquer le code. 
+
+
+```{r}
+base_agreg_geo <- function(base = base,
+                           var = i2,
+                           lab = lab_i2) {
+ b<-base
+ key <- b$geo %>% select(i, {{var}})
+ 
+ b$tab <-b$tab %>% left_join(key) %>% 
+                   group_by({{var}},j) %>%
+                   mutate(i = as.factor({{var}}),j = j,Xij = sum(Xij)) %>%
+                   ungroup()%>%
+                   select(i,j,Xij)
+
+               
+ b$geo <- b$geo %>% mutate(i = {{var}}, lab_i = {{lab}}) %>%
+                    group_by(i) %>%
+                    summarize(lab_i = unique(lab_i),
+                              lat = mean(lat),
+                              lng=mean(lng)) %>%
+                    ungroup() %>%
+                    st_as_sf()
+                    
+ return(b)
+  
+                           }
+```
+
+
+
+Appliquons ceci au fichier CSP des IRIS. On obtient une nouvelle base par CSP mais au niveau des communes. Il y a un message d'avertissement concernant l'agrégation des unités spatiales qu'il vaut normalement mieux effectuer après une projection planaire.
+
+
+```{r}
+com <-base_agreg_geo(base = csp94,
+                     var = i2,
+                     lab= lab_i2)
+kable(head(com$tab))
+kable(head(com$geo))
+```
+
+
+### Agrégation sociologique `base_agreg_soc()`
+
+
+On reproduit un code équivalent pour procéder à une agrégation des catégories sociales 
+
+
+```{r}
+base_agreg_soc <- function(base = base,
+                           var = j2,
+                           lab = lab_j2) {
+ b<-base
+ key <- b$soc %>% select(j, {{var}})
+ 
+ b$tab <-b$tab %>% left_join(key) %>% 
+                   group_by(i,{{var}}) %>%
+                   mutate(i =i, j= as.factor({{var}}),Xij = sum(Xij)) %>%
+                   ungroup()%>%
+                   select(i,j,Xij)
+
+               
+ b$soc <- b$soc %>% mutate(j = {{var}}, lab_j = {{lab}}) %>%
+                    select(j,lab_j)
+  
+                    
+ return(b)
+  
+                           }
+```
+
+
+
+Appliquons ceci au fichier CSP des IRIS pour le regrouper en 3 catégories.
+
+
+```{r}
+csp3 <-base_agreg_soc(base = csp94,
+                     var = j2,
+                     lab= lab_j2)
+kable(head(csp3$tab))
+kable(head(csp3$soc))
+```
+
+

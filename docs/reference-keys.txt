@@ -96,4 +96,11 @@ tableau-de-contingence-tab
 attributs-sociologiques-soc
 attributs-géographiques-geo
 assemblage-et-sauvegarde
-bilan
+prolongements
+c32-functions
+fonctions-de-sélection
+sélection-géographique-base_select_geo
+sélection-sociologique-base_select_soc
+fonctions-dagrégation
+agrégation-géographique-base_agreg_geo
+agrégation-sociologique-base_agreg_soc

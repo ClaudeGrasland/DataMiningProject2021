@@ -24,7 +24,7 @@
 <meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-05-03" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="22-leaflet.html"/>
-
+<link rel="next" href="32-functions.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,16 +52,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -257,9 +247,15 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.1" data-path="31-datamodel.html"><a href="31-datamodel.html#tableau-de-contingence-tab"><i class="fa fa-check"></i><b>5.1</b> tableau de contingence <code>tab</code></a></li>
 <li class="chapter" data-level="5.2" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-sociologiques-soc"><i class="fa fa-check"></i><b>5.2</b> Attributs sociologiques <code>soc</code></a></li>
 <li class="chapter" data-level="5.3" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-géographiques-geo"><i class="fa fa-check"></i><b>5.3</b> Attributs géographiques <code>geo</code></a></li>
-<li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a>
+<li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a></li>
+<li class="chapter" data-level="5.5" data-path="31-datamodel.html"><a href="31-datamodel.html#prolongements"><i class="fa fa-check"></i><b>5.5</b> Prolongements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="32-functions.html"><a href="32-functions.html"><i class="fa fa-check"></i><b>6</b> Modèle de données (CG)</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="31-datamodel.html"><a href="31-datamodel.html#bilan"><i class="fa fa-check"></i><b>5.4.1</b> Bilan</a></li>
+<li class="chapter" data-level="" data-path="32-functions.html"><a href="32-functions.html#objectif-1"><i class="fa fa-check"></i>Objectif</a></li>
+<li class="chapter" data-level="6.1" data-path="32-functions.html"><a href="32-functions.html#fonctions-utilitaires"><i class="fa fa-check"></i><b>6.1</b> fonctions utilitaires</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="32-functions.html"><a href="32-functions.html#fonction-de-sélection-géographique-base_select_geo"><i class="fa fa-check"></i><b>6.1.1</b> fonction de sélection géographique <code>base_select_geo()</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -281,6 +277,7 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="c31-datamodel" class="section level1" number="5">
 <h1><span class="header-section-number">Chapitre 5</span> Modèle de données (CG)</h1>
+<pre><code>Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
 <p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
 Ce cours propose de construire une structure de donnée permettant l’analyse à la fois sociologique et géographique des données individuelles qui ont fait l’objet des chapitres précédent. Ce modèle de donnée servira par la suite au développement d’applications shiny.
 <br>
@@ -304,20 +301,20 @@ Ce cours propose de construire une structure de donnée permettant l’analyse �
 <li>Pij : effectif de personnes appartenant à la CSP i et résidant dans l’unité spatiale j</li>
 </ul>
 <p>La création sera effectuée par le programme suivant où l’on retire les personnes résidant dans des communes non découpées en IRIS.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="31-datamodel.html#cb236-1"></a><span class="co"># Sélection des individus de 18 ans et +</span></span>
-<span id="cb236-2"><a href="31-datamodel.html#cb236-2"></a>ind18 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb236-3"><a href="31-datamodel.html#cb236-3"></a><span class="st">         </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(AGEREV)<span class="op">&gt;=</span><span class="dv">18</span>) <span class="op">%&gt;%</span></span>
-<span id="cb236-4"><a href="31-datamodel.html#cb236-4"></a><span class="st">         </span><span class="kw">filter</span>(IRIS <span class="op">!=</span><span class="st"> &quot;ZZZZZZZZZ&quot;</span>)</span>
-<span id="cb236-5"><a href="31-datamodel.html#cb236-5"></a></span>
-<span id="cb236-6"><a href="31-datamodel.html#cb236-6"></a><span class="co"># Création du tableau de contingence</span></span>
-<span id="cb236-7"><a href="31-datamodel.html#cb236-7"></a>tab &lt;-<span class="st"> </span>ind18 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span>IRIS,</span>
-<span id="cb236-8"><a href="31-datamodel.html#cb236-8"></a>                        <span class="dt">j =</span> CS1,</span>
-<span id="cb236-9"><a href="31-datamodel.html#cb236-9"></a>                        <span class="dt">Xij =</span> IPONDI) <span class="op">%&gt;%</span></span>
-<span id="cb236-10"><a href="31-datamodel.html#cb236-10"></a><span class="st">                  </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
-<span id="cb236-11"><a href="31-datamodel.html#cb236-11"></a><span class="st">                  </span><span class="kw">summarise</span>(<span class="dt">Xij =</span> <span class="kw">round</span>(<span class="kw">sum</span>(Xij),<span class="dv">0</span>))</span>
-<span id="cb236-12"><a href="31-datamodel.html#cb236-12"></a></span>
-<span id="cb236-13"><a href="31-datamodel.html#cb236-13"></a><span class="co"># Visualisation du résultat</span></span>
-<span id="cb236-14"><a href="31-datamodel.html#cb236-14"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="31-datamodel.html#cb2-1"></a><span class="co"># Sélection des individus de 18 ans et +</span></span>
+<span id="cb2-2"><a href="31-datamodel.html#cb2-2"></a>ind18 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-3"><a href="31-datamodel.html#cb2-3"></a><span class="st">         </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(AGEREV)<span class="op">&gt;=</span><span class="dv">18</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-4"><a href="31-datamodel.html#cb2-4"></a><span class="st">         </span><span class="kw">filter</span>(IRIS <span class="op">!=</span><span class="st"> &quot;ZZZZZZZZZ&quot;</span>)</span>
+<span id="cb2-5"><a href="31-datamodel.html#cb2-5"></a></span>
+<span id="cb2-6"><a href="31-datamodel.html#cb2-6"></a><span class="co"># Création du tableau de contingence</span></span>
+<span id="cb2-7"><a href="31-datamodel.html#cb2-7"></a>tab &lt;-<span class="st"> </span>ind18 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span>IRIS,</span>
+<span id="cb2-8"><a href="31-datamodel.html#cb2-8"></a>                        <span class="dt">j =</span> CS1,</span>
+<span id="cb2-9"><a href="31-datamodel.html#cb2-9"></a>                        <span class="dt">Xij =</span> IPONDI) <span class="op">%&gt;%</span></span>
+<span id="cb2-10"><a href="31-datamodel.html#cb2-10"></a><span class="st">                  </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
+<span id="cb2-11"><a href="31-datamodel.html#cb2-11"></a><span class="st">                  </span><span class="kw">summarise</span>(<span class="dt">Xij =</span> <span class="kw">round</span>(<span class="kw">sum</span>(Xij),<span class="dv">0</span>))</span>
+<span id="cb2-12"><a href="31-datamodel.html#cb2-12"></a></span>
+<span id="cb2-13"><a href="31-datamodel.html#cb2-13"></a><span class="co"># Visualisation du résultat</span></span>
+<span id="cb2-14"><a href="31-datamodel.html#cb2-14"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -410,20 +407,20 @@ Xij
 <li>var_j : nom de la variable</li>
 <li>lab_j : label de la modalité j</li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="31-datamodel.html#cb237-1"></a><span class="co"># Chargement du fichier des méta données </span></span>
-<span id="cb237-2"><a href="31-datamodel.html#cb237-2"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv_2017_meta.Rdata&quot;</span>)</span>
-<span id="cb237-3"><a href="31-datamodel.html#cb237-3"></a></span>
-<span id="cb237-4"><a href="31-datamodel.html#cb237-4"></a><span class="co"># Identification des modalités à extraire</span></span>
-<span id="cb237-5"><a href="31-datamodel.html#cb237-5"></a>listmod &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>j)</span>
-<span id="cb237-6"><a href="31-datamodel.html#cb237-6"></a></span>
-<span id="cb237-7"><a href="31-datamodel.html#cb237-7"></a><span class="co"># extraction des informations</span></span>
-<span id="cb237-8"><a href="31-datamodel.html#cb237-8"></a>soc&lt;-meta <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(COD_VAR <span class="op">==</span><span class="st"> &quot;CS1&quot;</span> ) <span class="op">%&gt;%</span></span>
-<span id="cb237-9"><a href="31-datamodel.html#cb237-9"></a><span class="st">              </span><span class="kw">filter</span>(COD_MOD <span class="op">%in%</span><span class="st"> </span>listmod) <span class="op">%&gt;%</span></span>
-<span id="cb237-10"><a href="31-datamodel.html#cb237-10"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">j =</span> COD_MOD,</span>
-<span id="cb237-11"><a href="31-datamodel.html#cb237-11"></a>                     <span class="dt">var_j =</span> LIB_VAR,</span>
-<span id="cb237-12"><a href="31-datamodel.html#cb237-12"></a>                     <span class="dt">lab_j =</span> LIB_MOD)</span>
-<span id="cb237-13"><a href="31-datamodel.html#cb237-13"></a></span>
-<span id="cb237-14"><a href="31-datamodel.html#cb237-14"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="31-datamodel.html#cb3-1"></a><span class="co"># Chargement du fichier des méta données </span></span>
+<span id="cb3-2"><a href="31-datamodel.html#cb3-2"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv_2017_meta.Rdata&quot;</span>)</span>
+<span id="cb3-3"><a href="31-datamodel.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="31-datamodel.html#cb3-4"></a><span class="co"># Identification des modalités à extraire</span></span>
+<span id="cb3-5"><a href="31-datamodel.html#cb3-5"></a>listmod &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>j)</span>
+<span id="cb3-6"><a href="31-datamodel.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="31-datamodel.html#cb3-7"></a><span class="co"># extraction des informations</span></span>
+<span id="cb3-8"><a href="31-datamodel.html#cb3-8"></a>soc&lt;-meta <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(COD_VAR <span class="op">==</span><span class="st"> &quot;CS1&quot;</span> ) <span class="op">%&gt;%</span></span>
+<span id="cb3-9"><a href="31-datamodel.html#cb3-9"></a><span class="st">              </span><span class="kw">filter</span>(COD_MOD <span class="op">%in%</span><span class="st"> </span>listmod) <span class="op">%&gt;%</span></span>
+<span id="cb3-10"><a href="31-datamodel.html#cb3-10"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">j =</span> COD_MOD,</span>
+<span id="cb3-11"><a href="31-datamodel.html#cb3-11"></a>                     <span class="dt">var_j =</span> LIB_VAR,</span>
+<span id="cb3-12"><a href="31-datamodel.html#cb3-12"></a>                     <span class="dt">lab_j =</span> LIB_MOD)</span>
+<span id="cb3-13"><a href="31-datamodel.html#cb3-13"></a></span>
+<span id="cb3-14"><a href="31-datamodel.html#cb3-14"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -535,12 +532,12 @@ Autres personnes sans activité professionnelle
 <li>var_j2 : nom de la variable agrégée</li>
 <li>lab_j2 : label des modalités de la variable agrégée</li>
 </ul>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="31-datamodel.html#cb238-1"></a>soc<span class="op">$</span>j2 &lt;-<span class="kw">as.factor</span>(soc<span class="op">$</span>j)</span>
-<span id="cb238-2"><a href="31-datamodel.html#cb238-2"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2) &lt;-<span class="kw">c</span>(<span class="st">&quot;B&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)</span>
-<span id="cb238-3"><a href="31-datamodel.html#cb238-3"></a>soc<span class="op">$</span>var_j2 &lt;-<span class="st"> &quot;CSP des actifs en 3 classes&quot;</span></span>
-<span id="cb238-4"><a href="31-datamodel.html#cb238-4"></a>soc<span class="op">$</span>lab_<span class="dv">2</span> &lt;-soc<span class="op">$</span>j2</span>
-<span id="cb238-5"><a href="31-datamodel.html#cb238-5"></a><span class="kw">levels</span>(soc<span class="op">$</span>lab_<span class="dv">2</span>) &lt;-<span class="kw">list</span>(<span class="st">&quot;Haut&quot;</span> =<span class="st"> &quot;A&quot;</span>,<span class="st">&quot;Moyen&quot;</span> =<span class="st"> &quot;B&quot;</span>,<span class="st">&quot;Bas&quot;</span> =<span class="st"> &quot;C&quot;</span>)</span>
-<span id="cb238-6"><a href="31-datamodel.html#cb238-6"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="31-datamodel.html#cb4-1"></a>soc<span class="op">$</span>j2 &lt;-<span class="kw">as.factor</span>(soc<span class="op">$</span>j)</span>
+<span id="cb4-2"><a href="31-datamodel.html#cb4-2"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2) &lt;-<span class="kw">c</span>(<span class="st">&quot;B&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)</span>
+<span id="cb4-3"><a href="31-datamodel.html#cb4-3"></a>soc<span class="op">$</span>var_j2 &lt;-<span class="st"> &quot;CSP des actifs en 3 classes&quot;</span></span>
+<span id="cb4-4"><a href="31-datamodel.html#cb4-4"></a>soc<span class="op">$</span>lab_j2 &lt;-soc<span class="op">$</span>j2</span>
+<span id="cb4-5"><a href="31-datamodel.html#cb4-5"></a><span class="kw">levels</span>(soc<span class="op">$</span>lab_j2) &lt;-<span class="kw">list</span>(<span class="st">&quot;Haut&quot;</span> =<span class="st"> &quot;A&quot;</span>,<span class="st">&quot;Moyen&quot;</span> =<span class="st"> &quot;B&quot;</span>,<span class="st">&quot;Bas&quot;</span> =<span class="st"> &quot;C&quot;</span>)</span>
+<span id="cb4-6"><a href="31-datamodel.html#cb4-6"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -560,7 +557,7 @@ j2
 var_j2
 </th>
 <th style="text-align:left;">
-lab_2
+lab_j2
 </th>
 </tr>
 </thead>
@@ -740,26 +737,26 @@ NA
 <li>lng : longitude du centroïde de l’unité géographique</li>
 <li>geometry : contours de l’unité géographique s’il s’agit d’une surface en latitude longitude (WGS94 soit crs = 4326)</li>
 </ul>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="31-datamodel.html#cb239-1"></a><span class="co"># Chargement du fonds de carte et projection en WGS94</span></span>
-<span id="cb239-2"><a href="31-datamodel.html#cb239-2"></a>map &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span> (<span class="dt">crs=</span><span class="dv">4326</span>)</span>
-<span id="cb239-3"><a href="31-datamodel.html#cb239-3"></a></span>
-<span id="cb239-4"><a href="31-datamodel.html#cb239-4"></a></span>
-<span id="cb239-5"><a href="31-datamodel.html#cb239-5"></a><span class="co"># Définition de la liste des unités spatiales utiles</span></span>
-<span id="cb239-6"><a href="31-datamodel.html#cb239-6"></a>listgeo &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>i)</span>
-<span id="cb239-7"><a href="31-datamodel.html#cb239-7"></a></span>
-<span id="cb239-8"><a href="31-datamodel.html#cb239-8"></a><span class="co"># Extraction et recodage des informations utiles</span></span>
-<span id="cb239-9"><a href="31-datamodel.html#cb239-9"></a>geo &lt;-map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span> CODE_IRIS,</span>
-<span id="cb239-10"><a href="31-datamodel.html#cb239-10"></a>                     <span class="dt">lab_i =</span> NOM_IRIS,</span>
-<span id="cb239-11"><a href="31-datamodel.html#cb239-11"></a>                     <span class="dt">i2 =</span> INSEE_COM,</span>
-<span id="cb239-12"><a href="31-datamodel.html#cb239-12"></a>                     <span class="dt">lab_i2 =</span> NOM_COM,</span>
-<span id="cb239-13"><a href="31-datamodel.html#cb239-13"></a>                     geometry)</span>
-<span id="cb239-14"><a href="31-datamodel.html#cb239-14"></a></span>
-<span id="cb239-15"><a href="31-datamodel.html#cb239-15"></a><span class="co"># Ajout des centroïdes</span></span>
-<span id="cb239-16"><a href="31-datamodel.html#cb239-16"></a>coo &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(geo))</span>
-<span id="cb239-17"><a href="31-datamodel.html#cb239-17"></a>geo<span class="op">$</span>lng &lt;-coo[,<span class="dv">1</span>]</span>
-<span id="cb239-18"><a href="31-datamodel.html#cb239-18"></a>geo<span class="op">$</span>lat &lt;-coo[,<span class="dv">2</span>]</span>
-<span id="cb239-19"><a href="31-datamodel.html#cb239-19"></a></span>
-<span id="cb239-20"><a href="31-datamodel.html#cb239-20"></a><span class="kw">kable</span>(<span class="kw">head</span>(geo))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="31-datamodel.html#cb5-1"></a><span class="co"># Chargement du fonds de carte et projection en WGS94</span></span>
+<span id="cb5-2"><a href="31-datamodel.html#cb5-2"></a>map &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span> (<span class="dt">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb5-3"><a href="31-datamodel.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="31-datamodel.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="31-datamodel.html#cb5-5"></a><span class="co"># Définition de la liste des unités spatiales utiles</span></span>
+<span id="cb5-6"><a href="31-datamodel.html#cb5-6"></a>listgeo &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>i)</span>
+<span id="cb5-7"><a href="31-datamodel.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="31-datamodel.html#cb5-8"></a><span class="co"># Extraction et recodage des informations utiles</span></span>
+<span id="cb5-9"><a href="31-datamodel.html#cb5-9"></a>geo &lt;-map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span> CODE_IRIS,</span>
+<span id="cb5-10"><a href="31-datamodel.html#cb5-10"></a>                     <span class="dt">lab_i =</span> NOM_IRIS,</span>
+<span id="cb5-11"><a href="31-datamodel.html#cb5-11"></a>                     <span class="dt">i2 =</span> INSEE_COM,</span>
+<span id="cb5-12"><a href="31-datamodel.html#cb5-12"></a>                     <span class="dt">lab_i2 =</span> NOM_COM,</span>
+<span id="cb5-13"><a href="31-datamodel.html#cb5-13"></a>                     geometry)</span>
+<span id="cb5-14"><a href="31-datamodel.html#cb5-14"></a></span>
+<span id="cb5-15"><a href="31-datamodel.html#cb5-15"></a><span class="co"># Ajout des centroïdes</span></span>
+<span id="cb5-16"><a href="31-datamodel.html#cb5-16"></a>coo &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(geo))</span>
+<span id="cb5-17"><a href="31-datamodel.html#cb5-17"></a>geo<span class="op">$</span>lng &lt;-coo[,<span class="dv">1</span>]</span>
+<span id="cb5-18"><a href="31-datamodel.html#cb5-18"></a>geo<span class="op">$</span>lat &lt;-coo[,<span class="dv">2</span>]</span>
+<span id="cb5-19"><a href="31-datamodel.html#cb5-19"></a></span>
+<span id="cb5-20"><a href="31-datamodel.html#cb5-20"></a><span class="kw">kable</span>(<span class="kw">head</span>(geo))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -931,40 +928,1043 @@ MULTIPOLYGON (((2.337343 48…
 <div id="assemblage-et-sauvegarde" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Assemblage et sauvegarde</h2>
 <p>Il peut être intéressant d’ajouter à la liste des objets quelques variables supplémentaires comme la source, l’auteur et un bref résumé du contenu du tableau :</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="31-datamodel.html#cb240-1"></a>source =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Source : INSEE - RP 2017 - Fichier individu &amp; IGN - Geofla - IRIS&quot;</span>)</span>
-<span id="cb240-2"><a href="31-datamodel.html#cb240-2"></a>author =<span class="st"> &quot;Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr&quot;</span></span>
-<span id="cb240-3"><a href="31-datamodel.html#cb240-3"></a>info =<span class="st"> &quot;Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur les CSP des individus résidant dans le Val de Marne à l&#39;échelon des IRIS lors du RP 2017&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="31-datamodel.html#cb6-1"></a>count =<span class="st"> &quot;Population 18 ans et +&quot;</span></span>
+<span id="cb6-2"><a href="31-datamodel.html#cb6-2"></a>source =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Source : INSEE - RP 2017 - Fichier individu &amp; IGN - Geofla - IRIS&quot;</span>)</span>
+<span id="cb6-3"><a href="31-datamodel.html#cb6-3"></a>author =<span class="st"> &quot;Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr&quot;</span></span>
+<span id="cb6-4"><a href="31-datamodel.html#cb6-4"></a>info =<span class="st"> &quot;Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur les CSP des individus de 18 ans et plus résidant dans le Val de Marne à l&#39;échelon des IRIS lors du RP 2017&quot;</span></span></code></pre></div>
 <p>Pour éviter la prolifération des fichiers, on va assembler toutes nos composantes dans un unique objet servant de base de données à l’aide de la fonction <code>list()</code> :</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="31-datamodel.html#cb241-1"></a>base =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;tab&quot;</span> =<span class="st"> </span>tab,</span>
-<span id="cb241-2"><a href="31-datamodel.html#cb241-2"></a>            <span class="st">&quot;soc&quot;</span> =<span class="st"> </span>soc,</span>
-<span id="cb241-3"><a href="31-datamodel.html#cb241-3"></a>            <span class="st">&quot;geo&quot;</span> =<span class="st"> </span>geo,</span>
-<span id="cb241-4"><a href="31-datamodel.html#cb241-4"></a>            <span class="st">&quot;source&quot;</span> =<span class="st"> </span>source,</span>
-<span id="cb241-5"><a href="31-datamodel.html#cb241-5"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
-<span id="cb241-6"><a href="31-datamodel.html#cb241-6"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
-<span id="cb241-7"><a href="31-datamodel.html#cb241-7"></a></span>
-<span id="cb241-8"><a href="31-datamodel.html#cb241-8"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_CS1_IRIS.Rdata&quot;</span>)</span></code></pre></div>
-<div id="bilan" class="section level3" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Bilan</h3>
-<p>Notre base de donnée tient désormais dans un seul fichier qui ne pèse que 382 Ko et pourra être facilement mobilisé dans toute une série d’applications de visualisation statistique ou cartographique interactives.</p>
-<p>On peut évidemment créer autant de bases que l’on veut selon le même format, ce qui permettra de standardiser les procédures d’exploitation ultérieures.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="31-datamodel.html#cb7-1"></a>base =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;tab&quot;</span> =<span class="st"> </span>tab,</span>
+<span id="cb7-2"><a href="31-datamodel.html#cb7-2"></a>            <span class="st">&quot;soc&quot;</span> =<span class="st"> </span>soc,</span>
+<span id="cb7-3"><a href="31-datamodel.html#cb7-3"></a>            <span class="st">&quot;geo&quot;</span> =<span class="st"> </span>geo,</span>
+<span id="cb7-4"><a href="31-datamodel.html#cb7-4"></a>            <span class="st">&quot;count&quot;</span> =<span class="st"> </span>count,</span>
+<span id="cb7-5"><a href="31-datamodel.html#cb7-5"></a>            <span class="st">&quot;source&quot;</span> =<span class="st"> </span>source,</span>
+<span id="cb7-6"><a href="31-datamodel.html#cb7-6"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
+<span id="cb7-7"><a href="31-datamodel.html#cb7-7"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
+<span id="cb7-8"><a href="31-datamodel.html#cb7-8"></a></span>
+<span id="cb7-9"><a href="31-datamodel.html#cb7-9"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_CS1_IRIS_POP.Rdata&quot;</span>)</span></code></pre></div>
+</div>
+<div id="prolongements" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Prolongements</h2>
+<p>Notre base de donnée tient désormais dans un seul fichier qui ne pèse que 382 Ko et pourra être facilement mobilisé dans toute une série d’applications de visualisation statistique ou cartographique interactives. On peut évidemment créer autant de bases que l’on veut selon le même format, ce qui permettra de standardiser les procédures d’exploitation ultérieures.</p>
+<p>On va créer à titre d’exemple un second fichier donnant le mode de transport le plus souvent utilisé pour se rendre au travail pour les personnes mobiles</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="31-datamodel.html#cb8-1"></a><span class="co"># Sélection des personnes mobiles</span></span>
+<span id="cb8-2"><a href="31-datamodel.html#cb8-2"></a>mob &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-3"><a href="31-datamodel.html#cb8-3"></a><span class="st">         </span><span class="kw">filter</span>(TRANS<span class="op">!=</span><span class="st">&quot;Z&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Elimine les personnes non concernées</span></span>
+<span id="cb8-4"><a href="31-datamodel.html#cb8-4"></a><span class="st">         </span><span class="kw">filter</span>(TRANS<span class="op">!=</span><span class="st">&quot;1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Elimine les actifs non mobiles</span></span>
+<span id="cb8-5"><a href="31-datamodel.html#cb8-5"></a><span class="st">         </span><span class="kw">filter</span>(IRIS <span class="op">!=</span><span class="st"> &quot;ZZZZZZZZZ&quot;</span>)</span>
+<span id="cb8-6"><a href="31-datamodel.html#cb8-6"></a></span>
+<span id="cb8-7"><a href="31-datamodel.html#cb8-7"></a><span class="co"># ----------------------------------------</span></span>
+<span id="cb8-8"><a href="31-datamodel.html#cb8-8"></a><span class="co"># Création du tableau de contingence</span></span>
+<span id="cb8-9"><a href="31-datamodel.html#cb8-9"></a>tab &lt;-<span class="st"> </span>mob <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span>IRIS,</span>
+<span id="cb8-10"><a href="31-datamodel.html#cb8-10"></a>                        <span class="dt">j =</span> TRANS,</span>
+<span id="cb8-11"><a href="31-datamodel.html#cb8-11"></a>                        <span class="dt">Xij =</span> IPONDI) <span class="op">%&gt;%</span></span>
+<span id="cb8-12"><a href="31-datamodel.html#cb8-12"></a><span class="st">                  </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
+<span id="cb8-13"><a href="31-datamodel.html#cb8-13"></a><span class="st">                  </span><span class="kw">summarise</span>(<span class="dt">Xij =</span> <span class="kw">round</span>(<span class="kw">sum</span>(Xij),<span class="dv">0</span>))</span>
+<span id="cb8-14"><a href="31-datamodel.html#cb8-14"></a></span>
+<span id="cb8-15"><a href="31-datamodel.html#cb8-15"></a><span class="co"># Visualisation du résultat</span></span>
+<span id="cb8-16"><a href="31-datamodel.html#cb8-16"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+102
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+424
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+769
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020102
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+103
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="31-datamodel.html#cb9-1"></a><span class="co">#----------------------------------------------</span></span>
+<span id="cb9-2"><a href="31-datamodel.html#cb9-2"></a><span class="co"># Chargement du fichier des méta données </span></span>
+<span id="cb9-3"><a href="31-datamodel.html#cb9-3"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv_2017_meta.Rdata&quot;</span>)</span>
+<span id="cb9-4"><a href="31-datamodel.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="31-datamodel.html#cb9-5"></a><span class="co"># Identification des modalités à extraire</span></span>
+<span id="cb9-6"><a href="31-datamodel.html#cb9-6"></a>listmod &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>j)</span>
+<span id="cb9-7"><a href="31-datamodel.html#cb9-7"></a></span>
+<span id="cb9-8"><a href="31-datamodel.html#cb9-8"></a><span class="co"># extraction des informations</span></span>
+<span id="cb9-9"><a href="31-datamodel.html#cb9-9"></a>soc&lt;-meta <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(COD_VAR <span class="op">==</span><span class="st"> &quot;TRANS&quot;</span> ) <span class="op">%&gt;%</span></span>
+<span id="cb9-10"><a href="31-datamodel.html#cb9-10"></a><span class="st">              </span><span class="kw">filter</span>(COD_MOD <span class="op">%in%</span><span class="st"> </span>listmod) <span class="op">%&gt;%</span></span>
+<span id="cb9-11"><a href="31-datamodel.html#cb9-11"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">j =</span> COD_MOD,</span>
+<span id="cb9-12"><a href="31-datamodel.html#cb9-12"></a>                     <span class="dt">var_j =</span> LIB_VAR,</span>
+<span id="cb9-13"><a href="31-datamodel.html#cb9-13"></a>                     <span class="dt">lab_j =</span> LIB_MOD)</span>
+<span id="cb9-14"><a href="31-datamodel.html#cb9-14"></a></span>
+<span id="cb9-15"><a href="31-datamodel.html#cb9-15"></a><span class="co"># Agrégation en modes &quot;doux&quot; et &quot;dur&quot;</span></span>
+<span id="cb9-16"><a href="31-datamodel.html#cb9-16"></a></span>
+<span id="cb9-17"><a href="31-datamodel.html#cb9-17"></a>soc<span class="op">$</span>j2 &lt;-<span class="kw">as.factor</span>(soc<span class="op">$</span>j)</span>
+<span id="cb9-18"><a href="31-datamodel.html#cb9-18"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2)</span></code></pre></div>
+<pre><code>[1] &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="31-datamodel.html#cb11-1"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2) &lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>)</span>
+<span id="cb11-2"><a href="31-datamodel.html#cb11-2"></a>soc<span class="op">$</span>var_j2 &lt;-<span class="st"> &quot;Modes de déplacement en 3 classes&quot;</span></span>
+<span id="cb11-3"><a href="31-datamodel.html#cb11-3"></a>soc<span class="op">$</span>lab_j2 &lt;-soc<span class="op">$</span>j2</span>
+<span id="cb11-4"><a href="31-datamodel.html#cb11-4"></a><span class="kw">levels</span>(soc<span class="op">$</span>lab_j2) &lt;-<span class="kw">list</span>(<span class="st">&quot;Marche ou en vélo&quot;</span> =<span class="st"> &quot;A&quot;</span>,<span class="st">&quot;Véhicule à moteur&quot;</span> =<span class="st"> &quot;B&quot;</span>,<span class="st">&quot;Transports en commun&quot;</span> =<span class="st"> &quot;C&quot;</span>)</span>
+<span id="cb11-5"><a href="31-datamodel.html#cb11-5"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:left;">
+var_j
+</th>
+<th style="text-align:left;">
+lab_j
+</th>
+<th style="text-align:left;">
+j2
+</th>
+<th style="text-align:left;">
+var_j2
+</th>
+<th style="text-align:left;">
+lab_j2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Marche à pied (ou rollers, patinette)
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Marche ou en vélo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Vélo (y compris à assistance électrique)
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Marche ou en vélo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Deux-roues motorisé
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Véhicule à moteur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Voiture, camion, fourgonnette
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Véhicule à moteur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+Mode de transport principal le plus souvent utilisé pour aller travailler
+</td>
+<td style="text-align:left;">
+Transports en commun
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Modes de déplacement en 3 classes
+</td>
+<td style="text-align:left;">
+Transports en commun
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="31-datamodel.html#cb12-1"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb12-2"><a href="31-datamodel.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="31-datamodel.html#cb12-3"></a><span class="co"># Chargement du fonds de carte et projection en WGS94</span></span>
+<span id="cb12-4"><a href="31-datamodel.html#cb12-4"></a>map &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span> (<span class="dt">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb12-5"><a href="31-datamodel.html#cb12-5"></a></span>
+<span id="cb12-6"><a href="31-datamodel.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="31-datamodel.html#cb12-7"></a><span class="co"># Définition de la liste des unités spatiales utiles</span></span>
+<span id="cb12-8"><a href="31-datamodel.html#cb12-8"></a>listgeo &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>i)</span>
+<span id="cb12-9"><a href="31-datamodel.html#cb12-9"></a></span>
+<span id="cb12-10"><a href="31-datamodel.html#cb12-10"></a><span class="co"># Extraction et recodage des informations utiles</span></span>
+<span id="cb12-11"><a href="31-datamodel.html#cb12-11"></a>geo &lt;-map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span> CODE_IRIS,</span>
+<span id="cb12-12"><a href="31-datamodel.html#cb12-12"></a>                     <span class="dt">lab_i =</span> NOM_IRIS,</span>
+<span id="cb12-13"><a href="31-datamodel.html#cb12-13"></a>                     <span class="dt">i2 =</span> INSEE_COM,</span>
+<span id="cb12-14"><a href="31-datamodel.html#cb12-14"></a>                     <span class="dt">lab_i2 =</span> NOM_COM,</span>
+<span id="cb12-15"><a href="31-datamodel.html#cb12-15"></a>                     geometry)</span>
+<span id="cb12-16"><a href="31-datamodel.html#cb12-16"></a></span>
+<span id="cb12-17"><a href="31-datamodel.html#cb12-17"></a><span class="co"># Ajout des centroïdes</span></span>
+<span id="cb12-18"><a href="31-datamodel.html#cb12-18"></a>coo &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(geo))</span>
+<span id="cb12-19"><a href="31-datamodel.html#cb12-19"></a>geo<span class="op">$</span>lng &lt;-coo[,<span class="dv">1</span>]</span>
+<span id="cb12-20"><a href="31-datamodel.html#cb12-20"></a>geo<span class="op">$</span>lat &lt;-coo[,<span class="dv">2</span>]</span>
+<span id="cb12-21"><a href="31-datamodel.html#cb12-21"></a></span>
+<span id="cb12-22"><a href="31-datamodel.html#cb12-22"></a><span class="kw">kable</span>(<span class="kw">head</span>(geo))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+lab_i
+</th>
+<th style="text-align:left;">
+i2
+</th>
+<th style="text-align:left;">
+lab_i2
+</th>
+<th style="text-align:left;">
+geometry
+</th>
+<th style="text-align:right;">
+lng
+</th>
+<th style="text-align:right;">
+lat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940210107
+</td>
+<td style="text-align:left;">
+Sorbiers
+</td>
+<td style="text-align:left;">
+94021
+</td>
+<td style="text-align:left;">
+Chevilly-Larue
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.357357 48…
+</td>
+<td style="text-align:right;">
+2.357553
+</td>
+<td style="text-align:right;">
+48.77377
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940680204
+</td>
+<td style="text-align:left;">
+Le Vieux Saint-Maur 4
+</td>
+<td style="text-align:left;">
+94068
+</td>
+<td style="text-align:left;">
+Saint-Maur-des-Fossés
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.483923 48…
+</td>
+<td style="text-align:right;">
+2.481153
+</td>
+<td style="text-align:right;">
+48.80862
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940810308
+</td>
+<td style="text-align:left;">
+Robespierre
+</td>
+<td style="text-align:left;">
+94081
+</td>
+<td style="text-align:left;">
+Vitry-sur-Seine
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.388071 48…
+</td>
+<td style="text-align:right;">
+2.388817
+</td>
+<td style="text-align:right;">
+48.79110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940760109
+</td>
+<td style="text-align:left;">
+Centre Ville Est
+</td>
+<td style="text-align:left;">
+94076
+</td>
+<td style="text-align:left;">
+Villejuif
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.368424 48…
+</td>
+<td style="text-align:right;">
+2.367894
+</td>
+<td style="text-align:right;">
+48.79224
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940460105
+</td>
+<td style="text-align:left;">
+Centre_Vert de Maison 5
+</td>
+<td style="text-align:left;">
+94046
+</td>
+<td style="text-align:left;">
+Maisons-Alfort
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.433334 48…
+</td>
+<td style="text-align:right;">
+2.433856
+</td>
+<td style="text-align:right;">
+48.79129
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940650105
+</td>
+<td style="text-align:left;">
+Le Sud
+</td>
+<td style="text-align:left;">
+94065
+</td>
+<td style="text-align:left;">
+Rungis
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.337343 48…
+</td>
+<td style="text-align:right;">
+2.342378
+</td>
+<td style="text-align:right;">
+48.74465
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="31-datamodel.html#cb13-1"></a><span class="co">#----------------------------------------------</span></span>
+<span id="cb13-2"><a href="31-datamodel.html#cb13-2"></a>count =<span class="st"> &quot;Actifs mobiles&quot;</span></span>
+<span id="cb13-3"><a href="31-datamodel.html#cb13-3"></a>source =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Source : INSEE - RP 2017 - Fichier individu &amp; IGN - Geofla - IRIS&quot;</span>)</span>
+<span id="cb13-4"><a href="31-datamodel.html#cb13-4"></a>author =<span class="st"> &quot;Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr&quot;</span></span>
+<span id="cb13-5"><a href="31-datamodel.html#cb13-5"></a>info =<span class="st"> &quot;Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur déplacements des actifs mobiles résidant dans le Val de Marne à l&#39;échelon des IRIS lors du RP 2017&quot;</span></span>
+<span id="cb13-6"><a href="31-datamodel.html#cb13-6"></a></span>
+<span id="cb13-7"><a href="31-datamodel.html#cb13-7"></a>base =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;tab&quot;</span> =<span class="st"> </span>tab,</span>
+<span id="cb13-8"><a href="31-datamodel.html#cb13-8"></a>            <span class="st">&quot;soc&quot;</span> =<span class="st"> </span>soc,</span>
+<span id="cb13-9"><a href="31-datamodel.html#cb13-9"></a>            <span class="st">&quot;geo&quot;</span> =<span class="st"> </span>geo,</span>
+<span id="cb13-10"><a href="31-datamodel.html#cb13-10"></a>            <span class="st">&quot;count&quot;</span> =<span class="st"> </span>count,</span>
+<span id="cb13-11"><a href="31-datamodel.html#cb13-11"></a>            <span class="st">&quot;source&quot;</span> =<span class="st"> </span>source,</span>
+<span id="cb13-12"><a href="31-datamodel.html#cb13-12"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
+<span id="cb13-13"><a href="31-datamodel.html#cb13-13"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
+<span id="cb13-14"><a href="31-datamodel.html#cb13-14"></a></span>
+<span id="cb13-15"><a href="31-datamodel.html#cb13-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_TRANS_IRIS_ACT.Rdata&quot;</span>)</span></code></pre></div>
+<p>Puis un fichier de l’ancienneté d’installation des ménages dans leur logemen actuel, ce qui donnera une idée transversale de leur mobilité.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="31-datamodel.html#cb14-1"></a><span class="co"># Sélection des ménages ordinaires</span></span>
+<span id="cb14-2"><a href="31-datamodel.html#cb14-2"></a>mob &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv2017.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-3"><a href="31-datamodel.html#cb14-3"></a><span class="st">         </span><span class="kw">filter</span>(LPRM<span class="op">==</span><span class="st">&quot;1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sélectionne les ménages ordinaires</span></span>
+<span id="cb14-4"><a href="31-datamodel.html#cb14-4"></a><span class="st">         </span><span class="kw">filter</span>(ANEMR<span class="op">!=</span><span class="st">&quot;ZZ&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># élimineles personnes non concernées </span></span>
+<span id="cb14-5"><a href="31-datamodel.html#cb14-5"></a><span class="st">         </span><span class="kw">filter</span>(IRIS <span class="op">!=</span><span class="st"> &quot;ZZZZZZZZZ&quot;</span>)</span>
+<span id="cb14-6"><a href="31-datamodel.html#cb14-6"></a></span>
+<span id="cb14-7"><a href="31-datamodel.html#cb14-7"></a><span class="co"># ----------------------------------------</span></span>
+<span id="cb14-8"><a href="31-datamodel.html#cb14-8"></a><span class="co"># Création du tableau de contingence</span></span>
+<span id="cb14-9"><a href="31-datamodel.html#cb14-9"></a>tab &lt;-<span class="st"> </span>mob <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span>IRIS,</span>
+<span id="cb14-10"><a href="31-datamodel.html#cb14-10"></a>                        <span class="dt">j =</span> ANEMR,</span>
+<span id="cb14-11"><a href="31-datamodel.html#cb14-11"></a>                        <span class="dt">Xij =</span> IPONDI) <span class="op">%&gt;%</span></span>
+<span id="cb14-12"><a href="31-datamodel.html#cb14-12"></a><span class="st">                  </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
+<span id="cb14-13"><a href="31-datamodel.html#cb14-13"></a><span class="st">                  </span><span class="kw">summarise</span>(<span class="dt">Xij =</span> <span class="kw">round</span>(<span class="kw">sum</span>(Xij),<span class="dv">0</span>))</span>
+<span id="cb14-14"><a href="31-datamodel.html#cb14-14"></a></span>
+<span id="cb14-15"><a href="31-datamodel.html#cb14-15"></a><span class="co"># Visualisation du résultat</span></span>
+<span id="cb14-16"><a href="31-datamodel.html#cb14-16"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:right;">
+Xij
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+00
+</td>
+<td style="text-align:right;">
+269
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:right;">
+411
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:right;">
+503
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:right;">
+169
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:right;">
+72
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020101
+</td>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="31-datamodel.html#cb15-1"></a><span class="co">#----------------------------------------------</span></span>
+<span id="cb15-2"><a href="31-datamodel.html#cb15-2"></a><span class="co"># Chargement du fichier des méta données </span></span>
+<span id="cb15-3"><a href="31-datamodel.html#cb15-3"></a>meta &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/indiv_2017_meta.Rdata&quot;</span>)</span>
+<span id="cb15-4"><a href="31-datamodel.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="31-datamodel.html#cb15-5"></a><span class="co"># Identification des modalités à extraire</span></span>
+<span id="cb15-6"><a href="31-datamodel.html#cb15-6"></a>listmod &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>j)</span>
+<span id="cb15-7"><a href="31-datamodel.html#cb15-7"></a></span>
+<span id="cb15-8"><a href="31-datamodel.html#cb15-8"></a><span class="co"># extraction des informations</span></span>
+<span id="cb15-9"><a href="31-datamodel.html#cb15-9"></a>soc&lt;-meta <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(COD_VAR <span class="op">==</span><span class="st"> &quot;ANEMR&quot;</span> ) <span class="op">%&gt;%</span></span>
+<span id="cb15-10"><a href="31-datamodel.html#cb15-10"></a><span class="st">              </span><span class="kw">filter</span>(COD_MOD <span class="op">%in%</span><span class="st"> </span>listmod) <span class="op">%&gt;%</span></span>
+<span id="cb15-11"><a href="31-datamodel.html#cb15-11"></a><span class="st">              </span><span class="kw">select</span>(<span class="dt">j =</span> COD_MOD,</span>
+<span id="cb15-12"><a href="31-datamodel.html#cb15-12"></a>                     <span class="dt">var_j =</span> LIB_VAR,</span>
+<span id="cb15-13"><a href="31-datamodel.html#cb15-13"></a>                     <span class="dt">lab_j =</span> LIB_MOD)</span>
+<span id="cb15-14"><a href="31-datamodel.html#cb15-14"></a></span>
+<span id="cb15-15"><a href="31-datamodel.html#cb15-15"></a><span class="co"># Agrégation en modes &quot;doux&quot; et &quot;dur&quot;</span></span>
+<span id="cb15-16"><a href="31-datamodel.html#cb15-16"></a></span>
+<span id="cb15-17"><a href="31-datamodel.html#cb15-17"></a>soc<span class="op">$</span>j2 &lt;-<span class="kw">as.factor</span>(soc<span class="op">$</span>j)</span>
+<span id="cb15-18"><a href="31-datamodel.html#cb15-18"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2)</span></code></pre></div>
+<pre><code> [1] &quot;00&quot; &quot;01&quot; &quot;02&quot; &quot;03&quot; &quot;04&quot; &quot;05&quot; &quot;06&quot; &quot;07&quot; &quot;08&quot; &quot;09&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="31-datamodel.html#cb17-1"></a><span class="kw">levels</span>(soc<span class="op">$</span>j2) &lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>)</span>
+<span id="cb17-2"><a href="31-datamodel.html#cb17-2"></a>soc<span class="op">$</span>var_j2 &lt;-<span class="st"> &quot;Ancienneté d&#39;emménagement en 3 classes&quot;</span></span>
+<span id="cb17-3"><a href="31-datamodel.html#cb17-3"></a>soc<span class="op">$</span>lab_j2 &lt;-soc<span class="op">$</span>j2</span>
+<span id="cb17-4"><a href="31-datamodel.html#cb17-4"></a><span class="kw">levels</span>(soc<span class="op">$</span>lab_j2) &lt;-<span class="kw">list</span>(<span class="st">&quot;Moins de 4 ans&quot;</span> =<span class="st"> &quot;A&quot;</span>,<span class="st">&quot;5 à 19 ans&quot;</span> =<span class="st"> &quot;B&quot;</span>,<span class="st">&quot;20 ans et plus&quot;</span> =<span class="st"> &quot;C&quot;</span>)</span>
+<span id="cb17-5"><a href="31-datamodel.html#cb17-5"></a><span class="kw">kable</span>(soc)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+j
+</th>
+<th style="text-align:left;">
+var_j
+</th>
+<th style="text-align:left;">
+lab_j
+</th>
+<th style="text-align:left;">
+j2
+</th>
+<th style="text-align:left;">
+var_j2
+</th>
+<th style="text-align:left;">
+lab_j2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+00
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+Moins de 2 ans
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+Moins de 4 ans
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 2 à 4 ans
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+Moins de 4 ans
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 5 à 9 ans
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+5 à 19 ans
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 10 à 19 ans
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+5 à 19 ans
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+04
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 20 à 29 ans
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+05
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 30 à 39 ans
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+06
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 40 à 49 ans
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+07
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 50 à 59 ans
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+De 60 à 69 ans
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement dans le logement (regroupée)
+</td>
+<td style="text-align:left;">
+70 ans ou plus
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+Ancienneté d’emménagement en 3 classes
+</td>
+<td style="text-align:left;">
+20 ans et plus
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="31-datamodel.html#cb18-1"></a><span class="co">#--------------------------------------------</span></span>
+<span id="cb18-2"><a href="31-datamodel.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="31-datamodel.html#cb18-3"></a><span class="co"># Chargement du fonds de carte et projection en WGS94</span></span>
+<span id="cb18-4"><a href="31-datamodel.html#cb18-4"></a>map &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/map_iris.Rdata&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_as_sf</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span> (<span class="dt">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb18-5"><a href="31-datamodel.html#cb18-5"></a></span>
+<span id="cb18-6"><a href="31-datamodel.html#cb18-6"></a></span>
+<span id="cb18-7"><a href="31-datamodel.html#cb18-7"></a><span class="co"># Définition de la liste des unités spatiales utiles</span></span>
+<span id="cb18-8"><a href="31-datamodel.html#cb18-8"></a>listgeo &lt;-<span class="st"> </span><span class="kw">unique</span>(tab<span class="op">$</span>i)</span>
+<span id="cb18-9"><a href="31-datamodel.html#cb18-9"></a></span>
+<span id="cb18-10"><a href="31-datamodel.html#cb18-10"></a><span class="co"># Extraction et recodage des informations utiles</span></span>
+<span id="cb18-11"><a href="31-datamodel.html#cb18-11"></a>geo &lt;-map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">i =</span> CODE_IRIS,</span>
+<span id="cb18-12"><a href="31-datamodel.html#cb18-12"></a>                     <span class="dt">lab_i =</span> NOM_IRIS,</span>
+<span id="cb18-13"><a href="31-datamodel.html#cb18-13"></a>                     <span class="dt">i2 =</span> INSEE_COM,</span>
+<span id="cb18-14"><a href="31-datamodel.html#cb18-14"></a>                     <span class="dt">lab_i2 =</span> NOM_COM,</span>
+<span id="cb18-15"><a href="31-datamodel.html#cb18-15"></a>                     geometry)</span>
+<span id="cb18-16"><a href="31-datamodel.html#cb18-16"></a></span>
+<span id="cb18-17"><a href="31-datamodel.html#cb18-17"></a><span class="co"># Ajout des centroïdes</span></span>
+<span id="cb18-18"><a href="31-datamodel.html#cb18-18"></a>coo &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(geo))</span>
+<span id="cb18-19"><a href="31-datamodel.html#cb18-19"></a>geo<span class="op">$</span>lng &lt;-coo[,<span class="dv">1</span>]</span>
+<span id="cb18-20"><a href="31-datamodel.html#cb18-20"></a>geo<span class="op">$</span>lat &lt;-coo[,<span class="dv">2</span>]</span>
+<span id="cb18-21"><a href="31-datamodel.html#cb18-21"></a></span>
+<span id="cb18-22"><a href="31-datamodel.html#cb18-22"></a><span class="kw">kable</span>(<span class="kw">head</span>(geo))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+i
+</th>
+<th style="text-align:left;">
+lab_i
+</th>
+<th style="text-align:left;">
+i2
+</th>
+<th style="text-align:left;">
+lab_i2
+</th>
+<th style="text-align:left;">
+geometry
+</th>
+<th style="text-align:right;">
+lng
+</th>
+<th style="text-align:right;">
+lat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+940210107
+</td>
+<td style="text-align:left;">
+Sorbiers
+</td>
+<td style="text-align:left;">
+94021
+</td>
+<td style="text-align:left;">
+Chevilly-Larue
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.357357 48…
+</td>
+<td style="text-align:right;">
+2.357553
+</td>
+<td style="text-align:right;">
+48.77377
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940680204
+</td>
+<td style="text-align:left;">
+Le Vieux Saint-Maur 4
+</td>
+<td style="text-align:left;">
+94068
+</td>
+<td style="text-align:left;">
+Saint-Maur-des-Fossés
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.483923 48…
+</td>
+<td style="text-align:right;">
+2.481153
+</td>
+<td style="text-align:right;">
+48.80862
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940810308
+</td>
+<td style="text-align:left;">
+Robespierre
+</td>
+<td style="text-align:left;">
+94081
+</td>
+<td style="text-align:left;">
+Vitry-sur-Seine
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.388071 48…
+</td>
+<td style="text-align:right;">
+2.388817
+</td>
+<td style="text-align:right;">
+48.79110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940760109
+</td>
+<td style="text-align:left;">
+Centre Ville Est
+</td>
+<td style="text-align:left;">
+94076
+</td>
+<td style="text-align:left;">
+Villejuif
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.368424 48…
+</td>
+<td style="text-align:right;">
+2.367894
+</td>
+<td style="text-align:right;">
+48.79224
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940460105
+</td>
+<td style="text-align:left;">
+Centre_Vert de Maison 5
+</td>
+<td style="text-align:left;">
+94046
+</td>
+<td style="text-align:left;">
+Maisons-Alfort
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.433334 48…
+</td>
+<td style="text-align:right;">
+2.433856
+</td>
+<td style="text-align:right;">
+48.79129
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940650105
+</td>
+<td style="text-align:left;">
+Le Sud
+</td>
+<td style="text-align:left;">
+94065
+</td>
+<td style="text-align:left;">
+Rungis
+</td>
+<td style="text-align:left;">
+MULTIPOLYGON (((2.337343 48…
+</td>
+<td style="text-align:right;">
+2.342378
+</td>
+<td style="text-align:right;">
+48.74465
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="31-datamodel.html#cb19-1"></a><span class="co">#----------------------------------------------</span></span>
+<span id="cb19-2"><a href="31-datamodel.html#cb19-2"></a>count=<span class="st"> &quot;Ménages&quot;</span></span>
+<span id="cb19-3"><a href="31-datamodel.html#cb19-3"></a>source =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Source : INSEE - RP 2017 - Fichier individu &amp; IGN - Geofla - IRIS&quot;</span>)</span>
+<span id="cb19-4"><a href="31-datamodel.html#cb19-4"></a>author =<span class="st"> &quot;Claude Grasland - contact : claude.grasland@parisgeo.cnrs.fr&quot;</span></span>
+<span id="cb19-5"><a href="31-datamodel.html#cb19-5"></a>info =<span class="st"> &quot;Fichier élaboré dans le cadre du projet Data Mining 2021 portant sur l&#39;ancienneté d&#39;instalklation des ménages résidant dans le Val de Marne à l&#39;échelon des IRIS lors du RP 2017&quot;</span></span>
+<span id="cb19-6"><a href="31-datamodel.html#cb19-6"></a></span>
+<span id="cb19-7"><a href="31-datamodel.html#cb19-7"></a>base =<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;tab&quot;</span> =<span class="st"> </span>tab,</span>
+<span id="cb19-8"><a href="31-datamodel.html#cb19-8"></a>            <span class="st">&quot;soc&quot;</span> =<span class="st"> </span>soc,</span>
+<span id="cb19-9"><a href="31-datamodel.html#cb19-9"></a>            <span class="st">&quot;geo&quot;</span> =<span class="st"> </span>geo,</span>
+<span id="cb19-10"><a href="31-datamodel.html#cb19-10"></a>            <span class="st">&quot;count&quot;</span> =<span class="st"> </span>count,</span>
+<span id="cb19-11"><a href="31-datamodel.html#cb19-11"></a>            <span class="st">&quot;source&quot;</span> =<span class="st"> </span>source,</span>
+<span id="cb19-12"><a href="31-datamodel.html#cb19-12"></a>            <span class="st">&quot;author&quot;</span> =<span class="st"> </span>author,</span>
+<span id="cb19-13"><a href="31-datamodel.html#cb19-13"></a>            <span class="st">&quot;info&quot;</span> =<span class="st"> </span>info)</span>
+<span id="cb19-14"><a href="31-datamodel.html#cb19-14"></a></span>
+<span id="cb19-15"><a href="31-datamodel.html#cb19-15"></a><span class="kw">saveRDS</span>(base,<span class="st">&quot;data/VDM_RP2017_ANEMR_IRIS_MEN.Rdata&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
-</div>
-
-
-
-
-
-
 <script src="js/tidyverse.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="22-leaflet.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="22-leaflet.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="32-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
