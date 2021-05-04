@@ -225,6 +225,30 @@ kable(head(csp3$soc))
 
 ## Fonctions de normalisation
 
+Les fonctions de normalisation sont destinées à transformer les données absolues de comptage en donnée relatives de proportion d'un total pouvant être celui de la ligne (unités spatiales) ou de la colonne (unités sociales). Elles peuvent s'appliquer selon le cas à une variable ou un tableau.
+
+
+
+### Normalisation géographique `base_norm_geo()`
+
+Cette fonction permet d'exprimer les modalités de la variable en % du total des unités géographiques. Elle va essentiellement modifier le fichier `tab`auquel on va adjoindre deux colonnes :
+
+Xi = effectif total de l'unité spatiale
+Pji = Xi/Xij = probabilité de j sachant i 
+
+
+```{r}
+base_norm_geo <- function(base = base) {
+        b <- base
+       tab_i <- b$tab %>% group_by(i) %>%
+                            summarize(Xi = sum(Xij))
+        b$tab <-b$tab %>% left_join(tab_i) %>% mutate(Pji = Xij/Xi)
+        return(b)
+}
+```
+
+
+Par exemple :
 
 
 
