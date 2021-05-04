@@ -263,6 +263,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.2.1" data-path="32-functions.html"><a href="32-functions.html#agrégation-géographique-base_agreg_geo"><i class="fa fa-check"></i><b>6.2.1</b> Agrégation géographique <code>base_agreg_geo())</code></a></li>
 <li class="chapter" data-level="6.2.2" data-path="32-functions.html"><a href="32-functions.html#agrégation-sociologique-base_agreg_soc"><i class="fa fa-check"></i><b>6.2.2</b> Agrégation sociologique <code>base_agreg_soc()</code></a></li>
 </ul></li>
+<li class="chapter" data-level="6.3" data-path="32-functions.html"><a href="32-functions.html#fonctions-de-normalisation"><i class="fa fa-check"></i><b>6.3</b> Fonctions de normalisation</a></li>
 </ul></li>
 </ul>
 
@@ -815,7 +816,7 @@ Marche ou en vélo
 <h2><span class="header-section-number">6.2</span> Fonctions d’agrégation</h2>
 <div id="agrégation-géographique-base_agreg_geo" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Agrégation géographique <code>base_agreg_geo())</code></h3>
-<p>Supposons maintenant que l’on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Pour des raisons de compatibilité il faudra impérativement fournir un label à la nouvelle variable géographique, quitte à dupliquer le code.</p>
+<p>Supposons maintenant que l’on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Noter que l’on doir reprojeter les données avant de calculer les centres de polygones et de les agréger</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="32-functions.html#cb13-1"></a>base_agreg_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
 <span id="cb13-2"><a href="32-functions.html#cb13-2"></a>                           <span class="dt">var =</span> i2,</span>
 <span id="cb13-3"><a href="32-functions.html#cb13-3"></a>                           <span class="dt">lab =</span> lab_i2) {</span>
@@ -827,23 +828,26 @@ Marche ou en vélo
 <span id="cb13-9"><a href="32-functions.html#cb13-9"></a><span class="st">                   </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="kw">as.factor</span>({{var}}),<span class="dt">j =</span> j,<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
 <span id="cb13-10"><a href="32-functions.html#cb13-10"></a><span class="st">                   </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></span>
 <span id="cb13-11"><a href="32-functions.html#cb13-11"></a><span class="st">                   </span><span class="kw">select</span>(i,j,Xij)</span>
-<span id="cb13-12"><a href="32-functions.html#cb13-12"></a></span>
-<span id="cb13-13"><a href="32-functions.html#cb13-13"></a>               </span>
-<span id="cb13-14"><a href="32-functions.html#cb13-14"></a> b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">i =</span> {{var}}, <span class="dt">lab_i =</span> {{lab}}) <span class="op">%&gt;%</span></span>
-<span id="cb13-15"><a href="32-functions.html#cb13-15"></a><span class="st">                    </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
-<span id="cb13-16"><a href="32-functions.html#cb13-16"></a><span class="st">                    </span><span class="kw">summarize</span>(<span class="dt">lab_i =</span> <span class="kw">unique</span>(lab_i),</span>
-<span id="cb13-17"><a href="32-functions.html#cb13-17"></a>                              <span class="dt">lat =</span> <span class="kw">mean</span>(lat),</span>
-<span id="cb13-18"><a href="32-functions.html#cb13-18"></a>                              <span class="dt">lng=</span><span class="kw">mean</span>(lng)) <span class="op">%&gt;%</span></span>
-<span id="cb13-19"><a href="32-functions.html#cb13-19"></a><span class="st">                    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb13-20"><a href="32-functions.html#cb13-20"></a><span class="st">                    </span><span class="kw">st_as_sf</span>()</span>
-<span id="cb13-21"><a href="32-functions.html#cb13-21"></a>                    </span>
-<span id="cb13-22"><a href="32-functions.html#cb13-22"></a> <span class="kw">return</span>(b)</span>
-<span id="cb13-23"><a href="32-functions.html#cb13-23"></a>  </span>
-<span id="cb13-24"><a href="32-functions.html#cb13-24"></a>                           }</span></code></pre></div>
+<span id="cb13-12"><a href="32-functions.html#cb13-12"></a> </span>
+<span id="cb13-13"><a href="32-functions.html#cb13-13"></a> </span>
+<span id="cb13-14"><a href="32-functions.html#cb13-14"></a></span>
+<span id="cb13-15"><a href="32-functions.html#cb13-15"></a> b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">2154</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-16"><a href="32-functions.html#cb13-16"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">i =</span> {{var}}, <span class="dt">lab_i =</span> {{lab}}) <span class="op">%&gt;%</span></span>
+<span id="cb13-17"><a href="32-functions.html#cb13-17"></a><span class="st">                    </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
+<span id="cb13-18"><a href="32-functions.html#cb13-18"></a><span class="st">                    </span><span class="kw">summarize</span>(<span class="dt">lab_i =</span> <span class="kw">unique</span>(lab_i),</span>
+<span id="cb13-19"><a href="32-functions.html#cb13-19"></a>                              <span class="dt">lat =</span> <span class="kw">mean</span>(lat),</span>
+<span id="cb13-20"><a href="32-functions.html#cb13-20"></a>                              <span class="dt">lng=</span><span class="kw">mean</span>(lng)) <span class="op">%&gt;%</span></span>
+<span id="cb13-21"><a href="32-functions.html#cb13-21"></a><span class="st">                    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-22"><a href="32-functions.html#cb13-22"></a><span class="st">                    </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">4326</span>)<span class="op">%&gt;%</span></span>
+<span id="cb13-23"><a href="32-functions.html#cb13-23"></a><span class="st">                    </span><span class="kw">st_as_sf</span>()</span>
+<span id="cb13-24"><a href="32-functions.html#cb13-24"></a></span>
+<span id="cb13-25"><a href="32-functions.html#cb13-25"></a><span class="kw">return</span>(b)</span>
+<span id="cb13-26"><a href="32-functions.html#cb13-26"></a>  </span>
+<span id="cb13-27"><a href="32-functions.html#cb13-27"></a>                           }</span></code></pre></div>
 <p>Appliquons ceci au fichier CSP des IRIS. On obtient une nouvelle base par CSP mais au niveau des communes. Il y a un message d’avertissement concernant l’agrégation des unités spatiales qu’il vaut normalement mieux effectuer après une projection planaire.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="32-functions.html#cb14-1"></a>com &lt;-<span class="kw">base_agreg_geo</span>(<span class="dt">base =</span> csp94,</span>
 <span id="cb14-2"><a href="32-functions.html#cb14-2"></a>                     <span class="dt">var =</span> i2,</span>
-<span id="cb14-3"><a href="32-functions.html#cb14-3"></a>                     <span class="dt">lab=</span> lab_i2)</span>
+<span id="cb14-3"><a href="32-functions.html#cb14-3"></a>                     <span class="dt">lab =</span> lab_i2)</span>
 <span id="cb14-4"><a href="32-functions.html#cb14-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>tab))</span></code></pre></div>
 <table>
 <thead>
@@ -1229,8 +1233,11 @@ Bas
 </tr>
 </tbody>
 </table>
-
 </div>
+</div>
+<div id="fonctions-de-normalisation" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Fonctions de normalisation</h2>
+
 </div>
 </div>
 <script src="js/tidyverse.js"></script>

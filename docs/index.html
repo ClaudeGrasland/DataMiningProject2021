@@ -24,7 +24,7 @@
 <meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-05-03" />
+<meta name="date" content="2021-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,84 +52,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
 </head>
@@ -257,10 +181,23 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.1" data-path="31-datamodel.html"><a href="31-datamodel.html#tableau-de-contingence-tab"><i class="fa fa-check"></i><b>5.1</b> tableau de contingence <code>tab</code></a></li>
 <li class="chapter" data-level="5.2" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-sociologiques-soc"><i class="fa fa-check"></i><b>5.2</b> Attributs sociologiques <code>soc</code></a></li>
 <li class="chapter" data-level="5.3" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-géographiques-geo"><i class="fa fa-check"></i><b>5.3</b> Attributs géographiques <code>geo</code></a></li>
-<li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="31-datamodel.html"><a href="31-datamodel.html#bilan"><i class="fa fa-check"></i><b>5.4.1</b> Bilan</a></li>
+<li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a></li>
+<li class="chapter" data-level="5.5" data-path="31-datamodel.html"><a href="31-datamodel.html#prolongements"><i class="fa fa-check"></i><b>5.5</b> Prolongements</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="32-functions.html"><a href="32-functions.html"><i class="fa fa-check"></i><b>6</b> Fonctions</a>
+<ul>
+<li class="chapter" data-level="" data-path="32-functions.html"><a href="32-functions.html#objectif-1"><i class="fa fa-check"></i>Objectif</a></li>
+<li class="chapter" data-level="6.1" data-path="32-functions.html"><a href="32-functions.html#fonctions-de-sélection"><i class="fa fa-check"></i><b>6.1</b> Fonctions de sélection</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="32-functions.html"><a href="32-functions.html#sélection-géographique-base_select_geo"><i class="fa fa-check"></i><b>6.1.1</b> Sélection géographique <code>base_select_geo()</code></a></li>
+<li class="chapter" data-level="6.1.2" data-path="32-functions.html"><a href="32-functions.html#sélection-sociologique-base_select_soc"><i class="fa fa-check"></i><b>6.1.2</b> Sélection sociologique <code>base_select_soc()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="32-functions.html"><a href="32-functions.html#fonctions-dagrégation"><i class="fa fa-check"></i><b>6.2</b> Fonctions d’agrégation</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="32-functions.html"><a href="32-functions.html#agrégation-géographique-base_agreg_geo"><i class="fa fa-check"></i><b>6.2.1</b> Agrégation géographique <code>base_agreg_geo())</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="32-functions.html"><a href="32-functions.html#agrégation-sociologique-base_agreg_soc"><i class="fa fa-check"></i><b>6.2.2</b> Agrégation sociologique <code>base_agreg_soc()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="32-functions.html"><a href="32-functions.html#fonctions-de-normalisation"><i class="fa fa-check"></i><b>6.3</b> Fonctions de normalisation</a></li>
 </ul></li>
 </ul>
 
@@ -283,7 +220,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <h1 class="title">Projet DATA MINING 2021</h1>
 <h2 class="subtitle"><em>Master Meci - Parcours Data - Options PISE et CCESE</em></h2>
 <p class="author"><em>C. Grasland et C. Signoretto</em></p>
-<p class="date"><em>2021-05-03</em></p>
+<p class="date"><em>2021-05-04</em></p>
 </div>
 
 <script src="js/tidyverse.js"></script>
@@ -344,20 +281,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

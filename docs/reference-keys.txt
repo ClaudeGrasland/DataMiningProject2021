@@ -104,3 +104,4 @@ sélection-sociologique-base_select_soc
 fonctions-dagrégation
 agrégation-géographique-base_agreg_geo
 agrégation-sociologique-base_agreg_soc
+fonctions-de-normalisation

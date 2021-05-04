@@ -133,7 +133,7 @@ kable(head(tra_doux$soc,3))
 ### Agrégation géographique `base_agreg_geo())`
 
 
-Supposons maintenant que l'on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Pour des raisons de compatibilité il faudra impérativement fournir un label à la nouvelle variable géographique, quitte à dupliquer le code. 
+Supposons maintenant que l'on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Noter que l'on doir reprojeter les données avant de calculer les centres de polygones et de les agréger 
 
 
 ```{r}
@@ -148,17 +148,20 @@ base_agreg_geo <- function(base = base,
                    mutate(i = as.factor({{var}}),j = j,Xij = sum(Xij)) %>%
                    ungroup()%>%
                    select(i,j,Xij)
+ 
+ 
 
-               
- b$geo <- b$geo %>% mutate(i = {{var}}, lab_i = {{lab}}) %>%
+ b$geo <- b$geo %>% st_transform(crs = 2154) %>%
+                    mutate(i = {{var}}, lab_i = {{lab}}) %>%
                     group_by(i) %>%
                     summarize(lab_i = unique(lab_i),
                               lat = mean(lat),
                               lng=mean(lng)) %>%
                     ungroup() %>%
+                    st_transform(crs = 4326)%>%
                     st_as_sf()
-                    
- return(b)
+
+return(b)
   
                            }
 ```
@@ -171,7 +174,7 @@ Appliquons ceci au fichier CSP des IRIS. On obtient une nouvelle base par CSP ma
 ```{r}
 com <-base_agreg_geo(base = csp94,
                      var = i2,
-                     lab= lab_i2)
+                     lab = lab_i2)
 kable(head(com$tab))
 kable(head(com$geo))
 ```
@@ -218,5 +221,10 @@ csp3 <-base_agreg_soc(base = csp94,
 kable(head(csp3$tab))
 kable(head(csp3$soc))
 ```
+
+
+## Fonctions de normalisation
+
+
 
 
