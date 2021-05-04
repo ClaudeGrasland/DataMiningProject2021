@@ -106,6 +106,5 @@ agrégation-géographique-base_agreg_geo
 agrégation-sociologique-base_agreg_soc
 fonctions-de-normalisation
 normalisation-géographique-base_norm_geo
-normalisation-sociologiquebase_norm_soc
 normalisation-sociologique-base_norm_soc
 normalisation-statistique-base_norm_stat
