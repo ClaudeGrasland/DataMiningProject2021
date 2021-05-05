@@ -108,3 +108,6 @@ fonctions-de-normalisation
 normalisation-géographique-base_norm_geo
 normalisation-sociologique-base_norm_soc
 normalisation-statistique-base_norm_stat
+une-carte-statistique-1
+prolongements-1
+prolongements-2

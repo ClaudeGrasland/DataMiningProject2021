@@ -1,6 +1,7 @@
 # Cartes dynamiques (CG) {#c22-leaflet}
 
 
+
 ```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
 library(knitr)
 library(rmdformats)
@@ -13,7 +14,7 @@ library(sf)
 ## Global options
 options(max.print="80")
 opts_chunk$set(echo=TRUE,
-               cache=TRUE,
+               cache=FALSE,
                prompt=FALSE,
                tidy=FALSE,
                comment=NA,
@@ -23,13 +24,7 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 
-<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
-Ce cours propose de fournir les bases du logiciel Leaflet. Il est très largement inspiré d'un article d'Elena Salette publié sur l'excellent site de formation ThinkR et intitulé [Cartographie interactive : comment visualiser mes données spatiales de manière dynamique avec leaflet ?](https://thinkr.fr/cartographie-interactive-comment-visualiser-mes-donnees-spatiales-de-maniere-dynamique-avec-leaflet/) 
-<br>
-**Claude Grasland** (Professeur à l'Université de Paris)
-</p>
 
-<br>
 
 
 ## Introduction {-}
@@ -40,19 +35,22 @@ Les **cartes interactives** se sont multipliées depuis quelques années sur les
 > Je dirais que `leaflet` est LA star des packages de cartes interactifs. On le voit partout, et même si on lui reproche parfois sa lenteur d’affichage, il est ultra complet, et la doc est vraiment bien faite : https://rstudio.github.io/leaflet/. Ce package utilise la librairie Javascript open source du même nom qui est largement utilisée (cf. la partie “Trusted by the best” sur https://leafletjs.com/ ).
 Source : [Elena Salette, ThinkR, 25-08-2020](https://thinkr.fr/cartographie-interactive-comment-visualiser-mes-donnees-spatiales-de-maniere-dynamique-avec-leaflet/)
  
- Il n'est évidemment pas possible de donner en quelques heures une formation complète à Leaflet mais il est essentiel pour des étudiants se destinant au métier de data analyst ou de data scientist d'en maîtriser les bases, cde qui est l'objet du présent cours.
+ Il n'est évidemment pas possible de donner en quelques heures une formation complète à Leaflet mais il est essentiel pour des étudiants se destinant au métier de data analyst ou de data scientist d'en maîtriser les bases, ce qui est l'objet du présent cours.
  
- 
- > **BUG !** . : Pour une raison qui m'échappe, il peut arriver que la transformation du fichier .Rmd en .html ne s'opère pas et que vous voyiez apparaître le message d'erreur suivant **RMarkdown cannot knit: html_dependency not found**. Ce message d'erreur persiste même après avoir corrigé le code... ce qui est très pénible. Après avoir cherché sur les forums de discussion, j'ai trouvé une réponse [ici](https://stackoverflow.com/questions/53750383/rmarkdown-error-path-for-html-dependency-not-found) qui consiste simplement à aller sur **la flèche descendnate à droite du bouton knitr** et effectuer un **clear knitr cache** avant de relancer le Knitr. Apparemment ça marche, sans que je sache bien pourquoi ...
-
 
 ## Une carte élémentaire
+
+<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
+**OBJECTIFS** : Ce premier cours propose de fournir les bases élémentaires du logiciel Leaflet. Il est très largement inspiré d'un article d'Elena Salette publié sur l'excellent site de formation ThinkR et intitulé [Cartographie interactive : comment visualiser mes données spatiales de manière dynamique avec leaflet ?](https://thinkr.fr/cartographie-interactive-comment-visualiser-mes-donnees-spatiales-de-maniere-dynamique-avec-leaflet/) 
+</p>
+
+Notre objectif très limité sera de construire une carte interactive utilisant le fonds de carte OpenStreetMap que l'on pourra zoomer en avant ou en arrière. La carte comportera la localisation de la place de la gare à Sucy-en-Brie avec une "épingle" de localisation comportant une photographie de la gare et un petit texte de promotion de celle-ci. 
 
 ### Lancement avec `leaflet()`
 
 Nous allons avoir besoin des packages suivants :
 
-- `Leaflet` puisque c'est l'objet même du cours !
+- `leaflet` puisque c'est l'objet même du cours !
 - `dplyr` afin de pouvoir construire des programmes utilisant des pipes `%>%`
 - `sf` pour charger des fonds de carte de différents types (points, lignes polygones)
 - `htmltools` et `htmlwidgets` pour ajouter des popups interactifs sur notre carte
@@ -164,7 +162,7 @@ On constate que le marqueur donne bien la position choisi mais n'est pas interac
 On peut définir deux comportements d'un marker selon que la souris ne fait que passer dessus (`label`) ou selon que l'utilisateur effectue un click sur marker et déclenche l'ouverture d'une fenêtre (`popup`). Dans sa version la plus simple, l'interactivité consiste à ajouter une chaîne de caractère à ces deux paramètres. 
 
 ```{r}
-icone_gare <-makeIcon(iconUrl = "img/gare_sucy_coord_googlemap.png")
+
 map <- leaflet() %>% 
             addProviderTiles('Esri.WorldTopoMap') %>%
             setView(lat = 48.77141, lng=2.50870, zoom = 12) %>% 
@@ -191,7 +189,7 @@ Mais on peut faire beaucoup mieux, notamment pour la fenêtre `popup`qui peut pr
       "<b> LA GARE DE SUCY",
       "</b><br/><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Gare_Sucy-en-Brie.jpg/1200px-Gare_Sucy-en-Brie.jpg width='200px'><br/>",
       "La gare RER A de Sucy Bonneuil est bien reliée aux communes 
-                                 environnantes par un réseau de bus partant dans toutes les directions")
+                                 environnantes par un réseau de bus partant dans toutes les directions.")
 
 
   
@@ -211,62 +209,58 @@ map
 
 ```
 
-Et voila, le tour est joué ! 
+
+### Prolongements
+
+Et voila, le tour est joué. Il faut maintenant réfléchir à la façon de construire une carte comportant un ensemble d'épingles similaires avec des couleurs ou des formes différentes, des messages différents, des photographies variées ... Il ne sera alors évidemment pas possible d'ajouter une commande addMarkers() pour chaque épingle si la carte en comporte des centaines. 
+
+Si vous avez bien compris ce cours, vous pourrez trouver des réponses en lisant de façon autonome le reste de l'article dont nous nous somme inspiré : [Cartographie interactive : comment visualiser mes données spatiales de manière dynamique avec leaflet ?](https://thinkr.fr/cartographie-interactive-comment-visualiser-mes-donnees-spatiales-de-maniere-dynamique-avec-leaflet/) 
 
 
 
 ## Une carte statistique 
 
+<p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
+**OBJECTIFS** : Ce second cours propose un objectif plus ambitieux de création d'une carte interactive à décrivant les données du recensement de 2017 à l'échelon des IRIS. Il suppose acquise les connaissances données en option Data Mining du master MECI, notamment le modèle de donnée permettant de stocker des informations sociales et spatiales qui est accessible sur github [en cliquant ici](https://claudegrasland.github.io/DataMiningProject2021/31-datamodel.html) 
+</p>
+
+
+On va prendre l'exemple d' une carte de distribution des ouvriers à l'échelon des IRIS dans quatre communes du Val de Marne au moment du recensement de population de 2017. La carte devra être interactive et permettre de visualiser les données INSEE tout en pouvant zoomer et repérer le tracé topographique des rues. 
+
+
 ### Préparation des données
 
+Cette section s'appuie sur un cours  concernant les modèles de données et les fonctions associées. On se limitera donc à expliquer les fichiers obtenus sans plus de détail.
 
-On prend comme exemple les données relatives au nombres de personnes résidant en HLM dans une sélection de communes du Val de Marne à l'échelle des IRIS. Le fichier doit être impérativement au format `sf` et on s'en s'assure en passant la fonction `st_as_sf()`
-`
-
-```{r}
-mapiris<-readRDS("data/sel_map_pop_hlm.Rdata") # Fichier
-mapiris<-st_as_sf(mapiris) # vérifie que le format est bien sf
-head(mapiris)
-```
-
-
-Les coordonnées géométriques sont actuellement projetées selon la projection `(crs = RF93_Lambert_93` qui est la projection de référence utilisée en France. Cette projection permet de calculer au mieux les distances avec une précision de l'ordre du mètre. 
-
-Mais les données ainsi projetées ne sont pas utilisables par `leaflet`qui attend des coordonnées de latitude et longitude non projetées . On doit donc reprojeter le fond de carte pour le rendre utilisable par Leaflet et ajouter des colonnes lat et lng. Cela se fait facilement avec la fonction `st_transform()`du package sf en lui donnant comme paramètre `(crs=4326)` ce qui correspond à la projection WGS 84. 
-
+On charge tout d'abord une bibliothèque de fonctions ...
 
 ```{r}
-mapiris<-mapiris  %>% st_transform(crs = 4326)
-head(mapiris)
+source("myproject/pgm/base_functions.R")
 ```
 
-
-Le fichier est en apparence le même mais les coordonnées de la variable *geometry* sont désormais en degrés décimaux. Et on peut du coup extraire pour chaque polygone les coordonnées du point central à l'aide des fonctions `st_centroid()` et `st_coordinates()`
-
+Puis une base de donnée structurée d'où l'on extrait les communes retenues à l'aide de leur code INSEE
 
 ```{r}
-coo<-st_coordinates(st_centroid(mapiris))
-head(coo)
+csp <- readRDS("myproject/data/VDM_RP2017_CS1_IRIS_POP.rds")
+csp <-base_select_geo(base = csp, sel=c("94011","94071","94055","94068"))
 ```
 
-On ajoute ces deux variables de coordonnées dans notre fichier principal pour pouvoir les combiner avec les autres variables 
+On extrait de la base le nombre d'ouvrier en effectif brut et en part de la population de l'IRIS.
 
 ```{r}
-mapiris$lng<-coo[,1]
-mapiris$lat<-coo[,2]
+csp<-base_norm_geo(csp)
+mapiris <- inner_join(csp$tab,csp$geo) %>% filter(j =="6") %>% st_as_sf()
+kable(head(mapiris))
 ```
 
-
-si nous de disposons pas déjà d'une carte de communes, on peut la réaliser facilement en agrégeant les données IRIS par la variable NOM_COM puis ajouter les centroïdes de ces dernières comme on l'a fait pour les IRIS.
+On agrège le fichier par communes afin de pouvoir superposer leur contour sur la carte des IRIS. 
 
 ```{r}
-mapcom <- mapiris %>% group_by(NOM_COM) %>% summarise() %>% st_as_sf()
-coo<-st_coordinates(st_centroid(mapcom))
-mapcom$lng<-coo[,1]
-mapcom$lat<-coo[,2]
+csp2<-base_agreg_geo(csp)
+csp2<-base_norm_geo(csp2)
+mapcom <- inner_join(csp2$tab,csp2$geo) %>% filter(j =="6")%>% st_as_sf()
+kable(head(mapcom))
 ```
-Un message nous avertit qu'il aurait mieux valu calculer les centroïdes sur des données projetées mais ce n'est pas absolument indispensable si l'on ne cherche pas une précision absolue. 
-
 
 
 ### Contours des iris et communes avec `addPolygons()`
@@ -282,8 +276,8 @@ map <- leaflet() %>%
             addProviderTiles('Esri.WorldTopoMap') %>%
             setView(lat = 48.77, lng=2.53, zoom = 12) %>% 
             addPolygons(data = mapcom,
-                        color = c("red","orange","yellow","green","blue"),
-                        label = ~NOM_COM)
+                        color = c("red","orange","green","blue"),
+                        label = ~lab_i)
 map
 ```
 On peut superposer plusieurs cartes de polygones à condition que certaines soient composée uniquement de lignes de contour (`fill = `) dont on peut régler l'épaisseur (`weight= `) ou la couleur (`color =`). Les labels ou popup ne pourront a priori concerner également qu'une seule couche. 
@@ -291,8 +285,8 @@ On peut superposer plusieurs cartes de polygones à condition que certaines soie
 ```{r}
 
 # Ajout de la variable couleur
-mapiris$comcolor<-as.factor(mapiris$NOM_COM)
-levels(mapiris$comcolor)<-c("red","orange","yellow","green","blue")
+mapiris$comcolor<-as.factor(mapiris$lab_i2)
+levels(mapiris$comcolor)<-c("red","orange","green","blue")
 
 
 # Réalisation de la carte
@@ -302,7 +296,7 @@ map <- leaflet() %>%
             addPolygons(data = mapiris,
                         fill = TRUE,
                         color = ~comcolor,
-                        label = ~NOM_IRIS,
+                        label = ~lab_i,
                         weight = 1) %>%
             addPolygons(data = mapcom,
                         fill = FALSE,
@@ -317,27 +311,19 @@ map
 
 De la même manière que nous avons affiché la couleur des communes  dans chaque IRIS, nous pouvons proposer une carte choroplèthe du % de personnes habitant dans des HLM et ajouter un popup donnant la valeur de l'indicateur si l'on clique. La seule difficulté est de préparer une palette de couleur à l'aide de l'une des fonction `colorNumeric()`, `colorBin()`, `colorQuantile()` ou `colorFactor()`. 
 
-Voyons un exemple sur la variable pct_1 qui est le % de logements sociaux. Supposons que l'on veuille examiner la part des logements sociaux qui sont très supérieurs ou très inférieurs à 20% en prenant des classes qui suivent une progression géométrique : 
+Voyons un exemple sur la variable `Pj_i` qui réprésente ici la part des ouvriers(`j`) dans la population de plus de 18 ans de chaque IRIS(`i`) exprimée en pourcentage
 
 ```{r}
 # Choix de la variable
-   myvar <-mapiris$pct_1
+   mapiris$myvar <-round(100*mapiris$Pj_i,1)
 # Choix des classes 
-    mycut<-c(0, 5, 10, 20,40,100)
+    mycut<-c(0, 3,6, 9,12,100)
 # Choix de la palette (c'est une fonction !)
    mypal <- colorBin('RdYlBu', 
-                       myvar,
-                       bins=mycut)
+                       mapiris$myvar,
+                       bins=mycut,
+                     rev=TRUE)
    
-# Préparation des popups
- #     mypop <- lapply(seq(nrow(mapiris)), function(i) {
-#      paste0(  paste("Commune :",mapiris$NOM_COM[i]), '<p>',
-#               paste("Iris : " ,mapiris$NOM_IRIS[i]), '<p>', 
-#               paste("% pop. en HLM :", mapiris$pct_1[i])
-#            ) 
-#            })
-#      mypop<-lapply(labs, htmltools::HTML)
-
 
 
 
@@ -346,16 +332,16 @@ map <- leaflet() %>%
             addProviderTiles('Esri.WorldTopoMap') %>%
             setView(lat = 48.77, lng=2.53, zoom = 12) %>% 
             addPolygons(data = mapiris,
-                        fillColor = ~mypal(pct_1),
+                        fillColor = ~mypal(myvar),
                         fillOpacity = 0.5,
                         color = "white",
-                        label = ~pct_1,
+                        label = ~myvar,
  #                       popup = mypop,
                         weight = 1) %>%
             addLegend(data = mapiris,
                       pal = mypal, 
-                      title = "% population en HLM",
-                      values =~pct_1, 
+                      title = "% ouvriers",
+                      values =~myvar, 
                       position = 'topright') %>%
             addPolygons(data = mapcom,
                         fill = FALSE,
@@ -367,32 +353,27 @@ map
 
 ### Cartes de stock avec `addCircleMarkers()`
 
-Notre carte est intéressante mais elle ne permet pas de voir quelle est la population concernée par le logement social. En effet, certains IRIS sont très étendus alors qu'ils regroupent peu de population et d'autres sont très petits mais comporte beaucoup de logements sociaux. Ce qui est logique puisque les HLM sont le plus souvent des immeubles à plusieurs étages.
+Notre carte est intéressante mais elle ne permet pas de voir quelle est la population ouvrière parmi les plus de 18 ans. En effet, certains IRIS sont très étendus alors qu'ils regroupent peu de population et d'autres sont très petits mais comportent beaucoup d'ouvrier. Ce qui est logique puisque les ouvriers sont plus souvent présents dans les zones denses d'habitat HLM. 
 
-Nous allons donc superposer sur la carte précédente le nombre de personnes vivant en logement social. Puisqu'il s'agit d'un stock, nous devrons utiliser un figuré ponctuel avec une surface proportionnelle au nombre d'habitants des logements sociaux.
+Nous allons donc superposer sur la carte précédente le nombre de personnes de plus de 18 ans catégorisées comme ouvrier. Puisqu'il s'agit d'un stock, nous devrons utiliser un figuré ponctuel avec une surface proportionnelle au nombre d'habitants des logements sociaux.
 
 
 ```{r}
 # Choix de la variable
-   myvar <-mapiris$pct_1
+   mapiris$myvar <-round(100*mapiris$Pj_i,1)
 # Choix des classes 
-    mycut<-c(0, 5, 10, 20,40,100)
+    mycut<-c(0, 3,6, 9,12,100)
 # Choix de la palette (c'est une fonction !)
    mypal <- colorBin('RdYlBu', 
-                       myvar,
-                       bins=mycut)
+                       mapiris$myvar,
+                       bins=mycut,
+                     rev=TRUE)
   
    
 # Calcul du diamètre des cercles
-   myradius <-8*sqrt(mapiris$count_1/max(mapiris$count_1))
-# Préparation des popups
- #     mypop <- lapply(seq(nrow(mapiris)), function(i) {
-#      paste0(  paste("Commune :",mapiris$NOM_COM[i]), '<p>',
-#               paste("Iris : " ,mapiris$NOM_IRIS[i]), '<p>', 
-#               paste("% pop. en HLM :", mapiris$pct_1[i])
-#            ) 
-#            })
-#      mypop<-lapply(labs, htmltools::HTML)
+   mapiris$myradius <-8*sqrt(mapiris$Xij/max(mapiris$Xij))
+   
+
 
 
 
@@ -402,23 +383,23 @@ map <- leaflet() %>%
             addProviderTiles('Esri.WorldTopoMap') %>%
             setView(lat = 48.77, lng=2.53, zoom = 12) %>% 
             addPolygons(data = mapiris,
-                        fillColor = ~mypal(pct_1),
+                        fillColor = ~mypal(myvar),
                         fillOpacity = 0.5,
                         color = "white",
-                        label = ~pct_1,
+                        label = ~myvar,
  #                       popup = mypop,
                         weight = 1) %>%
             addLegend(data = mapiris,
                       pal = mypal, 
-                      title = "% population en HLM",
-                      values =~pct_1, 
+                      title = "% ouvriers",
+                      values =~myvar, 
                       position = 'topright') %>%
              addCircleMarkers(data=mapiris,
                               lat = ~lat,
                               lng = ~lng,
-                              radius = myradius,
+                              radius = ~myradius,
                               stroke = FALSE,
-                              label = ~count_1,
+                              label = ~myradius,
                               fillColor = "gray50",
                               fillOpacity = 0.5)%>%
             addPolygons(data = mapcom,
@@ -430,45 +411,44 @@ map
 
 ### Finition avec un `popup` et `highlightOptions()`
 
-Et pour terminer notre belle carte, nous allons ajouter une fenêtre popup apportant à l'utilisateur tous les renseignements sur chaque IRIS. Pour cela nous allons devoir construire chaque fenêtre popup au format HTML préalablement à l'affichage des cartes en utilisant des outils issus sdes packaghes `htmltools`et `htmlwidgets`. On supprime les labels des deux couches, l'utilisateur ayant désormais juste à cliquer sur un Iris pour obtenir tous les renseignements dans une seule fenêtre
+Et pour terminer notre belle carte, nous allons ajouter une fenêtre popup apportant à l'utilisateur tous les renseignements sur chaque IRIS. Pour cela nous allons devoir construire chaque fenêtre popup au format HTML préalablement à l'affichage des cartes en utilisant des outils issus des packaghes `htmltools`et `htmlwidgets`. On supprime les labels des deux couches, l'utilisateur ayant désormais juste à cliquer sur un Iris pour obtenir tous les renseignements dans une seule fenêtre
 
 On ajoute au passage un paramètre `highlighOptions()` pour que les iris au dessus desquels passe la souris soient mis en valeur par un trait de contour spécifique. On verra ainsi mieux à quelle zone s'applique le popup de renseignement. 
 
 
 ```{r}
 # Choix de la variable
-   myvar <-mapiris$pct_1
+   mapiris$myvar <-round(100*mapiris$Pj_i,1)
 # Choix des classes 
-    mycut<-c(0, 5, 10, 20,40,100)
+    mycut<-c(0, 3,6, 9,12,100)
 # Choix de la palette (c'est une fonction !)
    mypal <- colorBin('RdYlBu', 
-                       myvar,
-                       bins=mycut)
+                       mapiris$myvar,
+                       bins=mycut,
+                     rev=TRUE)
   
    
 # Calcul du diamètre des cercles
-   myradius <-8*sqrt(mapiris$count_1/max(mapiris$count_1))
+   mapiris$myradius <-8*sqrt(mapiris$Xij/max(mapiris$Xij))
    
 # Préparation des popups
       mypopups <- lapply(seq(nrow(mapiris)), function(i) {
-      paste0(  paste("Commune           : ",mapiris$NOM_COM[i]), '<br>',
-               paste("Iris              : " ,mapiris$NOM_IRIS[i]), '<br>', 
-               paste("Population totale : " ,mapiris$count_1[i]+mapiris$count_2[i]), '<br>', 
-               paste("Population en HLM : " ,mapiris$count_1[i]), '<br>',                
-               paste("% pop. en HLM     :", mapiris$pct_1[i])
+      paste0(  paste("Commune           : ",mapiris$lab_i2[i]), '<br>',
+               paste("Iris              : " ,mapiris$lab_i[i]), '<br>', 
+               paste("Population > 18 ans : " ,mapiris$Xi[i]), '<br>', 
+               paste("Ouvrier > 18 ans : " ,mapiris$Xij[i]), '<br>',                
+               paste("% ouvriers     :", mapiris$myvar[i])
             ) 
             })
       mypopups<-lapply(mypopups, htmltools::HTML)
 
 
-
-
 # Réalisation de la carte
 map <- leaflet() %>% 
             addProviderTiles('Esri.WorldTopoMap') %>%
-            setView(lat = 48.77, lng=2.53, zoom = 13) %>% 
+            setView(lat = 48.77, lng=2.53, zoom = 12) %>% 
             addPolygons(data = mapiris,
-                        fillColor = ~mypal(pct_1),
+                        fillColor = ~mypal(myvar),
                         fillOpacity = 0.5,
                         color = "white",
                         popup = mypopups,
@@ -476,14 +456,15 @@ map <- leaflet() %>%
                         highlightOptions = highlightOptions(weight = 3, color = 'green')) %>%
             addLegend(data = mapiris,
                       pal = mypal, 
-                      title = "% population en HLM",
-                      values =~pct_1, 
+                      title = "% ouvriers",
+                      values =~myvar, 
                       position = 'topright') %>%
              addCircleMarkers(data=mapiris,
                               lat = ~lat,
                               lng = ~lng,
-                              radius = myradius,
+                              radius = ~myradius,
                               stroke = FALSE,
+                              label = ~myradius,
                               fillColor = "gray50",
                               fillOpacity = 0.5)%>%
             addPolygons(data = mapcom,
@@ -491,4 +472,24 @@ map <- leaflet() %>%
                         color = "black",
                         weight = 2)
 map
+
+
+```
+
+### Prolongements
+
+
+Le résultat est bien joli, mais il impose une série d'interventions manuelles qui empêchent d'automatiser la production de cartes équivalentes sur les cadres, les employés, les artisans ... Ou bien sur un autre ensemble d'étude.
+
+La mission d'un data analyste expérimenté sera donc de reprendre ce programme et de l'automatiser sous la forme d'une fonction paramétrique qui crée une carte leaflet à partir d'un jeu minimal de trois paramètres : 
+
+
+
+```{r, eval = FALSE}
+# Fonction de création de la carte leaflet
+base_map_leaflet <- function(base = base,    # Choix de la base de donnée
+                             soc = selj,     # Choix de la variable sociologique
+                             geo = seli,     # Choix de la zone géographique d'étude
+                             ...,            # Autres paramètres facultatifs 
+                             )
 ```
