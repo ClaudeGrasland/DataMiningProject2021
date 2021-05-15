@@ -136,32 +136,35 @@ Supposons maintenant que l'on veuille transformer notre base de donnée pour la 
 
 
 ```{r}
+
+
+
 base_agreg_geo <- function(base = base,
                            var = i2,
                            lab = lab_i2) {
- b<-base
- key <- b$geo %>% select(i, {{var}})
- 
- b$tab <-b$tab %>% left_join(key) %>% 
-                   group_by({{var}},j) %>%
-                   mutate(i = as.factor({{var}}),j = j,Xij = sum(Xij)) %>%
-                   ungroup()%>%
-                   select(i,j,Xij)
- 
- 
-
- b$geo <- b$geo %>% st_transform(crs = 2154) %>%
-                    mutate(i = {{var}}, lab_i = {{lab}}) %>%
-                    group_by(i) %>%
-                    summarize(lab_i = unique(lab_i),
-                              lat = mean(lat),
-                              lng=mean(lng)) %>%
-                    ungroup() %>%
-                    st_transform(crs = 4326)%>%
-                    st_as_sf()
-
-return(b)
+  b<-base
+  key <- b$geo %>% select(i, {{var}})
   
+  b$tab <-b$tab %>% left_join(key) %>% 
+    mutate(i = as.factor({{var}}))%>%
+    group_by(i,j) %>%
+    summarize(Xij = sum(Xij)) %>%
+    select(i,j,Xij)
+  
+  
+  
+  b$geo <- b$geo %>% st_transform(crs = 2154) %>%
+    mutate(i = {{var}}, lab_i = {{lab}}) %>%
+    group_by(i) %>%
+    summarize(lab_i = unique(lab_i),
+              lat = mean(lat),
+              lng=mean(lng)) %>%
+    ungroup() %>%
+    st_transform(crs = 4326)%>%
+    st_as_sf()
+  
+  return(b)
+
                            }
 ```
 
@@ -186,26 +189,30 @@ On reproduit un code équivalent pour procéder à une agrégation des catégori
 
 
 ```{r}
+
 base_agreg_soc <- function(base = base,
                            var = j2,
                            lab = lab_j2) {
- b<-base
- key <- b$soc %>% select(j, {{var}})
- 
- b$tab <-b$tab %>% left_join(key) %>% 
-                   group_by(i,{{var}}) %>%
-                   mutate(i =i, j= as.factor({{var}}),Xij = sum(Xij)) %>%
-                   ungroup()%>%
-                   select(i,j,Xij)
+  b<-base
+  key <- b$soc %>% select(j, {{var}})
+  
+  b$tab <-b$tab %>% left_join(key) %>% 
+    mutate(j = as.factor({{var}}))%>%
+    group_by(i,j) %>%
+    summarize(Xij = sum(Xij)) %>%
+    select(i,j,Xij)
+  
+  b$soc <- b$soc %>% mutate(j = {{var}}, lab_j = {{lab}}) %>%
+    select(j,lab_j) %>% unique()
+  
+  
+  return(b)
+  
+}
 
-               
- b$soc <- b$soc %>% mutate(j = {{var}}, lab_j = {{lab}}) %>%
-                    select(j,lab_j)
-  
-                    
- return(b)
-  
-                           }
+
+
+
 ```
 
 
@@ -219,6 +226,8 @@ csp3 <-base_agreg_soc(base = csp94,
                      lab= lab_j2)
 kable(head(csp3$tab))
 kable(head(csp3$soc))
+
+
 ```
 
 

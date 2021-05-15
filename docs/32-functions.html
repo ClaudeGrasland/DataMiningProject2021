@@ -24,7 +24,7 @@
 <meta name="author" content="C. Grasland et C. Signoretto" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,16 +52,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -241,6 +231,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.1.5" data-path="22-leaflet.html"><a href="22-leaflet.html#affichage-dun-point-avec-addmarkers"><i class="fa fa-check"></i><b>4.1.5</b> Affichage d’un point avec <code>addMarkers()</code></a></li>
 <li class="chapter" data-level="4.1.6" data-path="22-leaflet.html"><a href="22-leaflet.html#ajout-dun-labelou-dun-popup"><i class="fa fa-check"></i><b>4.1.6</b> Ajout d’un <code>label</code>ou d’un <code>popup</code></a></li>
 <li class="chapter" data-level="4.1.7" data-path="22-leaflet.html"><a href="22-leaflet.html#amélioration-du-popup"><i class="fa fa-check"></i><b>4.1.7</b> Amélioration du <code>popup</code></a></li>
+<li class="chapter" data-level="4.1.8" data-path="22-leaflet.html"><a href="22-leaflet.html#prolongements"><i class="fa fa-check"></i><b>4.1.8</b> Prolongements</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="22-leaflet.html"><a href="22-leaflet.html#une-carte-statistique"><i class="fa fa-check"></i><b>4.2</b> Une carte statistique</a>
 <ul>
@@ -249,6 +240,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.2.3" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-choroplèthes-avec-addpolygon-et-colorbin"><i class="fa fa-check"></i><b>4.2.3</b> Cartes choroplèthes avec <code>addPolygon()</code> et <code>colorBin()</code></a></li>
 <li class="chapter" data-level="4.2.4" data-path="22-leaflet.html"><a href="22-leaflet.html#cartes-de-stock-avec-addcirclemarkers"><i class="fa fa-check"></i><b>4.2.4</b> Cartes de stock avec <code>addCircleMarkers()</code></a></li>
 <li class="chapter" data-level="4.2.5" data-path="22-leaflet.html"><a href="22-leaflet.html#finition-avec-un-popup-et-highlightoptions"><i class="fa fa-check"></i><b>4.2.5</b> Finition avec un <code>popup</code> et <code>highlightOptions()</code></a></li>
+<li class="chapter" data-level="4.2.6" data-path="22-leaflet.html"><a href="22-leaflet.html#prolongements-1"><i class="fa fa-check"></i><b>4.2.6</b> Prolongements</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="31-datamodel.html"><a href="31-datamodel.html"><i class="fa fa-check"></i><b>5</b> Modèle de données (CG)</a>
@@ -258,7 +250,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-sociologiques-soc"><i class="fa fa-check"></i><b>5.2</b> Attributs sociologiques <code>soc</code></a></li>
 <li class="chapter" data-level="5.3" data-path="31-datamodel.html"><a href="31-datamodel.html#attributs-géographiques-geo"><i class="fa fa-check"></i><b>5.3</b> Attributs géographiques <code>geo</code></a></li>
 <li class="chapter" data-level="5.4" data-path="31-datamodel.html"><a href="31-datamodel.html#assemblage-et-sauvegarde"><i class="fa fa-check"></i><b>5.4</b> Assemblage et sauvegarde</a></li>
-<li class="chapter" data-level="5.5" data-path="31-datamodel.html"><a href="31-datamodel.html#prolongements"><i class="fa fa-check"></i><b>5.5</b> Prolongements</a></li>
+<li class="chapter" data-level="5.5" data-path="31-datamodel.html"><a href="31-datamodel.html#prolongements-2"><i class="fa fa-check"></i><b>5.5</b> Prolongements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="32-functions.html"><a href="32-functions.html"><i class="fa fa-check"></i><b>6</b> Fonctions</a>
 <ul>
@@ -299,6 +291,7 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="c32-functions" class="section level1" number="6">
 <h1><span class="header-section-number">Chapitre 6</span> Fonctions</h1>
+<pre><code>Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
 <p style="border:0.5px; border-style:solid; border-color:navajowhite3; padding: 1em; font-size:15px">
 Un modèle de donnée n’a d’intérêt que s’il est conçu en fonction d’objectifs qui seront réalisés à l’aide de fonctions exploitant les possibilités du modèle de donnée. Nous allons montrer ici à l’aide de quelques exemples simples l’intérêt du modèle de donnée défini au chapitre précédent.
 <br>
@@ -313,9 +306,9 @@ Un modèle de donnée n’a d’intérêt que s’il est conçu en fonction d’
 <li>tra94 : base de données des actifs mobiles et par IRIS selon le mode de transport au 2017, contenue dans le fichier <em>VDM_RP2017_TRANS_IRIS_ACT.Rdata</em></li>
 <li>anc94 : base de données des ménages et par IRIS en fonction de l’ancienneté d’installation dans le logement au RP2017, contenue dans le fichier <em>VDM_RP2017_ANEMR_IRIS_MEN.Rdata</em></li>
 </ul>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="32-functions.html#cb256-1"></a>csp94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_CS1_IRIS_POP.rds&quot;</span>)</span>
-<span id="cb256-2"><a href="32-functions.html#cb256-2"></a>tra94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_TRANS_IRIS_ACT.rds&quot;</span>)</span>
-<span id="cb256-3"><a href="32-functions.html#cb256-3"></a>anc94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_ANEMR_IRIS_MEN.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="32-functions.html#cb2-1"></a>csp94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_CS1_IRIS_POP.rds&quot;</span>)</span>
+<span id="cb2-2"><a href="32-functions.html#cb2-2"></a>tra94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_TRANS_IRIS_ACT.rds&quot;</span>)</span>
+<span id="cb2-3"><a href="32-functions.html#cb2-3"></a>anc94 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;myproject/data/VDM_RP2017_ANEMR_IRIS_MEN.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="fonctions-de-sélection" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Fonctions de sélection</h2>
@@ -324,21 +317,21 @@ Un modèle de donnée n’a d’intérêt que s’il est conçu en fonction d’
 <h3><span class="header-section-number">6.1.1</span> Sélection géographique <code>base_select_geo()</code></h3>
 <p>On peut tout d’abord effectuer une sélection géographique en ne conservant que certains IRIS. La sélection peut s’effectuer par défaut sur les unités géographique de base <code>i</code> mais elle peut aussi utiliser n’importe quelle variable du fichier <code>geo</code>, notamment les niveaux d’agrégation supérieurs ce qui est en général plus pratique.</p>
 <p>Pour cela on va commencer par modifier le fichier <code>geo</code> puis le fichier <code>tab</code> et enfin le fichier <code>soc</code> afin d’y éliminer les catégories éventuellement absentes de la zone d’étude.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="32-functions.html#cb257-1"></a>base_select_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
-<span id="cb257-2"><a href="32-functions.html#cb257-2"></a>                            <span class="dt">var =</span> i2,</span>
-<span id="cb257-3"><a href="32-functions.html#cb257-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Geo1&quot;</span>,<span class="st">&quot;Geo2&quot;</span>,<span class="st">&quot;Geo3&quot;</span>)) {</span>
-<span id="cb257-4"><a href="32-functions.html#cb257-4"></a>  b&lt;-base</span>
-<span id="cb257-5"><a href="32-functions.html#cb257-5"></a>  b<span class="op">$</span>geo&lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
-<span id="cb257-6"><a href="32-functions.html#cb257-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>geo<span class="op">$</span>i)</span>
-<span id="cb257-7"><a href="32-functions.html#cb257-7"></a>  b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>j))</span>
-<span id="cb257-8"><a href="32-functions.html#cb257-8"></a>  <span class="kw">return</span>(b)</span>
-<span id="cb257-9"><a href="32-functions.html#cb257-9"></a>                            }</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="32-functions.html#cb3-1"></a>base_select_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb3-2"><a href="32-functions.html#cb3-2"></a>                            <span class="dt">var =</span> i2,</span>
+<span id="cb3-3"><a href="32-functions.html#cb3-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Geo1&quot;</span>,<span class="st">&quot;Geo2&quot;</span>,<span class="st">&quot;Geo3&quot;</span>)) {</span>
+<span id="cb3-4"><a href="32-functions.html#cb3-4"></a>  b&lt;-base</span>
+<span id="cb3-5"><a href="32-functions.html#cb3-5"></a>  b<span class="op">$</span>geo&lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
+<span id="cb3-6"><a href="32-functions.html#cb3-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>geo<span class="op">$</span>i)</span>
+<span id="cb3-7"><a href="32-functions.html#cb3-7"></a>  b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>j))</span>
+<span id="cb3-8"><a href="32-functions.html#cb3-8"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb3-9"><a href="32-functions.html#cb3-9"></a>                            }</span></code></pre></div>
 <p>Essayons d’appliquer notre fonction à l’extraction des CSP de la commune de Sucy-en-Brie :</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="32-functions.html#cb258-1"></a>csp_sucy &lt;-<span class="st"> </span><span class="kw">base_select_geo</span>(<span class="dt">base =</span> csp94,</span>
-<span id="cb258-2"><a href="32-functions.html#cb258-2"></a>                            <span class="dt">var =</span> i2,</span>
-<span id="cb258-3"><a href="32-functions.html#cb258-3"></a>                            <span class="dt">sel =</span> <span class="st">&quot;94071&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="32-functions.html#cb4-1"></a>csp_sucy &lt;-<span class="st"> </span><span class="kw">base_select_geo</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb4-2"><a href="32-functions.html#cb4-2"></a>                            <span class="dt">var =</span> i2,</span>
+<span id="cb4-3"><a href="32-functions.html#cb4-3"></a>                            <span class="dt">sel =</span> <span class="st">&quot;94071&quot;</span>)</span></code></pre></div>
 <p>On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="32-functions.html#cb259-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>tab,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="32-functions.html#cb5-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>tab,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -389,7 +382,7 @@ Xij
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="32-functions.html#cb260-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="32-functions.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -512,7 +505,7 @@ Communes
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="32-functions.html#cb261-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="32-functions.html#cb7-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp_sucy<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -604,21 +597,21 @@ Moyen
 <h3><span class="header-section-number">6.1.2</span> Sélection sociologique <code>base_select_soc()</code></h3>
 <p>On peut tout effectuer l’opération symétrique sur les données sociologiques</p>
 <p>Pour cela on va commencer par modifier le fichier <code>soc</code> puis le fichier <code>tab</code> et enfin le fichier <code>geo</code>pour éliminer les unités spatiales où l’ensemble des catégories ciblées sont absentes.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="32-functions.html#cb262-1"></a>base_select_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
-<span id="cb262-2"><a href="32-functions.html#cb262-2"></a>                            <span class="dt">var =</span> j2,</span>
-<span id="cb262-3"><a href="32-functions.html#cb262-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Cat1&quot;</span>,<span class="st">&quot;Cat2&quot;</span>,<span class="st">&quot;Cat3&quot;</span>)) {</span>
-<span id="cb262-4"><a href="32-functions.html#cb262-4"></a>  b&lt;-base</span>
-<span id="cb262-5"><a href="32-functions.html#cb262-5"></a>  b<span class="op">$</span>soc&lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
-<span id="cb262-6"><a href="32-functions.html#cb262-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>soc<span class="op">$</span>j)</span>
-<span id="cb262-7"><a href="32-functions.html#cb262-7"></a>  b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>i))</span>
-<span id="cb262-8"><a href="32-functions.html#cb262-8"></a>  <span class="kw">return</span>(b)</span>
-<span id="cb262-9"><a href="32-functions.html#cb262-9"></a>                            }</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="32-functions.html#cb8-1"></a>base_select_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb8-2"><a href="32-functions.html#cb8-2"></a>                            <span class="dt">var =</span> j2,</span>
+<span id="cb8-3"><a href="32-functions.html#cb8-3"></a>                            <span class="dt">sel =</span> <span class="kw">c</span>(<span class="st">&quot;Cat1&quot;</span>,<span class="st">&quot;Cat2&quot;</span>,<span class="st">&quot;Cat3&quot;</span>)) {</span>
+<span id="cb8-4"><a href="32-functions.html#cb8-4"></a>  b&lt;-base</span>
+<span id="cb8-5"><a href="32-functions.html#cb8-5"></a>  b<span class="op">$</span>soc&lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>({{var}} <span class="op">%in%</span><span class="st"> </span>sel)</span>
+<span id="cb8-6"><a href="32-functions.html#cb8-6"></a>  b<span class="op">$</span>tab&lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(j <span class="op">%in%</span><span class="st"> </span>b<span class="op">$</span>soc<span class="op">$</span>j)</span>
+<span id="cb8-7"><a href="32-functions.html#cb8-7"></a>  b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(i <span class="op">%in%</span><span class="st"> </span><span class="kw">unique</span>(b<span class="op">$</span>tab<span class="op">$</span>i))</span>
+<span id="cb8-8"><a href="32-functions.html#cb8-8"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb8-9"><a href="32-functions.html#cb8-9"></a>                            }</span></code></pre></div>
 <p>A titre d’exemple on ne va conserver que les deux modes de transport doux (marche et vélo) dans le fichier des déplacements des actifs :</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="32-functions.html#cb263-1"></a>tra_doux &lt;-<span class="st"> </span><span class="kw">base_select_soc</span>(<span class="dt">base =</span> tra94,</span>
-<span id="cb263-2"><a href="32-functions.html#cb263-2"></a>                          <span class="dt">var =</span> j2,</span>
-<span id="cb263-3"><a href="32-functions.html#cb263-3"></a>                          <span class="dt">sel =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="32-functions.html#cb9-1"></a>tra_doux &lt;-<span class="st"> </span><span class="kw">base_select_soc</span>(<span class="dt">base =</span> tra94,</span>
+<span id="cb9-2"><a href="32-functions.html#cb9-2"></a>                          <span class="dt">var =</span> j2,</span>
+<span id="cb9-3"><a href="32-functions.html#cb9-3"></a>                          <span class="dt">sel =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <p>On peut vérifier que les trois fichiers ont été modifiés dans la nouvelle base.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="32-functions.html#cb264-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>tab,<span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="32-functions.html#cb10-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>tab,<span class="dv">4</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -680,7 +673,7 @@ Xij
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="32-functions.html#cb265-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="32-functions.html#cb11-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>geo,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -803,7 +796,7 @@ Communes
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="32-functions.html#cb266-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="32-functions.html#cb12-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(tra_doux<span class="op">$</span>soc,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -877,38 +870,38 @@ Marche ou en vélo
 <div id="agrégation-géographique-base_agreg_geo" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Agrégation géographique <code>base_agreg_geo())</code></h3>
 <p>Supposons maintenant que l’on veuille transformer notre base de donnée pour la faire passer du niveau des IRIS (i) à celui des communes (i2). Cela va entraîner une modification des fichiers tab et geo mais pas du fichier soc qui demeurera identique. Noter que l’on doir reprojeter les données avant de calculer les centres de polygones et de les agréger</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="32-functions.html#cb267-1"></a>base_agreg_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
-<span id="cb267-2"><a href="32-functions.html#cb267-2"></a>                           <span class="dt">var =</span> i2,</span>
-<span id="cb267-3"><a href="32-functions.html#cb267-3"></a>                           <span class="dt">lab =</span> lab_i2) {</span>
-<span id="cb267-4"><a href="32-functions.html#cb267-4"></a> b&lt;-base</span>
-<span id="cb267-5"><a href="32-functions.html#cb267-5"></a> key &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(i, {{var}})</span>
-<span id="cb267-6"><a href="32-functions.html#cb267-6"></a> </span>
-<span id="cb267-7"><a href="32-functions.html#cb267-7"></a> b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb267-8"><a href="32-functions.html#cb267-8"></a><span class="st">                   </span><span class="kw">group_by</span>({{var}},j) <span class="op">%&gt;%</span></span>
-<span id="cb267-9"><a href="32-functions.html#cb267-9"></a><span class="st">                   </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="kw">as.factor</span>({{var}}),<span class="dt">j =</span> j,<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
-<span id="cb267-10"><a href="32-functions.html#cb267-10"></a><span class="st">                   </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></span>
-<span id="cb267-11"><a href="32-functions.html#cb267-11"></a><span class="st">                   </span><span class="kw">select</span>(i,j,Xij)</span>
-<span id="cb267-12"><a href="32-functions.html#cb267-12"></a> </span>
-<span id="cb267-13"><a href="32-functions.html#cb267-13"></a> </span>
-<span id="cb267-14"><a href="32-functions.html#cb267-14"></a></span>
-<span id="cb267-15"><a href="32-functions.html#cb267-15"></a> b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">2154</span>) <span class="op">%&gt;%</span></span>
-<span id="cb267-16"><a href="32-functions.html#cb267-16"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">i =</span> {{var}}, <span class="dt">lab_i =</span> {{lab}}) <span class="op">%&gt;%</span></span>
-<span id="cb267-17"><a href="32-functions.html#cb267-17"></a><span class="st">                    </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
-<span id="cb267-18"><a href="32-functions.html#cb267-18"></a><span class="st">                    </span><span class="kw">summarize</span>(<span class="dt">lab_i =</span> <span class="kw">unique</span>(lab_i),</span>
-<span id="cb267-19"><a href="32-functions.html#cb267-19"></a>                              <span class="dt">lat =</span> <span class="kw">mean</span>(lat),</span>
-<span id="cb267-20"><a href="32-functions.html#cb267-20"></a>                              <span class="dt">lng=</span><span class="kw">mean</span>(lng)) <span class="op">%&gt;%</span></span>
-<span id="cb267-21"><a href="32-functions.html#cb267-21"></a><span class="st">                    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb267-22"><a href="32-functions.html#cb267-22"></a><span class="st">                    </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">4326</span>)<span class="op">%&gt;%</span></span>
-<span id="cb267-23"><a href="32-functions.html#cb267-23"></a><span class="st">                    </span><span class="kw">st_as_sf</span>()</span>
-<span id="cb267-24"><a href="32-functions.html#cb267-24"></a></span>
-<span id="cb267-25"><a href="32-functions.html#cb267-25"></a><span class="kw">return</span>(b)</span>
-<span id="cb267-26"><a href="32-functions.html#cb267-26"></a>  </span>
-<span id="cb267-27"><a href="32-functions.html#cb267-27"></a>                           }</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="32-functions.html#cb13-1"></a>base_agreg_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb13-2"><a href="32-functions.html#cb13-2"></a>                           <span class="dt">var =</span> i2,</span>
+<span id="cb13-3"><a href="32-functions.html#cb13-3"></a>                           <span class="dt">lab =</span> lab_i2) {</span>
+<span id="cb13-4"><a href="32-functions.html#cb13-4"></a>  b&lt;-base</span>
+<span id="cb13-5"><a href="32-functions.html#cb13-5"></a>  key &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(i, {{var}})</span>
+<span id="cb13-6"><a href="32-functions.html#cb13-6"></a>  </span>
+<span id="cb13-7"><a href="32-functions.html#cb13-7"></a>  b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-8"><a href="32-functions.html#cb13-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">i =</span> <span class="kw">as.factor</span>({{var}}))<span class="op">%&gt;%</span></span>
+<span id="cb13-9"><a href="32-functions.html#cb13-9"></a><span class="st">    </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="32-functions.html#cb13-10"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
+<span id="cb13-11"><a href="32-functions.html#cb13-11"></a><span class="st">    </span><span class="kw">select</span>(i,j,Xij)</span>
+<span id="cb13-12"><a href="32-functions.html#cb13-12"></a>  </span>
+<span id="cb13-13"><a href="32-functions.html#cb13-13"></a>  </span>
+<span id="cb13-14"><a href="32-functions.html#cb13-14"></a>  </span>
+<span id="cb13-15"><a href="32-functions.html#cb13-15"></a>  b<span class="op">$</span>geo &lt;-<span class="st"> </span>b<span class="op">$</span>geo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">2154</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-16"><a href="32-functions.html#cb13-16"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">i =</span> {{var}}, <span class="dt">lab_i =</span> {{lab}}) <span class="op">%&gt;%</span></span>
+<span id="cb13-17"><a href="32-functions.html#cb13-17"></a><span class="st">    </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
+<span id="cb13-18"><a href="32-functions.html#cb13-18"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">lab_i =</span> <span class="kw">unique</span>(lab_i),</span>
+<span id="cb13-19"><a href="32-functions.html#cb13-19"></a>              <span class="dt">lat =</span> <span class="kw">mean</span>(lat),</span>
+<span id="cb13-20"><a href="32-functions.html#cb13-20"></a>              <span class="dt">lng=</span><span class="kw">mean</span>(lng)) <span class="op">%&gt;%</span></span>
+<span id="cb13-21"><a href="32-functions.html#cb13-21"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-22"><a href="32-functions.html#cb13-22"></a><span class="st">    </span><span class="kw">st_transform</span>(<span class="dt">crs =</span> <span class="dv">4326</span>)<span class="op">%&gt;%</span></span>
+<span id="cb13-23"><a href="32-functions.html#cb13-23"></a><span class="st">    </span><span class="kw">st_as_sf</span>()</span>
+<span id="cb13-24"><a href="32-functions.html#cb13-24"></a>  </span>
+<span id="cb13-25"><a href="32-functions.html#cb13-25"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb13-26"><a href="32-functions.html#cb13-26"></a></span>
+<span id="cb13-27"><a href="32-functions.html#cb13-27"></a>                           }</span></code></pre></div>
 <p>Appliquons ceci au fichier CSP des IRIS. On obtient une nouvelle base par CSP mais au niveau des communes. Il y a un message d’avertissement concernant l’agrégation des unités spatiales qu’il vaut normalement mieux effectuer après une projection planaire.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="32-functions.html#cb268-1"></a>com &lt;-<span class="kw">base_agreg_geo</span>(<span class="dt">base =</span> csp94,</span>
-<span id="cb268-2"><a href="32-functions.html#cb268-2"></a>                     <span class="dt">var =</span> i2,</span>
-<span id="cb268-3"><a href="32-functions.html#cb268-3"></a>                     <span class="dt">lab =</span> lab_i2)</span>
-<span id="cb268-4"><a href="32-functions.html#cb268-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>tab))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="32-functions.html#cb14-1"></a>com &lt;-<span class="kw">base_agreg_geo</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb14-2"><a href="32-functions.html#cb14-2"></a>                     <span class="dt">var =</span> i2,</span>
+<span id="cb14-3"><a href="32-functions.html#cb14-3"></a>                     <span class="dt">lab =</span> lab_i2)</span>
+<span id="cb14-4"><a href="32-functions.html#cb14-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>tab))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -924,6 +917,17 @@ Xij
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+94002
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 94002
@@ -979,20 +983,9 @@ Xij
 3439
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-94002
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-5959
-</td>
-</tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="32-functions.html#cb269-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>geo))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="32-functions.html#cb15-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(com<span class="op">$</span>geo))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1122,31 +1115,30 @@ POLYGON ((2.518283 48.829, …
 <div id="agrégation-sociologique-base_agreg_soc" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Agrégation sociologique <code>base_agreg_soc()</code></h3>
 <p>On reproduit un code équivalent pour procéder à une agrégation des catégories sociales</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="32-functions.html#cb270-1"></a>base_agreg_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
-<span id="cb270-2"><a href="32-functions.html#cb270-2"></a>                           <span class="dt">var =</span> j2,</span>
-<span id="cb270-3"><a href="32-functions.html#cb270-3"></a>                           <span class="dt">lab =</span> lab_j2) {</span>
-<span id="cb270-4"><a href="32-functions.html#cb270-4"></a> b&lt;-base</span>
-<span id="cb270-5"><a href="32-functions.html#cb270-5"></a> key &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(j, {{var}})</span>
-<span id="cb270-6"><a href="32-functions.html#cb270-6"></a> </span>
-<span id="cb270-7"><a href="32-functions.html#cb270-7"></a> b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb270-8"><a href="32-functions.html#cb270-8"></a><span class="st">                   </span><span class="kw">group_by</span>(i,{{var}}) <span class="op">%&gt;%</span></span>
-<span id="cb270-9"><a href="32-functions.html#cb270-9"></a><span class="st">                   </span><span class="kw">mutate</span>(<span class="dt">i =</span>i, <span class="dt">j=</span> <span class="kw">as.factor</span>({{var}}),<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
-<span id="cb270-10"><a href="32-functions.html#cb270-10"></a><span class="st">                   </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></span>
-<span id="cb270-11"><a href="32-functions.html#cb270-11"></a><span class="st">                   </span><span class="kw">select</span>(i,j,Xij)</span>
-<span id="cb270-12"><a href="32-functions.html#cb270-12"></a></span>
-<span id="cb270-13"><a href="32-functions.html#cb270-13"></a>               </span>
-<span id="cb270-14"><a href="32-functions.html#cb270-14"></a> b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">j =</span> {{var}}, <span class="dt">lab_j =</span> {{lab}}) <span class="op">%&gt;%</span></span>
-<span id="cb270-15"><a href="32-functions.html#cb270-15"></a><span class="st">                    </span><span class="kw">select</span>(j,lab_j)</span>
-<span id="cb270-16"><a href="32-functions.html#cb270-16"></a>  </span>
-<span id="cb270-17"><a href="32-functions.html#cb270-17"></a>                    </span>
-<span id="cb270-18"><a href="32-functions.html#cb270-18"></a> <span class="kw">return</span>(b)</span>
-<span id="cb270-19"><a href="32-functions.html#cb270-19"></a>  </span>
-<span id="cb270-20"><a href="32-functions.html#cb270-20"></a>                           }</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="32-functions.html#cb16-1"></a>base_agreg_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base,</span>
+<span id="cb16-2"><a href="32-functions.html#cb16-2"></a>                           <span class="dt">var =</span> j2,</span>
+<span id="cb16-3"><a href="32-functions.html#cb16-3"></a>                           <span class="dt">lab =</span> lab_j2) {</span>
+<span id="cb16-4"><a href="32-functions.html#cb16-4"></a>  b&lt;-base</span>
+<span id="cb16-5"><a href="32-functions.html#cb16-5"></a>  key &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(j, {{var}})</span>
+<span id="cb16-6"><a href="32-functions.html#cb16-6"></a>  </span>
+<span id="cb16-7"><a href="32-functions.html#cb16-7"></a>  b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(key) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-8"><a href="32-functions.html#cb16-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">j =</span> <span class="kw">as.factor</span>({{var}}))<span class="op">%&gt;%</span></span>
+<span id="cb16-9"><a href="32-functions.html#cb16-9"></a><span class="st">    </span><span class="kw">group_by</span>(i,j) <span class="op">%&gt;%</span></span>
+<span id="cb16-10"><a href="32-functions.html#cb16-10"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Xij =</span> <span class="kw">sum</span>(Xij)) <span class="op">%&gt;%</span></span>
+<span id="cb16-11"><a href="32-functions.html#cb16-11"></a><span class="st">    </span><span class="kw">select</span>(i,j,Xij)</span>
+<span id="cb16-12"><a href="32-functions.html#cb16-12"></a>  </span>
+<span id="cb16-13"><a href="32-functions.html#cb16-13"></a>  b<span class="op">$</span>soc &lt;-<span class="st"> </span>b<span class="op">$</span>soc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">j =</span> {{var}}, <span class="dt">lab_j =</span> {{lab}}) <span class="op">%&gt;%</span></span>
+<span id="cb16-14"><a href="32-functions.html#cb16-14"></a><span class="st">    </span><span class="kw">select</span>(j,lab_j) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>()</span>
+<span id="cb16-15"><a href="32-functions.html#cb16-15"></a>  </span>
+<span id="cb16-16"><a href="32-functions.html#cb16-16"></a>  </span>
+<span id="cb16-17"><a href="32-functions.html#cb16-17"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb16-18"><a href="32-functions.html#cb16-18"></a>  </span>
+<span id="cb16-19"><a href="32-functions.html#cb16-19"></a>}</span></code></pre></div>
 <p>Appliquons ceci au fichier CSP des IRIS pour le regrouper en 3 catégories.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="32-functions.html#cb271-1"></a>csp3 &lt;-<span class="kw">base_agreg_soc</span>(<span class="dt">base =</span> csp94,</span>
-<span id="cb271-2"><a href="32-functions.html#cb271-2"></a>                     <span class="dt">var =</span> j2,</span>
-<span id="cb271-3"><a href="32-functions.html#cb271-3"></a>                     <span class="dt">lab=</span> lab_j2)</span>
-<span id="cb271-4"><a href="32-functions.html#cb271-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>tab))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="32-functions.html#cb17-1"></a>csp3 &lt;-<span class="kw">base_agreg_soc</span>(<span class="dt">base =</span> csp94,</span>
+<span id="cb17-2"><a href="32-functions.html#cb17-2"></a>                     <span class="dt">var =</span> j2,</span>
+<span id="cb17-3"><a href="32-functions.html#cb17-3"></a>                     <span class="dt">lab=</span> lab_j2)</span>
+<span id="cb17-4"><a href="32-functions.html#cb17-4"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>tab))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1167,28 +1159,6 @@ Xij
 940020101
 </td>
 <td style="text-align:left;">
-A
-</td>
-<td style="text-align:right;">
-518
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-940020101
-</td>
-<td style="text-align:left;">
-A
-</td>
-<td style="text-align:right;">
-518
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-940020101
-</td>
-<td style="text-align:left;">
 B
 </td>
 <td style="text-align:right;">
@@ -1200,10 +1170,10 @@ B
 940020101
 </td>
 <td style="text-align:left;">
-C
+A
 </td>
 <td style="text-align:right;">
-691
+518
 </td>
 </tr>
 <tr>
@@ -1228,9 +1198,31 @@ NA
 695
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+940020102
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+520
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+940020102
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+762
+</td>
+</tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="32-functions.html#cb272-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>soc))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="32-functions.html#cb18-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp3<span class="op">$</span>soc))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1261,22 +1253,6 @@ Haut
 </tr>
 <tr>
 <td style="text-align:left;">
-A
-</td>
-<td style="text-align:left;">
-Haut
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-B
-</td>
-<td style="text-align:left;">
-Moyen
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 C
 </td>
 <td style="text-align:left;">
@@ -1285,10 +1261,10 @@ Bas
 </tr>
 <tr>
 <td style="text-align:left;">
-C
+NA
 </td>
 <td style="text-align:left;">
-Bas
+NA
 </td>
 </tr>
 </tbody>
@@ -1305,16 +1281,16 @@ Bas
 <li>Xi = effectif total de l’unité spatiale</li>
 <li>Pj_i = Xij/Xi = proportion de i dans j</li>
 </ul>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="32-functions.html#cb273-1"></a>base_norm_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base) {</span>
-<span id="cb273-2"><a href="32-functions.html#cb273-2"></a>        b &lt;-<span class="st"> </span>base</span>
-<span id="cb273-3"><a href="32-functions.html#cb273-3"></a>       tab_i &lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
-<span id="cb273-4"><a href="32-functions.html#cb273-4"></a><span class="st">                            </span><span class="kw">summarize</span>(<span class="dt">Xi =</span> <span class="kw">sum</span>(Xij))</span>
-<span id="cb273-5"><a href="32-functions.html#cb273-5"></a>        b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(tab_i) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Pj_i =</span> Xij<span class="op">/</span>Xi)</span>
-<span id="cb273-6"><a href="32-functions.html#cb273-6"></a>        <span class="kw">return</span>(b)</span>
-<span id="cb273-7"><a href="32-functions.html#cb273-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="32-functions.html#cb19-1"></a>base_norm_geo &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base) {</span>
+<span id="cb19-2"><a href="32-functions.html#cb19-2"></a>        b &lt;-<span class="st"> </span>base</span>
+<span id="cb19-3"><a href="32-functions.html#cb19-3"></a>       tab_i &lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(i) <span class="op">%&gt;%</span></span>
+<span id="cb19-4"><a href="32-functions.html#cb19-4"></a><span class="st">                            </span><span class="kw">summarize</span>(<span class="dt">Xi =</span> <span class="kw">sum</span>(Xij))</span>
+<span id="cb19-5"><a href="32-functions.html#cb19-5"></a>        b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(tab_i) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Pj_i =</span> Xij<span class="op">/</span>Xi)</span>
+<span id="cb19-6"><a href="32-functions.html#cb19-6"></a>        <span class="kw">return</span>(b)</span>
+<span id="cb19-7"><a href="32-functions.html#cb19-7"></a>}</span></code></pre></div>
 <p>Par exemple :</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="32-functions.html#cb274-1"></a>csp94_geo &lt;-<span class="st"> </span><span class="kw">base_norm_geo</span>(csp94)</span>
-<span id="cb274-2"><a href="32-functions.html#cb274-2"></a><span class="kw">head</span>(csp94_geo<span class="op">$</span>tab)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="32-functions.html#cb20-1"></a>csp94_geo &lt;-<span class="st"> </span><span class="kw">base_norm_geo</span>(csp94)</span>
+<span id="cb20-2"><a href="32-functions.html#cb20-2"></a><span class="kw">head</span>(csp94_geo<span class="op">$</span>tab)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   i         j       Xij    Xi   Pj_i
   &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -1332,16 +1308,16 @@ Bas
 <li>Xj = effectif total de la catégorie</li>
 <li>Pi_j = Xij/Xi = proportion de j dans i</li>
 </ul>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="32-functions.html#cb276-1"></a>base_norm_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base) {</span>
-<span id="cb276-2"><a href="32-functions.html#cb276-2"></a>        b &lt;-<span class="st"> </span>base</span>
-<span id="cb276-3"><a href="32-functions.html#cb276-3"></a>       tab_j &lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(j) <span class="op">%&gt;%</span></span>
-<span id="cb276-4"><a href="32-functions.html#cb276-4"></a><span class="st">                            </span><span class="kw">summarize</span>(<span class="dt">Xj =</span> <span class="kw">sum</span>(Xij))</span>
-<span id="cb276-5"><a href="32-functions.html#cb276-5"></a>        b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(tab_j) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Pi_j =</span> Xij<span class="op">/</span>Xj)</span>
-<span id="cb276-6"><a href="32-functions.html#cb276-6"></a>        <span class="kw">return</span>(b)</span>
-<span id="cb276-7"><a href="32-functions.html#cb276-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="32-functions.html#cb22-1"></a>base_norm_soc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base =</span> base) {</span>
+<span id="cb22-2"><a href="32-functions.html#cb22-2"></a>        b &lt;-<span class="st"> </span>base</span>
+<span id="cb22-3"><a href="32-functions.html#cb22-3"></a>       tab_j &lt;-<span class="st"> </span>b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(j) <span class="op">%&gt;%</span></span>
+<span id="cb22-4"><a href="32-functions.html#cb22-4"></a><span class="st">                            </span><span class="kw">summarize</span>(<span class="dt">Xj =</span> <span class="kw">sum</span>(Xij))</span>
+<span id="cb22-5"><a href="32-functions.html#cb22-5"></a>        b<span class="op">$</span>tab &lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(tab_j) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Pi_j =</span> Xij<span class="op">/</span>Xj)</span>
+<span id="cb22-6"><a href="32-functions.html#cb22-6"></a>        <span class="kw">return</span>(b)</span>
+<span id="cb22-7"><a href="32-functions.html#cb22-7"></a>}</span></code></pre></div>
 <p>par exemple :</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="32-functions.html#cb277-1"></a>csp94_soc &lt;-<span class="st"> </span><span class="kw">base_norm_soc</span>(csp94)</span>
-<span id="cb277-2"><a href="32-functions.html#cb277-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp94_soc<span class="op">$</span>tab))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="32-functions.html#cb23-1"></a>csp94_soc &lt;-<span class="st"> </span><span class="kw">base_norm_soc</span>(csp94)</span>
+<span id="cb23-2"><a href="32-functions.html#cb23-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp94_soc<span class="op">$</span>tab))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1471,18 +1447,18 @@ Pi_j
 <div id="normalisation-statistique-base_norm_stat" class="section level3" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Normalisation statistique <code>base_norm_stat()</code></h3>
 <p>Si on veut effectuer une analyse des anomalies statistiques à l’intérieur du tableau, on effectue la double normalisation géographique et sociologique puis on calcule la valeur théorique <code>E_ij</code>sous hypothèse d’indépendance des variables sociologiques et géographiques. On en déduit le résidu <code>R_ij</code> qui mesure les sur et sous-représentation des individus ainsi que le chi-2 correspondant <code>K2_ij</code>.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="32-functions.html#cb278-1"></a>base_norm_stat &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base=</span>base) {</span>
-<span id="cb278-2"><a href="32-functions.html#cb278-2"></a>  b&lt;-base</span>
-<span id="cb278-3"><a href="32-functions.html#cb278-3"></a>  b&lt;-<span class="kw">base_norm_geo</span>(b)</span>
-<span id="cb278-4"><a href="32-functions.html#cb278-4"></a>  b&lt;-<span class="kw">base_norm_soc</span>(b)</span>
-<span id="cb278-5"><a href="32-functions.html#cb278-5"></a>  b<span class="op">$</span>tab&lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Eij =</span> Xi <span class="op">*</span><span class="st"> </span>Xj<span class="op">/</span><span class="kw">sum</span>(Xj),</span>
-<span id="cb278-6"><a href="32-functions.html#cb278-6"></a>                  <span class="dt">Rij =</span> Xij<span class="op">-</span>Eij,</span>
-<span id="cb278-7"><a href="32-functions.html#cb278-7"></a>                  <span class="dt">K2ij =</span> (Rij<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Eij)</span>
-<span id="cb278-8"><a href="32-functions.html#cb278-8"></a>  <span class="kw">return</span>(b)</span>
-<span id="cb278-9"><a href="32-functions.html#cb278-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="32-functions.html#cb24-1"></a>base_norm_stat &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base=</span>base) {</span>
+<span id="cb24-2"><a href="32-functions.html#cb24-2"></a>  b&lt;-base</span>
+<span id="cb24-3"><a href="32-functions.html#cb24-3"></a>  b&lt;-<span class="kw">base_norm_geo</span>(b)</span>
+<span id="cb24-4"><a href="32-functions.html#cb24-4"></a>  b&lt;-<span class="kw">base_norm_soc</span>(b)</span>
+<span id="cb24-5"><a href="32-functions.html#cb24-5"></a>  b<span class="op">$</span>tab&lt;-b<span class="op">$</span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Eij =</span> Xi <span class="op">*</span><span class="st"> </span>Xj<span class="op">/</span><span class="kw">sum</span>(Xj),</span>
+<span id="cb24-6"><a href="32-functions.html#cb24-6"></a>                  <span class="dt">Rij =</span> Xij<span class="op">-</span>Eij,</span>
+<span id="cb24-7"><a href="32-functions.html#cb24-7"></a>                  <span class="dt">K2ij =</span> (Rij<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>Eij)</span>
+<span id="cb24-8"><a href="32-functions.html#cb24-8"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb24-9"><a href="32-functions.html#cb24-9"></a>}</span></code></pre></div>
 <p>par exemple :</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="32-functions.html#cb279-1"></a>csp94_stat &lt;-<span class="st"> </span><span class="kw">base_norm_stat</span>(csp94)</span>
-<span id="cb279-2"><a href="32-functions.html#cb279-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp94_stat<span class="op">$</span>tab))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="32-functions.html#cb25-1"></a>csp94_stat &lt;-<span class="st"> </span><span class="kw">base_norm_stat</span>(csp94)</span>
+<span id="cb25-2"><a href="32-functions.html#cb25-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(csp94_stat<span class="op">$</span>tab))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1717,12 +1693,6 @@ K2ij
 </div>
 </div>
 </div>
-
-
-
-
-
-
 <script src="js/tidyverse.js"></script>
             </section>
 
@@ -1781,20 +1751,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
